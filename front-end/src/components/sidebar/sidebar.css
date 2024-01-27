@@ -1,0 +1,47 @@
+.sidebar
+{
+    flex: 1;    /*sidebar와 메인페이지의 비율 설정*/
+    height: calc(100vh-50); /*topbar 높이가 50 px 로 설정을 했기 때문에 sidebar 의 경우는 전체 높이에서 50 px 을 빼고 정하면된다.*/
+    background-color: #f0f0fa;
+
+    position: sticky;
+    top: 50px;
+}
+
+.sidebarWrapper
+{
+    padding: 20px;
+    color: gray;
+}
+
+.sidebarMenu
+{
+    margin-bottom: 2rem;
+}
+
+.sidebarTitle
+{
+    font-size: 0.9rem;
+    color: #c794d4;
+}
+
+.sidebarList
+{
+    list-style: none;
+    padding: 0.5rem;
+}
+
+.sidebarListItem
+{
+    padding: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.sidebarListItem.active, 
+.sidebarListItem.hover
+{
+    background-color: #cba9d4;
+}

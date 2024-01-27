@@ -1,0 +1,27 @@
+.topbar
+{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+
+    position: sticky;   /*메뉴가 화면에 항상 보여지기 위함*/
+    top: 0;
+    z-index: 999;   /*우선순위지정*/
+}
+
+.topbarWrapper
+{
+    height: 100%;
+    padding: 0px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo
+{
+    font-weight: bold;
+    font-size: 30px;
+    color: #4b0082;
+    cursor: pointer;
+}

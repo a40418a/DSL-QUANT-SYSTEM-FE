@@ -1,27 +1,51 @@
 import React from "react";
-import "./chart.css"
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import "./chart.css";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+  ReferenceLine,
+} from "recharts";
+import { userData } from "../../dummyData";
 
+export default function Chart({ title, data }) {
+  const firstDataAvg = (userData[0].open + userData[0].close) / 2;
+  const maxOpen = Math.max(...userData.map((entry) => entry.open));
+  const minOpen = Math.min(...userData.map((entry) => entry.open));
+  const maxClose = Math.max(...userData.map((entry) => entry.close));
+  const minClose = Math.min(...userData.map((entry) => entry.close));
+  const maxHighest = Math.max(...userData.map((entry) => entry.highest));
+  const minHighest = Math.min(...userData.map((entry) => entry.highest));
+  const maxLowest = Math.max(...userData.map((entry) => entry.lowest));
+  const minLowest = Math.min(...userData.map((entry) => entry.lowest));
 
-export default function Chart({title,data,grid})    //재사용하기 위해서 데이터를 props로 처리할 수 있도록
-{
-    
-    return(
-        <div className="chart">
-            <h3 className="chartTitle">{title}</h3>
-            <ResponsiveContainer width="100%" aspect={3/1}>
-                <LineChart data={data}>
-                    {grid && <CartesianGrid strokeDasharray="3 3" />}
-                    <XAxis dataKey="date" />
-                    <YAxis />
-                    <Tooltip />
-                    <Legend />
-                    <Line type="monotone" dataKey="open" stroke="#550000" />
-                    <Line type="monotone" dataKey="close" stroke="#005500"/>
-                    <Line type="monotone" dataKey="highest" stroke="#000055"/>
-                    <Line type="monotone" dataKey="lowest" stroke="#555555"/>
-                </LineChart>
-            </ResponsiveContainer>
-        </div>
-    )
+  // 범위를 일정 값으로 조절
+  const range = 1000;
+
+  // const lineColor = (entry, threshold) => {
+  //   return entry.value > threshold ? "blue" : "red";
+  // };
+
+  return (
+    <div className="chart">
+      <h3 className="chartTitle">{title}</h3>
+      <ResponsiveContainer width="100%" aspect={3 / 1}>
+        <LineChart data={data}>
+          <ReferenceLine strokeDasharray="3 3" y={firstDataAvg} stroke="gray" />
+          <XAxis dataKey="date" />
+          <YAxis domain={[minLowest - range, maxHighest + range]} />
+          <Tooltip />
+          <Legend />
+          <Line type="monotone" dataKey="open" stroke="red" />
+          <Line type="monotone" dataKey="close" stroke="#005500" />
+          <Line type="monotone" dataKey="highest" stroke="#000055" />
+          <Line type="monotone" dataKey="lowest" stroke="#555555" />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
 }

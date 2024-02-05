@@ -1,4 +1,10 @@
-.container
-{
-    display: flex;
+.container {
+  display: flex;
+  margin: 0;
+  box-sizing: border-box;
+  justify-content: center;
+}
+
+* {
+  font-family: "NanumSquareRound";
 }

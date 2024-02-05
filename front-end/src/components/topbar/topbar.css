@@ -1,27 +1,63 @@
-.topbar
-{
-    width: 100%;
-    height: 50px;
-    background-color: white;
-
-    position: sticky;   /*메뉴가 화면에 항상 보여지기 위함*/
-    top: 0;
-    z-index: 999;   /*우선순위지정*/
+a {
+  text-decoration: none; /* 링크의 밑줄 제거 */
+  color: inherit; /* 기본 링크 색상 사용 */
+  font-family: inherit;
+  cursor: pointer; /* 링크 커서 스타일 */
 }
 
-.topbarWrapper
-{
-    height: 100%;
-    padding: 0px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.topbar {
+  width: 100%;
+  height: 100px;
+  background-color: white;
+
+  position: sticky; /*메뉴가 화면에 항상 보여지기 위함*/
+  top: 0;
+  z-index: 999; /*우선순위지정*/
+  margin-bottom: 30px;
 }
 
-.logo
-{
-    font-weight: bold;
-    font-size: 30px;
-    color: #4b0082;
-    cursor: pointer;
+.topbarWrapper {
+  height: 100%;
+  padding: 0px 20px;
+  display: flex;
+
+  align-items: center;
+  justify-content: space-around;
+}
+
+.topLeft {
+  font-family: "yg-jalnan";
+  font-size: 30px;
+  color: #4b0082;
+}
+
+.topMenu {
+  box-sizing: border-box;
+  width: 60%;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  align-items: top;
+  background-color: #f0f0fa;
+  border-radius: 15px;
+  color: #555555;
+}
+
+.menuCategory {
+  list-style: none;
+  margin-left: 10px;
+}
+
+.menuPage {
+  padding: 0.2rem 2rem;
+  border-radius: 10px;
+  margin-bottom: 0.1rem;
+}
+
+.menuPage.active,
+.menuPage.hover {
+  background-color: #cba9d4;
+  color: white;
 }

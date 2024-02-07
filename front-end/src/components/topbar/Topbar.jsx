@@ -1,9 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import "./topbar.css";
-import AutoGraphIcon from "@mui/icons-material/AutoGraph";
 
-export default function Topbar() {
+export const Topbar = () => {
   const [activePage, setActivePage] = useState("");
   const location = useLocation();
 
@@ -16,7 +15,7 @@ export default function Topbar() {
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
-          <Link to="/">주가그래프</Link>
+          <Link to="/">2024 졸업작품</Link>
         </div>
         <div className="topMenu">
           <ul className="menuCategory">
@@ -30,8 +29,6 @@ export default function Topbar() {
             >
               <Link to="/page02">Page-02</Link>
             </li>
-          </ul>
-          <ul className="menuCategory">
             <li
               className={`menuPage ${activePage === "/page03" ? "active" : ""}`}
             >
@@ -45,9 +42,9 @@ export default function Topbar() {
           </ul>
         </div>
         <div className="topRight">
-          <AutoGraphIcon></AutoGraphIcon>
+          <Link to="/signin">로그인</Link>
         </div>
       </div>
     </div>
   );
-}
+};

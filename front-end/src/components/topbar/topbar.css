@@ -27,7 +27,7 @@ a {
 
 .topLeft {
   font-family: "yg-jalnan";
-  font-size: 30px;
+  font-size: 3rem;
   color: #4b0082;
 }
 
@@ -43,11 +43,13 @@ a {
   background-color: #f0f0fa;
   border-radius: 15px;
   color: #555555;
+  font-size: 1.3rem;
 }
 
 .menuCategory {
   list-style: none;
   margin-left: 10px;
+  display: flex;
 }
 
 .menuPage {
@@ -60,4 +62,27 @@ a {
 .menuPage.hover {
   background-color: #cba9d4;
   color: white;
+}
+
+/* 반응형 */
+@media (max-width: 1068px) {
+  .topbar {
+    height: 200px;
+  }
+  .topbarWrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  .topLeft {
+    font-size: 2rem;
+  }
+  .topMenu {
+    width: 80%;
+  }
+  .topRight {
+    width: 80%;
+    display: flex;
+    justify-content: right;
+    margin-top: 5px;
+  }
 }

@@ -1,14 +1,14 @@
 import React from "react";
-import FeaturedInfo from "../../components/featuredInfo/FeaturedInfo";
-import Chart from "../../components/chart/chart";
+import { FeaturedInfo } from "../../components/featuredInfo/FeaturedInfo";
+import { Chart } from "../../components/chart/Chart";
 import "./home.css";
-import { userData } from "../../dummyData";
+import { userData01 } from "../../data/dummyData01";
 
-export default function Home() {
+export const Home = () => {
   return (
     <div className="home">
       <FeaturedInfo />
-      <Chart data={userData} title="삼성전자 그래프 예시" />
+      <Chart data={userData01} title="삼성전자 그래프 예시" />
     </div>
   );
-}
+};

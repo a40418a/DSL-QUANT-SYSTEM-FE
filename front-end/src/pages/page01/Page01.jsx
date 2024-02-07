@@ -1,12 +1,12 @@
 import React from "react";
-import Chart from "../../components/chart/chart";
+import { Chart, MaxClose, MinClose } from "../../components/chart/Chart";
 import "./page01.css";
-import { userData } from "../../dummyData";
+import { userData01 } from "../../data/dummyData01";
 
-export default function Page01() {
+export const Page01 = () => {
   return (
     <div className="page01">
-      <Chart data={userData} title="Page-01" />
+      <Chart data={userData01} title="Page-01" />
     </div>
   );
-}
+};

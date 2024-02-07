@@ -1,0 +1,20 @@
+.idpwInput {
+  width: 350px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  color: #800080;
+  font-family: "SejonghospitalBold";
+}
+
+input {
+  width: 250px;
+  border: 1px solid #804680;
+  border-radius: 5px;
+  height: 40px;
+}

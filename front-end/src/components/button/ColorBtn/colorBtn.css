@@ -1,0 +1,9 @@
+.colorBtn {
+  font-family: "SejonghospitalBold";
+  font-size: 1.1rem;
+  box-sizing: border-box;
+  padding: 15px 45px;
+  border-radius: 10px;
+  background-color: #800080;
+  color: white;
+}

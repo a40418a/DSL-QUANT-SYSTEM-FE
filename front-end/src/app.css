@@ -1,10 +1,47 @@
+:root {
+  /* 폰트, 색상, 크기 */
+  --main-font: "NanumSquareRound";
+  --main-font-size: 1rem;
+  --main-font-color: black;
+  --title-font: "yg-jalnan";
+  --title-font-size: 3rem;
+  --title-font-color: #4b0082;
+  --sub-title-font: "SejonghospitalBold";
+  --sub-title-font-size: 1.5rem;
+  --sub-title-font-color: #9932cc;
+  --sub-font-1: "Nanum Myeongjo";
+  --sub-font-2: "NeoDunggeunmo";
+  --sub-font-size: 0.8rem;
+  --sub-font-color: #dda0dd;
+  ---webkit-box-shadow: 0px 0px 12px -1px #c794d4;
+  --box-shadow: 0px 0px 12px -1px #c794d4;
+
+  /* 기본 사이즈 */
+  --padding: 20px;
+  --margin: 20px;
+  --border-radius: 10px;
+  --width: 90vw;
+  --background-color-dark: #ba55d3;
+  --background-color-light: #cba9d4;
+
+  /* 기타 설정 */
+  --cursor: pointer;
+  --upward-color: red;
+  --downward-color: blue;
+
+  /* chart 변수 */
+  --stroke-dash-array: 5 5;
+  --stroke-color: gray;
+  --line-type: linear;
+}
+
 .container {
-  display: flex;
-  margin: 0;
   box-sizing: border-box;
+  display: flex;
   justify-content: center;
+  margin: 0;
 }
 
 * {
-  font-family: "NanumSquareRound";
+  font-family: var(--main-font);
 }

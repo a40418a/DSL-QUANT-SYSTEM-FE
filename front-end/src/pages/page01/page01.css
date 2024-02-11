@@ -1,5 +1,5 @@
 .page01 {
-  width: 90vw;
+  width: var(--width);
   display: flex;
   flex-direction: column;
   align-items: center;

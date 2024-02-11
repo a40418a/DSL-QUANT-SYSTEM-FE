@@ -3,20 +3,19 @@
   width: 400px;
   display: flex;
   flex-direction: column;
-  border-radius: 15px;
-  margin-bottom: 30px;
+  border-radius: var(--border-radius);
+  margin-bottom: var(--margin);
 }
 
 .infoFirst {
   box-sizing: border-box;
   margin: 0;
   width: 100%;
-  font-family: inherit;
-  border: 1px solid black;
-  border-bottom: 0.5px solid black;
+  border: 1px solid #804680;
+  border-bottom: 0.5px solid #804680;
   height: 50px;
-  padding-left: 20px;
-  border-radius: 10px 10px 0 0;
+  padding-left: var(--padding);
+  border-radius: var(--border-radius) var(--border-radius) 0 0;
 }
 
 .infoMid {
@@ -24,11 +23,11 @@
   margin: 0;
   width: 100%;
   font-family: inherit;
-  border: 1px solid black;
-  border-top: 0.5px solid black;
-  border-bottom: 0.5px solid black;
+  border: 1px solid #804680;
+  border-top: 0.5px solid #804680;
+  border-bottom: 0.5px solid #804680;
   height: 50px;
-  padding-left: 20px;
+  padding-left: var(--padding);
   border-radius: 0;
 }
 
@@ -37,9 +36,9 @@
   margin: 0;
   width: 100%;
   font-family: inherit;
-  border: 1px solid black;
-  border-top: 0.5px solid black;
+  border: 1px solid #804680;
+  border-top: 0.5px solid #804680;
   height: 50px;
-  padding-left: 20px;
-  border-radius: 0 0 10px 10px;
+  padding-left: var(--padding);
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
 }

@@ -1,17 +1,16 @@
 .featuredBox {
   flex: 1;
-  margin: 0 20px;
-  padding: 30px;
-  border-radius: 10px;
-  cursor: pointer;
+  margin: 0 var(--margin);
+  padding: var(--padding);
+  border-radius: var(--border-radius);
+  cursor: var(--cursor);
 
-  -webkit-box-shadow: 0px 0px 12px -1px #c794d4;
-  box-shadow: 0px 0px 12px -1px #c794d4;
+  -webkit-box-shadow: var(---webkit-box-shadow);
+  box-shadow: var(--box-shadow);
 }
 
 .featuredTitle {
-  font-size: 20px;
-  font-weight: 900;
+  font-size: var(--sub-title-font-size);
 }
 
 .featuredMoneyContainer {
@@ -21,20 +20,20 @@
 }
 
 .featuredMoney {
-  font-size: 30px;
-  font-weight: 600;
+  font-family: var(--sub-title-font);
+  font-size: 2rem;
 }
 
 .featuredMoneyRate {
   display: flex;
   align-items: center;
-  margin-left: 20px;
+  margin-left: var(--margin);
 }
 
 .featuredSub {
-  font-size: 12px;
-  color: gray;
-  font-family: "Nanum Myeongjo";
+  font-size: var(--sub-font-size);
+  color: var(--sub-font-color);
+  font-family: var(--sub-font-1);
 }
 
 /* 반응형 */
@@ -45,7 +44,7 @@
     align-items: center;
     justify-content: space-around;
     width: 90%;
-    margin: 10px 0 0 0;
-    padding: 10px;
+    margin: var(--margin) 0 0 0;
+    padding: var(--padding);
   }
 }

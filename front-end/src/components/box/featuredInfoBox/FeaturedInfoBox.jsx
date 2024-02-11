@@ -1,3 +1,4 @@
+//주식 참고 자료 박스
 import React from "react";
 import "./featuredInfoBox.css";
 

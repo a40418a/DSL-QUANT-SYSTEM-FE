@@ -1,3 +1,4 @@
+// 컬러 버튼 구조
 import React from "react";
 import { Link } from "react-router-dom";
 import "./colorBtn.css";

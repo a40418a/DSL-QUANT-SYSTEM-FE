@@ -1,3 +1,4 @@
+//로그인 페이지 아이디,비밀번호 입력 박스
 import React from "react";
 import "./idpwInput.css";
 

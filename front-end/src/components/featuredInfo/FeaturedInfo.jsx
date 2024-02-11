@@ -1,3 +1,4 @@
+// 상단 참고 주식 자료 구조
 import React from "react";
 import "./featuredInfo.css";
 import { ArrowDown, ArrowUp } from "../emoticon/arrow/Arrow";

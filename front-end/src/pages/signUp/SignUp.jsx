@@ -1,3 +1,4 @@
+//회원가입 화면
 import { ColorBtn } from "../../components/button/ColorBtn/ColorBtn";
 import { React, useState } from "react";
 import "./signUp.css";

@@ -1,3 +1,4 @@
+//로그인 화면
 import React, { useState } from "react";
 import "./signIn.css";
 import { ColorBtn } from "../../components/button/ColorBtn/ColorBtn";

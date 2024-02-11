@@ -7,14 +7,14 @@
   align-items: center;
   justify-content: center;
   border: 1px solid #804680;
-  border-radius: 15px;
+  border-radius: var(--border-radius);
   padding: 50px;
 }
 
 .signInTitle {
-  font-family: "yg-jalnan";
-  font-size: 30px;
-  color: #4b0082;
+  font-family: var(--title-font);
+  font-size: 2rem;
+  color: var(--title-font-color);
   margin-bottom: 50px;
 }
 
@@ -23,7 +23,7 @@
 }
 
 #signupBtn {
-  font-size: 0.9rem;
+  font-size: var(--sub-font-size);
   background-color: white;
-  color: #803380;
+  color: var(--background-color-dark);
 }

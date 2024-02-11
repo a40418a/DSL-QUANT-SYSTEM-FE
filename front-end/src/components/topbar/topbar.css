@@ -13,12 +13,12 @@ a {
   position: sticky; /*메뉴가 화면에 항상 보여지기 위함*/
   top: 0;
   z-index: 999; /*우선순위지정*/
-  margin-bottom: 30px;
+  margin-bottom: var(--margin);
 }
 
 .topbarWrapper {
   height: 100%;
-  padding: 0px 20px;
+  padding: 0px var(--padding);
   display: flex;
 
   align-items: center;
@@ -26,42 +26,46 @@ a {
 }
 
 .topLeft {
-  font-family: "yg-jalnan";
-  font-size: 3rem;
-  color: #4b0082;
+  font-family: var(--title-font);
+  font-size: var(--title-font-size);
+  color: var(--title-font-color);
 }
 
 .topMenu {
   box-sizing: border-box;
   width: 60%;
-  margin-left: 20px;
+  margin-left: var(--margin);
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: center;
   align-items: top;
   background-color: #f0f0fa;
-  border-radius: 15px;
+  border-radius: var(--border-radius);
   color: #555555;
-  font-size: 1.3rem;
 }
 
 .menuCategory {
   list-style: none;
-  margin-left: 10px;
+  margin-left: var(--margin);
   display: flex;
 }
 
 .menuPage {
-  padding: 0.2rem 2rem;
-  border-radius: 10px;
-  margin-bottom: 0.1rem;
+  font-family: var(--sub-title-font);
+  padding: 5px 30px;
+  border-radius: var(--border-radius);
 }
 
 .menuPage.active,
 .menuPage.hover {
-  background-color: #cba9d4;
+  background-color: var(--background-color-light);
   color: white;
+}
+
+.topRight {
+  font-family: var(--sub-title-font);
+  color: #555555;
 }
 
 /* 반응형 */
@@ -74,10 +78,10 @@ a {
     flex-direction: column;
   }
   .topLeft {
-    font-size: 2rem;
+    font-size: 30px;
   }
   .topMenu {
-    width: 80%;
+    width: var(--width);
   }
   .topRight {
     width: 80%;

@@ -1,8 +1,8 @@
 .featured {
   box-sizing: border-box;
-  width: 90%;
+  width: var(--width);
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: var(--margin);
 }
 
 /* 반응형 */

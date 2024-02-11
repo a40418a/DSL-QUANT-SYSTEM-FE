@@ -1,11 +1,11 @@
 .arrowUp {
-  font-size: 14px;
+  font-size: var(--sub-font-size);
   margin-left: 5px;
-  color: red;
+  color: var(--upward-color);
 }
 
 .arrowDown {
-  font-size: 14px;
+  font-size: var(--sub-font-size);
   margin-left: 5px;
-  color: blue;
+  color: var(--downwardcolor);
 }

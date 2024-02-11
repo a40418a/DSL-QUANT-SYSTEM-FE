@@ -1,3 +1,4 @@
+// 회원가입 정보 입력 박스
 import React from "react";
 import "./signupInput.css";
 

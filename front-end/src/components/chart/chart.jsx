@@ -1,4 +1,5 @@
 // 라인그래프
+// 종가 기준(마지막날이 기준선을 기준으로 색깔 변경)
 import React from "react";
 import "./chart.css";
 import {
@@ -29,22 +30,37 @@ export const Chart = ({ title, data }) => {
   // 범위를 일정 값으로 조절
   const range = 1000;
 
+  const rootStyles = getComputedStyle(document.documentElement);
+  const upwardColor = rootStyles.getPropertyValue("--upward-color");
+  const downwardColor = rootStyles.getPropertyValue("--downward-color");
+  const strokeDasharray = rootStyles.getPropertyValue("--stroke-dash-array");
+  const strokeColor = rootStyles.getPropertyValue("--stroke-color");
+  const lineType = rootStyles.getPropertyValue("--line-type");
+
   return (
     <div className="chart">
       <h3 className="chartTitle">{title}</h3>
       <ResponsiveContainer width="100%" aspect={3 / 1}>
+        {/* 차트 크기 설정*/}
         <LineChart data={data}>
-          <ReferenceLine strokeDasharray="3 3" y={firstDataAvg} stroke="gray" />
-          <XAxis dataKey="date" />
+          {/* 기준선 */}
+          <ReferenceLine
+            strokeDasharray={strokeDasharray}
+            y={firstDataAvg}
+            stroke={strokeColor}
+          />
+          <XAxis dataKey="date" /> {/*x축 값*/}
           <YAxis domain={[minLowest - range, maxHighest + range]} />
-          <Tooltip />
-          {/* <Legend /> */}
+          {/*y축 값(범위 지정) */}
+          <Tooltip /> {/*데이터레이블에 커서를 갖다댈 때 보일 것인지 */}
           <Line
-            type="linear"
+            type={lineType}
             dataKey="close"
             stroke={
-              userData01[length - 1].close > firstDataAvg ? "red" : "blue"
-            }
+              userData01[length - 1].close > firstDataAvg
+                ? upwardColor
+                : downwardColor
+            } //마지막날과 기준선을 기준으로 색깔 변경
             dot={false}
           />
         </LineChart>

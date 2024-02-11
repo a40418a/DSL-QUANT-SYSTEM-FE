@@ -4,12 +4,12 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: var(--margin);
 }
 
 .title {
-  color: #800080;
-  font-family: "SejonghospitalBold";
+  color: var(--sub-title-font-color);
+  font-family: var(--sub-title-font);
 }
 
 input {

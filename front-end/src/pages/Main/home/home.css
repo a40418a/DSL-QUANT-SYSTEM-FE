@@ -1,0 +1,28 @@
+.home {
+  width: 1200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: var(--margin);
+}
+
+.backtest-chart{
+  width: 600px;
+  border: solid 1px black ;
+}
+
+
+/* 반응형 */
+@media (max-width: 1068px) {
+  .home{
+      width: 80%;
+  }
+}

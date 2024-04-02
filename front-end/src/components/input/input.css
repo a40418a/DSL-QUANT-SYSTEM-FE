@@ -1,0 +1,7 @@
+.inputHalf{
+    box-sizing: border-box;
+    width: 360px;
+    height: 40px;
+    border-radius: var(--border-radius);
+    border: solid 1px var(--color-2);
+}

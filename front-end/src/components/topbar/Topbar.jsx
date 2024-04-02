@@ -12,40 +12,38 @@ export const Topbar = () => {
     setActivePage(location.pathname);
   }, [location]);
 
-  return (
-    <div className="topbar">
-      <div className="topbarWrapper">
-        <div className="topLeft">
-          <Link to="/">2024 졸업작품</Link>
-        </div>
-        <div className="topMenu">
-          <ul className="menuCategory">
-            <li
-              className={`menuPage ${activePage === "/page01" ? "active" : ""}`}
-            >
-              <Link to="/page01">Page-01</Link>
-            </li>
-            <li
-              className={`menuPage ${activePage === "/page02" ? "active" : ""}`}
-            >
-              <Link to="/page02">Page-02</Link>
-            </li>
-            <li
-              className={`menuPage ${activePage === "/page03" ? "active" : ""}`}
-            >
-              <Link to="/page03">Page-03</Link>
-            </li>
-            <li
-              className={`menuPage ${activePage === "/page04" ? "active" : ""}`}
-            >
-              <Link to="/page04">Page-04</Link>
-            </li>
-          </ul>
-        </div>
-        <div className="topRight">
-          <Link to="/signin">로그인</Link>
+  if(location.pathname!=="/")
+  {
+    return (
+      <div className="topbar">
+        <div className="topbar-wrapper">
+          <div className="topbar-title">
+            <Link to="/home">DSL QUANT</Link>
+          </div>
+            <ul className="topbar-menu-wrapper">
+              <li
+                className={`topbar-menu ${activePage === "/home" ? "active" : ""}`}
+              >
+                <Link to="/home">현 주식장</Link>
+              </li>
+              <li
+                className={`topbar-menu ${activePage === "/strategy1" ? "active" : ""}`}
+              >
+                <Link to="/strategy1">전략설정</Link>
+              </li>
+              <li
+                className={`topbar-menu ${activePage === ("/mypagecheck" &&"/mypage") ? "active" : ""}`}
+              >
+                <Link to="/mypagecheck">마이페이지</Link>
+              </li>
+            </ul>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  return null;
+
+  
 };
+
+export default Topbar;

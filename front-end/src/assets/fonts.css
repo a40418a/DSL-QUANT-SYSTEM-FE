@@ -1,32 +1,30 @@
 /* 제목 */
-/* 여기어때 잘난체 */
+/* 어그로체(300,500,700) */
 @font-face {
-  font-family: "yg-jalnan";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
-    format("woff");
+  font-family: 'SBAggroB';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
   font-weight: normal;
   font-style: normal;
 }
 
 /* 부제목 */
-/* 세종병원체 */
+/* 프리텐다드(100~900) */
 @font-face {
-  font-family: "SejonghospitalBold";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2312-1@1.1/SejonghospitalBold.woff2")
-    format("woff2");
-  font-weight: 700;
+  font-family: 'Pretendard-Subtitle';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+  font-weight: bold;
   font-style: normal;
 }
 
 /* 내용 */
-/* 나눔스퀘어라운드 */
+/* 프리텐다드(100~900) */
 @font-face {
-  font-family: "NanumSquareRound";
-  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff")
-    format("woff");
-  font-weight: normal;
+  font-family: 'Pretendard-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: regular;
   font-style: normal;
 }
+
 /* 기타 */
 /* Neo둥근모 */
 @font-face {

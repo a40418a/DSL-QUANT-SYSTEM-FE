@@ -1,13 +1,18 @@
 //페이지링크
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Topbar } from "./components/topbar/Topbar";
-import { Home } from "./pages/home/Home";
-import { Page01 } from "./pages/page01/Page01";
-import { Page02 } from "./pages/page02/Page02";
-import { Page03 } from "./pages/page03/Page03";
-import { Page04 } from "./pages/page04/Page04";
-import { SignIn } from "./pages/signIn/SignIn";
-import { SignUp } from "./pages/signUp/SignUp";
+import { Footbar } from "./components/footbar/Footbar";
+import { Home } from "./pages/Main/home/Home";
+import { Explain } from "./pages/Front/explain/Explain";
+import { Login } from "./pages/Info/login/Login";
+import { Signup } from "./pages/Info/signup/Signup";
+import { MyPage } from "./pages/Info/myPage/MyPage";
+import { MyPageCheck } from "./pages/Info/myPageCheck/MyPageCheck";
+import { Result } from "./pages/Main/result/Result";
+import { Strategy1 } from "./pages/Main/strategy/Strategy1";
+import { Strategy2 } from "./pages/Main/strategy/Strategy2";
+import { Strategy3 } from "./pages/Main/strategy/Strategy3";
+import { Thumbnail } from "./pages/Front/thumbnail/Thumbnail";
 import "./app.css";
 import "./assets/fonts.css";
 
@@ -18,15 +23,20 @@ function App() {
         <Topbar />
         <div className="container">
           <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/page01" element={<Page01 />} />
-            <Route path="/page02" element={<Page02 />} />
-            <Route path="/page03" element={<Page03 />} />
-            <Route path="/page04" element={<Page04 />} />
-            <Route path="/signin" element={<SignIn />} />
-            <Route path="/signup" element={<SignUp />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<Explain />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/mypage" element={<MyPage />} />
+            <Route path="/mypagecheck" element={<MyPageCheck />} />
+            <Route path="/result" element={<Result />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/strategy1" element={<Strategy1 />} />
+            <Route path="/strategy2" element={<Strategy2 />} />
+            <Route path="/strategy3" element={<Strategy3 />} />
+            <Route path="/thumbnail" element={<Thumbnail />} />
           </Routes>
         </div>
+        <Footbar/>
       </BrowserRouter>
     </div>
   );

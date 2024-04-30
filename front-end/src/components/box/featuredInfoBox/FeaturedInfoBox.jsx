@@ -4,18 +4,19 @@ import "./featuredInfoBox.css";
 
 export const FeaturedInfoBox = (props) => {
   return (
-    <div className="featuredBox">
-      <span className="featuredTitle">{props.title}</span>
-      <div className="featuredMoneyContainer">
-        <span className="featuredMoney">
-          {props.currency} {props.price}
-        </span>
-        <span className="featuredMoneyRate">
-          {props.rate}
-          {props.arrow}
-        </span>
+    <div className="featuredinfo">
+        <div className="featuredinfo-text">
+          <div className="featuredinfo-title">{props.title}</div>
+          <div className="featuredinfo-money">
+            <div className="featuredinfo-money-content">
+            {props.currency} {props.price} {props.arrow} {props.rate}
+        </div>
+        </div>
       </div>
-      <span className="featuredSub">{props.sub}</span>
+      <div className="featuredinfo-chart">
+        {props.chart}
+      </div>
+      <span className="featuredinfo-sub">{props.sub}</span>
     </div>
   );
 };

@@ -1,9 +1,11 @@
 .colorBtn {
   box-sizing: border-box;
-  font-family: var(--sub-title-font);
-  font-size: var(--sub-title-font-size);
-  padding: 15px 45px;
+  font-family: var(--font-1);
   border-radius: var(--border-radius);
-  background-color: var(--background-color-dark);
+  background-color: var(--point-color-1);
   color: white;
+  width: 320px;
+  height: 64px;
+  text-align: center; /* 텍스트 가로 가운데 정렬 */
+  line-height: 64px; /* 요소의 높이와 동일한 값으로 설정하여 수직 가운데 정렬 */
 }

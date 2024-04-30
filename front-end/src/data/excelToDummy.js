@@ -4,6 +4,7 @@ const fs = require("fs");
 const EXCEL_FILE_PATH = "src/data/dummyData.xlsx";
 const OUTPUT_FILE_PATH_01 = "src/data/dummyData01.js";
 const OUTPUT_FILE_PATH_02 = "src/data/dummyData02.js";
+const OUTPUT_FILE_PATH_03 = "src/data/dummyData03.js";
 
 // 엑셀 파일 읽기
 const workbook = xlsx.readFile(EXCEL_FILE_PATH);
@@ -14,6 +15,9 @@ const data01 = xlsx.utils.sheet_to_json(sheet01);
 const sheetName02 = workbook.SheetNames[1];
 const sheet02 = workbook.Sheets[sheetName02];
 const data02 = xlsx.utils.sheet_to_json(sheet02);
+const sheetName03 = workbook.SheetNames[2];
+const sheet03 = workbook.Sheets[sheetName03];
+const data03 = xlsx.utils.sheet_to_json(sheet03);
 
 // 변환된 데이터 생성
 const userData01 = data01.map((item) => ({
@@ -30,6 +34,15 @@ const userData02 = data02.map((item) => ({
   price: parseFloat(item["price"]),
   change: parseFloat(item["change"]),
 }));
+const userData03 = data03.map((item) => ({
+  rank: parseInt(item["순위"]),
+  name: item["종목명"],
+  now: parseInt(item["현재가"]),
+  calc: parseInt(item["전일비"]),
+  rate: parseFloat(item["등락률"]),
+}));
+
+
 
 // dummy.js 파일로 저장
 const outputCode01 = `export const userData01 = ${JSON.stringify(
@@ -45,3 +58,10 @@ const outputCode02 = `export const userData02 = ${JSON.stringify(
   2
 )};`;
 fs.writeFileSync(OUTPUT_FILE_PATH_02, outputCode02);
+
+const outputCode03 = `export const userData03 = ${JSON.stringify(
+  userData03,
+  null,
+  2
+)};`;
+fs.writeFileSync(OUTPUT_FILE_PATH_03, outputCode03);

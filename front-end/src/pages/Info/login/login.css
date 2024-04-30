@@ -1,0 +1,72 @@
+.login{
+    display: flex;
+    align-items: center;
+}
+
+.login-wrapper {
+    box-sizing: border-box;
+    width: 520px;
+    height: 360px;
+    border-radius: var(--border-radius);
+    border: solid 1px var(--color-1);
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+    align-items: center;
+    padding: 40px 24px 0 24px;
+}
+
+.login-title {
+    font-size: 20px;
+    margin-bottom: 24px;
+    color: var(--point-color-1);
+    font-family: var(--font-1);
+}
+
+#kakao {
+    background-color: #fee500;
+    box-shadow: 0px 0px 4px 0px #baa700;
+}
+
+#google {
+    background-color: white;
+    box-shadow: 0px 0px 4px 0px #c0c0c0;
+}
+
+#naver {
+    background-color: #03c75a;
+    color: white;
+    box-shadow: 0px 0px 4px 0px #007333;
+}
+
+.login-btn {
+    margin-bottom: 16px;
+    font-weight: 800;
+}
+
+.login-or {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+}
+
+.login-or-text {
+    margin: 0 8px;
+    font-weight: 900;
+    size: 16px;
+}
+
+.login-or-line {
+    width: 158px;
+    height: 2px;
+    background-color: var(--color-1);
+}
+
+.login-option {
+    display: flex;
+}
+
+.login-option-text {
+    color: var(--color-2);
+    margin-right: 4px;
+}

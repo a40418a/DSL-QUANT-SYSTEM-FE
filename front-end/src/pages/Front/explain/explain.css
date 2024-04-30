@@ -1,0 +1,31 @@
+.explain{
+    padding: 0 80px;
+    display: flex;
+    align-items: center;
+}
+
+.explain-title div {
+    font-family: var(--font-1);
+    text-align: center;
+    font-size: 64px;
+    color: var(--point-color-1);
+}
+
+.explain-content-wrapper{
+    margin-left:40px;
+}
+
+.explain-content {
+    margin-bottom: 60px;
+}
+
+.explain-content div {
+    font-size: 20px;
+    margin-bottom: 16px;
+}
+
+.explain-content-btn {
+    display: flex;
+    justify-content: center;
+    font-size: 32px;
+}

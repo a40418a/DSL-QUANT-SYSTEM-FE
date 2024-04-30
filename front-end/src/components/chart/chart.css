@@ -1,15 +1,6 @@
 .chart {
   justify-content: center;
-  width: var(--width);
+  width: 100%;
   box-sizing: border-box; /*padding이 width를 감소하지 않게하기 위함*/
   padding: var(--padding);
-  -webkit-box-shadow: var(---webkit-box-shadow);
-  box-shadow: var(--box-shadow);
-}
-
-.chartTitle {
-  margin-bottom: var(--margin);
-  color: var(--sub-title-font-color);
-  font-family: var(--title-font);
-  font-size: var(--sub-title-font-size);
 }

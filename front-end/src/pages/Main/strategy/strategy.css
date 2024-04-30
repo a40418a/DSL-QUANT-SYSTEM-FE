@@ -1,0 +1,65 @@
+.strategy{
+    box-sizing: border-box;
+    width: 1200px;
+    height: 100%;
+    padding: 80px 0;
+}
+
+.strategy-title-wrapper{
+    display: flex;
+    align-items: center;
+    margin: var(--margin) 0;
+    font-weight: bold;
+}
+
+.strategy-title{
+    font-size: 20px;
+}
+
+.strategy-subtitle-wrapper{
+    display: flex;
+    font-weight: bold;
+    margin: var(--margin) 0;
+    align-items: center;
+}
+
+.strategy-essential{
+    color: var(--point-color-2);
+    margin-right: 8px;
+}
+
+.strategy-explain{
+    font-size: 12px;
+    color: var(--color-4);
+    margin-top: 4px;
+}
+
+.strategy-check-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.strategy-check-group-row{
+    display: flex;
+    justify-content:left;
+    margin-bottom: var(--margin);
+}
+
+.strategy-btn-wrapper{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 80px;
+}
+
+#colorBtn-prev{
+    background-color: white;
+    border: solid 1px var(--point-color-1);
+    color: var(--color-1);
+}
+
+/* 반응형 */
+@media (max-width: 1068px) {
+    .strategy{
+        width: 80%;
+    }
+}

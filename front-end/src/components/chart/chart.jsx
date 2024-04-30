@@ -31,8 +31,8 @@ export const Chart = ({ title, data }) => {
   const range = 1000;
 
   const rootStyles = getComputedStyle(document.documentElement);
-  const upwardColor = rootStyles.getPropertyValue("--upward-color");
-  const downwardColor = rootStyles.getPropertyValue("--downward-color");
+  const upwardColor = rootStyles.getPropertyValue("--up-color");
+  const downwardColor = rootStyles.getPropertyValue("--down-color");
   const strokeDasharray = rootStyles.getPropertyValue("--stroke-dash-array");
   const strokeColor = rootStyles.getPropertyValue("--stroke-color");
   const lineType = rootStyles.getPropertyValue("--line-type");

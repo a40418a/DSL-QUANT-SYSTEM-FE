@@ -1,7 +1,8 @@
-.explain{
+.explain {
     padding: 0 80px;
     display: flex;
     align-items: center;
+    height: 90vh;
 }
 
 .explain-title div {
@@ -11,8 +12,8 @@
     color: var(--point-color-1);
 }
 
-.explain-content-wrapper{
-    margin-left:40px;
+.explain-content-wrapper {
+    margin-left: 40px;
 }
 
 .explain-content {

@@ -3,7 +3,7 @@ import React from "react";
 import "./featuredInfo.css";
 import { ArrowDown, ArrowUp } from "../emoticon/arrow/Arrow";
 import { FeaturedInfoBox } from "../box/featuredInfoBox/FeaturedInfoBox";
-import {Chart} from "../chart/Chart"
+import {Chart} from "../chart/chart"
 import {userData01} from "../../data/dummyData01";
 
 export const FeaturedInfo = () => {

@@ -1,11 +1,22 @@
 //로그인 화면
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './login.css';
 import { WideBtn } from '../../../components/button/WideBtn/WideBtn';
 import { Kakao, Google, Naver } from '../../../components/emoticon/logo/Logo';
 import { TextBtn } from '../../../components/button/TextBtn/TextBtn';
+import axios from 'axios';
 
 export const Login = () => {
+    const handleGoogleLogin = async () => {
+        await axios
+                .get("/api")
+                .then((response)=>{
+                    console.log(response);
+                })
+                .catch((error)=>{
+                    console.log(error);
+                })
+    };
     return (
         <div className='login'>
             <div className="login-wrapper">
@@ -15,7 +26,7 @@ export const Login = () => {
                     <WideBtn id="kakao" logo={<Kakao/>} text="카카오톡" />
                 </div>
                 <div className="login-btn">
-                    <WideBtn id="google" logo={<Google />} text="구글" />
+                    <WideBtn id="google" logo={<Google />} text="구글" onClick={handleGoogleLogin}/>
                 </div>
                 <div className="login-btn">
                     <WideBtn id="naver" logo={<Naver />} text="네이버" />

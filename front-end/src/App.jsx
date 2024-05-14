@@ -13,6 +13,7 @@ import { Strategy1 } from './pages/Main/strategy/Strategy1';
 import { Strategy2 } from './pages/Main/strategy/Strategy2';
 import { Strategy3 } from './pages/Main/strategy/Strategy3';
 import { Thumbnail } from './pages/Front/thumbnail/Thumbnail';
+import { LoginHandler } from './pages/Info/login/LoginHandler';
 import './app.css';
 import './assets/fonts.css';
 
@@ -26,6 +27,7 @@ function App() {
                         <Route path="/home" element={<Home />} />
                         <Route path="/" element={<Explain />} />
                         <Route path="/login" element={<Login />} />
+                        <Route path="/login/oauth2/code/kakao" element={<LoginHandler />} />
                         <Route path="/mypage" element={<MyPage />} />
                         <Route path="/mypagecheck" element={<MyPageCheck />} />
                         <Route path="/result" element={<Result />} />

@@ -9,7 +9,7 @@
     font-family: var(--font-1);
     text-align: center;
     font-size: 64px;
-    color: var(--point-color-1);
+    color: var(--main-color);
 }
 
 .explain-content-wrapper {

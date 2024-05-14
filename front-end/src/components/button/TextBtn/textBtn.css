@@ -1,4 +1,4 @@
-.textBtn{
-    color: var(--point-color-1);
+.textBtn {
+    color: var(--main-color);
     text-decoration: underline;
 }

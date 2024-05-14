@@ -1,50 +1,50 @@
 .featuredinfo {
-  box-sizing: border-box;
-  flex: 1;
-  margin: var(--margin);
-  padding: var(--padding);
-  border-radius: var(--border-radius);
-  -webkit-box-shadow: var(---webkit-box-shadow);
-  box-shadow: var(--box-shadow);
+    box-sizing: border-box;
+    flex: 1;
+    margin: var(--margin);
+    padding: var(--padding);
+    border-radius: var(--border-radius);
+    -webkit-box-shadow: var(---webkit-box-shadow);
+    box-shadow: var(--box-shadow);
 }
 
-.featuredinfo-text{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 8px;
+.featuredinfo-text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
 }
 
 .featuredinfo-title {
-  font-size: 16px;
-  font-family: var(--font-1);
+    font-size: 16px;
+    font-family: var(--font-1);
 }
 
 .featuredinfo-money {
-  display: flex;
-  align-items: center;
-  font-family: var(--font-2);
-  font-size: 12px;
+    display: flex;
+    align-items: center;
+    font-family: var(--font-2);
+    font-size: 12px;
 }
 
 .featuredinfo-money > * {
-  margin-left: 12px; /* 오른쪽 마진을 추가하여 요소들 사이의 간격 조절 */
+    margin-left: 12px; /* 오른쪽 마진을 추가하여 요소들 사이의 간격 조절 */
 }
 
 .featuredinfo-sub {
-  font-size: 12px;
-  color: var(--color-3);
+    font-size: 12px;
+    color: var(--color-3);
 }
 
 /* 반응형 */
 @media (max-width: 1068px) {
-  .featuredinfo{
-    width: 100%;
-  }
-  .featuredinfo-text{
-    margin: 0 16px;
-  }
-  .featuredinfo-sub{
-    display: none;
-  } 
+    .featuredinfo {
+        width: 100%;
+    }
+    .featuredinfo-text {
+        margin: 0 16px;
+    }
+    .featuredinfo-sub {
+        display: none;
+    }
 }

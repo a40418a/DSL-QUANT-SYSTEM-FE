@@ -4,7 +4,7 @@ import './explain.css';
 
 export const Explain = () => {
     return (
-        <div className='explain'>
+        <div className="explain">
             <div className="explain-title">
                 <div>DSL</div>
                 <div>QUANT</div>
@@ -20,6 +20,5 @@ export const Explain = () => {
                 </div>
             </div>
         </div>
-        
     );
 };

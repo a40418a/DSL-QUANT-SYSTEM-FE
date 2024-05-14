@@ -1,18 +1,19 @@
-.explain{
+.explain {
     padding: 0 80px;
     display: flex;
     align-items: center;
+    height: 90vh;
 }
 
 .explain-title div {
     font-family: var(--font-1);
     text-align: center;
     font-size: 64px;
-    color: var(--point-color-1);
+    color: var(--main-color);
 }
 
-.explain-content-wrapper{
-    margin-left:40px;
+.explain-content-wrapper {
+    margin-left: 40px;
 }
 
 .explain-content {

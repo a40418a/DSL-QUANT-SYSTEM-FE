@@ -11,7 +11,7 @@ export const Strategy3 = () => {
         { label: '분기별', value: '분기별' },
         { label: '반기별', value: '반기별' },
         { label: '매년', value: '매년' },
-        { label: '시즈널리티', value: '분기별' },
+        { label: '시즈널리티', value: '시즈널리티' },
     ];
     const options2 = [
         { label: '동일 비중', value: '동일 비중' },
@@ -28,14 +28,14 @@ export const Strategy3 = () => {
                 <div className="strategy-subtitle">초기 투자 금액</div>
             </div>
             <div className="strategy-input">
-                <InputBox placeholder="초기 투자 금액을 입력해주세요." />
+                <InputBox type="number" placeholder="초기 투자 금액을 입력해주세요." />
                 <span>만원</span>
             </div>
             <div className="strategy-subtitle-wrapper">
                 <div className="strategy-subtitle">거래 수수료</div>
             </div>
             <div className="strategy-input">
-                <InputBox placeholder="0" />
+                <InputBox type="number" placeholder="0" />
                 <span>%</span>
             </div>
             <div className="strategy-explain">0~100까지 입력할 수 있습니다.</div>
@@ -55,7 +55,7 @@ export const Strategy3 = () => {
                 <div className="strategy-subtitle">종목 수</div>
             </div>
             <div className="strategy-input">
-                <InputBox placeholder="20" />
+                <InputBox type="number" placeholder="20" />
                 <span>개</span>
             </div>
             <div className="strategy-explain">0~100까지 입력할 수 있습니다.</div>

@@ -4,7 +4,7 @@ import './inputBox.css';
 export const InputBox = (props) => {
     return (
         <div>
-            <input className="inputBox" type="text" placeholder={props.placeholder} />
+            <input className="inputBox" type={props.type} placeholder={props.placeholder} />
         </div>
     );
 };

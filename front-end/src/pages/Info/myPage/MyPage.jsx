@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './myPage.css';
 import { TableVertical } from '../../../components/table/tableVertical/TableVertical';
-import { MyPageDTO } from './MyPageDTO'; // DTO import
+import { MyPageDTO } from '../../../dto/MyPageDTO'; // DTO import
 
 export const MyPage = () => {
     const [userInfo, setUserInfo] = useState(

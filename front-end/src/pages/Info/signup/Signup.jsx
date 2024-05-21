@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './signup.css';
 import { WideBtn } from '../../../components/button/WideBtn/WideBtn';
 import { Kakao, Google, Naver } from '../../../components/emoticon/logo/Logo';
+import { KakaoSignupResponseDTO } from '../../../dto/SignupDTO';
 
 export const Signup = () => {
     const REST_API_KEY = import.meta.env.VITE_APP_REST_API_KEY_KAKAO;

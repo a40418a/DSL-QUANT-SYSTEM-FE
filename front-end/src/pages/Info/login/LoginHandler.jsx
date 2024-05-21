@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { KakaoLoginResponseDTO } from './LoginDTO'; // 클래스형 DTO import
+import { KakaoLoginResponseDTO } from '../../../dto/LoginDTO'; // 클래스형 DTO import
 
 export const LoginHandler = (props) => {
     const navigate = useNavigate();

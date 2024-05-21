@@ -1,5 +1,5 @@
 import './tableVertical.css';
-import { MyPageDTO } from '../../../pages/Info/myPage/MyPageDTO'; // DTO import
+import { MyPageDTO } from '../../../dto/MyPageDTO'; // DTO import
 import React, { useState, useEffect } from 'react';
 
 export const TableVertical = ({ title, data }) => {

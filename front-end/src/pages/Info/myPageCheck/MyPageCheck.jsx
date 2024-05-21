@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './myPageCheck.css';
 import { InputHalf } from '../../../components/input/Input';
 import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
-import { MyPageCheckDTO } from './MyPageCheckDTO';
+import { MyPageCheckDTO } from '../../../dto/MyPageCheckDTO';
 
 export const MyPageCheck = () => {
     const [birthDate, setBirthDate] = useState(''); //상태 생성 및 업데이트

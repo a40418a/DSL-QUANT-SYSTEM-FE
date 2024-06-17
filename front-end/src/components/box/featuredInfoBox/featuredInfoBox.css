@@ -16,8 +16,9 @@
 }
 
 .featuredinfo-title {
-    font-size: 16px;
+    font-size: 18px;
     font-family: var(--font-1);
+    color: var(--main-color);
 }
 
 .featuredinfo-money {
@@ -31,8 +32,12 @@
     margin-left: 12px; /* 오른쪽 마진을 추가하여 요소들 사이의 간격 조절 */
 }
 
+.featuredinfo-chart {
+    height: 80%;
+}
+
 .featuredinfo-sub {
-    font-size: 12px;
+    font-size: 10px;
     color: var(--color-3);
 }
 

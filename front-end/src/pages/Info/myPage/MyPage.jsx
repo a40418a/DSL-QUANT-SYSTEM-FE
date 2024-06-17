@@ -24,11 +24,29 @@ export const MyPage = () => {
                 <TableVertical />
             </div>
             <div className="mypage-backtest">
-                <div className="mypage-main-title">
-                    백테스팅 검색 기록
-                    <div className="mypage-backtest-title-sub">최근 10개의 기록만 열람할 수 있습니다.</div>
-                </div>
-                <div className="mypage-main-table">{userInfo.backtestRecords.join(', ')}</div>
+                <table className="mypage-main-table">
+                    <thead>
+                        <tr>
+                            <th>date</th>
+                            <th>universe</th>
+                            <th>weight</th>
+                            <th>initial</th>
+                            <th>period</th>
+                            <th>file</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2024-05-22</td>
+                            <td>한국</td>
+                            <td>동일 비중 결합</td>
+                            <td>50 만원</td>
+                            <td>월별</td>
+                            <td>index.html</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {/* <div className="mypage-main-table">{userInfo.backtestRecords.join(', ')}</div> */}
             </div>
         </div>
     );

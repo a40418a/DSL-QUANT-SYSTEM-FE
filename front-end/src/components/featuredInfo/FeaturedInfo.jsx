@@ -11,26 +11,29 @@ export const FeaturedInfo = () => {
         <div className="featured">
             <FeaturedInfoBox
                 title="코스피"
-                currency="현재가"
+                currency="₩"
+                price="73,700"
                 arrow={<ArrowDown />}
-                rate="등락률"
-                chart={<Chart data={userData01} />}
+                rate="-1"
+                chart={<Chart data={userData01} dataKey="close" />}
                 sub="Compared to last month"
             />
             <FeaturedInfoBox
                 title="코스닥"
                 currency="₩"
+                price="846.51"
                 arrow={<ArrowUp />}
-                rate="등락률"
-                chart={<Chart data={userData01} />}
+                rate="0.07"
+                chart={<Chart data={userData01} dataKey="open" />}
                 sub="Compared to last month"
             />
             <FeaturedInfoBox
                 title="코스피 2000"
                 currency="₩"
+                price="73,700"
                 arrow={<ArrowUp />}
-                rate="등락률"
-                chart={<Chart data={userData01} />}
+                rate="3"
+                chart={<Chart data={userData01} dataKey="highest" />}
                 sub="Compared to last month"
             />
         </div>

@@ -1,24 +1,23 @@
 .footbar {
     box-sizing: border-box;
     height: 160px;
-    position: relative;
     color: var(--color-2);
     background-color: var(--color-4);
+    opacity: 0.7;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 10vw;
 }
 
-.footbarRight{
+.footbarRight {
     display: flex;
 }
 
-.footbarRight div{
+.footbarRight div {
     margin-left: 24px;
 }
 
 /* 반응형 */
 @media (max-width: 1068px) {
-  }
-  
+}

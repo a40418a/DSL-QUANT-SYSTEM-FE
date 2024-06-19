@@ -3,20 +3,27 @@ import './myPageCheck.css';
 import { InputHalf } from '../../../components/input/Input';
 import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { MyPageCheckDTO } from '../../../dto/MyPageCheckDTO';
+import { useNavigate } from 'react-router-dom'; // 추가
 
 export const MyPageCheck = () => {
-    const [birthDate, setBirthDate] = useState(''); //상태 생성 및 업데이트
+    const [birthDate, setBirthDate] = useState(''); // 상태 생성 및 업데이트
+    const navigate = useNavigate(); // useNavigate 훅 사용
 
-    //변경 이벤트를 처리
+    // 변경 이벤트를 처리
     const handleBirthDateChange = (e) => {
         setBirthDate(e.target.value);
     };
 
-    //버튼 클릭시
+    // 버튼 클릭 시
     const handleSubmit = () => {
         const dto = new MyPageCheckDTO(birthDate);
-        // DTO를 사용하여 필요한 로직 처리
-        console.log(dto.getBirthDate()); // 예시: 콘솔에 생년월일 출력
+        if (dto.getBirthDate() === '010418') {
+            //010418은 예시로 설정한 값
+            console.log(dto.getBirthDate()); // 예시: 콘솔에 생년월일 출력
+            navigate('/mypage'); // 일치할 경우 /mypage로 이동
+        } else {
+            alert('생년월일이 일치하지 않습니다.'); // 일치하지 않을 경우 경고창 표시
+        }
     };
 
     return (
@@ -29,7 +36,7 @@ export const MyPageCheck = () => {
                         개인정보를 확인하기 위해서 생년월일을 입력해주세요(예: 010418)
                     </div>
                 </div>
-                <ColorBtn id="colorBtn" text="확인" onClick={handleSubmit} link="/mypage" />
+                <ColorBtn id="colorBtn" text="확인" onClick={handleSubmit} />
             </div>
         </div>
     );

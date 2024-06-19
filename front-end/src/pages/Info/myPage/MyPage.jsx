@@ -24,6 +24,7 @@ export const MyPage = () => {
                 <TableVertical />
             </div>
             <div className="mypage-backtest">
+                <div className="mypage-main-title">백테스팅 기록</div>
                 <table className="mypage-main-table">
                     <thead>
                         <tr>

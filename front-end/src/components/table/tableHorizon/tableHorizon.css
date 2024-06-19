@@ -1,19 +1,17 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    border: solid 2px var(--color-2);
     text-align: center;
 }
 
 th,
 td {
-    border: solid 1px var(--color-2);
     padding: 4px;
 }
 
 th {
     background-color: var(--main-color);
-    color: white;
+    color: var(--color-white);
 }
 
 .data-num {
@@ -29,7 +27,5 @@ th {
 }
 
 .tableTitle {
-    font-size: 16px;
-    font-family: var(--font-1);
-    margin-bottom: 8px;
+    font-weight: bold;
 }

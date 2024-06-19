@@ -69,6 +69,23 @@ export const Strategy3 = () => {
                     <CheckBox text="재진입 마켓 타이밍" />
                 </div>
             </div>
+            <div className="strategy-title-wrapper">
+                <div className="strategy-essential">[필수]</div>
+                <div className="strategy-title">기간 설정</div>
+            </div>
+            <div className="date-wrapper">
+                <div className="strategy-input" id="input-date">
+                    <div className="date-wrapper">
+                        <div className="strategy-subtitle">시작일 설정</div>
+                        <InputBox type="date" />
+                    </div>
+                    <div className="date-wrapper">
+                        <div className="strategy-subtitle">종료일 설정</div>
+                        <InputBox type="date" />
+                    </div>
+                </div>
+            </div>
+
             <div className="strategy-btn-wrapper">
                 <ColorBtn id="colorBtn-prev" text="< 이전" link="/strategy2" />
                 <ColorBtn id="colorBtn-next" text="백테스트" link="/result" />

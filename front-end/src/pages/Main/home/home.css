@@ -39,4 +39,17 @@
     .home {
         width: 80%;
     }
+    .info {
+        margin-top: 500px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .back-tested {
+        width: 80%;
+    }
+    .top20 {
+        width: 80%;
+        margin-top: 40px;
+    }
 }

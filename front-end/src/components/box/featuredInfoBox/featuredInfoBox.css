@@ -34,6 +34,7 @@
 }
 
 .featuredinfo-chart {
+    width: 100%;
     height: 80%;
 }
 
@@ -45,10 +46,7 @@
 /* 반응형 */
 @media (max-width: 1068px) {
     .featuredinfo {
-        width: 100%;
-    }
-    .featuredinfo-text {
-        margin: 0 16px;
+        width: 64vw;
     }
     .featuredinfo-sub {
         display: none;

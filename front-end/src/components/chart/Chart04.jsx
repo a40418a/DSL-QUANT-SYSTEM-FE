@@ -1,11 +1,11 @@
+//캔들스틱 차트 컴포넌트
 import React from 'react';
 import Chart from 'react-apexcharts';
 import { userData01 } from '../../data/dummyData01';
 import './chart.css';
 
-// Chart01 컴포넌트 정의
-export const Chart01 = ({ title, dataKey }) => {
-    const length = userData01.length; // 데이터 길이 저장
+export const Chart04 = ({ title, dataKey }) => {
+    const length = userData01.length;
 
     // 각 데이터 항목에서 특정 속성의 최대값과 최소값 계산
     const maxOpen = Math.max(...userData01.map((entry) => entry.open));
@@ -23,13 +23,13 @@ export const Chart01 = ({ title, dataKey }) => {
     // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
     const data = userData01.map((entry) => ({
         x: new Date(entry.date).getTime(), // 날짜를 타임스탬프로 변환
-        y: entry[dataKey], // 선택된 데이터 키의 값을 y 값으로 설정
+        y: [entry.open, entry.close, entry.lowest, entry.highest], // 캔들차트 데이터 형식
     }));
 
     // ApexCharts 옵션 설정
     const options = {
         chart: {
-            type: 'line', // 차트 타입: 라인 차트
+            type: 'candlestick', // 차트 타입: 캔들차트
             height: '100%', // 차트 높이
             animations: {
                 enabled: false, // 애니메이션 비활성화
@@ -55,32 +55,23 @@ export const Chart01 = ({ title, dataKey }) => {
                 format: 'yyyy.MM.dd', // 툴팁 날짜 포맷
             },
         },
-        annotations: {
-            yaxis: [
-                {
-                    y: userData01[length - 2][dataKey], // 기준선 위치 (두 번째 마지막 데이터 값)
-                    borderColor: 'var(--color-3)', // 기준선 색상
-                    strokeDashArray: 'var(--stroke-dash-array)', // 기준선 스타일
+        plotOptions: {
+            candlestick: {
+                wick: {
+                    useFillColor: true, // 심지 색상 채우기 여부
                 },
-            ],
+                colors: {
+                    upward: 'var(--up-color)', // 상승 시 색상
+                    downward: 'var(--down-color)', // 하락 시 색상
+                },
+            },
         },
-        stroke: {
-            curve: 'straight', // 선의 곡선 타입 설정
-            width: 2, // 선 두께
-        },
-        markers: {
-            size: 0, // 마커 크기 (0으로 설정하여 마커 숨김)
-        },
-        colors: [
-            // 라인 색상 결정 (마지막 데이터 값과 비교하여 상승/하락 색상 선택)
-            userData01[length - 2][dataKey] < userData01[length - 1][dataKey] ? 'var(--up-color)' : 'var(--down-color)',
-        ],
     };
 
     return (
         <div className="chart">
             {/* ApexCharts 컴포넌트 렌더링 */}
-            <Chart options={options} series={[{ name: dataKey, data }]} type="line" height="100%" />
+            <Chart options={options} series={[{ data }]} type="candlestick" height="100%" />
         </div>
     );
 };

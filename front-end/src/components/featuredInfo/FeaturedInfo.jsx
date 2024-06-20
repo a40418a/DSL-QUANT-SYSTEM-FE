@@ -3,7 +3,7 @@ import React from 'react';
 import './featuredInfo.css';
 import { ArrowDown, ArrowUp } from '../emoticon/arrow/Arrow';
 import { FeaturedInfoBox } from '../box/featuredInfoBox/FeaturedInfoBox';
-import { Chart } from '../chart/Chart';
+import { Chart01 } from '../chart/Chart';
 import { userData01 } from '../../data/dummyData01';
 
 export const FeaturedInfo = () => {
@@ -15,7 +15,7 @@ export const FeaturedInfo = () => {
                 price="73,700"
                 arrow={<ArrowDown />}
                 rate="-1"
-                chart={<Chart data={userData01} dataKey="close" />}
+                chart={<Chart01 data={userData01} dataKey="close" />}
                 sub="Compared to last month"
             />
             <FeaturedInfoBox
@@ -24,7 +24,7 @@ export const FeaturedInfo = () => {
                 price="846.51"
                 arrow={<ArrowUp />}
                 rate="0.07"
-                chart={<Chart data={userData01} dataKey="open" />}
+                chart={<Chart01 data={userData01} dataKey="open" />}
                 sub="Compared to last month"
             />
             <FeaturedInfoBox
@@ -33,7 +33,7 @@ export const FeaturedInfo = () => {
                 price="73,700"
                 arrow={<ArrowUp />}
                 rate="3"
-                chart={<Chart data={userData01} dataKey="highest" />}
+                chart={<Chart01 data={userData01} dataKey="highest" />}
                 sub="Compared to last month"
             />
         </div>

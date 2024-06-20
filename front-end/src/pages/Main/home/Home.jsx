@@ -4,7 +4,7 @@ import './home.css';
 import { TableHorizonTop20 } from '../../../components/table/tableHorizon/TableHorizon';
 import { ArrowDown, ArrowUp } from '../../../components/emoticon/arrow/Arrow';
 import { FeaturedInfoBox } from '../../../components/box/featuredInfoBox/FeaturedInfoBox';
-import { Chart } from '../../../components/chart/Chart';
+import { Chart01 } from '../../../components/chart/Chart';
 import { userData01 } from '../../../data/dummyData01';
 
 export const Home = () => {
@@ -21,7 +21,7 @@ export const Home = () => {
                             price="73,700"
                             arrow={<ArrowDown />}
                             rate="-1"
-                            chart={<Chart data={userData01} dataKey="lowest" />}
+                            chart={<Chart01 data={userData01} dataKey="lowest" />}
                             sub="Compared to last month"
                         />
                     </div>

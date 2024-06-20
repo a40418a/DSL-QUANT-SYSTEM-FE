@@ -28,9 +28,9 @@
     --down-color: #254b9c;
 
     /* chart 변수 */
-    --stroke-dash-array: 5 5;
+    --stroke-dash-array: 5 6;
     --stroke-color: var(--color-3);
-    --line-type: linear;
+    --line-type: straight;
 }
 
 .container {

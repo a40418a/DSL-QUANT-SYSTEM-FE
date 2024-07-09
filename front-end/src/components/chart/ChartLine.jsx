@@ -3,75 +3,94 @@ import Chart from 'react-apexcharts';
 import { userData01 } from '../../data/dummyData01';
 import './chart.css';
 
-// ChartLine 컴포넌트 정의
-export const ChartLine = ({ title }) => {
+// Chart01 컴포넌트 정의
+export const ChartLine = ({ title, dataKey }) => {
     const length = userData01.length; // 데이터 길이 저장
 
-    // 범위를 일정 값으로 조절
+    // 각 데이터 항목에서 특정 속성의 최대값과 최소값 계산
+    const maxOpen = Math.max(...userData01.map((entry) => entry.open));
+    const minOpen = Math.min(...userData01.map((entry) => entry.open));
+    const maxClose = Math.max(...userData01.map((entry) => entry.close));
+    const minClose = Math.min(...userData01.map((entry) => entry.close));
+    const maxHighest = Math.max(...userData01.map((entry) => entry.highest));
+    const minHighest = Math.min(...userData01.map((entry) => entry.highest));
+    const maxLowest = Math.max(...userData01.map((entry) => entry.lowest));
+    const minLowest = Math.min(...userData01.map((entry) => entry.lowest));
+
+    // y축 범위를 조절하기 위한 일정 값 설정
     const range = 1000;
 
-    // userData01에서 필요한 데이터 추출
-    const dates = userData01.map((entry) => entry.date);
-    const closePrices = userData01.map((entry) => entry.close);
-    const firstDataAvg = closePrices.reduce((acc, cur) => acc + cur, 0) / closePrices.length;
+    // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
+    const data = userData01.map((entry) => ({
+        x: new Date(entry.date).getTime(), // 날짜를 타임스탬프로 변환
+        y: entry[dataKey], // 선택된 데이터 키의 값을 y 값으로 설정
+    }));
 
-    // 최대값과 최소값 계산
-    const maxClose = Math.max(...closePrices);
-    const minClose = Math.min(...closePrices);
-
-    // 예시: userData01에서 close 값들의 평균 계산
-
-    // 차트 옵션 설정
-    const chartOptions = {
+    // ApexCharts 옵션 설정
+    const options = {
         chart: {
-            id: 'basic-line',
+            type: 'line', // 차트 타입: 라인 차트
+            height: '100%', // 차트 높이
+            animations: {
+                enabled: false, // 애니메이션 비활성화
+            },
+        },
+        title: {
+            text: title, // 차트 제목
+            align: 'left', // 제목 정렬: 중앙
         },
         xaxis: {
-            categories: dates,
+            type: 'datetime', // x축 타입: 날짜/시간
             labels: {
-                show: true,
-                style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: '#373d3f',
-                },
+                format: 'MM/dd', // 날짜 형식 설정
             },
         },
         yaxis: {
-            labels: {
-                show: true,
-                style: {
-                    fontSize: '12px',
-                    fontWeight: 400,
-                    colors: '#373d3f',
-                },
-            },
-            axisBorder: {
-                show: true,
-            },
-        },
-        colors: [userData01[length - 1].close > firstDataAvg ? 'var(--up-color)' : 'var(--down-color'], // 색깔 변경 조건
-        stroke: {
-            curve: 'smooth',
-            width: 2,
-        },
-        markers: {
-            size: 4,
-            colors: [userData01[length - 1].close > firstDataAvg ? 'var(--up-color)' : 'var(--down-color'], // 색깔 변경 조건
-            strokeColors: '#fff',
-            strokeWidth: 2,
+            min: minLowest - range, // y축 최소값
+            max: maxHighest + range, // y축 최대값
+            show: false,
         },
         tooltip: {
             x: {
-                format: 'dd/MM/yy HH:mm',
+                format: 'yyyy.MM.dd', // 툴팁 날짜 포맷
             },
         },
+        annotations: {
+            yaxis: [
+                {
+                    y: userData01[length - 2][dataKey], // 기준선 위치 (두 번째 마지막 데이터 값)
+                    borderColor: 'var(--color-3)', // 기준선 색상
+                    strokeDashArray: 'var(--stroke-dash-array)', // 기준선 스타일
+                },
+            ],
+        },
+        stroke: {
+            curve: 'straight', // 선의 곡선 타입 설정
+            width: 2, // 선 두께
+        },
+        markers: {
+            size: 0, // 마커 크기 (0으로 설정하여 마커 숨김)
+        },
+        colors: [
+            // 라인 색상 결정 (마지막 데이터 값과 비교하여 상승/하락 색상 선택)
+            userData01[length - 2][dataKey] < userData01[length - 1][dataKey] ? 'var(--up-color)' : 'var(--down-color)',
+        ],
     };
 
     return (
         <div className="chart">
-            <h3 className="chartTitle">{title}</h3>
-            <Chart options={chartOptions} series={[{ data: closePrices }]} type="line" width="100%" height={320} />
+            {/* ApexCharts 컴포넌트 렌더링 */}
+            <Chart options={options} series={[{ name: dataKey, data }]} type="line" height="100%" />
         </div>
     );
+};
+
+// 최대 종가 계산 함수
+export const MaxClose = () => {
+    return Math.max(...userData01.map((entry) => entry.close));
+};
+
+// 최소 종가 계산 함수
+export const MinClose = () => {
+    return Math.min(...userData01.map((entry) => entry.close));
 };

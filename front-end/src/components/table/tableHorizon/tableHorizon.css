@@ -30,6 +30,7 @@ th {
 
 .tableTitle {
     font-weight: bold;
+    margin-bottom: var(--margin);
 }
 
 .data-text {

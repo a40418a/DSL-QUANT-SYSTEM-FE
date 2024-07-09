@@ -10,6 +10,7 @@ export const FeaturedInfo = () => {
     return (
         <div className="featured">
             <FeaturedInfoBox
+                className="featuredinfo-box"
                 title="코스피"
                 currency="₩"
                 price="73,700"
@@ -19,6 +20,7 @@ export const FeaturedInfo = () => {
                 sub="Compared to last month"
             />
             <FeaturedInfoBox
+                className="featuredinfo-box"
                 title="코스닥"
                 currency="₩"
                 price="846.51"
@@ -28,6 +30,7 @@ export const FeaturedInfo = () => {
                 sub="Compared to last month"
             />
             <FeaturedInfoBox
+                className="featuredinfo-box"
                 title="코스피 2000"
                 currency="₩"
                 price="73,700"

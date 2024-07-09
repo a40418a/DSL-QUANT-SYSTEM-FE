@@ -129,7 +129,7 @@ export const Strategy2 = () => {
                 </div>
             </div>
             <div className="strategy-btn-wrapper">
-                <ColorBtn id="colorBtn-prev" text="< 이전" link="/strategy1" />
+                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={() => window.history.back()} />
                 <ColorBtn id="colorBtn-next" text="다음 >" link="/strategy3" />
             </div>
         </div>

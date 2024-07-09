@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream:front-end/src/components/chart/chart.jsx
 // 라인그래프
 // 종가 기준(마지막날이 기준선을 기준으로 색깔 변경)
 import React from "react";
@@ -24,6 +25,17 @@ export const Chart = ({ title, data }) => {
   const minHighest = Math.min(...userData01.map((entry) => entry.highest));
   const maxLowest = Math.max(...userData01.map((entry) => entry.lowest));
   const minLowest = Math.min(...userData01.map((entry) => entry.lowest));
+=======
+// 라인스틱차트 컴포너트
+import React from 'react';
+import Chart from 'react-apexcharts';
+import { userData01 } from '../../data/dummyData01';
+import './chart.css';
+
+// Chart01 컴포넌트 정의
+export const ChartLine = ({ title, dataKey }) => {
+    const length = userData01.length; // 데이터 길이 저장
+>>>>>>> Stashed changes:front-end/src/components/chart/ChartLine.jsx
 
   const length = userData01.length;
 

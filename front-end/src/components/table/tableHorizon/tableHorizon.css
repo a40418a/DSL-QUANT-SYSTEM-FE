@@ -1,19 +1,31 @@
+.tableTitle {
+    margin-bottom: var(--margin);
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
     border: solid 2px var(--color-2);
     text-align: center;
+    box-sizing: border-box;
 }
 
 th,
 td {
     border: solid 1px var(--color-2);
     padding: 4px;
+    border-bottom: 1px solid var(--color-4);
 }
 
 th {
     background-color: var(--main-color);
-    color: white;
+    color: var(--color-white);
+    border-bottom: none;
+}
+
+.data-text {
+    text-align: left;
+    padding-left: 10%;
 }
 
 .data-num {

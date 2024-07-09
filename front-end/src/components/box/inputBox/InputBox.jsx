@@ -2,9 +2,9 @@ import React from 'react';
 import './inputBox.css';
 
 export const InputBox = (props) => {
-    return (
-        <div>
-            <input className="inputBox" type="text" placeholder={props.placeholder} />
-        </div>
-    );
+    return <input className="inputBox" type={props.type} placeholder={props.placeholder} />;
+};
+
+export const InputHalfBox = (props) => {
+    return <input className="inputHalfBox" type={props.type} placeholder={props.placeholder} />;
 };

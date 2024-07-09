@@ -17,7 +17,9 @@ export const Topbar = () => {
             <div className="topbar">
                 <div className="topbar-wrapper">
                     <div className="topbar-title">
-                        <Link to="/home">DSL QUANT</Link>
+                        <Link to="/home" className="topbar-title">
+                            DSL QUANT
+                        </Link>
                     </div>
                     <ul className="topbar-menu-wrapper">
                         <li className={`topbar-menu ${activePage === '/home' ? 'active' : ''}`}>
@@ -25,14 +27,16 @@ export const Topbar = () => {
                         </li>
                         <li
                             className={`topbar-menu ${
-                                activePage === '/strategy1' ||
-                                activePage === '/strategy2' ||
-                                activePage === '/strategy3'
+                                activePage === '/strategy' ||
+                                activePage === '/strategy/golden' ||
+                                activePage === '/strategy/bollinger' ||
+                                activePage === '/strategy/rsi' ||
+                                activePage === '/result'
                                     ? 'active'
                                     : ''
                             }`}
                         >
-                            <Link to="/strategy1">전략설정</Link>
+                            <Link to="/strategy">전략설정</Link>
                         </li>
                         <li
                             className={`topbar-menu ${

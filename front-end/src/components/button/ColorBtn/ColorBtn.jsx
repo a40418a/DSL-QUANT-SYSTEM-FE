@@ -1,12 +1,11 @@
-// 컬러 버튼 구조
-import React from "react";
-import { Link } from "react-router-dom";
-import "./colorBtn.css";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './colorBtn.css';
 
 export const ColorBtn = (props) => {
-  return (
-    <div className="colorBtn" id={props.id} onClick={props.onClick}>
-      <Link to={props.link}>{props.text}</Link>
-    </div>
-  );
+    return (
+        <Link to={props.link} className="colorBtn" id={props.id} onClick={props.onClick}>
+            {props.text}
+        </Link>
+    );
 };

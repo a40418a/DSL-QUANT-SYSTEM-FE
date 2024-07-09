@@ -2,6 +2,8 @@
     display: flex;
     align-items: center;
     height: 80vh;
+    width: 60%;
+    justify-content: center;
 }
 
 .login-wrapper {
@@ -19,7 +21,7 @@
 
 .login-title {
     font-size: 20px;
-    margin-bottom: 24px;
+    margin-bottom: 120px;
     color: var(--main-color);
     font-family: var(--font-1);
 }
@@ -38,36 +40,4 @@
     background-color: #03c75a;
     color: white;
     box-shadow: 0px 0px 4px 0px #007333;
-}
-
-.login-btn {
-    margin-bottom: 16px;
-    font-weight: 800;
-}
-
-.login-or {
-    display: flex;
-    align-items: center;
-    margin: 8px 0;
-}
-
-.login-or-text {
-    margin: 0 8px;
-    font-weight: 900;
-    size: 16px;
-}
-
-.login-or-line {
-    width: 158px;
-    height: 2px;
-    background-color: var(--color-1);
-}
-
-.login-option {
-    display: flex;
-}
-
-.login-option-text {
-    color: var(--color-2);
-    margin-right: 4px;
 }

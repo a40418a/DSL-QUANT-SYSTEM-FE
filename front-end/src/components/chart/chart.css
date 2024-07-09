@@ -1,6 +1,18 @@
 .chart {
-  justify-content: center;
-  width: 100%;
-  box-sizing: border-box; /*padding이 width를 감소하지 않게하기 위함*/
-  padding: var(--padding);
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box; /*padding이 width를 감소하지 않게하기 위함*/
+    padding: var(--padding);
+}
+
+.custom-tooltip {
+    background-color: white;
+    box-shadow: var(--box-shadow);
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.custom-tooltip p {
+    font-size: 10px;
 }

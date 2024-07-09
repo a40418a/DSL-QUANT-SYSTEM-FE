@@ -2,7 +2,7 @@ import React from 'react';
 import './tableHorizon.css';
 import { userData03 } from '../../../data/dummyData03';
 
-export const TableHorizon = ({ title }) => {
+export const TableHorizonTop20 = ({ title }) => {
     return (
         <div className="table">
             <div className="tableTitle">{title}</div>

@@ -5,7 +5,6 @@ import { Footbar } from './components/footbar/Footbar';
 import { Home } from './pages/Main/home/Home';
 import { Explain } from './pages/Front/explain/Explain';
 import { Login } from './pages/Info/login/Login';
-import { Signup } from './pages/Info/signup/Signup';
 import { MyPage } from './pages/Info/myPage/MyPage';
 import { MyPageCheck } from './pages/Info/myPageCheck/MyPageCheck';
 import { Result } from './pages/Main/result/Result';
@@ -15,6 +14,7 @@ import { Strategy2 } from './pages/Main/strategy/StrategyBollinger';
 import { Strategy3 } from './pages/Main/strategy/StrategyRSI';
 import { StockInfo } from './pages/Main/StockInfo/StockInfo';
 import { LoginHandler } from './pages/Info/login/LoginHandler';
+import { AuthProvider } from './handler/AuthContext';
 import './app.css';
 import './assets/fonts.css';
 

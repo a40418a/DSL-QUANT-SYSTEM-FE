@@ -13,7 +13,7 @@ export const Login = () => {
     const KAKAO_AUTH_URI = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
     const code = new URL(window.location.href).searchParams.get('code');
 
-    const kakaoLoginHandler = () => {
+    const kakaoHandler = () => {
         window.open(KAKAO_AUTH_URI, '_self');
     };
 
@@ -23,23 +23,8 @@ export const Login = () => {
                 <div className="login-title">로그인 할 사이트를 고르시오</div>
                 <div className="login-btn-wrapper">
                     <div className="login-btn">
-                        <WideBtn id="kakao" logo={<Kakao />} text="카카오톡" onClick={kakaoLoginHandler} />
+                        <WideBtn id="kakao" logo={<Kakao />} text="카카오톡" onClick={kakaoHandler} />
                     </div>
-                    <div className="login-btn">
-                        <WideBtn id="google" logo={<Google />} text="구글" />
-                    </div>
-                    <div className="login-btn">
-                        <WideBtn id="naver" logo={<Naver />} text="네이버" />
-                    </div>
-                </div>
-                <div className="login-or">
-                    <div className="login-or-line"></div>
-                    <div className="login-or-text">OR</div>
-                    <div className="login-or-line"></div>
-                </div>
-                <div className="login-option">
-                    <div className="login-option-text">계정이 없다면?</div>
-                    <TextBtn className="login-option-btn" text="회원가입" link="/signup" />
                 </div>
             </div>
         </div>

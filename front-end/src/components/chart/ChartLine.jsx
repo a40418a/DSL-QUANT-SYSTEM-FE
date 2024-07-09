@@ -1,90 +1,77 @@
-<<<<<<< Updated upstream:front-end/src/components/chart/chart.jsx
-// 라인그래프
-// 종가 기준(마지막날이 기준선을 기준으로 색깔 변경)
-import React from "react";
-import "./chart.css";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  Tooltip,
-  Legend,
-  ResponsiveContainer,
-  ReferenceLine,
-} from "recharts";
-import { userData01 } from "../../data/dummyData01";
-
-export const Chart = ({ title, data }) => {
-  const firstDataAvg = (userData01[0].open + userData01[0].close) / 2;
-  const maxOpen = Math.max(...userData01.map((entry) => entry.open));
-  const minOpen = Math.min(...userData01.map((entry) => entry.open));
-  const maxClose = Math.max(...userData01.map((entry) => entry.close));
-  const minClose = Math.min(...userData01.map((entry) => entry.close));
-  const maxHighest = Math.max(...userData01.map((entry) => entry.highest));
-  const minHighest = Math.min(...userData01.map((entry) => entry.highest));
-  const maxLowest = Math.max(...userData01.map((entry) => entry.lowest));
-  const minLowest = Math.min(...userData01.map((entry) => entry.lowest));
-=======
-// 라인스틱차트 컴포너트
 import React from 'react';
 import Chart from 'react-apexcharts';
 import { userData01 } from '../../data/dummyData01';
 import './chart.css';
 
-// Chart01 컴포넌트 정의
-export const ChartLine = ({ title, dataKey }) => {
+// ChartLine 컴포넌트 정의
+export const ChartLine = ({ title }) => {
     const length = userData01.length; // 데이터 길이 저장
->>>>>>> Stashed changes:front-end/src/components/chart/ChartLine.jsx
 
-  const length = userData01.length;
+    // 범위를 일정 값으로 조절
+    const range = 1000;
 
-  // 범위를 일정 값으로 조절
-  const range = 1000;
+    // userData01에서 필요한 데이터 추출
+    const dates = userData01.map((entry) => entry.date);
+    const closePrices = userData01.map((entry) => entry.close);
+    const firstDataAvg = closePrices.reduce((acc, cur) => acc + cur, 0) / closePrices.length;
 
-  const rootStyles = getComputedStyle(document.documentElement);
-  const upwardColor = rootStyles.getPropertyValue("--up-color");
-  const downwardColor = rootStyles.getPropertyValue("--down-color");
-  const strokeDasharray = rootStyles.getPropertyValue("--stroke-dash-array");
-  const strokeColor = rootStyles.getPropertyValue("--stroke-color");
-  const lineType = rootStyles.getPropertyValue("--line-type");
+    // 최대값과 최소값 계산
+    const maxClose = Math.max(...closePrices);
+    const minClose = Math.min(...closePrices);
 
-  return (
-    <div className="chart">
-      <h3 className="chartTitle">{title}</h3>
-      <ResponsiveContainer width="100%" aspect={3 / 1}>
-        {/* 차트 크기 설정*/}
-        <LineChart data={data}>
-          {/* 기준선 */}
-          <ReferenceLine
-            strokeDasharray={strokeDasharray}
-            y={firstDataAvg}
-            stroke={strokeColor}
-          />
-          <XAxis dataKey="date" /> {/*x축 값*/}
-          <YAxis domain={[minLowest - range, maxHighest + range]} />
-          {/*y축 값(범위 지정) */}
-          <Tooltip /> {/*데이터레이블에 커서를 갖다댈 때 보일 것인지 */}
-          <Line
-            type={lineType}
-            dataKey="close"
-            stroke={
-              userData01[length - 1].close > firstDataAvg
-                ? upwardColor
-                : downwardColor
-            } //마지막날과 기준선을 기준으로 색깔 변경
-            dot={false}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  );
-};
+    // 예시: userData01에서 close 값들의 평균 계산
 
-export const MaxClose = () => {
-  return Math.max(...userData01.map((entry) => entry.close));
-};
+    // 차트 옵션 설정
+    const chartOptions = {
+        chart: {
+            id: 'basic-line',
+        },
+        xaxis: {
+            categories: dates,
+            labels: {
+                show: true,
+                style: {
+                    fontSize: '12px',
+                    fontWeight: 400,
+                    colors: '#373d3f',
+                },
+            },
+        },
+        yaxis: {
+            labels: {
+                show: true,
+                style: {
+                    fontSize: '12px',
+                    fontWeight: 400,
+                    colors: '#373d3f',
+                },
+            },
+            axisBorder: {
+                show: true,
+            },
+        },
+        colors: [userData01[length - 1].close > firstDataAvg ? 'var(--up-color)' : 'var(--down-color'], // 색깔 변경 조건
+        stroke: {
+            curve: 'smooth',
+            width: 2,
+        },
+        markers: {
+            size: 4,
+            colors: [userData01[length - 1].close > firstDataAvg ? 'var(--up-color)' : 'var(--down-color'], // 색깔 변경 조건
+            strokeColors: '#fff',
+            strokeWidth: 2,
+        },
+        tooltip: {
+            x: {
+                format: 'dd/MM/yy HH:mm',
+            },
+        },
+    };
 
-export const MinClose = () => {
-  return Math.min(...userData01.map((entry) => entry.close));
+    return (
+        <div className="chart">
+            <h3 className="chartTitle">{title}</h3>
+            <Chart options={chartOptions} series={[{ data: closePrices }]} type="line" width="100%" height={320} />
+        </div>
+    );
 };

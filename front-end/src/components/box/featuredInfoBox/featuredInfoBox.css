@@ -6,6 +6,7 @@
     border-radius: var(--border-radius);
     -webkit-box-shadow: var(---webkit-box-shadow);
     box-shadow: var(--box-shadow);
+    height: 100%;
 }
 
 .featuredinfo-text {
@@ -16,8 +17,9 @@
 }
 
 .featuredinfo-title {
-    font-size: 16px;
+    font-size: 18px;
     font-family: var(--font-1);
+    color: var(--main-color);
 }
 
 .featuredinfo-money {
@@ -31,18 +33,20 @@
     margin-left: 12px; /* 오른쪽 마진을 추가하여 요소들 사이의 간격 조절 */
 }
 
+.featuredinfo-chart {
+    width: 100%;
+    height: 80%;
+}
+
 .featuredinfo-sub {
-    font-size: 12px;
+    font-size: 10px;
     color: var(--color-3);
 }
 
 /* 반응형 */
 @media (max-width: 1068px) {
     .featuredinfo {
-        width: 100%;
-    }
-    .featuredinfo-text {
-        margin: 0 16px;
+        width: 64vw;
     }
     .featuredinfo-sub {
         display: none;

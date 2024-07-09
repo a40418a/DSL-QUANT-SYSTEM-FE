@@ -1,0 +1,51 @@
+.stockinfo {
+    box-sizing: border-box;
+    width: 60%;
+    height: 100%;
+    padding: 80px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stockinfo-title {
+    width: 100%;
+    display: flex;
+    justify-content: left;
+    font-family: var(--font-1);
+    font-size: 32px;
+    color: var(--main-color);
+}
+
+.stockinfo-table {
+    margin: 40px 0;
+}
+
+.stockinfo-table th {
+    width: 15%;
+}
+
+.stockinfo-table th,
+.stockinfo-table td {
+    padding: 8px 0;
+    border-bottom: solid 1px var(--color-3);
+    border-top: solid 1px var(--color-3);
+}
+
+.stockinfo-chart-line,
+.stockinfo-chart-candle {
+    width: 640px;
+    height: 400px;
+    margin: 40px 0;
+}
+
+/* 반응형 */
+@media (max-width: 1068px) {
+    .stockinfo {
+        width: 80%;
+    }
+    .stockinfo-chart-line,
+    .stockinfo-chart-candle {
+        width: 100%;
+    }
+}

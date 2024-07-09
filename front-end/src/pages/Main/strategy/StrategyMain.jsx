@@ -4,7 +4,6 @@ import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBox';
 import { CheckBox } from '../../../components/box/checkBox/CheckBox';
 import { SelectBox } from '../../../components/box/selectBox/SelectBox';
-import { StrategyDTO } from '../../../dto/StrategyDTO';
 
 export const StrategyMain = () => {
     const options_tax = [

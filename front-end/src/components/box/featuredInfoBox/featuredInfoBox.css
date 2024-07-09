@@ -1,7 +1,6 @@
 .featuredinfo {
     box-sizing: border-box;
     flex: 1;
-    margin: var(--margin);
     padding: var(--padding);
     border-radius: var(--border-radius);
     -webkit-box-shadow: var(---webkit-box-shadow);

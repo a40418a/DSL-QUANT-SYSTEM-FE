@@ -20,6 +20,7 @@
 
 .back-tested-title {
     font-weight: bold;
+    margin-bottom: var(--margin);
 }
 
 .back-tested-chart {

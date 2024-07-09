@@ -35,5 +35,8 @@ th {
 
 .data-text {
     text-align: left;
-    padding-left: 10%;
+    padding: 0 5%;
+    white-space: nowrap; /* 텍스트가 줄바꿈 되지 않도록 설정 */
+    overflow: hidden; /* 넘치는 부분을 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트에 말줄임표(...) 표시 */
 }

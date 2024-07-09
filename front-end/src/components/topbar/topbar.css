@@ -12,6 +12,7 @@ a {
     position: sticky; /*메뉴가 화면에 항상 보여지기 위함*/
     top: 0;
     z-index: 999; /*우선순위지정*/
+    margin-bottom: 120px;
 }
 
 .topbar-wrapper {

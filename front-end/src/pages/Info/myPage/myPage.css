@@ -1,11 +1,10 @@
 .mypage {
     box-sizing: border-box;
     width: 60%;
-    height: 100%;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 64px;
 }
 
 .mypage-title {

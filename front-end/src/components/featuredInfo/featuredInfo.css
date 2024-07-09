@@ -1,16 +1,23 @@
 .featured {
     box-sizing: border-box;
     display: flex;
-    margin-top: var(--margin);
+    justify-content: space-between;
+    width: 100%;
 }
 
-.featuredinfo-box {
-    width: 33%;
+.featured-box {
+    width: 30%;
+    margin-bottom: var(--margin);
 }
 
 @media (max-width: 1068px) {
     .featured {
         flex-direction: column;
         align-items: center;
+    }
+
+    .featured-box {
+        width: 80%;
+        height: 280px;
     }
 }

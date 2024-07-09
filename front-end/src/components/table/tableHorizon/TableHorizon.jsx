@@ -4,7 +4,7 @@ import { userData03 } from '../../../data/dummyData03';
 
 export const TableHorizonTop20 = ({ title }) => {
     return (
-        <div className="table">
+        <div className="table" id="table-top20">
             <div className="tableTitle">{title}</div>
             <table>
                 <thead>

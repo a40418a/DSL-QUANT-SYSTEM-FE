@@ -3,7 +3,13 @@ import './selectBox.css';
 
 export const SelectBox = (props) => {
     return (
-        <select className="selectBox" disabled={props.disabled}>
+        <select
+            className="selectBox"
+            disabled={props.disabled}
+            name={props.name}
+            value={props.value}
+            onChange={props.onChange}
+        >
             <option value="" disabled selected>
                 {props.placeholder}
             </option>

@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './strategy.css';
 import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBox';
-import { CheckBox } from '../../../components/box/checkBox/CheckBox';
 import { SelectBox } from '../../../components/box/selectBox/SelectBox';
+import { StrategyCommonDTO } from '../../../dto/StrategyDTO';
+import { StrategyContext } from '../../../context/StrategyContext';
 
 export const StrategyMain = () => {
+    const { setStrategyCommonData } = useContext(StrategyContext);
+    const [formData, setFormData] = useState({
+        //공통변수
+        initial_investment: 0,
+        tax: 0,
+        start_date: '',
+        end_date: '',
+        target_item: '',
+        tick_kind: '',
+        inq_range: [0, 0],
+    });
+
     const options_tax = [
         { label: '10%', value: '0.1' },
         { label: '20%', value: '0.2' },
@@ -17,6 +30,22 @@ export const StrategyMain = () => {
         { label: '캔들', value: 'candle' },
     ];
 
+    const handleChange = (e) => {
+        //input값 변경
+        const { name, value } = e.target; //name과 value값 가져오기
+        setFormData((prevData) => ({
+            //기존의 데이터를 가져와서
+            ...prevData, //기존의 데이터를 그대로 두고
+            [name]: value, //name에 해당하는 value값을 변경
+        }));
+    };
+
+    const handleSubmit = () => {
+        const strategyCommonDTO = new StrategyCommonDTO(formData);
+        console.log(strategyCommonDTO);
+        setStrategyCommonData(strategyCommonDTO);
+    };
+
     return (
         <div className="strategy">
             <div className="strategy-title">공통 변수 설정</div>
@@ -25,7 +54,13 @@ export const StrategyMain = () => {
                     <div className="strategy-subtitle">초기 투자 금액</div>
                 </div>
                 <div className="strategy-input">
-                    <InputBox type="number" placeholder="초기 투자 금액을 입력해주세요." />
+                    <InputBox
+                        type="number"
+                        placeholder="초기 투자 금액을 입력해주세요."
+                        name="initialInvestment"
+                        value={formData.initialInvestment}
+                        onChange={handleChange}
+                    />
                     <span>만원</span>
                 </div>
             </div>
@@ -34,7 +69,12 @@ export const StrategyMain = () => {
                     <div className="strategy-subtitle">거래 수수료</div>
                 </div>
                 <div className="strategy-input">
-                    <SelectBox options={options_tax} />
+                    <SelectBox
+                        options={options_tax}
+                        name="commissions"
+                        value={formData.commision}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
             <div className="strategy-select">
@@ -44,11 +84,11 @@ export const StrategyMain = () => {
                 <div className="strategy-input">
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">시작일 설정</div>
-                        <InputHalfBox type="date" />
+                        <InputHalfBox type="date" name="startDate" value={formData.startDate} onChange={handleChange} />
                     </div>
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">종료일 설정</div>
-                        <InputHalfBox type="date" />
+                        <InputHalfBox type="date" name="endDate" value={formData.endDate} onChange={handleChange} />
                     </div>
                 </div>
             </div>
@@ -57,7 +97,13 @@ export const StrategyMain = () => {
                     <div className="strategy-subtitle">종목 이름(TargetItem)</div>
                 </div>
                 <div className="strategy-input">
-                    <InputBox type="text" placeholder="종목 이름을 정확히 입력하세요." />
+                    <InputBox
+                        type="text"
+                        placeholder="종목 이름을 정확히 입력하세요."
+                        name="targetItem"
+                        value={formData.targetItem}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
             <div className="strategy-select">
@@ -65,7 +111,12 @@ export const StrategyMain = () => {
                     <div className="strategy-subtitle">캔들 종류(TickKind)</div>
                 </div>
                 <div className="strategy-input">
-                    <SelectBox options={options_candle} />
+                    <SelectBox
+                        options={options_candle}
+                        name="candleType"
+                        value={formData.candleType}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
             <div className="strategy-select">
@@ -74,19 +125,29 @@ export const StrategyMain = () => {
                 </div>
                 <div className="strategy-input">
                     <div className="half-input-wrapper">
-                        <InputHalfBox type="num" />
+                        <InputHalfBox
+                            type="num"
+                            name="inqRangeStart"
+                            value={formData.inqRangeStart}
+                            onChange={handleChange}
+                        />
                     </div>
                     <span> ~ </span>
                     <div className="half-input-wrapper">
-                        <InputHalfBox type="num" />
+                        <InputHalfBox
+                            type="num"
+                            name="inqRangeEnd"
+                            value={formData.inqRangeEnd}
+                            onChange={handleChange}
+                        />
                     </div>
                 </div>
             </div>
             <div className="strategy-title">전략 선택</div>
             <div className="strategy-btn-wrapper">
-                <ColorBtn text="골든/데드" link="/strategy/golden" />
-                <ColorBtn text="볼린저밴드" link="/strategy/bollinger" />
-                <ColorBtn text="RSI,MFI,MACD 지표 이용 전략" link="/strategy/rsi" />
+                <ColorBtn text="골든/데드" link="/strategy/golden" onClick={handleSubmit} />
+                <ColorBtn text="볼린저밴드" link="/strategy/bollinger" onClick={handleSubmit} />
+                <ColorBtn text="RSI,MFI,MACD 지표 이용 전략" link="/strategy/rsi" onClick={handleSubmit} />
             </div>
             {/* <div className="strategy-subtitle-wrapper">
                 <div className="strategy-essential">[필수]</div>

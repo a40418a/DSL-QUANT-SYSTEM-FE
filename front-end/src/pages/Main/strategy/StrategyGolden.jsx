@@ -1,9 +1,34 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './strategy.css';
 import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBox';
+import { Strategy1DTO } from '../../../dto/StrategyDTO';
+import { StrategyContext } from '../../../context/StrategyContext';
 
 export const Strategy1 = () => {
+    const { setStrategy1Data } = useContext(StrategyContext);
+    const [formData, setFormData] = useState({
+        //골든
+        fast_period: [0, 0],
+        slow_period: [0, 0],
+    });
+
+    const handleChange = (e) => {
+        //input값 변경
+        const { name, value } = e.target; //name과 value값 가져오기
+        setFormData((prevData) => ({
+            //기존의 데이터를 가져와서
+            ...prevData, //기존의 데이터를 그대로 두고
+            [name]: value, //name에 해당하는 value값을 변경
+        }));
+    };
+
+    const handleSubmit = () => {
+        const strategy1DTO = new Strategy1DTO(formData);
+        console.log(strategy1DTO);
+        setStrategy1Data(strategy1DTO);
+    };
+
     return (
         <div className="strategy">
             <div className="strategy-title">골든/데드 전략 설정 페이지</div>
@@ -14,11 +39,21 @@ export const Strategy1 = () => {
                 <div className="strategy-input">
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">시작일 설정</div>
-                        <InputHalfBox type="date" />
+                        <InputHalfBox
+                            type="date"
+                            name="fastMoveAvgStart"
+                            value={formData.fastMoveAvgStart}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">종료일 설정</div>
-                        <InputHalfBox type="date" />
+                        <InputHalfBox
+                            type="date"
+                            name="fastMoveAvgEnd"
+                            value={formData.fastMoveAvgEnd}
+                            onChange={handleChange}
+                        />
                     </div>
                 </div>
             </div>
@@ -29,17 +64,27 @@ export const Strategy1 = () => {
                 <div className="strategy-input">
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">시작일 설정</div>
-                        <InputBox type="date" />
+                        <InputBox
+                            type="date"
+                            name="slowMoveAvgStart"
+                            value={formData.slowMoveAvgStart}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">종료일 설정</div>
-                        <InputBox type="date" />
+                        <InputBox
+                            type="date"
+                            name="slowMoveAvgEnd"
+                            value={formData.slowMoveAvgEnd}
+                            onChange={handleChange}
+                        />
                     </div>
                 </div>
             </div>
             <div className="strategy-btn-wrapper" id="btn-to-result">
                 <ColorBtn id="colorBtn-prev" text="< 이전" onClick={() => window.history.back()} />
-                <ColorBtn id="colorBtn-next" text="백테스트" link="/result" />
+                <ColorBtn id="colorBtn-next" text="백테스트" link="/result" onClick={handleSubmit} />
             </div>
         </div>
     );

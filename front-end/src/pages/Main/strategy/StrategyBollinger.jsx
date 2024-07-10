@@ -1,9 +1,32 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import './strategy.css';
 import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { InputBox } from '../../../components/box/inputBox/InputBox';
+import { Strategy2DTO } from '../../../dto/StrategyDTO';
+import { StrategyContext } from '../../../context/StrategyContext';
 
 export const Strategy2 = () => {
+    const { setStrategy2Data } = useContext(StrategyContext);
+    const [formData, setFormData] = useState({
+        move_period: [0, 0],
+    });
+
+    const handleChange = (e) => {
+        //input값 변경
+        const { name, value } = e.target; //name과 value값 가져오기
+        setFormData((prevData) => ({
+            //기존의 데이터를 가져와서
+            ...prevData, //기존의 데이터를 그대로 두고
+            [name]: value, //name에 해당하는 value값을 변경
+        }));
+    };
+
+    const handleSubmit = () => {
+        const strategy2DTO = new Strategy2DTO(formData);
+        console.log(strategy2DTO);
+        setStrategy2Data(strategy2DTO);
+    };
+
     return (
         <div className="strategy">
             <div className="strategy-title">볼린저밴드 전략 설정 페이지</div>
@@ -14,17 +37,22 @@ export const Strategy2 = () => {
                 <div className="strategy-input">
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">시작일 설정</div>
-                        <InputBox type="date" />
+                        <InputBox
+                            type="date"
+                            name="moveAvgStart"
+                            value={formData.moveAvgStart}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">종료일 설정</div>
-                        <InputBox type="date" />
+                        <InputBox type="date" name="moveAvgEnd" value={formData.moveAvgEnd} onChange={handleChange} />
                     </div>
                 </div>
             </div>
             <div className="strategy-btn-wrapper" id="btn-to-result">
                 <ColorBtn id="colorBtn-prev" text="< 이전" onClick={() => window.history.back()} />
-                <ColorBtn id="colorBtn-next" text="백테스트" link="/result" />
+                <ColorBtn id="colorBtn-next" text="백테스트" link="/result" onClick={handleSubmit} />
             </div>
         </div>
     );

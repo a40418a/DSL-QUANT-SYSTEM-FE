@@ -1,110 +1,75 @@
-export class StrategyDTO {
-    private country: string;
-    private basicFilter: string[];
-    private excludeSectors: string[];
-    private factorRatio: string;
-    private factorPrice: string[];
-    private factorEV: string[];
-    private factorQuality: string[];
-    private initialAmount: number;
-    private fee: number;
-    private rebalancingPeriod: string;
-    private specificGravity: string;
-    private eventCount: number;
-    private marketTiming: string[];
-    private datePeriod: string[];
+export class StrategyCommonDTO {
+    //공통
+    initialInvestment: number;
+    commission: number;
+    startDate: string;
+    endDate: string;
+    targetItem: string;
+    candleType: string;
+    inqRangeStart: string;
+    inqRangeEnd: string;
 
-    constructor(
-        country: string,
-        basicFilter: string[],
-        excludeSectors: string[],
-        factorRatio: string,
-        factorPrice: string[],
-        factorEV: string[],
-        factorQuality: string[],
-        initialAmount: number,
-        fee: number,
-        rebalancingPeriod: string,
-        specificGravity: string,
-        eventCount: number,
-        marketTiming: string[],
-        datePeriod: string[]
-    ) {
-        this.country = country; // 선택된 국가
-        this.basicFilter = basicFilter;
-        this.excludeSectors = excludeSectors; // 제외할 섹터들
-        this.factorRatio = factorRatio;
-        this.factorPrice = factorPrice;
-        this.factorEV = factorEV;
-        this.factorQuality = factorQuality;
-        this.initialAmount = initialAmount;
-        this.fee = fee;
-        this.rebalancingPeriod = rebalancingPeriod;
-        this.specificGravity = specificGravity;
-        this.eventCount = eventCount;
-        this.marketTiming = marketTiming;
-        this.datePeriod = datePeriod;
+    constructor(data: {
+        initialInvestment: number;
+        commission: number;
+        startDate: string;
+        endDate: string;
+        targetItem: string;
+        candleType: string;
+        inqRangeStart: string;
+        inqRangeEnd: string;
+    }) {
+        this.initialInvestment = data.initialInvestment;
+        this.commission = data.commission;
+        this.startDate = data.startDate;
+        this.endDate = data.endDate;
+        this.targetItem = data.targetItem;
+        this.candleType = data.candleType;
+        this.inqRangeStart = data.inqRangeStart;
+        this.inqRangeEnd = data.inqRangeEnd;
     }
+}
 
-    setCountry(country: string) {
-        this.country = country;
-    }
-    setBasicFilter(basicFilter: string[]) {
-        this.basicFilter = basicFilter;
-    }
-    setExcludeSectors(excludeSectors: string[]) {
-        this.excludeSectors = excludeSectors;
-    }
-    setFactorRatio(factorRatio: string) {
-        this.factorRatio = factorRatio;
-    }
-    setFactorPrice(factorPrice: string[]) {
-        this.factorPrice = factorPrice;
-    }
-    setFactorEV(factorEV: string[]) {
-        this.factorEV = factorEV;
-    }
-    setFactorQuality(factorQuality: string[]) {
-        this.factorQuality = factorQuality;
-    }
-    setInitialAmount(initialAmount: number) {
-        this.initialAmount = initialAmount;
-    }
-    setFee(fee: number) {
-        this.fee = fee;
-    }
-    setRebalancingPeriod(rebalancingPeriod: string) {
-        this.rebalancingPeriod = rebalancingPeriod;
-    }
-    setSpecificGravity(specificGravity: string) {
-        this.specificGravity = specificGravity;
-    }
-    setEventCount(eventCount: number) {
-        this.eventCount = eventCount;
-    }
-    setMarketTiming(marketTiming: string[]) {
-        this.marketTiming = marketTiming;
-    }
-    setDatePeriod(datePeriod: string[]) {
-        this.datePeriod = datePeriod;
-    }
+export class Strategy1DTO {
+    //골든/데드
+    fastMoveAvgStart: string;
+    fastMoveAvgEnd: string;
+    slowMoveAvgStart: string;
+    slowMoveAvgEnd: string;
 
-    getStrategy() {
-        return {
-            country: this.country,
-            basicFilter: this.basicFilter,
-            excludeSectors: this.excludeSectors,
-            factorRatio: this.factorRatio,
-            factorPrice: this.factorPrice,
-            factorEV: this.factorEV,
-            factorQuality: this.factorQuality,
-            initialAmount: this.initialAmount,
-            fee: this.fee,
-            rebalancingPeriod: this.rebalancingPeriod,
-            specificGravity: this.specificGravity,
-            eventCount: this.eventCount,
-            marketTiming: this.marketTiming,
-            datePeriod: this.datePeriod,
-        };
+    constructor(data: {
+        fastMoveAvgStart: string;
+        fastMoveAvgEnd: string;
+        slowMoveAvgStart: string;
+        slowMoveAvgEnd: string;
+    }) {
+        this.fastMoveAvgStart = data.fastMoveAvgStart;
+        this.fastMoveAvgEnd = data.fastMoveAvgEnd;
+        this.slowMoveAvgStart = data.slowMoveAvgStart;
+        this.slowMoveAvgEnd = data.slowMoveAvgEnd;
+    }
+}
+
+export class Strategy2DTO {
+    //볼린저
+    moveAvgStart: string;
+    moveAvgEnd: string;
+
+    constructor(data: { moveAvgStart: string; moveAvgEnd: string }) {
+        this.moveAvgStart = data.moveAvgStart;
+        this.moveAvgEnd = data.moveAvgEnd;
+    }
+}
+
+export class Strategy3DTO {
+    //RSI,MFI,MACD
+    rsiStart: string;
+    rsiEnd: string;
+    mfiLoopCount: number;
+
+    constructor(data: { rsiStart: string; rsiEnd: string; mfiLoopCount: number }) {
+        this.rsiStart = data.rsiStart;
+        this.rsiEnd = data.rsiEnd;
+        this.mfiLoopCount = data.mfiLoopCount;
     }
 }

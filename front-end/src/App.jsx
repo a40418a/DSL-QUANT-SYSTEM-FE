@@ -15,6 +15,7 @@ import { Strategy3 } from './pages/Main/strategy/StrategyRSI';
 import { StockInfo } from './pages/Main/StockInfo/StockInfo';
 import { LoginHandler } from './pages/Info/login/LoginHandler';
 import { AuthProvider } from './handler/AuthContext';
+import { StrategyProvider } from './context/StrategyContext';
 import './app.css';
 import './assets/fonts.css';
 
@@ -23,24 +24,26 @@ function App() {
         <div className="App">
             <BrowserRouter>
                 <AuthProvider>
-                    <Topbar />
-                    <div className="container">
-                        <Routes>
-                            <Route path="/home" element={<Home />} />
-                            <Route path="/" element={<Explain />} />
-                            <Route path="/login" element={<Login />} />
-                            <Route path="/login/oauth2/code/kakao" element={<LoginHandler />} />
-                            <Route path="/stockinfo" element={<StockInfo />} />
-                            <Route path="/mypage" element={<MyPage />} />
-                            <Route path="/mypagecheck" element={<MyPageCheck />} />
-                            <Route path="/result" element={<Result />} />
-                            <Route path="/strategy" element={<StrategyMain />} />
-                            <Route path="/strategy/golden" element={<Strategy1 />} />
-                            <Route path="/strategy/bollinger" element={<Strategy2 />} />
-                            <Route path="/strategy/rsi" element={<Strategy3 />} />
-                        </Routes>
-                    </div>
-                    <Footbar />
+                    <StrategyProvider>
+                        <Topbar />
+                        <div className="container">
+                            <Routes>
+                                <Route path="/home" element={<Home />} />
+                                <Route path="/" element={<Explain />} />
+                                <Route path="/login" element={<Login />} />
+                                <Route path="/login/oauth2/code/kakao" element={<LoginHandler />} />
+                                <Route path="/stockinfo" element={<StockInfo />} />
+                                <Route path="/mypage" element={<MyPage />} />
+                                <Route path="/mypagecheck" element={<MyPageCheck />} />
+                                <Route path="/result" element={<Result />} />
+                                <Route path="/strategy" element={<StrategyMain />} />
+                                <Route path="/strategy/golden" element={<Strategy1 />} />
+                                <Route path="/strategy/bollinger" element={<Strategy2 />} />
+                                <Route path="/strategy/rsi" element={<Strategy3 />} />
+                            </Routes>
+                        </div>
+                        <Footbar />
+                    </StrategyProvider>
                 </AuthProvider>
             </BrowserRouter>
         </div>

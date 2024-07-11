@@ -66,6 +66,16 @@ a {
     font-weight: bold;
 }
 
+.topbar-logout {
+    display: flex;
+    align-items: center;
+}
+
+.topbar-logout a {
+    color: var(--color-3);
+    font-size: 12px;
+}
+
 /* 반응형 */
 @media (max-width: 1068px) {
     .topbar-wrapper {

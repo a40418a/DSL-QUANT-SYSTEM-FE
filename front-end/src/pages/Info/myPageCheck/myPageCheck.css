@@ -1,6 +1,7 @@
 .mypagecheck {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 80vh;
     margin-top: -120px;
 }

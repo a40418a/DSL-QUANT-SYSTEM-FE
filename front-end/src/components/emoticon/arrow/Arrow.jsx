@@ -1,13 +1,9 @@
-//화살표 이모티콘
-import React from "react";
-import "./arrow.css";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import React from 'react';
 
 export const ArrowUp = () => {
-  return <ArrowUpwardIcon className="arrowUp" />;
+    return <span style={{ color: '#d84337', fontSize: 16, fontWeight: 'bold' }}>↑</span>;
 };
 
 export const ArrowDown = () => {
-  return <ArrowDownwardIcon className="arrowDown" />;
+    return <span style={{ color: '#254b9c', fontSize: 16, fontWeight: 'bold' }}>↓</span>;
 };

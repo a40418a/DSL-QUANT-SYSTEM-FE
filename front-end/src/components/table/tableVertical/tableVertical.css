@@ -1,4 +1,5 @@
 .vertical-h {
+.vertical-h {
     width: 20%;
     border: none;
     border-top: solid 1px var(--color-4);
@@ -6,9 +7,11 @@
 }
 
 .vertical-d {
+.vertical-d {
     text-align: left;
     padding-left: 16px;
     border: none;
     border-top: solid 1px var(--color-4);
     border-bottom: solid 1px var(--color-4);
 }
+

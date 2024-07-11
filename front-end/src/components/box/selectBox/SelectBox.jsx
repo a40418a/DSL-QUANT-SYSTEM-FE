@@ -1,7 +1,7 @@
 import React from 'react';
 import './selectBox.css';
 
-export const SelectBox = (props) => {
+export const SelectBox = ({ options, value, onChange }) => {
     return (
         <select
             className="selectBox"

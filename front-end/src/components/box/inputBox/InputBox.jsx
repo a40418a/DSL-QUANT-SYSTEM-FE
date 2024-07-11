@@ -3,8 +3,26 @@ import './inputBox.css';
 
 export const InputBox = (props) => {
     return (
-        <div>
-            <input className="inputBox" type={props.type} placeholder={props.placeholder} />
-        </div>
+        <input
+            className="inputBox"
+            type={props.type}
+            placeholder={props.placeholder}
+            name={props.name}
+            value={props.value}
+            onChange={props.onChange}
+        />
+    );
+};
+
+export const InputHalfBox = (props) => {
+    return (
+        <input
+            className="inputHalfBox"
+            type={props.type}
+            placeholder={props.placeholder}
+            name={props.name}
+            value={props.value}
+            onChange={props.onChange}
+        />
     );
 };

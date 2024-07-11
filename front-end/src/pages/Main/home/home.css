@@ -1,5 +1,6 @@
 .home {
     width: 60%;
+    width: 60%;
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -20,8 +21,19 @@
 
 .back-tested-title {
     font-weight: bold;
+    margin-bottom: var(--margin);
 }
 
+.back-tested-chart {
+    width: 100%;
+    height: 400px;
+}
+.top20 {
+    width: 40%;
+}
+
+.top20 td {
+    text-overflow: ellipsis;
 .back-tested-chart {
     width: 100%;
     height: 400px;
@@ -40,7 +52,6 @@
         width: 80%;
     }
     .info {
-        margin-top: 500px;
         display: flex;
         flex-direction: column;
         align-items: center;

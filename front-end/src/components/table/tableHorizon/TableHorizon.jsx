@@ -1,10 +1,13 @@
 import React from 'react';
 import './tableHorizon.css';
 import { userData03 } from '../../../data/dummyData03';
+import React from 'react';
+import './tableHorizon.css';
+import { userData03 } from '../../../data/dummyData03';
 
 export const TableHorizonTop20 = ({ title }) => {
     return (
-        <div className="table">
+        <div className="table" id="table-top20">
             <div className="tableTitle">{title}</div>
             <table>
                 <thead>
@@ -20,7 +23,7 @@ export const TableHorizonTop20 = ({ title }) => {
                     {userData03.map((data, index) => (
                         <tr key={index}>
                             <td>{data.rank}</td>
-                            <td> {data.name}</td>
+                            <td className="data-text"> {data.name}</td>
                             <td className="data-num">{data.now.toLocaleString()}</td>
                             <td className={`data-num ${data.rate > 0 ? 'positive' : 'negative'}`}>
                                 {data.calc.toLocaleString()}
@@ -33,5 +36,8 @@ export const TableHorizonTop20 = ({ title }) => {
                 </tbody>
             </table>
         </div>
+    );
+};
+
     );
 };

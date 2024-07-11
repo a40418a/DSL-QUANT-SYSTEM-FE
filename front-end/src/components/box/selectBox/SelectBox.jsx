@@ -3,9 +3,18 @@ import './selectBox.css';
 
 export const SelectBox = ({ options, value, onChange }) => {
     return (
-        <select className="selectBox" value={value} onChange={onChange}>
-            {options.map((option) => (
-                <option key={option.value} value={option.value}>
+        <select
+            className="selectBox"
+            disabled={props.disabled}
+            name={props.name}
+            value={props.value}
+            onChange={props.onChange}
+        >
+            <option value="" disabled selected>
+                {props.placeholder}
+            </option>
+            {props.options.map((option, index) => (
+                <option key={index} value={option.value}>
                     {option.label}
                 </option>
             ))}

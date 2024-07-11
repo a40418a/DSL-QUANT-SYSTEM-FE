@@ -3,7 +3,6 @@ import './strategy.css';
 import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { CheckBox } from '../../../components/box/checkBox/CheckBox';
 import { SelectBox } from '../../../components/box/selectBox/SelectBox';
-import { StrategyDTO } from '../../../dto/StrategyDTO';
 
 export const Strategy1 = () => {
     const options = [

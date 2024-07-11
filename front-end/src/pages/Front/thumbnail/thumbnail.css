@@ -1,0 +1,15 @@
+.container {
+    box-sizing: border-box;
+    width: var(--width);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.thumbnail-title div {
+    font-family: var(--font-1);
+    text-align: center;
+    font-size: 64px;
+    color: var(--main-color);
+}

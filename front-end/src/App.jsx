@@ -1,5 +1,4 @@
 //페이지링크
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Topbar } from './components/topbar/Topbar';
 import { Footbar } from './components/footbar/Footbar';

@@ -1,9 +1,6 @@
 import React from 'react';
 import './tableHorizon.css';
 import { userData03 } from '../../../data/dummyData03';
-import React from 'react';
-import './tableHorizon.css';
-import { userData03 } from '../../../data/dummyData03';
 
 export const TableHorizonTop20 = ({ title }) => {
     return (
@@ -36,8 +33,5 @@ export const TableHorizonTop20 = ({ title }) => {
                 </tbody>
             </table>
         </div>
-    );
-};
-
     );
 };

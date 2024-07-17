@@ -31,13 +31,35 @@ export const StrategyMain = () => {
     ];
 
     const handleChange = (e) => {
-        //input값 변경
-        const { name, value } = e.target; //name과 value값 가져오기
-        setFormData((prevData) => ({
-            //기존의 데이터를 가져와서
-            ...prevData, //기존의 데이터를 그대로 두고
-            [name]: value, //name에 해당하는 value값을 변경
-        }));
+        const { name, value } = e.target;
+        setFormData((prevData) => {
+            const newFormData = { ...prevData, [name]: value };
+
+            // 종료일이 시작일보다 빠른지 확인
+            if (name === 'endDate' && newFormData.startDate && new Date(value) < new Date(newFormData.startDate)) {
+                alert('종료일은 시작일보다 빠를 수 없습니다.');
+                return prevData; // 이전 데이터로 되돌리기
+            }
+
+            // 조회 범위가 올바른지 확인
+            if (
+                (name === 'inqRangeStart' || name === 'inqRangeEnd') &&
+                newFormData.inqRangeStart &&
+                newFormData.inqRangeEnd &&
+                parseFloat(newFormData.inqRangeStart) > parseFloat(newFormData.inqRangeEnd)
+            ) {
+                alert('조회 범위의 시작 값은 종료 값보다 클 수 없습니다.');
+                return prevData; // 이전 데이터로 되돌리기
+            }
+
+            // 초기 투자 금액의 최솟값 확인
+            if (name === 'initialInvestment' && parseFloat(value) < 0) {
+                alert('초기 투자 금액은 0보다 작을 수 없습니다.');
+                return prevData; // 이전 데이터로 되돌리기
+            }
+
+            return newFormData;
+        });
     };
 
     const handleSubmit = () => {

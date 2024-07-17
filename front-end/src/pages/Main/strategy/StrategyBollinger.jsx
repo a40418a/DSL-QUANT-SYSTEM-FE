@@ -12,13 +12,22 @@ export const Strategy2 = () => {
     });
 
     const handleChange = (e) => {
-        //input값 변경
-        const { name, value } = e.target; //name과 value값 가져오기
-        setFormData((prevData) => ({
-            //기존의 데이터를 가져와서
-            ...prevData, //기존의 데이터를 그대로 두고
-            [name]: value, //name에 해당하는 value값을 변경
-        }));
+        const { name, value } = e.target;
+        setFormData((prevData) => {
+            const newFormData = { ...prevData, [name]: value };
+
+            // 종료일이 시작일보다 빠른지 확인
+            if (
+                name === 'moveAvgEnd' &&
+                newFormData.moveAvgStart &&
+                new Date(value) < new Date(newFormData.moveAvgStart)
+            ) {
+                alert('종료일은 시작일보다 빠를 수 없습니다.');
+                return prevData; // 이전 데이터로 되돌리기
+            }
+
+            return newFormData;
+        });
     };
 
     const handleSubmit = () => {

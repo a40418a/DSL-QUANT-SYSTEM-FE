@@ -31,13 +31,35 @@ export const StrategyMain = () => {
     ];
 
     const handleChange = (e) => {
-        //input값 변경
-        const { name, value } = e.target; //name과 value값 가져오기
-        setFormData((prevData) => ({
-            //기존의 데이터를 가져와서
-            ...prevData, //기존의 데이터를 그대로 두고
-            [name]: value, //name에 해당하는 value값을 변경
-        }));
+        const { name, value } = e.target;
+        setFormData((prevData) => {
+            const newFormData = { ...prevData, [name]: value };
+
+            // 종료일이 시작일보다 빠른지 확인
+            if (name === 'endDate' && newFormData.startDate && new Date(value) < new Date(newFormData.startDate)) {
+                alert('종료일은 시작일보다 빠를 수 없습니다.');
+                return prevData; // 이전 데이터로 되돌리기
+            }
+
+            // 조회 범위가 올바른지 확인
+            if (
+                (name === 'inqRangeStart' || name === 'inqRangeEnd') &&
+                newFormData.inqRangeStart &&
+                newFormData.inqRangeEnd &&
+                parseFloat(newFormData.inqRangeStart) > parseFloat(newFormData.inqRangeEnd)
+            ) {
+                alert('조회 범위의 시작 값은 종료 값보다 클 수 없습니다.');
+                return prevData; // 이전 데이터로 되돌리기
+            }
+
+            // 초기 투자 금액의 최솟값 확인
+            if (name === 'initialInvestment' && parseFloat(value) < 0) {
+                alert('초기 투자 금액은 0보다 작을 수 없습니다.');
+                return prevData; // 이전 데이터로 되돌리기
+            }
+
+            return newFormData;
+        });
     };
 
     const handleSubmit = () => {
@@ -54,13 +76,15 @@ export const StrategyMain = () => {
                     <div className="strategy-subtitle">초기 투자 금액</div>
                 </div>
                 <div className="strategy-input">
-                    <InputBox
-                        type="number"
-                        placeholder="초기 투자 금액을 입력해주세요."
-                        name="initialInvestment"
-                        value={formData.initialInvestment}
-                        onChange={handleChange}
-                    />
+                    <div className="input-inital-investment">
+                        <InputBox
+                            type="number"
+                            placeholder="초기 투자 금액을 입력해주세요."
+                            name="initialInvestment"
+                            value={formData.initialInvestment}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <span>만원</span>
                 </div>
             </div>
@@ -145,75 +169,10 @@ export const StrategyMain = () => {
             </div>
             <div className="strategy-title">전략 선택</div>
             <div className="strategy-btn-wrapper">
-                <ColorBtn text="골든/데드" link="/strategy/golden" onClick={handleSubmit} />
-                <ColorBtn text="볼린저밴드" link="/strategy/bollinger" onClick={handleSubmit} />
-                <ColorBtn text="RSI,MFI,MACD 지표 이용 전략" link="/strategy/rsi" onClick={handleSubmit} />
+                <ColorBtn text="골든/데드" link="/strategy/1" onClick={handleSubmit} />
+                <ColorBtn text="볼린저밴드" link="/strategy/2" onClick={handleSubmit} />
+                <ColorBtn text="RSI,MFI,MACD 지표 이용 전략" link="/strategy/3" onClick={handleSubmit} />
             </div>
-            {/* <div className="strategy-subtitle-wrapper">
-                <div className="strategy-essential">[필수]</div>
-                <div className="strategy-subtitle">유니버스선택</div>
-            </div>
-            <SelectBox placeholder="국가를 선택해주세요" options={options} />
-            <div className="strategy-subtitle-wrapper">
-                <div className="strategy-subtitle">기본 필터</div>
-            </div>
-            <div className="strategy-check-group">
-                <div className="strategy-check-group-row">
-                    <CheckBox text="금융주 제외" />
-                    <CheckBox text="지주사 제외" />
-                    <CheckBox text="관리종목 제외" />
-                    <CheckBox text="적자기업 제외" />
-                    <CheckBox text="적자기업 제외 (년간)" />
-                </div>
-                <div className="strategy-check-group-row">
-                    <CheckBox text="중국기업 제외" />
-                    <CheckBox text="PTP 기업 제외" />
-                    <CheckBox text="소형주 하위 20%만" />
-                </div>
-            </div>
-            <div className="strategy-subtitle-wrapper">
-                <div className="strategy-subtitle">제외할 섹터</div>
-            </div>
-            <div className="strategy-check-group">
-                <div className="strategy-check-group-row">
-                    <CheckBox text="건강관리" />
-                    <CheckBox text="자동차" />
-                    <CheckBox text="화장품,의류,완구" />
-                    <CheckBox text="보험" />
-                    <CheckBox text="필수 소비재" />
-                </div>
-                <div className="strategy-check-group-row">
-                    <CheckBox text="운송" />
-                    <CheckBox text="상사,자본재" />
-                    <CheckBox text="비철,목재 등" />
-                    <CheckBox text="화학" />
-                    <CheckBox text="건설,건축관련" />
-                </div>
-                <div className="strategy-check-group-row">
-                    <CheckBox text="에너지" />
-                    <CheckBox text="기계" />
-                    <CheckBox text="철강" />
-                    <CheckBox text="반도체" />
-                    <CheckBox text="IT 하드웨어" />
-                </div>
-                <div className="strategy-check-group-row">
-                    <CheckBox text="통신서비스" />
-                    <CheckBox text="증권" />
-                    <CheckBox text="디스플레이" />
-                    <CheckBox text="IT 가전" />
-                    <CheckBox text="소매(유통)" />
-                </div>
-                <div className="strategy-check-group-row">
-                    <CheckBox text="유틸리티" />
-                    <CheckBox text="미디어,교육" />
-                    <CheckBox text="은행" />
-                    <CheckBox text="호텔,레저 서비스" />
-                    <CheckBox text="소프트웨어" />
-                </div>
-                <div className="strategy-check-group-row">
-                    <CheckBox text="조선" />
-                </div>
-            </div> */}
         </div>
     );
 };

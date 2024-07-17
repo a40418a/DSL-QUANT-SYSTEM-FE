@@ -1,45 +1,63 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { KakaoLoginResponseDTO } from '../../../dto/LoginDTO'; // 클래스형 DTO import
+import { AuthContext } from '../../../handler/AuthContext';
 
 export const LoginHandler = (props) => {
     const navigate = useNavigate();
-    const code = new URL(window.location.href).searchParams.get('code'); // 인가 코드를 추출
+    const code = new URL(window.location.href).searchParams.get('code'); //  인가 코드를 추출
+    const { login } = useContext(AuthContext);
 
     // 인가코드를 백엔드로 보내는 코드
     useEffect(() => {
         const kakaoLogin = async () => {
+            // 인가 코드가 없을 경우
+            if (!code) {
+                console.error('Authorization code not found');
+                return;
+            }
+
             try {
-                const res = await axios({
-                    method: 'GET', // GET 요청 방식
-                    url: `${import.meta.env.VITE_APP_REDIRECT_URI_KAKAO}/?code=${code}`,
+                // 백엔드로 인가 코드 전송
+                const res = await axios.get(`http://43.200.199.72:8080/login/oauth2/code/kakao`, {
+                    params: { code: code },
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8',
                         'Access-Control-Allow-Origin': '*',
                     },
                 });
 
-                // 클래스형 DTO를 사용하여 응답 데이터 구조화
-                const kakaoResponseDTO = new KakaoLoginResponseDTO(
-                    code,
-                    res.data.account.kakaoName,
-                    res.data.account.email
-                );
+                // 응답 데이터 확인
+                console.log('Response Headers:', res.headers);
+                console.log('Response Data:', res.data);
 
-                if (kakaoResponseDTO.kakaoName) {
-                    console.log(res); // 응답 로그
-                    localStorage.setItem('name', kakaoResponseDTO.kakaoName); // 로컬 스토리지에 사용자 이름 저장
-                    navigate('/home'); // 홈 페이지로 리다이렉션
+                // JWT 토큰이 응답 데이터에 있는지 확인
+                const jwt = res.data.jwtToken;
+                // JWT 토큰이 있다면 로컬 스토리지에 저장하고 홈으로 이동
+                if (jwt) {
+                    localStorage.setItem('jwt', jwt);
+                    localStorage.setItem('name', res.data.account.username);
+                    localStorage.setItem('refreshToken', res.data.refreshToken);
+
+                    // AuthContext의 login 함수 호출하여 사용자 정보 업데이트
+                    login(res.data.account);
+
+                    navigate('/home');
                 } else {
-                    console.error('Unexpected response structure:', res);
+                    console.error('JWT token not found in response data');
                 }
             } catch (error) {
-                console.error('Login failed', error);
+                if (error.response) {
+                    console.error('Server responded with an error:', error.response.data);
+                } else if (error.request) {
+                    console.error('No response received:', error.request);
+                } else {
+                    console.error('Error setting up the request:', error.message);
+                }
             }
         };
         kakaoLogin();
-    }, [navigate, code]);
+    }, [navigate, code, login]);
 
     return <div>로그인 진행 중</div>;
 };

@@ -22,39 +22,7 @@ export const Topbar = () => {
 
             // 서버에 로그아웃 요청 보내기
             await axios.post(
-                'http://localhost:8080/logout',
-                {},
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`, // 인증 헤더에 JWT 토큰 포함
-                        'Content-Type': 'application/json', // 콘텐츠 타입 설정
-                    },
-                }
-            );
-
-            // AuthContext의 logout 함수 호출하여 클라이언트 측 로그아웃 처리
-            logout();
-
-            // 로그아웃 성공 메시지 표시
-            alert('Successfully logged out');
-
-            // 로그인 페이지로 리다이렉트
-            navigate('/login');
-        } catch (error) {
-            // 로그아웃 과정에서 에러가 발생한 경우 콘솔에 에러 메시지 출력
-            console.error('Error logging out:', error);
-        }
-    };
-
-    if (location.pathname !== '/' && location.pathname !== '/login') {
-    const logoutHandler = async () => {
-        try {
-            // 로컬 스토리지에서 JWT 토큰 가져오기
-            const token = localStorage.getItem('jwt');
-
-            // 서버에 로그아웃 요청 보내기
-            await axios.post(
-                'http://localhost:8080/logout',
+                'http://43.200.199.72:8080/logout',
                 {},
                 {
                     headers: {
@@ -88,8 +56,6 @@ export const Topbar = () => {
                         </Link>
                     </div>
                     <ul className="topbar-menu-wrapper">
-                        <li className={`topbar-menu ${activePage === '/stockinfo' ? 'active' : ''}`}>
-                            <Link to="/stockinfo">주식 상세정보</Link>
                         <li className={`topbar-menu ${activePage === '/stockinfo' ? 'active' : ''}`}>
                             <Link to="/stockinfo">주식 상세정보</Link>
                         </li>

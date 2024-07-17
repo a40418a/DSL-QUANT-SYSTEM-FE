@@ -1,20 +1,19 @@
 //페이지링크
-import React from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Topbar } from './components/topbar/Topbar';
 import { Footbar } from './components/footbar/Footbar';
-import { Home } from './pages/Main/home/Home';
-import { Explain } from './pages/Front/explain/Explain';
-import { Login } from './pages/Info/login/Login';
-import { MyPage } from './pages/Info/myPage/MyPage';
-import { MyPageCheck } from './pages/Info/myPageCheck/MyPageCheck';
-import { Result } from './pages/Main/result/Result';
-import { StrategyMain } from './pages/Main/strategy/StrategyMain';
-import { Strategy1 } from './pages/Main/strategy/StrategyGolden';
-import { Strategy2 } from './pages/Main/strategy/StrategyBollinger';
-import { Strategy3 } from './pages/Main/strategy/StrategyRSI';
-import { StockInfo } from './pages/Main/StockInfo/StockInfo';
-import { LoginHandler } from './pages/Info/login/LoginHandler';
+import { Home } from './pages/main/home/Home';
+import { Explain } from './pages/preview/explain/Explain';
+import { Login } from './pages/info/login/Login';
+import { MyPage } from './pages/info/myPage/MyPage';
+import { MyPageCheck } from './pages/info/myPageCheck/MyPageCheck';
+import { Result } from './pages/main/result/Result';
+import { StrategyMain } from './pages/main/strategy/StrategyMain';
+import { Strategy1 } from './pages/main/strategy/StrategyGolden';
+import { Strategy2 } from './pages/main/strategy/StrategyBollinger';
+import { Strategy3 } from './pages/main/strategy/StrategyRSI';
+import { StockInfo } from './pages/main/stockInfo/StockInfo';
+import { LoginHandler } from './pages/info/login/LoginHandler';
 import { AuthProvider } from './handler/AuthContext';
 import { StrategyProvider } from './context/StrategyContext';
 import './app.css';
@@ -38,9 +37,9 @@ function App() {
                                 <Route path="/mypagecheck" element={<MyPageCheck />} />
                                 <Route path="/result" element={<Result />} />
                                 <Route path="/strategy" element={<StrategyMain />} />
-                                <Route path="/strategy/golden" element={<Strategy1 />} />
-                                <Route path="/strategy/bollinger" element={<Strategy2 />} />
-                                <Route path="/strategy/rsi" element={<Strategy3 />} />
+                                <Route path="/strategy/1" element={<Strategy1 />} />
+                                <Route path="/strategy/2" element={<Strategy2 />} />
+                                <Route path="/strategy/3" element={<Strategy3 />} />
                             </Routes>
                         </div>
                         <Footbar />

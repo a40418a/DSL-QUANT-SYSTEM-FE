@@ -8,8 +8,8 @@ export const Kakao = () => {
     return <img src={KakaoLogo} alt="카카오톡로고" />;
 };
 export const Google = () => {
-    return <img src={GoogleLogo} alt="구글로고" id="google" />;
+    return <img src={GoogleLogo} alt="구글로고" />;
 };
 export const Naver = () => {
-    return <img src={NaverLogo} alt="네이버로고" id="naver" />;
+    return <img src={NaverLogo} alt="네이버로고" />;
 };

@@ -1,3 +1,5 @@
+@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
+
 /* 제목 */
 /* 어그로체(300,500,700) */
 @font-face {
@@ -35,8 +37,6 @@
 }
 
 /* 나눔명조 */
-@import url(//fonts.googleapis.com/earlyaccess/nanummyeongjo.css);
-
 .nanummyeongjo * {
     font-family: 'Nanum Myeongjo', serif;
 }

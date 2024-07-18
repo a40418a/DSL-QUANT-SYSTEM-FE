@@ -6,25 +6,21 @@ import { StrategyCommonDTO, Strategy1DTO, Strategy2DTO, Strategy3DTO } from '../
 // 초기 상태값
 const initialStrategyCommonData: StrategyCommonDTO = {
     initialInvestment: 0,
-    commission: 0,
+    commission: 0.01,
     startDate: '',
     endDate: '',
     targetItem: '',
     candleType: '',
-    inqRangeStart: '',
-    inqRangeEnd: '',
+    inqRange: 0,
 };
 
 const initialStrategy1Data: Strategy1DTO = {
-    fastMoveAvgStart: '',
-    fastMoveAvgEnd: '',
-    slowMoveAvgStart: '',
-    slowMoveAvgEnd: '',
+    fastMoveAvg: 0,
+    slowMoveAvg: 0,
 };
 
 const initialStrategy2Data: Strategy2DTO = {
-    moveAvgStart: '',
-    moveAvgEnd: '',
+    moveAvg: 0,
 };
 
 const initialStrategy3Data: Strategy3DTO = {

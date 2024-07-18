@@ -20,14 +20,29 @@ export const StrategyMain = () => {
     });
 
     const options_tax = [
-        { label: '10%', value: '0.1' },
-        { label: '20%', value: '0.2' },
-        { label: '25%', value: '0.25' },
-        { label: '50%', value: '0.5' },
+        { label: '0.01%', value: '0.01' },
+        { label: '0.02%', value: '0.02' },
+        { label: '0.03%', value: '0.03' },
+        { label: '0.04%', value: '0.04' },
+        { label: '0.05%', value: '0.05' },
+        { label: '0.06%', value: '0.06' },
+        { label: '0.07%', value: '0.07' },
+        { label: '0.08%', value: '0.08' },
+        { label: '0.09%', value: '0.09' },
+        { label: '0.1%', value: '0.1' },
     ];
     const options_candle = [
-        { label: '바', value: 'bar' },
-        { label: '캔들', value: 'candle' },
+        { label: '1분', value: '1' },
+        { label: '3분', value: '3' },
+        { label: '5분', value: '5' },
+        { label: '10분', value: '10' },
+        { label: '15분', value: '15' },
+        { label: '30분', value: '30' },
+        { label: '60분', value: '60' },
+        { label: '240분', value: '240' },
+        { label: '1일', value: 'D' },
+        { label: '1주', value: 'W' },
+        { label: '1개월', value: 'M' },
     ];
 
     const handleChange = (e) => {
@@ -56,6 +71,11 @@ export const StrategyMain = () => {
             if (name === 'initialInvestment' && parseFloat(value) < 0) {
                 alert('초기 투자 금액은 0보다 작을 수 없습니다.');
                 return prevData; // 이전 데이터로 되돌리기
+            }
+
+            if (name === 'inqRange' && parseFloat(value) < 0) {
+                alert('조회 범위는 0보다 작을 수 없습니다.');
+                return prevData;
             }
 
             return newFormData;
@@ -94,6 +114,7 @@ export const StrategyMain = () => {
                 </div>
                 <div className="strategy-input">
                     <SelectBox
+                        placeholder="거래 수수료를 선택해주세요."
                         options={options_tax}
                         name="commissions"
                         value={formData.commision}
@@ -136,6 +157,7 @@ export const StrategyMain = () => {
                 </div>
                 <div className="strategy-input">
                     <SelectBox
+                        placeholder="캔들 종류를 선택해주세요."
                         options={options_candle}
                         name="candleType"
                         value={formData.candleType}
@@ -148,23 +170,13 @@ export const StrategyMain = () => {
                     <div className="strategy-subtitle">조회 범위(InqRange)</div>
                 </div>
                 <div className="strategy-input">
-                    <div className="half-input-wrapper">
-                        <InputHalfBox
-                            type="num"
-                            name="inqRangeStart"
-                            value={formData.inqRangeStart}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <span> ~ </span>
-                    <div className="half-input-wrapper">
-                        <InputHalfBox
-                            type="num"
-                            name="inqRangeEnd"
-                            value={formData.inqRangeEnd}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    <InputBox
+                        type="number"
+                        placeholder="조회 범위를 입력하세요."
+                        name="inqRange"
+                        value={formData.inqRange}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
             <div className="strategy-title">전략 선택</div>

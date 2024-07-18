@@ -1,23 +1,21 @@
 export class StrategyCommonDTO {
     //공통
     initialInvestment: number;
-    commission: number;
+    commission: string;
     startDate: string;
     endDate: string;
     targetItem: string;
     candleType: string;
-    inqRangeStart: string;
-    inqRangeEnd: string;
+    inqRange: number;
 
     constructor(data: {
         initialInvestment: number;
-        commission: number;
+        commission: string;
         startDate: string;
         endDate: string;
         targetItem: string;
         candleType: string;
-        inqRangeStart: string;
-        inqRangeEnd: string;
+        inqRange: number;
     }) {
         this.initialInvestment = data.initialInvestment;
         this.commission = data.commission;
@@ -25,39 +23,27 @@ export class StrategyCommonDTO {
         this.endDate = data.endDate;
         this.targetItem = data.targetItem;
         this.candleType = data.candleType;
-        this.inqRangeStart = data.inqRangeStart;
-        this.inqRangeEnd = data.inqRangeEnd;
+        this.inqRange = data.inqRange;
     }
 }
 
 export class Strategy1DTO {
     //골든/데드
-    fastMoveAvgStart: string;
-    fastMoveAvgEnd: string;
-    slowMoveAvgStart: string;
-    slowMoveAvgEnd: string;
+    fastMoveAvg: number;
+    slowMoveAvg: number;
 
-    constructor(data: {
-        fastMoveAvgStart: string;
-        fastMoveAvgEnd: string;
-        slowMoveAvgStart: string;
-        slowMoveAvgEnd: string;
-    }) {
-        this.fastMoveAvgStart = data.fastMoveAvgStart;
-        this.fastMoveAvgEnd = data.fastMoveAvgEnd;
-        this.slowMoveAvgStart = data.slowMoveAvgStart;
-        this.slowMoveAvgEnd = data.slowMoveAvgEnd;
+    constructor(data: { fastMoveAvg: number; slowMoveAvg: number }) {
+        this.fastMoveAvg = data.fastMoveAvg;
+        this.slowMoveAvg = data.slowMoveAvg;
     }
 }
 
 export class Strategy2DTO {
     //볼린저
-    moveAvgStart: string;
-    moveAvgEnd: string;
+    moveAvg: number;
 
-    constructor(data: { moveAvgStart: string; moveAvgEnd: string }) {
-        this.moveAvgStart = data.moveAvgStart;
-        this.moveAvgEnd = data.moveAvgEnd;
+    constructor(data: { moveAvg: number }) {
+        this.moveAvg = data.moveAvg;
     }
 }
 

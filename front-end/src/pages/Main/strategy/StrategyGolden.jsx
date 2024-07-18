@@ -18,24 +18,14 @@ export const Strategy1 = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: value };
 
-            // 종료일이 시작일보다 빠른지 확인
-            if (
-                name === 'fastMoveAvgEnd' &&
-                newFormData.fastMoveAvgStart &&
-                new Date(value) < new Date(newFormData.fastMoveAvgStart)
-            ) {
-                alert('종료일은 시작일보다 빠를 수 없습니다.');
-                return prevData; // 이전 데이터로 되돌리기
+            if (name === 'fastMoveAvg' && parseFloat(value) < 0) {
+                alert('입력값은 0보다 작을 수 없습니다.');
+                return prevData;
             }
 
-            // 종료일이 시작일보다 빠른지 확인
-            if (
-                name === 'slowMoveAvgEnd' &&
-                newFormData.slowMoveAvgStart &&
-                new Date(value) < new Date(newFormData.slowMoveAvgStart)
-            ) {
-                alert('종료일은 시작일보다 빠를 수 없습니다.');
-                return prevData; // 이전 데이터로 되돌리기
+            if (name === 'slowMoveAvg' && parseFloat(value) < 0) {
+                alert('입력값은 0보다 작을 수 없습니다.');
+                return prevData;
             }
 
             return newFormData;
@@ -56,24 +46,13 @@ export const Strategy1 = () => {
                     <div className="strategy-subtitle">빠른 이동 평균 기간</div>
                 </div>
                 <div className="strategy-input">
-                    <div className="half-input-wrapper">
-                        <div className="strategy-subtitle-date">시작일 설정</div>
-                        <InputHalfBox
-                            type="date"
-                            name="fastMoveAvgStart"
-                            value={formData.fastMoveAvgStart}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="half-input-wrapper">
-                        <div className="strategy-subtitle-date">종료일 설정</div>
-                        <InputHalfBox
-                            type="date"
-                            name="fastMoveAvgEnd"
-                            value={formData.fastMoveAvgEnd}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    <InputBox
+                        type="number"
+                        placeholder="빠른 이동 평균 기간을 입력하세요."
+                        name="fastMoveAvg"
+                        value={formData.fastMoveAvg}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
             <div className="strategy-select">
@@ -81,24 +60,13 @@ export const Strategy1 = () => {
                     <div className="strategy-subtitle">느린 이동 평균 기간</div>
                 </div>
                 <div className="strategy-input">
-                    <div className="half-input-wrapper">
-                        <div className="strategy-subtitle-date">시작일 설정</div>
-                        <InputBox
-                            type="date"
-                            name="slowMoveAvgStart"
-                            value={formData.slowMoveAvgStart}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="half-input-wrapper">
-                        <div className="strategy-subtitle-date">종료일 설정</div>
-                        <InputBox
-                            type="date"
-                            name="slowMoveAvgEnd"
-                            value={formData.slowMoveAvgEnd}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    <InputBox
+                        type="number"
+                        placeholder="느린 이동 평균 기간을 입력하세요."
+                        name="slowMoveAvg"
+                        value={formData.slowMoveAvg}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
             <div className="strategy-btn-wrapper" id="btn-to-result">

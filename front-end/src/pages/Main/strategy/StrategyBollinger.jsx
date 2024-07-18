@@ -16,14 +16,9 @@ export const Strategy2 = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: value };
 
-            // 종료일이 시작일보다 빠른지 확인
-            if (
-                name === 'moveAvgEnd' &&
-                newFormData.moveAvgStart &&
-                new Date(value) < new Date(newFormData.moveAvgStart)
-            ) {
-                alert('종료일은 시작일보다 빠를 수 없습니다.');
-                return prevData; // 이전 데이터로 되돌리기
+            if (name === 'moveAvg' && parseFloat(value) < 0) {
+                alert('입력값은 0보다 작을 수 없습니다.');
+                return prevData;
             }
 
             return newFormData;
@@ -44,19 +39,13 @@ export const Strategy2 = () => {
                     <div className="strategy-subtitle">이동 평균 기간</div>
                 </div>
                 <div className="strategy-input">
-                    <div className="half-input-wrapper">
-                        <div className="strategy-subtitle-date">시작일 설정</div>
-                        <InputBox
-                            type="date"
-                            name="moveAvgStart"
-                            value={formData.moveAvgStart}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="half-input-wrapper">
-                        <div className="strategy-subtitle-date">종료일 설정</div>
-                        <InputBox type="date" name="moveAvgEnd" value={formData.moveAvgEnd} onChange={handleChange} />
-                    </div>
+                    <InputBox
+                        type="number"
+                        placeholder="이동 평균 기간을 입력하세요."
+                        name="moveAvg"
+                        value={formData.moveAvg}
+                        onChange={handleChange}
+                    />
                 </div>
             </div>
             <div className="strategy-btn-wrapper" id="btn-to-result">

@@ -15,7 +15,7 @@
 }
 
 .back-tested {
-    width: 56%;
+    width: 40%;
 }
 
 .back-tested-title {
@@ -28,7 +28,8 @@
     height: 400px;
 }
 .top20 {
-    width: 40%;
+    width: 56%;
+    overflow-x: scroll;
 }
 
 .top20 td {

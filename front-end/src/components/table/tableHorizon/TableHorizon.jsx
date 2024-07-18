@@ -4,9 +4,9 @@ import { userData03 } from '../../../data/dummyData03';
 
 export const TableHorizonTop20 = ({ title }) => {
     return (
-        <div className="table" id="table-top20">
+        <div className="table-h" id="table-top20">
             <div className="tableTitle">{title}</div>
-            <table>
+            <table className="table-h">
                 <thead>
                     <tr>
                         <th>순위</th>

@@ -1,8 +1,15 @@
 import React from 'react';
 import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import './explain.css';
+import { useNavigate } from 'react-router-dom';
 
 export const Explain = () => {
+    const navigate = useNavigate();
+
+    const handleSubmit = () => {
+        navigate('/login');
+    };
+
     return (
         <div className="explain">
             <div className="explain-title">
@@ -16,7 +23,7 @@ export const Explain = () => {
                     <div>참여하고 싶다면 시작하기 버튼을 눌러주세요.</div>
                 </div>
                 <div className="explain-content-btn">
-                    <ColorBtn text="시작하기" link="/login" />
+                    <ColorBtn text="시작하기" onClick={handleSubmit} />
                 </div>
             </div>
         </div>

@@ -10,4 +10,5 @@
     height: 40px;
     /* text-align: center; 텍스트 가로 가운데 정렬 */
     /* line-height: 40px; 요소의 높이와 동일한 값으로 설정하여 수직 가운데 정렬 */
+    cursor: pointer;
 }

@@ -5,11 +5,11 @@ import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBo
 import { SelectBox } from '../../../components/box/selectBox/SelectBox';
 import { StrategyCommonDTO } from '../../../dto/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
+import { useNavigate } from 'react-router-dom';
 
 export const StrategyMain = () => {
     const { setStrategyCommonData } = useContext(StrategyContext);
     const [formData, setFormData] = useState({
-        //공통변수
         initial_investment: 0,
         tax: 0,
         start_date: '',
@@ -18,6 +18,7 @@ export const StrategyMain = () => {
         tick_kind: '',
         inq_range: [0, 0],
     });
+    const navigate = useNavigate();
 
     const options_tax = [
         { label: '0.01%', value: '0.01' },
@@ -50,30 +51,27 @@ export const StrategyMain = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: value };
 
-            // 종료일이 시작일보다 빠른지 확인
-            if (name === 'endDate' && newFormData.startDate && new Date(value) < new Date(newFormData.startDate)) {
+            if (name === 'end_date' && newFormData.start_date && new Date(value) < new Date(newFormData.start_date)) {
                 alert('종료일은 시작일보다 빠를 수 없습니다.');
-                return prevData; // 이전 데이터로 되돌리기
+                return prevData;
             }
 
-            // 조회 범위가 올바른지 확인
             if (
-                (name === 'inqRangeStart' || name === 'inqRangeEnd') &&
-                newFormData.inqRangeStart &&
-                newFormData.inqRangeEnd &&
-                parseFloat(newFormData.inqRangeStart) > parseFloat(newFormData.inqRangeEnd)
+                (name === 'inq_range_start' || name === 'inq_range_end') &&
+                newFormData.inq_range_start &&
+                newFormData.inq_range_end &&
+                parseFloat(newFormData.inq_range_start) > parseFloat(newFormData.inq_range_end)
             ) {
                 alert('조회 범위의 시작 값은 종료 값보다 클 수 없습니다.');
-                return prevData; // 이전 데이터로 되돌리기
+                return prevData;
             }
 
-            // 초기 투자 금액의 최솟값 확인
-            if (name === 'initialInvestment' && parseFloat(value) < 0) {
+            if (name === 'initial_investment' && parseFloat(value) < 0) {
                 alert('초기 투자 금액은 0보다 작을 수 없습니다.');
-                return prevData; // 이전 데이터로 되돌리기
+                return prevData;
             }
 
-            if (name === 'inqRange' && parseFloat(value) < 0) {
+            if (name === 'inq_range' && parseFloat(value) < 0) {
                 alert('조회 범위는 0보다 작을 수 없습니다.');
                 return prevData;
             }
@@ -82,10 +80,11 @@ export const StrategyMain = () => {
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = (strategyPath) => {
         const strategyCommonDTO = new StrategyCommonDTO(formData);
         console.log(strategyCommonDTO);
         setStrategyCommonData(strategyCommonDTO);
+        navigate(strategyPath); // 페이지 이동 처리
     };
 
     return (
@@ -100,8 +99,8 @@ export const StrategyMain = () => {
                         <InputBox
                             type="number"
                             placeholder="초기 투자 금액을 입력해주세요."
-                            name="initialInvestment"
-                            value={formData.initialInvestment}
+                            name="initial_investment"
+                            value={formData.initial_investment}
                             onChange={handleChange}
                         />
                     </div>
@@ -116,8 +115,8 @@ export const StrategyMain = () => {
                     <SelectBox
                         placeholder="거래 수수료를 선택해주세요."
                         options={options_tax}
-                        name="commissions"
-                        value={formData.commision}
+                        name="tax"
+                        value={formData.tax}
                         onChange={handleChange}
                     />
                 </div>
@@ -129,11 +128,16 @@ export const StrategyMain = () => {
                 <div className="strategy-input">
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">시작일 설정</div>
-                        <InputHalfBox type="date" name="startDate" value={formData.startDate} onChange={handleChange} />
+                        <InputHalfBox
+                            type="date"
+                            name="start_date"
+                            value={formData.start_date}
+                            onChange={handleChange}
+                        />
                     </div>
                     <div className="half-input-wrapper">
                         <div className="strategy-subtitle-date">종료일 설정</div>
-                        <InputHalfBox type="date" name="endDate" value={formData.endDate} onChange={handleChange} />
+                        <InputHalfBox type="date" name="end_date" value={formData.end_date} onChange={handleChange} />
                     </div>
                 </div>
             </div>
@@ -145,8 +149,8 @@ export const StrategyMain = () => {
                     <InputBox
                         type="text"
                         placeholder="종목 이름을 정확히 입력하세요."
-                        name="targetItem"
-                        value={formData.targetItem}
+                        name="target_item"
+                        value={formData.target_item}
                         onChange={handleChange}
                     />
                 </div>
@@ -159,8 +163,8 @@ export const StrategyMain = () => {
                     <SelectBox
                         placeholder="캔들 종류를 선택해주세요."
                         options={options_candle}
-                        name="candleType"
-                        value={formData.candleType}
+                        name="tick_kind"
+                        value={formData.tick_kind}
                         onChange={handleChange}
                     />
                 </div>
@@ -173,17 +177,17 @@ export const StrategyMain = () => {
                     <InputBox
                         type="number"
                         placeholder="조회 범위를 입력하세요."
-                        name="inqRange"
-                        value={formData.inqRange}
+                        name="inq_range"
+                        value={formData.inq_range}
                         onChange={handleChange}
                     />
                 </div>
             </div>
             <div className="strategy-title">전략 선택</div>
             <div className="strategy-btn-wrapper">
-                <ColorBtn text="골든/데드" link="/strategy/1" onClick={handleSubmit} />
-                <ColorBtn text="볼린저밴드" link="/strategy/2" onClick={handleSubmit} />
-                <ColorBtn text="RSI,MFI,MACD 지표 이용 전략" link="/strategy/3" onClick={handleSubmit} />
+                <ColorBtn text="골든/데드" onClick={() => handleSubmit('/strategy/1')} />
+                <ColorBtn text="볼린저밴드" onClick={() => handleSubmit('/strategy/2')} />
+                <ColorBtn text="RSI,MFI,MACD 지표 이용 전략" onClick={() => handleSubmit('/strategy/3')} />
             </div>
         </div>
     );

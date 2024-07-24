@@ -4,6 +4,7 @@ import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { InputBox } from '../../../components/box/inputBox/InputBox';
 import { Strategy3DTO } from '../../../dto/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 
 export const Strategy3 = () => {
     const { setStrategy3Data } = useContext(StrategyContext);
@@ -11,6 +12,13 @@ export const Strategy3 = () => {
         rsi_period: [0, 0],
         mfi_count: 0,
     });
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    // 현재 경로에서 숫자 부분 추출
+    const pathSegments = location.pathname.split('/');
+    const id = pathSegments[pathSegments.length - 1]; // 경로의 마지막 부분이 ID
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -37,6 +45,7 @@ export const Strategy3 = () => {
         const strategy3DTO = new Strategy3DTO(formData);
         console.log(strategy3DTO);
         setStrategy3Data(strategy3DTO);
+        navigate(`/result/${id}`);
     };
 
     return (
@@ -80,7 +89,7 @@ export const Strategy3 = () => {
 
             <div className="strategy-btn-wrapper" id="btn-to-result">
                 <ColorBtn id="colorBtn-prev" text="< 이전" onClick={() => window.history.back()} />
-                <ColorBtn id="colorBtn-next" text="백테스트" link="/result" onClick={handleSubmit} />
+                <ColorBtn id="colorBtn-next" text="백테스트" onClick={handleSubmit} />
             </div>
         </div>
     );

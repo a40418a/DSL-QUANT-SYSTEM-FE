@@ -35,7 +35,7 @@ function App() {
                                 <Route path="/stockinfo" element={<StockInfo />} />
                                 <Route path="/mypage" element={<MyPage />} />
                                 <Route path="/mypagecheck" element={<MyPageCheck />} />
-                                <Route path="/result" element={<Result />} />
+                                <Route path="/result/:id" element={<Result />} />
                                 <Route path="/strategy" element={<StrategyMain />} />
                                 <Route path="/strategy/1" element={<Strategy1 />} />
                                 <Route path="/strategy/2" element={<Strategy2 />} />

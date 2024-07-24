@@ -10,7 +10,7 @@ export const SelectBox = (props) => {
             value={props.value}
             onChange={props.onChange}
         >
-            <option value="" disabled selected>
+            <option value="" disabled>
                 {props.placeholder}
             </option>
             {props.options.map((option, index) => (

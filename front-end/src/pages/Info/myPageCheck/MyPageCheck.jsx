@@ -3,7 +3,7 @@ import './myPageCheck.css';
 import { InputHalf } from '../../../components/input/Input';
 import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { MyPageCheckDTO } from '../../../dto/MyPageCheckDTO';
-import { useNavigate } from 'react-router-dom'; // 추가
+import { useNavigate } from 'react-router-dom';
 
 export const MyPageCheck = () => {
     const [birthDate, setBirthDate] = useState(''); // 상태 생성 및 업데이트
@@ -19,8 +19,8 @@ export const MyPageCheck = () => {
         const dto = new MyPageCheckDTO(birthDate);
         if (dto.getBirthDate() === '010418') {
             //010418은 예시로 설정한 값
-            console.log(dto.getBirthDate()); // 예시: 콘솔에 생년월일 출력
-            navigate('/mypage'); // 일치할 경우 /mypage로 이동
+            console.log(dto.getBirthDate());
+            navigate('/mypage'); // 일치할 경우 마이페이지로 이동
         } else {
             alert('생년월일이 일치하지 않습니다.'); // 일치하지 않을 경우 경고창 표시
         }

@@ -10,8 +10,8 @@ export const ColorBtn = (props) => {
     };
 
     return (
-        <Link to={props.link} className="colorBtn" id={props.id} onClick={handleClick}>
+        <div className="colorBtn" id={props.id} onClick={handleClick}>
             {props.text}
-        </Link>
+        </div>
     );
 };

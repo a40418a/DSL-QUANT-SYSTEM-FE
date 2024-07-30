@@ -1,0 +1,16 @@
+.imgBtn {
+    box-sizing: border-box;
+    border-radius: var(--border-radius);
+    width: 320px;
+    cursor: pointer;
+}
+
+.imgBtn:hover {
+    box-shadow: 0px 0px 8px -1px var(--point-color-2);
+}
+
+.imgBtn img {
+    display: block;
+    width: 100%;
+    height: auto;
+}

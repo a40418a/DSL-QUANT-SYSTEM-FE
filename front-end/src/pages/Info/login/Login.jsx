@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './login.css';
-import { WideBtn } from '../../../components/button/WideBtn/WideBtn';
-import { Kakao, Google, Naver } from '../../../components/emoticon/logo/Logo';
-import { TextBtn } from '../../../components/button/TextBtn/TextBtn';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { ImageBtn } from '../../../components/button/ImgBtn/ImgBtn';
+import KakaoLoginLogo from '../../../assets/kakao_login_medium_wide.png';
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -22,7 +21,7 @@ export const Login = () => {
                 <div className="login-title">로그인 할 사이트를 고르시오</div>
                 <div className="login-btn-wrapper">
                     <div className="login-btn">
-                        <WideBtn id="kakao" logo={<Kakao />} text="카카오톡" onClick={kakaoHandler} />
+                        <ImageBtn onClick={kakaoHandler} imageSrc={KakaoLoginLogo} alt="kakao" />
                     </div>
                 </div>
             </div>

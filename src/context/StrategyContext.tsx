@@ -1,7 +1,7 @@
 // 전략 설정 관련 Context
 
 import React, { createContext, useState, useContext } from 'react';
-import { StrategyCommonDTO, Strategy1DTO, Strategy2DTO, Strategy3DTO } from '../types/StrategyDTO';
+import { StrategyCommonDTO, StrategyGoldenDTO, StrategyBolligerDTO, StrategyRsiDTO } from '../types/StrategyDTO';
 
 // 초기 상태값
 const initialStrategyCommonData: StrategyCommonDTO = {
@@ -14,16 +14,16 @@ const initialStrategyCommonData: StrategyCommonDTO = {
     inqRange: 0,
 };
 
-const initialStrategy1Data: Strategy1DTO = {
+const initialStrategy1Data: StrategyGoldenDTO = {
     fastMoveAvg: 0,
     slowMoveAvg: 0,
 };
 
-const initialStrategy2Data: Strategy2DTO = {
+const initialStrategy2Data: StrategyBolligerDTO = {
     moveAvg: 0,
 };
 
-const initialStrategy3Data: Strategy3DTO = {
+const initialStrategy3Data: StrategyRsiDTO = {
     rsiStart: '',
     rsiEnd: '',
     mfiLoopCount: 0,
@@ -33,12 +33,12 @@ const initialStrategy3Data: Strategy3DTO = {
 export const StrategyContext = createContext<{
     strategyCommonData: StrategyCommonDTO;
     setStrategyCommonData: React.Dispatch<React.SetStateAction<StrategyCommonDTO>>;
-    strategy1Data?: Strategy1DTO;
-    setStrategy1Data?: React.Dispatch<React.SetStateAction<Strategy1DTO>>;
-    strategy2Data?: Strategy2DTO;
-    setStrategy2Data?: React.Dispatch<React.SetStateAction<Strategy2DTO>>;
-    strategy3Data?: Strategy3DTO;
-    setStrategy3Data?: React.Dispatch<React.SetStateAction<Strategy3DTO>>;
+    strategy1Data?: StrategyGoldenDTO;
+    setStrategy1Data?: React.Dispatch<React.SetStateAction<StrategyGoldenDTO>>;
+    strategy2Data?: StrategyBolligerDTO;
+    setStrategy2Data?: React.Dispatch<React.SetStateAction<StrategyBolligerDTO>>;
+    strategy3Data?: StrategyRsiDTO;
+    setStrategy3Data?: React.Dispatch<React.SetStateAction<StrategyRsiDTO>>;
 }>({
     strategyCommonData: initialStrategyCommonData,
     setStrategyCommonData: () => {},
@@ -47,9 +47,9 @@ export const StrategyContext = createContext<{
 // Context Provider
 export const StrategyProvider: React.FC = ({ children }) => {
     const [strategyCommonData, setStrategyCommonData] = useState<StrategyCommonDTO>(initialStrategyCommonData);
-    const [strategy1Data, setStrategy1Data] = useState<Strategy1DTO>(initialStrategy1Data);
-    const [strategy2Data, setStrategy2Data] = useState<Strategy2DTO>(initialStrategy2Data);
-    const [strategy3Data, setStrategy3Data] = useState<Strategy3DTO>(initialStrategy3Data);
+    const [strategy1Data, setStrategy1Data] = useState<StrategyGoldenDTO>(initialStrategy1Data);
+    const [strategy2Data, setStrategy2Data] = useState<StrategyBolligerDTO>(initialStrategy2Data);
+    const [strategy3Data, setStrategy3Data] = useState<StrategyRsiDTO>(initialStrategy3Data);
 
     return (
         <StrategyContext.Provider

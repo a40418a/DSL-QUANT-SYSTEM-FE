@@ -9,6 +9,7 @@ export const SelectBox = (props) => {
             name={props.name}
             value={props.value}
             onChange={props.onChange}
+            placeholder={props.placeholder}
         >
             <option value="" disabled>
                 {props.placeholder}

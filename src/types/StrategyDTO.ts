@@ -1,29 +1,32 @@
 export class StrategyCommonDTO {
     //공통
     initialInvestment: number;
-    commission: number;
+    tax: number;
     startDate: string;
     endDate: string;
     targetItem: string;
     candleType: string;
     inqRange: number;
+    strategy: string;
 
     constructor(data: {
         initialInvestment: number;
-        commission: number;
+        tax: number;
         startDate: string;
         endDate: string;
         targetItem: string;
         candleType: string;
         inqRange: number;
+        strategy: string;
     }) {
         this.initialInvestment = data.initialInvestment;
-        this.commission = data.commission;
+        this.tax = data.tax;
         this.startDate = data.startDate;
         this.endDate = data.endDate;
         this.targetItem = data.targetItem;
         this.candleType = data.candleType;
         this.inqRange = data.inqRange;
+        this.strategy = data.strategy;
     }
 }
 

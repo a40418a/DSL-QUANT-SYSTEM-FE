@@ -16,7 +16,6 @@
 
 .back-tested {
     width: 56%;
-    margin-top: 280px;
 }
 
 .back-tested-title {
@@ -50,6 +49,7 @@
     }
     .back-tested {
         width: 80%;
+        margin-top: 280px;
     }
     .top20 {
         width: 80%;

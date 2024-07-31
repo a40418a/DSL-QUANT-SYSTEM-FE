@@ -12,13 +12,14 @@ import { useNavigate } from 'react-router-dom';
 export const StrategyMain = () => {
     const { setStrategyCommonData } = useContext(StrategyContext);
     const [formData, setFormData] = useState({
-        initial_investment: 0,
-        tax: 0,
-        start_date: '',
-        end_date: '',
-        target_item: '',
-        tick_kind: '',
-        inq_range: [0, 0],
+        initialInvestment: '',
+        tax: '',
+        startDate: '',
+        endDate: '',
+        targetItem: '',
+        candleType: '',
+        inqRange: '',
+        strategy: '',
     });
     const navigate = useNavigate();
 
@@ -48,9 +49,9 @@ export const StrategyMain = () => {
         { label: '1개월', value: 'M' },
     ];
     const options_strategy = [
-        { label: '골든/데드', value: '골든/데드' },
-        { label: '볼린저밴드', value: '볼린저밴드' },
-        { label: 'RSI, MFI, MACD 지표 이용', value: 'RSI, MFI, MACD 지표 이용' },
+        { label: '골든/데드', value: 'strategy/golden' },
+        { label: '볼린저밴드', value: 'strategy/bollinger' },
+        { label: 'RSI, MFI, MACD 지표 이용', value: 'strategy/rsi' },
     ];
 
     const handleChange = (e) => {
@@ -87,11 +88,20 @@ export const StrategyMain = () => {
         });
     };
 
-    const handleSubmit = (strategyPath) => {
+    const handleSubmit = () => {
         const strategyCommonDTO = new StrategyCommonDTO(formData);
-        console.log(strategyCommonDTO);
+        // console.log(strategyCommonDTO);
         setStrategyCommonData(strategyCommonDTO);
-        navigate(strategyPath); // 페이지 이동 처리
+
+        // 선택된 전략의 value 값을 가져옵니다.
+        const selectedStrategy = formData.strategy;
+
+        // 선택된 전략이 있으면 해당 주소로 이동합니다.
+        if (selectedStrategy) {
+            navigate(`/${selectedStrategy}`);
+        } else {
+            alert('전략을 선택해주세요.');
+        }
     };
 
     return (

@@ -1,0 +1,23 @@
+.footer {
+    box-sizing: border-box;
+    height: 160px;
+    position: relative;
+    color: var(--color-3);
+    background-color: var(--color-4);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10vw;
+}
+
+.footerRight {
+    display: flex;
+}
+
+.footerRight div {
+    margin-left: 24px;
+}
+
+/* 반응형 */
+@media (max-width: 1068px) {
+}

@@ -27,9 +27,10 @@
     width: 100%;
     height: 400px;
 }
+
 .top20 {
     width: 56%;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 
 .top20 td {
@@ -52,5 +53,15 @@
     .top20 {
         width: 80%;
         margin-top: 40px;
+    }
+}
+
+@media (max-width: 675px) {
+    .top20 td {
+        font-size: 12px;
+    }
+
+    .top20 th {
+        font-size: 12px;
     }
 }

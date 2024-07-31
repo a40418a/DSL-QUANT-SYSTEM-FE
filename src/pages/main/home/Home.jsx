@@ -2,8 +2,8 @@ import React from 'react';
 import { FeaturedInfo } from '../../../components/featuredInfo/FeaturedInfo';
 import './home.css';
 import { TableHorizonTop20 } from '../../../components/table/tableHorizon/TableHorizon';
-import { ArrowDown, ArrowUp } from '../../../components/emoticon/arrow/Arrow';
-import { FeaturedInfoBox } from '../../../components/box/featuredInfoBox/FeaturedInfoBox';
+import { ArrowDown, ArrowUp } from '../../../components/emoticon/Arrow';
+import { ChartBox } from '../../../components/box/chartBox/ChartBox';
 import { ChartLine } from '../../../components/chart/ChartLine';
 import { userData01 } from '../../../data/dummyData01';
 
@@ -15,7 +15,7 @@ export const Home = () => {
                 <div className="back-tested">
                     <div className="back-tested-title">백테스팅 결과</div>
                     <div className="back-tested-chart">
-                        <FeaturedInfoBox
+                        <ChartBox
                             title="최근 주식 종목"
                             currency="₩"
                             price="73,700"

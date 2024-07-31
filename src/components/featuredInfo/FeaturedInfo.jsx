@@ -1,8 +1,8 @@
 // 상단 참고 주식 자료 구조
 import React from 'react';
 import './featuredInfo.css';
-import { ArrowDown, ArrowUp } from '../emoticon/arrow/Arrow';
-import { FeaturedInfoBox } from '../box/featuredInfoBox/FeaturedInfoBox';
+import { ArrowDown, ArrowUp } from '../emoticon/Arrow';
+import { ChartBox } from '../box/chartBox/ChartBox';
 import { ChartLine } from '../chart/ChartLine';
 import { userData01 } from '../../data/dummyData01';
 
@@ -10,7 +10,7 @@ export const FeaturedInfo = () => {
     return (
         <div className="featured">
             <div className="featured-box">
-                <FeaturedInfoBox
+                <ChartBox
                     title="코스피"
                     currency="₩"
                     price="73,700"
@@ -21,7 +21,7 @@ export const FeaturedInfo = () => {
                 />
             </div>
             <div className="featured-box">
-                <FeaturedInfoBox
+                <ChartBox
                     className="featured-box"
                     title="코스닥"
                     currency="₩"
@@ -34,7 +34,7 @@ export const FeaturedInfo = () => {
             </div>
 
             <div className="featured-box">
-                <FeaturedInfoBox
+                <ChartBox
                     className="featured-box"
                     title="코스피 2000"
                     currency="₩"

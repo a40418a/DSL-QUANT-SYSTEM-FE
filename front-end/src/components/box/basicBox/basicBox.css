@@ -1,8 +1,0 @@
-.basicBox {
-  justify-content: center;
-  box-sizing: border-box; /*padding이 width를 감소하지 않게하기 위함*/
-  padding: var(--padding);
-  -webkit-box-shadow: var(---webkit-box-shadow);
-  box-shadow: var(--box-shadow);
-  border-radius: var(--border-radius);
-}

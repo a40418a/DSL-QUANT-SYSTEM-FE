@@ -1,4 +1,4 @@
-export class MyPageDTO {
+export class UserInfoDTO {
     private userName: string;
     private userPhone: string;
     private userBirthday: string;

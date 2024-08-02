@@ -1,10 +1,10 @@
 import React from 'react';
 import { FeaturedInfo } from '../../../components/featuredInfo/FeaturedInfo';
 import './home.css';
-import { TableHorizonTop20 } from '../../../components/table/tableHorizon/TableHorizon';
+import { HorizonTableTop20 } from '../../../components/table/horizonTable/HorizonTable';
 import { ArrowDown, ArrowUp } from '../../../components/emoticon/Arrow';
 import { ChartBox } from '../../../components/box/chartBox/ChartBox';
-import { ChartLine } from '../../../components/chart/ChartLine';
+import { LineChart } from '../../../components/chart/lineChart';
 import { userData01 } from '../../../data/dummyData01';
 
 export const Home = () => {
@@ -21,13 +21,13 @@ export const Home = () => {
                             price="73,700"
                             arrow={<ArrowDown />}
                             rate="-1"
-                            chart={<ChartLine data={userData01} dataKey="lowest" />}
+                            chart={<LineChart data={userData01} dataKey="lowest" />}
                             sub="Compared to last month"
                         />
                     </div>
                 </div>
                 <div className="top20">
-                    <TableHorizonTop20 title={'TOP 20 종목'} />
+                    <HorizonTableTop20 title={'TOP 20 종목'} />
                 </div>
             </div>
         </div>

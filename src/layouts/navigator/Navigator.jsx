@@ -65,7 +65,7 @@ export const Navigator = () => {
                                 activePage === '/strategy/golden' ||
                                 activePage === '/strategy/bollinger' ||
                                 activePage === '/strategy/rsi' ||
-                                activePage === '/result'
+                                activePage.startsWith('/result') // 이 부분을 수정
                                     ? 'active'
                                     : ''
                             }`}

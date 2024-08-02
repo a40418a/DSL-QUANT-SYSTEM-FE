@@ -4,7 +4,7 @@ import Chart from 'react-apexcharts';
 import { userData01 } from '../../data/dummyData01';
 import './chart.css';
 
-export const ChartBar = ({ title, dataKey }) => {
+export const BarChart = ({ title, dataKey }) => {
     const length = userData01.length; // 데이터 길이 저장
 
     // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)

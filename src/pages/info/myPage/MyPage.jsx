@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './myPage.css';
-import { TableVertical } from '../../../components/table/tableVertical/TableVertical';
-import { MyPageDTO } from '../../../types/MyPageDTO';
+import { VerticalTable } from '../../../components/table/verticalTable/VerticalTable';
+import { UserInfoDTO } from '../../../types/UserInfoDTO';
 
 export const MyPage = () => {
-    const [userInfo] = useState(new MyPageDTO('최승아', '010-7110-0441', '2001.04.18', '여자', ['기록1', '기록2']));
+    const [userInfo] = useState(new UserInfoDTO('최승아', '010-7110-0441', '2001.04.18', '여자', ['기록1', '기록2']));
 
     return (
         <div className="mypage">
@@ -14,7 +14,7 @@ export const MyPage = () => {
             </div>
             <div className="mypage-info">
                 <div className="mypage-main-title">회원 개인정보</div>
-                <TableVertical />
+                <VerticalTable />
             </div>
             <div className="mypage-backtest">
                 <div className="mypage-main-title">백테스팅 기록</div>

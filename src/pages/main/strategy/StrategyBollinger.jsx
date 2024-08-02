@@ -39,7 +39,16 @@ export const StrategyBollinger = () => {
         const strategy2DTO = new Strategy2DTO(formData);
         console.log(strategy2DTO);
         setStrategy2Data(strategy2DTO);
-        navigate(`/result/${id}`);
+
+        if (formData.moveAvg) {
+            navigate(`/result/${id}`);
+        } else {
+            alert('이동 평균 기간을 입력해주세요.');
+        }
+    };
+
+    const handlePrevClick = () => {
+        navigate('/strategy');
     };
 
     return (
@@ -51,7 +60,7 @@ export const StrategyBollinger = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="number"
+                        type="text"
                         placeholder="이동 평균 기간을 입력하세요."
                         name="moveAvg"
                         value={formData.moveAvg}
@@ -60,7 +69,7 @@ export const StrategyBollinger = () => {
                 </div>
             </div>
             <div className="strategy-btn-wrapper" id="btn-to-result">
-                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={() => window.history.back()} />
+                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={handlePrevClick} />
                 <ColorBtn id="colorBtn-next" text="백테스트" onClick={handleSubmit} />
             </div>
         </div>

@@ -4,7 +4,7 @@ import { userData01 } from '../../data/dummyData01';
 import './chart.css';
 
 // Chart01 컴포넌트 정의
-export const ChartLine = ({ title, dataKey }) => {
+export const LineChart = ({ title, dataKey }) => {
     const length = userData01.length; // 데이터 길이 저장
 
     // 각 데이터 항목에서 특정 속성의 최대값과 최소값 계산

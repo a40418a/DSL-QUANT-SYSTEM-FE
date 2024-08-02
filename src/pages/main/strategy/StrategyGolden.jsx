@@ -46,7 +46,20 @@ export const StrategyGolden = () => {
         const strategy1DTO = new Strategy1DTO(formData);
         console.log(strategy1DTO);
         setStrategy1Data(strategy1DTO);
-        navigate(`/result/${id}`);
+        if (formData.fastMoveAvg && formData.slowMoveAvg) {
+            navigate(`/result/${id}`);
+        } else {
+            if (!formData.fastMoveAvg) {
+                alert('빠른 이동 평균 기간을 입력해주세요.');
+            }
+            if (!formData.slowMoveAvg) {
+                alert('느린 이동 평균 기간을 입력해주세요.');
+            }
+        }
+    };
+
+    const handlePrevClick = () => {
+        navigate('/strategy');
     };
 
     return (
@@ -81,7 +94,7 @@ export const StrategyGolden = () => {
                 </div>
             </div>
             <div className="strategy-btn-wrapper" id="btn-to-result">
-                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={() => window.history.back()} />
+                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={handlePrevClick} />
                 <ColorBtn id="colorBtn-next" text="백테스트" onClick={handleSubmit} />
             </div>
         </div>

@@ -47,7 +47,20 @@ export const StrategyRSI = () => {
         const strategy3DTO = new Strategy3DTO(formData);
         console.log(strategy3DTO);
         setStrategy3Data(strategy3DTO);
-        navigate(`/result/${id}`);
+        if (formData.moveAvg) {
+            navigate(`/result/${id}`);
+        } else {
+            if (!formData.rsiStart || !formData.rsiEnd) {
+                alert('RSI 계산을 위한 시작일과 종료일을 입력해주세요.');
+            }
+            if (!formData.mfiLoopCount) {
+                alert('MFI 반복 계산 횟수를 입력해주세요.');
+            }
+        }
+    };
+
+    const handlePrevClick = () => {
+        navigate('/strategy');
     };
 
     return (
@@ -90,7 +103,7 @@ export const StrategyRSI = () => {
             </div>
 
             <div className="strategy-btn-wrapper" id="btn-to-result">
-                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={() => window.history.back()} />
+                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={handlePrevClick} />
                 <ColorBtn id="colorBtn-next" text="백테스트" onClick={handleSubmit} />
             </div>
         </div>

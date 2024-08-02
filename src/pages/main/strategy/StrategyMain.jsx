@@ -97,10 +97,39 @@ export const StrategyMain = () => {
         const selectedStrategy = formData.strategy;
 
         // 선택된 전략이 있으면 해당 주소로 이동합니다.
-        if (selectedStrategy) {
+        if (
+            selectedStrategy &&
+            formData.initial_investment &&
+            formData.tax &&
+            formData.start_date &&
+            formData.end_date &&
+            formData.target_item &&
+            formData.tick_kind &&
+            formData.inq_range
+        ) {
             navigate(`/${selectedStrategy}`);
         } else {
-            alert('전략을 선택해주세요.');
+            if (!selectedStrategy) {
+                alert('전략을 선택해주세요.');
+            }
+            if (!formData.initial_investment) {
+                alert('초기 투자 금액을 입력해주세요.');
+            }
+            if (!formData.tax) {
+                alert('거래 수수료를 선택해주세요.');
+            }
+            if (!formData.start_date || !formData.end_date) {
+                alert('기간 설정을 해주세요.');
+            }
+            if (!formData.target_item) {
+                alert('종목 이름을 입력해주세요.');
+            }
+            if (!formData.tick_kind) {
+                alert('캔들 종류를 선택해주세요.');
+            }
+            if (!formData.inq_range) {
+                alert('조회 범위를 입력해주세요.');
+            }
         }
     };
 
@@ -114,7 +143,7 @@ export const StrategyMain = () => {
                 <div className="strategy-input">
                     <div className="input-inital-investment">
                         <InputBox
-                            type="number"
+                            type="text"
                             placeholder="초기 투자 금액을 입력해주세요."
                             name="initial_investment"
                             value={formData.initial_investment}
@@ -192,7 +221,7 @@ export const StrategyMain = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="number"
+                        type="text"
                         placeholder="조회 범위를 입력하세요."
                         name="inq_range"
                         value={formData.inq_range}
@@ -213,8 +242,7 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className="strategy-btn-wrapper" id="btn-to-result">
-                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={() => window.history.back()} />
-                <ColorBtn id="colorBtn-next" text="다음" onClick={handleSubmit} />
+                <ColorBtn id="colorBtn-next" text="세부 전략 선택" onClick={handleSubmit} />
             </div>
         </div>
     );

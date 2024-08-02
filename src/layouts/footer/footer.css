@@ -1,6 +1,6 @@
 .footer {
     box-sizing: border-box;
-    height: 160px;
+    height: 120px;
     position: relative;
     color: var(--color-2);
     background-color: var(--color-4);
@@ -8,6 +8,11 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 10vw;
+}
+
+.footer div {
+    color: var(--color-3);
+    font-size: 12px;
 }
 
 .footerRight {

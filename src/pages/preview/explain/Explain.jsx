@@ -1,5 +1,5 @@
 import React from 'react';
-import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
+import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
 import './explain.css';
 import { useNavigate } from 'react-router-dom';
 

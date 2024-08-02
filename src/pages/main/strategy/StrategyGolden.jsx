@@ -71,7 +71,7 @@ export const StrategyGolden = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="number"
+                        type="text"
                         placeholder="빠른 이동 평균 기간을 입력하세요."
                         name="fastMoveAvg"
                         value={formData.fastMoveAvg}
@@ -85,7 +85,7 @@ export const StrategyGolden = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="number"
+                        type="text"
                         placeholder="느린 이동 평균 기간을 입력하세요."
                         name="slowMoveAvg"
                         value={formData.slowMoveAvg}

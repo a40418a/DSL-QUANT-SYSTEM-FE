@@ -1,6 +1,6 @@
 import React from 'react';
 import './login.css';
-import { ImageBtn } from '../../../components/button/ImgBtn/ImgBtn';
+import { ImageBtn } from '../../../components/button/imgBtn/ImgBtn';
 import KakaoLoginLogo from '../../../assets/kakao_login_medium_wide.png';
 
 export const Login = () => {

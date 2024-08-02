@@ -4,7 +4,7 @@ import './home.css';
 import { HorizonTableTop20 } from '../../../components/table/horizonTable/HorizonTable';
 import { ArrowDown, ArrowUp } from '../../../components/emoticon/Arrow';
 import { ChartBox } from '../../../components/box/chartBox/ChartBox';
-import { LineChart } from '../../../components/chart/lineChart';
+import { LineChart } from '../../../components/chart/LineChart';
 import { userData01 } from '../../../data/dummyData01';
 
 export const Home = () => {

@@ -58,6 +58,7 @@
 }
 
 .result-info-table {
+    box-sizing: border-box;
     width: 100%;
     margin-bottom: 32px;
     overflow-x: scroll;
@@ -65,4 +66,9 @@
 
 .result-info-table th {
     width: 32%;
+}
+
+.result-info-table td {
+    text-align: left;
+    padding: 0 var(--padding);
 }

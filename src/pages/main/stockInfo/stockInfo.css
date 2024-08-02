@@ -27,8 +27,6 @@
 .stockinfo-table th,
 .stockinfo-table td {
     padding: 8px 0;
-    border-bottom: solid 1px var(--color-3);
-    border-top: solid 1px var(--color-3);
 }
 
 .stockinfo-chart-line,

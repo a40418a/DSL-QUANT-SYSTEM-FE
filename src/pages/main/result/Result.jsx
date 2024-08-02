@@ -18,38 +18,26 @@ export const Result = () => {
             <div className="result-info">
                 <div className="result-info-title">공통 전략 데이터</div>
                 <table className="result-info-table">
-                    <thead>
-                        <tr>
-                            {Object.keys(strategyCommonData).map((key) => (
-                                <th key={key}>{key}</th>
-                            ))}
-                        </tr>
-                    </thead>
                     <tbody>
-                        <tr>
-                            {Object.values(strategyCommonData).map((value, index) => (
-                                <td key={index}>{JSON.stringify(value)}</td>
-                            ))}
-                        </tr>
+                        {Object.entries(strategyCommonData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
                 <div className="result-info-title">
                     선택 전략 <p>{id}</p> 데이터
                 </div>
                 <table className="result-info-table">
-                    <thead>
-                        <tr>
-                            {Object.keys(strategy1Data).map((key) => (
-                                <th key={key}>{key}</th>
-                            ))}
-                        </tr>
-                    </thead>
                     <tbody>
-                        <tr>
-                            {Object.values(strategy1Data).map((value, index) => (
-                                <td key={index}>{JSON.stringify(value)}</td>
-                            ))}
-                        </tr>
+                        {Object.entries(strategy1Data).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>

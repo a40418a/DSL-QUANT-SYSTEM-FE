@@ -3,7 +3,7 @@ import Chart from 'react-apexcharts';
 import { userData01 } from '../../data/dummyData01';
 import './chart.css';
 
-export const ChartCandle = ({ title, dataKey }) => {
+export const CandleChart = ({ title, dataKey }) => {
     const length = userData01.length;
 
     // 각 데이터 항목에서 특정 속성의 최대값과 최소값 계산

@@ -1,8 +1,8 @@
 import React from 'react';
-import './tableHorizon.css';
+import './horizonTable.css';
 import { userData03 } from '../../../data/dummyData03';
 
-export const TableHorizonTop20 = ({ title }) => {
+export const HorizonTableTop20 = ({ title }) => {
     return (
         <div id="table-top20">
             <div className="tableTitle">{title}</div>

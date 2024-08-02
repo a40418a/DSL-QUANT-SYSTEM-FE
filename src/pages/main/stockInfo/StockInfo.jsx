@@ -1,8 +1,7 @@
 import React from 'react';
 import './stockInfo.css';
-import { ChartLine } from '../../../components/chart/ChartLine';
-import { ChartCandle } from '../../../components/chart/ChartCandle';
-import { ChartBar } from '../../../components/chart/ChartBar';
+import { CandleChart } from '../../../components/chart/CandleChart';
+import { LineChart } from '../../../components/chart/LineChart';
 import { userData01 } from '../../../data/dummyData01';
 
 export const StockInfo = () => {
@@ -28,13 +27,13 @@ export const StockInfo = () => {
                 </tr>
             </table>
             <div className="stockinfo-chart-candle">
-                <ChartCandle data={userData01} dataKey="close" />
+                <CandleChart data={userData01} dataKey="close" />
             </div>
             {/* <div className="stockinfo-chart-line">
                 <ChartBar data={userData01} dataKey="volume" />
             </div> */}
             <div className="stockinfo-chart-line">
-                <ChartLine data={userData01} dataKey="close" />
+                <LineChart data={userData01} dataKey="close" />
             </div>
         </div>
     );

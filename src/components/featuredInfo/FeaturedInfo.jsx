@@ -3,7 +3,7 @@ import React from 'react';
 import './featuredInfo.css';
 import { ArrowDown, ArrowUp } from '../emoticon/Arrow';
 import { ChartBox } from '../box/chartBox/ChartBox';
-import { ChartLine } from '../chart/ChartLine';
+import { LineChart } from '../chart/lineChart';
 import { userData01 } from '../../data/dummyData01';
 
 export const FeaturedInfo = () => {
@@ -16,7 +16,7 @@ export const FeaturedInfo = () => {
                     price="73,700"
                     arrow={<ArrowDown />}
                     rate="-1"
-                    chart={<ChartLine data={userData01} dataKey="close" />}
+                    chart={<LineChart data={userData01} dataKey="close" />}
                     sub="Compared to last month"
                 />
             </div>
@@ -28,7 +28,7 @@ export const FeaturedInfo = () => {
                     price="846.51"
                     arrow={<ArrowUp />}
                     rate="0.07"
-                    chart={<ChartLine data={userData01} dataKey="open" />}
+                    chart={<LineChart data={userData01} dataKey="open" />}
                     sub="Compared to last month"
                 />
             </div>
@@ -41,7 +41,7 @@ export const FeaturedInfo = () => {
                     price="73,700"
                     arrow={<ArrowUp />}
                     rate="3"
-                    chart={<ChartLine data={userData01} dataKey="highest" />}
+                    chart={<LineChart data={userData01} dataKey="highest" />}
                     sub="Compared to last month"
                 />
             </div>

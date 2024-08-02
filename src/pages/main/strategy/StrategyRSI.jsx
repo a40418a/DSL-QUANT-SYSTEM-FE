@@ -2,7 +2,7 @@
 
 import React, { useContext, useState } from 'react';
 import './strategy.css';
-import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
+import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
 import { InputBox } from '../../../components/box/inputBox/InputBox';
 import { Strategy3DTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';

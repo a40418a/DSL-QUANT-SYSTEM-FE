@@ -1,7 +1,7 @@
 import React from 'react';
-import './tableVertical.css';
+import './verticalTable.css';
 
-export const TableVertical = ({ title, data }) => {
+export const VerticalTable = ({ title, data }) => {
     return (
         <div>
             <div className="tableTitle">{title}</div>

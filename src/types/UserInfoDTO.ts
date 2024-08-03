@@ -2,15 +2,15 @@
 
 export class UserInfoDTO {
     userName: string;
-    userPhone: number;
-    userBirthday: number;
+    userPhone: string;
+    userBirthday: string;
     userGender: string;
     backtestRecords: any[];
 
     constructor(data: {
         userName: string;
-        userPhone: number;
-        userBirthday: number;
+        userPhone: string;
+        userBirthday: string;
         userGender: string;
         backtestRecords: any[];
     }) {
@@ -19,6 +19,14 @@ export class UserInfoDTO {
         this.userBirthday = data.userBirthday;
         this.userGender = data.userGender;
         this.backtestRecords = data.backtestRecords;
+    }
+
+    setBirthDate(userBirthday: string) {
+        this.userBirthday = userBirthday;
+    }
+
+    getBirthDate(): string {
+        return this.userBirthday;
     }
 
     getUserInfo(): string {

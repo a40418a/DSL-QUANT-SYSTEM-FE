@@ -28,6 +28,10 @@ export class StrategyCommonDTO {
         this.inqRange = data.inqRange;
         this.strategy = data.strategy;
     }
+
+    getCommon(): string {
+        return `${this.initialInvestment} - ${this.tax} - ${this.startDate} - ${this.endDate} - ${this.targetItem} - ${this.candleType} - ${this.inqRange} - ${this.strategy}`;
+    }
 }
 
 export class Strategy1DTO {
@@ -39,6 +43,10 @@ export class Strategy1DTO {
         this.fastMoveAvg = data.fastMoveAvg;
         this.slowMoveAvg = data.slowMoveAvg;
     }
+
+    getGoldenDead(): string {
+        return `${this.fastMoveAvg} - ${this.slowMoveAvg}`;
+    }
 }
 
 export class Strategy2DTO {
@@ -47,6 +55,10 @@ export class Strategy2DTO {
 
     constructor(data: { moveAvg: number }) {
         this.moveAvg = data.moveAvg;
+    }
+
+    getBollinger(): string {
+        return `${this.moveAvg}`;
     }
 }
 
@@ -60,5 +72,9 @@ export class Strategy3DTO {
         this.rsiStart = data.rsiStart;
         this.rsiEnd = data.rsiEnd;
         this.mfiLoopCount = data.mfiLoopCount;
+    }
+
+    getRsiMfiMacd(): string {
+        return `${this.rsiStart} - ${this.rsiEnd} - ${this.mfiLoopCount}`;
     }
 }

@@ -1,42 +1,50 @@
+//주식 랭킹 정보
 export class Top20 {
-    private rank: string;
-    private stock: string;
-    private presnetPrice: string;
-    private alldayRatio: number;
-    private percentChange: number;
+    rank: string;
+    stockName: string;
+    presnetPrice: string;
+    alldayRatio: number;
+    percentChange: number;
 
-    constructor(rank: string, stock: string, presnetPrice: string, alldayRatio: number, percentChange: number) {
-        this.rank = rank;
-        this.stock = stock;
-        this.presnetPrice = presnetPrice;
-        this.alldayRatio = alldayRatio;
-        this.percentChange = percentChange;
+    constructor(data: {
+        rank: string;
+        stockName: string;
+        presnetPrice: string;
+        alldayRatio: number;
+        percentChange: number;
+    }) {
+        this.rank = data.rank;
+        this.stockName = data.stockName;
+        this.presnetPrice = data.presnetPrice;
+        this.alldayRatio = data.alldayRatio;
+        this.percentChange = data.percentChange;
     }
 
     getTop20(): string {
-        return `${this.rank} - ${this.stock} - ${this.presnetPrice} - ${this.alldayRatio} - ${this.percentChange}`;
+        return `${this.rank} - ${this.stockName} - ${this.presnetPrice} - ${this.alldayRatio} - ${this.percentChange}`;
     }
 }
 
+//주식 차트 정보
 export class Kospi {
-    private date: string;
-    private currentPrice: number;
-    private alldayRatio: number;
-    private percentChange: number;
-    private kospiData: { time: string; value: number }[];
+    date: string;
+    currentPrice: number;
+    alldayRatio: number;
+    percentChange: number;
+    kospiData: { time: string; value: number }[];
 
-    constructor(
-        date: string,
-        currentPrice: number,
-        alldayRatio: number,
-        percentChange: number,
-        kospiData: { time: string; value: number }[]
-    ) {
-        this.date = date;
-        this.currentPrice = currentPrice;
-        this.alldayRatio = alldayRatio;
-        this.percentChange = percentChange;
-        this.kospiData = kospiData;
+    constructor(data: {
+        date: string;
+        currentPrice: number;
+        alldayRatio: number;
+        percentChange: number;
+        kospiData: { time: string; value: number }[];
+    }) {
+        this.date = data.date;
+        this.currentPrice = data.currentPrice;
+        this.alldayRatio = data.alldayRatio;
+        this.percentChange = data.percentChange;
+        this.kospiData = data.kospiData;
     }
 
     getKospi(): string {
@@ -47,27 +55,27 @@ export class Kospi {
 }
 
 export class Kosdak {
-    private date: string;
-    private currentPrice: number;
-    private alldayRatio: number;
-    private percentChange: number;
-    private kosdakData: { time: string; value: number }[];
+    date: string;
+    currentPrice: number;
+    alldayRatio: number;
+    percentChange: number;
+    kosdakData: { time: string; value: number }[];
 
-    constructor(
-        date: string,
-        currentPrice: number,
-        alldayRatio: number,
-        percentChange: number,
-        kosdakData: { time: string; value: number }[]
-    ) {
-        this.date = date;
-        this.currentPrice = currentPrice;
-        this.alldayRatio = alldayRatio;
-        this.percentChange = percentChange;
-        this.kosdakData = kosdakData;
+    constructor(data: {
+        date: string;
+        currentPrice: number;
+        alldayRatio: number;
+        percentChange: number;
+        kosdakData: { time: string; value: number }[];
+    }) {
+        this.date = data.date;
+        this.currentPrice = data.currentPrice;
+        this.alldayRatio = data.alldayRatio;
+        this.percentChange = data.percentChange;
+        this.kosdakData = data.kosdakData;
     }
 
-    getKosdak(): string {
+    getKospi(): string {
         return `${this.date} - ${this.currentPrice} - ${this.alldayRatio} - ${this.percentChange} - ${JSON.stringify(
             this.kosdakData
         )}`;
@@ -75,24 +83,24 @@ export class Kosdak {
 }
 
 export class Kospi200 {
-    private date: string;
-    private currentPrice: number;
-    private alldayRatio: number;
-    private percentChange: number;
-    private kospi200Data: { time: string; value: number }[];
+    date: string;
+    currentPrice: number;
+    alldayRatio: number;
+    percentChange: number;
+    kospi200Data: { time: string; value: number }[];
 
-    constructor(
-        date: string,
-        currentPrice: number,
-        alldayRatio: number,
-        percentChange: number,
-        kospi200Data: { time: string; value: number }[]
-    ) {
-        this.date = date;
-        this.currentPrice = currentPrice;
-        this.alldayRatio = alldayRatio;
-        this.percentChange = percentChange;
-        this.kospi200Data = kospi200Data;
+    constructor(data: {
+        date: string;
+        currentPrice: number;
+        alldayRatio: number;
+        percentChange: number;
+        kospi200Data: { time: string; value: number }[];
+    }) {
+        this.date = data.date;
+        this.currentPrice = data.currentPrice;
+        this.alldayRatio = data.alldayRatio;
+        this.percentChange = data.percentChange;
+        this.kospi200Data = data.kospi200Data;
     }
 
     getKospi(): string {

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './myPage.css';
 import { InputHalfBox } from '../../../components/box/inputBox/InputBox';
-import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
-import { MyPageCheckDTO } from '../../../types/MyPageCheckDTO';
+import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
+import { UserInfoDTO } from '../../../types/UserInfoDTO';
 import { useNavigate } from 'react-router-dom';
 
 export const MyPageCheck = () => {
@@ -16,7 +16,7 @@ export const MyPageCheck = () => {
 
     // 버튼 클릭 시
     const handleSubmit = () => {
-        const dto = new MyPageCheckDTO(birthDate);
+        const dto = new UserInfoDTO(birthDate);
         if (dto.getBirthDate() === '010418') {
             //010418은 예시로 설정한 값
             console.log(dto.getBirthDate());

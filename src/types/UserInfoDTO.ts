@@ -1,19 +1,37 @@
-export class UserInfoDTO {
-    private userName: string;
-    private userPhone: string;
-    private userBirthday: string;
-    private userGender: string;
-    private backtestRecords: any[];
+//login, mypagecheck, mypage
 
-    constructor(userName: string, userPhone: string, userBirthday: string, userGender: string, backtestRecords: any[]) {
-        this.userName = userName;
-        this.userPhone = userPhone;
-        this.userBirthday = userBirthday;
-        this.userGender = userGender;
-        this.backtestRecords = backtestRecords;
+export class UserInfoDTO {
+    userName: string;
+    userPhone: string;
+    userBirthday: string;
+    userGender: string;
+    backtestRecords: any[];
+
+    constructor(data: {
+        userName: string;
+        userPhone: string;
+        userBirthday: string;
+        userGender: string;
+        backtestRecords: any[];
+    }) {
+        this.userName = data.userName;
+        this.userPhone = data.userPhone;
+        this.userBirthday = data.userBirthday;
+        this.userGender = data.userGender;
+        this.backtestRecords = data.backtestRecords;
     }
 
-    getMyPageInfo(): string {
-        return `${this.userName} - ${this.userPhone} - ${this.userBirthday} - ${this.userGender} - ${this.backtestRecords}`;
+    setBirthDate(userBirthday: string) {
+        this.userBirthday = userBirthday;
+    }
+
+    getBirthDate(): string {
+        return this.userBirthday;
+    }
+
+    getUserInfo(): string {
+        return `${this.userName} - ${this.userPhone} - ${this.userBirthday} - ${this.userGender} - ${JSON.stringify(
+            this.backtestRecords
+        )}`;
     }
 }

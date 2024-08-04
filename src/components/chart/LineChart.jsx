@@ -29,7 +29,7 @@ export const LineChart = ({ title, dataKey }) => {
     // ApexCharts 옵션 설정
     const options = {
         chart: {
-            type: 'line', // 차트 타입: 라인 차트
+            type: 'area', // 차트 타입을 'area'로 변경
             height: '100%', // 차트 높이
             animations: {
                 enabled: false, // 애니메이션 비활성화
@@ -55,6 +55,9 @@ export const LineChart = ({ title, dataKey }) => {
                 format: 'yyyy.MM.dd', // 툴팁 날짜 포맷
             },
         },
+        dataLabels: {
+            enabled: false, // 데이터 레이블 비활성화
+        },
         annotations: {
             yaxis: [
                 {
@@ -68,6 +71,15 @@ export const LineChart = ({ title, dataKey }) => {
             curve: 'straight', // 선의 곡선 타입 설정
             width: 2, // 선 두께
         },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.4,
+                opacityTo: 0,
+                stops: [0, 90, 100],
+            },
+        },
         markers: {
             size: 0, // 마커 크기 (0으로 설정하여 마커 숨김)
         },
@@ -80,7 +92,7 @@ export const LineChart = ({ title, dataKey }) => {
     return (
         <div className="chart">
             {/* ApexCharts 컴포넌트 렌더링 */}
-            <Chart options={options} series={[{ name: dataKey, data }]} type="line" height="100%" />
+            <Chart options={options} series={[{ name: dataKey, data }]} type="area" height="100%" />
         </div>
     );
 };

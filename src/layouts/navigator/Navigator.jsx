@@ -56,8 +56,11 @@ export const Navigator = () => {
                         </Link>
                     </div>
                     <ul className="navigator-menu-wrapper">
-                        <li className={`navigator-menu ${activePage === '/stockinfo' ? 'active' : ''}`}>
-                            <Link to="/stockinfo">주식 상세정보</Link>
+                        <li
+                            className={`navigator-menu ${activePage === '/stockinfo' ? 'active' : ''}`}
+                            onClick={() => navigate('/stockinfo')}
+                        >
+                            상세정보
                         </li>
                         <li
                             className={`navigator-menu ${
@@ -65,26 +68,28 @@ export const Navigator = () => {
                                 activePage === '/strategy/golden' ||
                                 activePage === '/strategy/bollinger' ||
                                 activePage === '/strategy/rsi' ||
-                                activePage.startsWith('/result') // 이 부분을 수정
+                                activePage.startsWith('/result')
                                     ? 'active'
                                     : ''
                             }`}
+                            onClick={() => navigate('/strategy')}
                         >
-                            <Link to="/strategy">전략설정</Link>
+                            전략설정
                         </li>
                         <li
                             className={`navigator-menu ${
                                 activePage === '/mypagecheck' || activePage === '/mypage' ? 'active' : ''
                             }`}
+                            onClick={() => navigate('/mypagecheck')}
                         >
-                            <Link to="/mypagecheck">마이페이지</Link>
+                            마이페이지
                         </li>
                     </ul>
                     <div className="navigator-logout">
                         <Link to="/" onClick={logoutHandler}>
                             로그아웃
                         </Link>
-                    </div>{' '}
+                    </div>
                 </div>
             </div>
         );

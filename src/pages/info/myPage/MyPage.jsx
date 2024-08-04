@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './myPage.css';
 import { VerticalTable } from '../../../components/table/verticalTable/VerticalTable';
-import { UserInfoDTO } from '../../../types/UserInfoDTO';
 
 export const MyPage = () => {
-    const [userInfo] = useState(new UserInfoDTO('최승아', '010-7110-0441', '2001.04.18', '여자', ['기록1', '기록2']));
-
     return (
         <div className="mypage">
             <div className="mypage-title">
-                <div className="mypage-title-name">{userInfo.userName}</div>
+                <div className="mypage-title-name">최승아</div>
                 <div className="mypage-title-content">님의 마이페이지</div>
             </div>
             <div className="mypage-info">

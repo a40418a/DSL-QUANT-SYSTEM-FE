@@ -87,7 +87,7 @@ export const StrategyRSI = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="number"
+                        type="text"
                         placeholder="MFI 반복 계산 횟수를 입력하세요"
                         name="mfiLoopCount"
                         value={formData.mfiLoopCount}

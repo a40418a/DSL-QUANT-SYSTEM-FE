@@ -15,3 +15,22 @@
 .custom-tooltip p {
     font-size: 10px;
 }
+
+.custom-icon {
+    font-size: 13px;
+    color: var(--main-color);
+}
+
+.tooltip-box {
+    padding: var(--padding);
+    width: 120px;
+}
+
+.tooltip-box strong {
+    font-size: 14px;
+    color: var(--main-color);
+}
+
+.tooltip-box div {
+    font-size: 14px;
+}

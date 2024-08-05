@@ -72,3 +72,18 @@
     text-align: left;
     padding: 0 var(--padding);
 }
+
+.result-explain-download {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 16px;
+    padding: 8px;
+    border: solid 2px var(--point-color);
+    border-radius: 16px;
+    color: var(--color-3);
+}
+
+.result-explain-download:hover {
+    cursor: pointer;
+}

@@ -43,10 +43,81 @@ export const CandleChart = ({ title, dataKey }) => {
             },
             zoom: {
                 enabled: true, // 확대/축소 기능 활성화
-                type: 'x', // 확대/축소 유형: x와 y축 모두
-                autoScaleYaxis: true, // 확대 시 y축 자동 스케일링
+            },
+            toolbar: {
+                tools: {
+                    selection: true,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: true,
+                    reset: true,
+                    customIcons: [
+                        {
+                            icon: '<div class="custom-icon">1Y</div>', // 사용자 정의 아이콘 (1년)
+                            index: 1,
+                            title: '1 Year',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setFullYear(new Date().getFullYear() - 1)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="custom-icon">6M</div>', // 사용자 정의 아이콘 (6개월)
+                            index: 2,
+                            title: '6 Month',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setMonth(new Date().getMonth() - 6)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="custom-icon">3M</div>', // 사용자 정의 아이콘 (3개월)
+                            index: 3,
+                            title: '3 Month',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setMonth(new Date().getMonth() - 3)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="custom-icon">1M</div>', // 사용자 정의 아이콘 (1개월)
+                            index: 4,
+                            title: '1 Month',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setMonth(new Date().getMonth() - 1)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="custom-icon">1W</div>', // 사용자 정의 아이콘 (1주일)
+                            index: 5,
+                            title: '1 Week',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setDate(new Date().getDate() - 7)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                    ],
+                },
             },
         },
+
         title: {
             text: title, // 차트 제목
             align: 'left', // 제목 정렬: 왼쪽

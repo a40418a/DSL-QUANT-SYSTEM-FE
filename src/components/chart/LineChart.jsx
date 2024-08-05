@@ -26,50 +26,127 @@ export const LineChart = ({ title, dataKey }) => {
         y: entry[dataKey], // 선택된 데이터 키의 값을 y 값으로 설정
     }));
 
-    // ApexCharts 옵션 설정
     const options = {
         chart: {
-            type: 'area', // 차트 타입을 'area'로 변경
-            height: '100%', // 차트 높이
+            type: 'area',
+            height: '100%',
             animations: {
-                enabled: false, // 애니메이션 비활성화
+                enabled: false,
+            },
+
+            zoom: {
+                enabled: true, // 확대/축소 기능 활성화
+                type: 'x', // 확대/축소 유형: x와 y축 모두
+                autoScaleYaxis: true, // 확대 시 y축 자동 스케일링
+            },
+            toolbar: {
+                tools: {
+                    selection: true,
+                    zoom: false,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: true,
+                    reset: true,
+                    customIcons: [
+                        {
+                            icon: '<div class="custom-icon">1Y</div>', // 사용자 정의 아이콘 (1년)
+                            index: 1,
+                            title: '1 Year',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setFullYear(new Date().getFullYear() - 1)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="custom-icon">6M</div>', // 사용자 정의 아이콘 (6개월)
+                            index: 2,
+                            title: '6 Month',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setMonth(new Date().getMonth() - 6)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="custom-icon">3M</div>', // 사용자 정의 아이콘 (3개월)
+                            index: 3,
+                            title: '3 Month',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setMonth(new Date().getMonth() - 3)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="custom-icon">1M</div>', // 사용자 정의 아이콘 (1개월)
+                            index: 4,
+                            title: '1 Month',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setMonth(new Date().getMonth() - 1)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="custom-icon">1W</div>', // 사용자 정의 아이콘 (1주일)
+                            index: 5,
+                            title: '1 Week',
+
+                            click: function (chart, options, e) {
+                                chart.zoomX(
+                                    new Date(new Date().setDate(new Date().getDate() - 7)).getTime(),
+                                    new Date().getTime()
+                                );
+                            },
+                        },
+                    ],
+                },
             },
         },
         title: {
-            text: title, // 차트 제목
-            align: 'left', // 제목 정렬: 중앙
+            text: title,
+            align: 'left',
         },
         xaxis: {
-            type: 'datetime', // x축 타입: 날짜/시간
+            type: 'datetime',
             labels: {
-                format: 'MM/dd', // 날짜 형식 설정
+                format: 'MM/dd',
             },
         },
         yaxis: {
-            min: minLowest - range, // y축 최소값
-            max: maxHighest + range, // y축 최대값
+            min: minLowest - range,
+            max: maxHighest + range,
             show: false,
         },
         tooltip: {
             x: {
-                format: 'yyyy.MM.dd', // 툴팁 날짜 포맷
+                format: 'yyyy.MM.dd',
             },
         },
         dataLabels: {
-            enabled: false, // 데이터 레이블 비활성화
+            enabled: false,
         },
         annotations: {
             yaxis: [
                 {
-                    y: userData01[length - 2][dataKey], // 기준선 위치 (두 번째 마지막 데이터 값)
-                    borderColor: 'var(--color-3)', // 기준선 색상
-                    strokeDashArray: 'var(--stroke-dash-array)', // 기준선 스타일
+                    y: userData01[length - 2][dataKey],
+                    borderColor: 'var(--color-3)',
+                    strokeDashArray: 'var(--stroke-dash-array)',
                 },
             ],
         },
         stroke: {
-            curve: 'straight', // 선의 곡선 타입 설정
-            width: 2, // 선 두께
+            curve: 'straight',
+            width: 2,
         },
         fill: {
             type: 'gradient',
@@ -81,17 +158,15 @@ export const LineChart = ({ title, dataKey }) => {
             },
         },
         markers: {
-            size: 0, // 마커 크기 (0으로 설정하여 마커 숨김)
+            size: 0,
         },
         colors: [
-            // 라인 색상 결정 (마지막 데이터 값과 비교하여 상승/하락 색상 선택)
             userData01[length - 2][dataKey] < userData01[length - 1][dataKey] ? 'var(--up-color)' : 'var(--down-color)',
         ],
     };
 
     return (
         <div className="chart">
-            {/* ApexCharts 컴포넌트 렌더링 */}
             <Chart options={options} series={[{ name: dataKey, data }]} type="area" height="100%" />
         </div>
     );

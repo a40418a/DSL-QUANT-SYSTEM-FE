@@ -2,9 +2,9 @@
 
 import React, { useContext, useState } from 'react';
 import './strategy.css';
-import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
+import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBox';
-import { Strategy1DTO } from '../../../types/StrategyDTO';
+import { StrategyGoldenDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 

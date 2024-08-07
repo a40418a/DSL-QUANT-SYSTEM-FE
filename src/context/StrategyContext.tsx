@@ -6,12 +6,14 @@ import { StrategyCommonDTO, StrategyGoldenDTO, StrategyBolligerDTO, StrategyRsiD
 // 초기 상태값
 const initialStrategyCommonData: StrategyCommonDTO = {
     initialInvestment: 0,
-    commission: 0.01,
+    tax: 0.01,
     startDate: '',
     endDate: '',
     targetItem: '',
     candleType: '',
     inqRange: 0,
+    strategy: '',
+
 };
 
 const initialStrategy1Data: StrategyGoldenDTO = {
@@ -45,6 +47,7 @@ export const StrategyContext = createContext<{
 });
 
 // Context Provider
+// @ts-ignore
 export const StrategyProvider: React.FC = ({ children }) => {
     const [strategyCommonData, setStrategyCommonData] = useState<StrategyCommonDTO>(initialStrategyCommonData);
     const [strategy1Data, setStrategy1Data] = useState<StrategyGoldenDTO>(initialStrategy1Data);

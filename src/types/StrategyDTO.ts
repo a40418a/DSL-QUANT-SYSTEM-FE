@@ -1,31 +1,31 @@
 export class StrategyCommonDTO {
     //공통
-    initialInvestment: number;
+    initial_investment: number;
     tax: number;
-    startDate: string;
-    endDate: string;
-    targetItem: string;
-    candleType: string;
-    inqRange: number;
+    start_date: string;
+    end_date: string;
+    target_item: string;
+    tick_kind: string;
+    inq_range: number;
     strategy: string;
 
     constructor(data: {
-        initialInvestment: number;
+        initial_investment: number;
         tax: number;
-        startDate: string;
-        endDate: string;
-        targetItem: string;
-        candleType: string;
-        inqRange: number;
+        start_date: string;
+        end_date: string;
+        target_item: string;
+        tick_kind: string;
+        inq_range: number;
         strategy: string;
     }) {
-        this.initialInvestment = data.initialInvestment;
+        this.initial_investment = data.initial_investment;
         this.tax = data.tax;
-        this.startDate = data.startDate;
-        this.endDate = data.endDate;
-        this.targetItem = data.targetItem;
-        this.candleType = data.candleType;
-        this.inqRange = data.inqRange;
+        this.start_date = data.start_date;
+        this.end_date = data.end_date;
+        this.target_item = data.target_item;
+        this.tick_kind = data.tick_kind;
+        this.inq_range = data.inq_range;
         this.strategy = data.strategy;
     }
 
@@ -36,14 +36,16 @@ export class StrategyGoldenDTO {
     fastMoveAvg: number;
     slowMoveAvg: number;
 
-    constructor(data: { fastMoveAvg: number; slowMoveAvg: number }) {
+    constructor(data: {
+        slowMoveAvg: number;
+        fastMoveAvg: number; }) {
         this.fastMoveAvg = data.fastMoveAvg;
         this.slowMoveAvg = data.slowMoveAvg;
     }
 
 }
 
-export class StrategyBolligerDTO {
+export class StrategyBollingerDTO {
     //볼린저
     moveAvg: number;
 

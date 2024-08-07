@@ -7,6 +7,7 @@ import { InputBox } from '../../../components/box/inputBox/InputBox';
 import { StrategyRsiDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import axios from "axios";
 
 export const StrategyRSI = () => {
     const { setStrategy3Data } = useContext(StrategyContext);
@@ -43,10 +44,23 @@ export const StrategyRSI = () => {
         });
     };
 
-    const handleSubmit = () => {
-        const strategy3DTO = new Strategy3DTO(formData);
+    const handleSubmit = async () => {
+        const strategy3DTO = new StrategyRsiDTO(formData);
         console.log(strategy3DTO);
         setStrategy3Data(strategy3DTO);
+
+        try {
+            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const response = await axios.post('http://localhost:8080/strategy/rsi', strategy3DTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('There was an error submitting the common strategy!', error);
+        }
+
         if (formData.moveAvg) {
             navigate(`/result/${id}`);
         } else {

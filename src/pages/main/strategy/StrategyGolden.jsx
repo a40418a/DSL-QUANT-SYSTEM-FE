@@ -7,13 +7,14 @@ import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBo
 import { StrategyGoldenDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import axios from "axios";
 
 export const StrategyGolden = () => {
     const { setStrategy1Data } = useContext(StrategyContext);
     const [formData, setFormData] = useState({
         //골든
-        fast_period: [0, 0],
-        slow_period: [0, 0],
+        fastMoveAvg: 0,
+        slowMoveAvg: 0,
     });
 
     const navigate = useNavigate();
@@ -42,10 +43,23 @@ export const StrategyGolden = () => {
         });
     };
 
-    const handleSubmit = () => {
-        const strategy1DTO = new Strategy1DTO(formData);
+    const handleSubmit = async () => {
+        const strategy1DTO = new StrategyGoldenDTO(formData);
         console.log(strategy1DTO);
         setStrategy1Data(strategy1DTO);
+
+        try {
+            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const response = await axios.post('http://localhost:8080/strategy/golden', strategy1DTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('There was an error submitting the golden/dead cross strategy!', error);
+        }
+
         if (formData.fastMoveAvg && formData.slowMoveAvg) {
             navigate(`/result/${id}`);
         } else {

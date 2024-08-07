@@ -8,20 +8,21 @@ import { SelectBox } from '../../../components/box/selectBox/SelectBox';
 import { StrategyCommonDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate } from 'react-router-dom';
+import axios from "axios";
 
 export const StrategyMain = () => {
     const { setStrategyCommonData } = useContext(StrategyContext);
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        initialInvestment: '',
+        initial_investment: '',
         tax: '',
-        startDate: '',
-        endDate: '',
-        targetItem: '',
-        candleType: '',
-        inqRange: '',
+        start_date: '',
+        end_date: '',
+        target_item: '',
+        tick_kind: '',
+        inq_range: '',
         strategy: '',
     });
-    const navigate = useNavigate();
 
     const options_tax = [
         { label: '0.01%', value: '0.01' },
@@ -88,10 +89,23 @@ export const StrategyMain = () => {
         });
     };
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         const strategyCommonDTO = new StrategyCommonDTO(formData);
-        // console.log(strategyCommonDTO);
+        console.log(strategyCommonDTO);
         setStrategyCommonData(strategyCommonDTO);
+
+        try {
+            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const response = await axios.post('http://localhost:8080/strategy', strategyCommonDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('There was an error submitting the common strategy!', error);
+        }
+
 
         // 선택된 전략의 value 값을 가져옵니다.
         const selectedStrategy = formData.strategy;

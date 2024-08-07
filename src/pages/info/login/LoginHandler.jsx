@@ -19,7 +19,7 @@ export const LoginHandler = (props) => {
 
             try {
                 // 백엔드로 인가 코드 전송
-                const res = await axios.get(`http://43.200.199.72:8080/login/oauth2/code/kakao`, {
+                const res = await axios.get(`http://localhost:8080/login/oauth2/code/kakao`, {
                     params: { code: code },
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8',

@@ -4,9 +4,10 @@ import React, { useContext, useState } from 'react';
 import './strategy.css';
 import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
 import { InputBox } from '../../../components/box/inputBox/InputBox';
-import { StrategyBolligerDTO } from '../../../types/StrategyDTO';
+import { StrategyBollingerDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
+import axios from "axios";
 
 export const StrategyBollinger = () => {
     const { setStrategy2Data } = useContext(StrategyContext);
@@ -35,10 +36,23 @@ export const StrategyBollinger = () => {
         });
     };
 
-    const handleSubmit = () => {
-        const strategy2DTO = new Strategy2DTO(formData);
+    const handleSubmit = async () => {
+        const strategy2DTO = new StrategyBollingerDTO(formData);
         console.log(strategy2DTO);
         setStrategy2Data(strategy2DTO);
+
+        try {
+            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const response = await axios.post('http://localhost:8080/strategy/bollinger', strategy2DTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('There was an error submitting the common strategy!', error);
+        }
+
 
         if (formData.moveAvg) {
             navigate(`/result/${id}`);

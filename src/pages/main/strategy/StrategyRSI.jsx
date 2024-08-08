@@ -12,8 +12,7 @@ import axios from "axios";
 export const StrategyRSI = () => {
     const { setStrategy3Data } = useContext(StrategyContext);
     const [formData, setFormData] = useState({
-        rsi_period: [0, 0],
-        mfi_count: 0,
+        rsiPeriod: 0,
     });
 
     const navigate = useNavigate();
@@ -26,18 +25,11 @@ export const StrategyRSI = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => {
-            const newFormData = { ...prevData, [name]: value };
+            const newFormData = { ...prevData, [name]: Number(value) };
 
-            // 종료일이 시작일보다 빠른지 확인
-            if (name === 'rsiEnd' && newFormData.rsiStart && new Date(value) < new Date(newFormData.rsiStart)) {
-                alert('종료일은 시작일보다 빠를 수 없습니다.');
-                return prevData; // 이전 데이터로 되돌리기
-            }
-
-            // 반복 계산 횟수 조건 확인
-            if (name === 'mfiLoopCount' && parseFloat(value) < 0) {
-                alert('반복 계산횟수는 0보다 작을 수 없습니다.');
-                return prevData; // 이전 데이터로 되돌리기
+            if (name === 'rsiPeriod' && parseFloat(value) < 0) {
+                alert('입력값은 0보다 작을 수 없습니다.');
+                return prevData;
             }
 
             return newFormData;
@@ -61,14 +53,11 @@ export const StrategyRSI = () => {
             console.error('There was an error submitting the common strategy!', error);
         }
 
-        if (formData.moveAvg) {
+        if (formData.rsiPeriod) {
             navigate(`/result/${id}`);
         } else {
-            if (!formData.rsiStart || !formData.rsiEnd) {
+            if (!formData.rsiPeriod) {
                 alert('RSI 계산을 위한 시작일과 종료일을 입력해주세요.');
-            }
-            if (!formData.mfiLoopCount) {
-                alert('MFI 반복 계산 횟수를 입력해주세요.');
             }
         }
     };
@@ -82,42 +71,21 @@ export const StrategyRSI = () => {
             <div className="strategy-title">RSI, MFI, MACD 지표 이용 전략 설정 페이지</div>
             <div className="strategy-select">
                 <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">RSI 계산을 위한 기간(period)</div>
-                </div>
-                <div className="strategy-input">
-                    <div className="half-input-wrapper">
-                        <div className=" strategy-subtitle-date">시작일 설정</div>
-                        <InputBox type="date" name="rsiStart" value={formData.rsiStart} onChange={handleChange} />
-                    </div>
-                    <div className="half-input-wrapper">
-                        <div className=" strategy-subtitle-date">종료일 설정</div>
-                        <InputBox type="date" name="rsiEnd" value={formData.rsiEnd} onChange={handleChange} />
-                    </div>
-                </div>
-            </div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">반복 계산 횟수(loopCount)</div>
+                    <div className="strategy-subtitle">빠른 이동 평균 기간</div>
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="text"
-                        placeholder="MFI 반복 계산 횟수를 입력하세요"
-                        name="mfiLoopCount"
-                        value={formData.mfiLoopCount}
+                        type="number"
+                        placeholder="RSI 기간을 입력하세요."
+                        name="rsiPeriod"
+                        value={formData.rsiPeriod}
                         onChange={handleChange}
                     />
-                    <span>회</span>
-                </div>
-            </div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">MACD</div>
                 </div>
             </div>
 
             <div className="strategy-btn-wrapper" id="btn-to-result">
-                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={handlePrevClick} />
+            <ColorBtn id="colorBtn-prev" text="< 이전" onClick={handlePrevClick} />
                 <ColorBtn id="colorBtn-next" text="백테스트" onClick={handleSubmit} />
             </div>
         </div>

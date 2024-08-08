@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f6c0b3a-08cd-4577-a03f-2e07c18ac9a9" name="Changes" comment="" />
+    <list default="true" id="1f6c0b3a-08cd-4577-a03f-2e07c18ac9a9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/context/StrategyContext.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/context/StrategyContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/main/result/Result.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main/result/Result.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/main/strategy/StrategyGolden.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main/strategy/StrategyGolden.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/main/strategy/StrategyMain.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main/strategy/StrategyMain.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/main/strategy/StrategyRSI.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/main/strategy/StrategyRSI.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/types/StrategyDTO.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/types/StrategyDTO.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,6 +55,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "D:/2024capstone/Frontend",
     "node.js.detected.package.eslint": "true",
@@ -69,6 +80,7 @@
       <updated>1722517257449</updated>
       <workItem from="1722517258456" duration="4180000" />
       <workItem from="1723017748486" duration="2661000" />
+      <workItem from="1723049771427" duration="6929000" />
     </task>
     <servers />
   </component>

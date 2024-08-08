@@ -4,7 +4,7 @@ import { StrategyContext } from '../../../context/StrategyContext';
 import { useParams } from 'react-router-dom';
 
 export const Result = () => {
-    const { strategyCommonData, strategy1Data } = useContext(StrategyContext);
+    const { strategyCommonData, strategy1Data, strategy2Data, strategy3Data } = useContext(StrategyContext);
     const { id } = useParams(); // URL에서 id를 추출합니다.
 
     // HTML 콘텐츠를 저장하는 함수
@@ -38,12 +38,12 @@ export const Result = () => {
                 <div className="result-info-title">공통 전략 데이터</div>
                 <table className="result-info-table">
                     <tbody>
-                        {Object.entries(strategyCommonData).map(([key, value]) => (
-                            <tr key={key}>
-                                <th>{key}</th>
-                                <td>{JSON.stringify(value)}</td>
-                            </tr>
-                        ))}
+                    {Object.entries(strategyCommonData).map(([key, value]) => (
+                        <tr key={key}>
+                            <th>{key}</th>
+                            <td>{JSON.stringify(value)}</td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
                 <div className="result-info-title">
@@ -51,12 +51,24 @@ export const Result = () => {
                 </div>
                 <table className="result-info-table">
                     <tbody>
-                        {Object.entries(strategy1Data).map(([key, value]) => (
-                            <tr key={key}>
-                                <th>{key}</th>
-                                <td>{JSON.stringify(value)}</td>
-                            </tr>
-                        ))}
+                    {id === 'golden' && Object.entries(strategy1Data).map(([key, value]) => (
+                        <tr key={key}>
+                            <th>{key}</th>
+                            <td>{JSON.stringify(value)}</td>
+                        </tr>
+                    ))}
+                    {id === 'bollinger' && Object.entries(strategy2Data).map(([key, value]) => (
+                        <tr key={key}>
+                            <th>{key}</th>
+                            <td>{JSON.stringify(value)}</td>
+                        </tr>
+                    ))}
+                    {id === 'rsi' && Object.entries(strategy3Data).map(([key, value]) => (
+                        <tr key={key}>
+                            <th>{key}</th>
+                            <td>{JSON.stringify(value)}</td>
+                        </tr>
+                    ))}
                     </tbody>
                 </table>
             </div>

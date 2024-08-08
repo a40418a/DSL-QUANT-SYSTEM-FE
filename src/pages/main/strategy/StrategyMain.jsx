@@ -14,13 +14,13 @@ export const StrategyMain = () => {
     const { setStrategyCommonData } = useContext(StrategyContext);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
-        initial_investment: '',
-        tax: '',
+        initial_investment: 0,
+        tax: 0.01,
         start_date: '',
         end_date: '',
         target_item: '',
         tick_kind: '',
-        inq_range: '',
+        inq_range: 0,
         strategy: '',
     });
 
@@ -157,7 +157,7 @@ export const StrategyMain = () => {
                 <div className="strategy-input">
                     <div className="input-inital-investment">
                         <InputBox
-                            type="text"
+                            type="number"
                             placeholder="초기 투자 금액을 입력해주세요."
                             name="initial_investment"
                             value={formData.initial_investment}
@@ -235,7 +235,7 @@ export const StrategyMain = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="text"
+                        type="number"
                         placeholder="조회 범위를 입력하세요."
                         name="inq_range"
                         value={formData.inq_range}

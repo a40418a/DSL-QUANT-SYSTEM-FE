@@ -27,7 +27,7 @@ export const StrategyGolden = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => {
-            const newFormData = { ...prevData, [name]: value };
+            const newFormData = { ...prevData, [name]: Number(value) };
 
             if (name === 'fastMoveAvg' && parseFloat(value) < 0) {
                 alert('입력값은 0보다 작을 수 없습니다.');
@@ -85,7 +85,7 @@ export const StrategyGolden = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="text"
+                        type="number"
                         placeholder="빠른 이동 평균 기간을 입력하세요."
                         name="fastMoveAvg"
                         value={formData.fastMoveAvg}
@@ -99,7 +99,7 @@ export const StrategyGolden = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="text"
+                        type="number"
                         placeholder="느린 이동 평균 기간을 입력하세요."
                         name="slowMoveAvg"
                         value={formData.slowMoveAvg}

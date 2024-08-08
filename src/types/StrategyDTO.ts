@@ -56,14 +56,10 @@ export class StrategyBollingerDTO {
 
 export class StrategyRsiDTO {
     //RSI,MFI,MACD
-    rsiStart: string;
-    rsiEnd: string;
-    mfiLoopCount: number;
+    rsiPeriod: string;
 
-    constructor(data: { rsiStart: string; rsiEnd: string; mfiLoopCount: number }) {
-        this.rsiStart = data.rsiStart;
-        this.rsiEnd = data.rsiEnd;
-        this.mfiLoopCount = data.mfiLoopCount;
+    constructor(data: { rsiPeriod: string;}) {
+        this.rsiPeriod = data.rsiPeriod;
     }
 
 }

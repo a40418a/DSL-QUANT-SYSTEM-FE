@@ -5,13 +5,13 @@ import { StrategyCommonDTO, StrategyGoldenDTO, StrategyBollingerDTO, StrategyRsi
 
 // 초기 상태값
 const initialStrategyCommonData: StrategyCommonDTO = {
-    initialInvestment: 0,
+    initial_investment: 0,
     tax: 0.01,
-    startDate: '',
-    endDate: '',
-    targetItem: '',
-    candleType: '',
-    inqRange: 0,
+    start_date: '',
+    end_date: '',
+    target_item: '',
+    tick_kind: '',
+    inq_range: 100,
     strategy: '',
 
 };
@@ -26,9 +26,7 @@ const initialStrategy2Data: StrategyBollingerDTO = {
 };
 
 const initialStrategy3Data: StrategyRsiDTO = {
-    rsiStart: '',
-    rsiEnd: '',
-    mfiLoopCount: 0,
+    rsiPeriod: '',
 };
 
 // Context 생성

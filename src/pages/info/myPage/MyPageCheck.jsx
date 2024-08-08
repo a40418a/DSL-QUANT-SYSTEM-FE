@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './myPage.css';
 import { InputHalfBox } from '../../../components/box/inputBox/InputBox';
-import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
+import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
 import { UserInfoDTO } from '../../../types/UserInfoDTO';
 import { useNavigate } from 'react-router-dom';
 

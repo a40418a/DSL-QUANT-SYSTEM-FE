@@ -2,12 +2,12 @@
 
 import React, { useContext, useState } from 'react';
 import './strategy.css';
-import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
+import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
 import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBox';
 import { StrategyGoldenDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import axios from "axios";
+import axios from 'axios';
 
 export const StrategyGolden = () => {
     const { setStrategy1Data } = useContext(StrategyContext);
@@ -52,8 +52,8 @@ export const StrategyGolden = () => {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
             const response = await axios.post('http://localhost:8080/strategy/golden', strategy1DTO, {
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             });
             console.log('Response:', response.data);
         } catch (error) {

@@ -2,12 +2,12 @@
 
 import React, { useContext, useState } from 'react';
 import './strategy.css';
-import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
+import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
 import { InputBox } from '../../../components/box/inputBox/InputBox';
 import { StrategyRsiDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import axios from "axios";
+import axios from 'axios';
 
 export const StrategyRSI = () => {
     const { setStrategy3Data } = useContext(StrategyContext);
@@ -45,8 +45,8 @@ export const StrategyRSI = () => {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
             const response = await axios.post('http://localhost:8080/strategy/rsi', strategy3DTO, {
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             });
             console.log('Response:', response.data);
         } catch (error) {
@@ -85,7 +85,7 @@ export const StrategyRSI = () => {
             </div>
 
             <div className="strategy-btn-wrapper" id="btn-to-result">
-            <ColorBtn id="colorBtn-prev" text="< 이전" onClick={handlePrevClick} />
+                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={handlePrevClick} />
                 <ColorBtn id="colorBtn-next" text="백테스트" onClick={handleSubmit} />
             </div>
         </div>

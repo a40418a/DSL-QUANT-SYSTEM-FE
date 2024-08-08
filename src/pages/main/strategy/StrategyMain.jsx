@@ -2,13 +2,13 @@
 
 import React, { useContext, useState } from 'react';
 import './strategy.css';
-import { ColorBtn } from '../../../components/button/ColorBtn/ColorBtn';
+import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
 import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBox';
 import { SelectBox } from '../../../components/box/selectBox/SelectBox';
 import { StrategyCommonDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate } from 'react-router-dom';
-import axios from "axios";
+import axios from 'axios';
 
 export const StrategyMain = () => {
     const { setStrategyCommonData } = useContext(StrategyContext);
@@ -98,14 +98,13 @@ export const StrategyMain = () => {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
             const response = await axios.post('http://localhost:8080/strategy', strategyCommonDTO, {
                 headers: {
-                    Authorization: `Bearer ${token}`
-                }
+                    Authorization: `Bearer ${token}`,
+                },
             });
             console.log('Response:', response.data);
         } catch (error) {
             console.error('There was an error submitting the common strategy!', error);
         }
-
 
         // 선택된 전략의 value 값을 가져옵니다.
         const selectedStrategy = formData.strategy;

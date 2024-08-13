@@ -23,7 +23,8 @@ export const LineChart = ({ title, dataKey }) => {
     // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
     const data = userData01.map((entry) => ({
         x: new Date(entry.date).getTime(), // 날짜를 타임스탬프로 변환
-        y: entry[dataKey], // 선택된 데이터 키의 값을 y 값으로 설정
+        y: [entry.open, entry.close, entry.lowest, entry.highest], // 캔들차트 데이터 형식
+        meta: { ...entry }, // 메타데이터 추가
     }));
 
     const options = {
@@ -129,7 +130,20 @@ export const LineChart = ({ title, dataKey }) => {
         },
         tooltip: {
             x: {
-                format: 'yyyy.MM.dd',
+                format: 'yy/MM',
+                show: false,
+            },
+            custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+                const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex].meta;
+                return `<div class="tooltip-box">
+                          <div><strong>Date:</strong> ${new Date(data.date).toLocaleDateString()}</div>
+                          <div><strong>Open:</strong> ${data.open}</div>
+                          <div><strong>Close:</strong> ${data.close}</div>
+                          <div><strong>Highest:</strong> ${data.highest}</div>
+                          <div><strong>Lowest:</strong> ${data.lowest}</div>
+                          <div><strong>Volume:</strong> ${data.volume}</div>
+                          <div><strong>Change:</strong> ${(data.change * 100).toFixed(2)}%</div>
+                        </div>`;
             },
         },
         dataLabels: {

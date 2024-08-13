@@ -147,7 +147,8 @@ export const CandleChart = ({ title, dataKey }) => {
         tooltip: {
             shared: true, // 툴팁 공유
             x: {
-                format: 'yyyy.MM.dd', // 툴팁 날짜 포맷
+                format: 'yy/MM', // 툴팁 날짜 포맷
+                show: false,
             },
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
                 const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex].meta;

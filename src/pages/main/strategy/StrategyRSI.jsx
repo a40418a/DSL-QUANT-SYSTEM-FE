@@ -75,7 +75,7 @@ export const StrategyRSI = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="number"
+                        type="text"
                         placeholder="RSI 기간을 입력하세요."
                         name="rsiPeriod"
                         value={formData.rsiPeriod}

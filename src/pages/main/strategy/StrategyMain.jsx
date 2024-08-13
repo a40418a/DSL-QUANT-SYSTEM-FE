@@ -156,7 +156,7 @@ export const StrategyMain = () => {
                 <div className="strategy-input">
                     <div className="input-inital-investment">
                         <InputBox
-                            type="number"
+                            type="text"
                             placeholder="초기 투자 금액을 입력해주세요."
                             name="initial_investment"
                             value={formData.initial_investment}
@@ -234,7 +234,7 @@ export const StrategyMain = () => {
                 </div>
                 <div className="strategy-input">
                     <InputBox
-                        type="number"
+                        type="text"
                         placeholder="조회 범위를 입력하세요."
                         name="inq_range"
                         value={formData.inq_range}

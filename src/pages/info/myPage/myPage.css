@@ -10,7 +10,7 @@
     width: 520px;
     height: 360px;
     border-radius: var(--border-radius);
-    border: solid 1px var(--color-1);
+    box-shadow: var(--box-shadow);
     display: flex;
     flex-direction: column;
     justify-content: top;
@@ -20,7 +20,7 @@
 }
 
 .mypagecheck-title {
-    font-size: 20px;
+    font-size: 24px;
     margin-bottom: 72px;
     color: var(--main-color);
     font-family: var(--font-1);

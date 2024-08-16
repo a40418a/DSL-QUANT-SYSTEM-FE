@@ -1,7 +1,7 @@
 //볼린저밴드 전략페이지
 
 import React, { useContext, useState } from 'react';
-import './strategy.css';
+import styles from './strategy.module.css';
 import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
 import { InputBox } from '../../../components/box/inputBox/InputBox';
 import { StrategyBollingerDTO } from '../../../types/StrategyDTO';
@@ -65,13 +65,11 @@ export const StrategyBollinger = () => {
     };
 
     return (
-        <div className="strategy">
-            <div className="strategy-title">볼린저밴드 전략 설정 페이지</div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">이동 평균 기간</div>
-                </div>
-                <div className="strategy-input">
+        <div className={styles.strategy}>
+            <div className={styles.title}>볼린저밴드 전략 설정 페이지</div>
+            <div className={styles.select}>
+                <div className={styles.subtitle}>이동 평균 기간</div>
+                <div className={styles.input}>
                     <InputBox
                         type="text"
                         placeholder="이동 평균 기간을 입력하세요."
@@ -81,9 +79,9 @@ export const StrategyBollinger = () => {
                     />
                 </div>
             </div>
-            <div className="strategy-btn-wrapper" id="btn-to-result">
-                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={handlePrevClick} />
-                <ColorBtn id="colorBtn-next" text="백테스트" onClick={handleSubmit} />
+            <div className={styles.btnWrapper} id="btn-to-result">
+                <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick} />
+                <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit} />
             </div>
         </div>
     );

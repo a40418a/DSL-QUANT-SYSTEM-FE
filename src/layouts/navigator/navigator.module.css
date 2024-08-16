@@ -4,7 +4,6 @@ a {
     font-family: inherit;
     cursor: pointer; /* 링크 커서 스타일 */
 }
-
 .navigator {
     width: 100%;
     height: 100px;
@@ -13,10 +12,6 @@ a {
     top: 0;
     z-index: 999; /*우선순위지정*/
     margin-bottom: 120px;
-}
-
-.navigator-wrapper {
-    height: 100%;
     padding: 0px var(--padding);
     display: flex;
     align-items: center;
@@ -26,16 +21,16 @@ a {
     border-color: var(--main-color);
 }
 
-.navigator-title {
+.title {
     font-family: var(--font-1);
     color: var(--main-color);
 }
 
-.navigator-title a {
+.title a {
     font-size: 24px;
 }
 
-.navigator-menu-wrapper {
+.menuWrapper {
     box-sizing: border-box;
     width: 80%;
     display: flex;
@@ -44,7 +39,7 @@ a {
     color: var(--color-1);
 }
 
-.navigator-menu {
+.menu {
     box-sizing: border-box;
     display: flex;
     justify-content: center;
@@ -54,29 +49,29 @@ a {
     width: 120px;
 }
 
-.navigator-menu:hover {
+.menu:hover {
     box-shadow: 0px 0px 8px -1px var(--point-color);
     cursor: pointer;
 }
 
-.navigator-menu.active {
+.menu.active {
     background-color: var(--point-color);
     padding: 8px 16px;
     font-weight: bold;
 }
 
-.navigator-account {
+.account {
     display: flex;
 }
 
-.navigator-account-name p {
+.accountName p {
     text-decoration: underline;
     font-size: 12px;
     color: var(--color-3);
 }
 
-.navigator-account-name,
-.navigator-account-logout {
+.accountName,
+.accountLogout {
     display: flex;
     margin: 0 8px;
     width: 56px;
@@ -86,37 +81,25 @@ a {
 
 /* 반응형 */
 @media (max-width: 1068px) {
-    .navigator-wrapper {
+    .wrapper {
         display: flex;
         flex-direction: row;
     }
-    .navigator-menu-wrapper {
+    .menu-wrapper {
         width: 90%;
         display: flex;
         justify-content: left;
     }
-    .navigator-menu {
+    .menu {
         width: 88px;
-    }
-    .navigator-menu {
-        font-size: 12px;
-    }
-    .navigator-logout {
-        width: 12vw;
-    }
-    .navigator-logout a {
         font-size: 12px;
     }
 }
 
 @media (max-width: 686px) {
-    .navigator-wrapper {
+    .navigator {
         display: flex;
         flex-direction: column;
         align-items: space-around;
-    }
-    .navigator-logout {
-        width: 100%;
-        justify-content: flex-end;
     }
 }

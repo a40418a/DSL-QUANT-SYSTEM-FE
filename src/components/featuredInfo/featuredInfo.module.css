@@ -1,4 +1,4 @@
-.featured {
+.featuredInfo {
     box-sizing: border-box;
     display: flex;
     justify-content: space-between;
@@ -6,18 +6,18 @@
     height: 360px;
 }
 
-.featured-box {
+.box {
     width: 30%;
     margin-bottom: var(--margin);
 }
 
 @media (max-width: 1068px) {
-    .featured {
+    .featuredInfo {
         flex-direction: column;
         align-items: center;
     }
 
-    .featured-box {
+    .box {
         width: 80%;
         height: 280px;
     }

@@ -1,9 +1,9 @@
 //골든/데드 전략페이지
 
 import React, { useContext, useState } from 'react';
-import './strategy.css';
+import styles from './strategy.module.css';
 import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
-import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBox';
+import { InputBox } from '../../../components/box/inputBox/InputBox';
 import { StrategyGoldenDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
@@ -77,13 +77,11 @@ export const StrategyGolden = () => {
     };
 
     return (
-        <div className="strategy">
-            <div className="strategy-title">골든/데드 전략 설정 페이지</div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">빠른 이동 평균 기간</div>
-                </div>
-                <div className="strategy-input">
+        <div className={styles.strategy}>
+            <div className={styles.title}>골든/데드 전략 설정 페이지</div>
+            <div className={styles.select}>
+                <div className={styles.subtitle}>빠른 이동 평균 기간</div>
+                <div className={styles.input}>
                     <InputBox
                         type="text"
                         placeholder="빠른 이동 평균 기간을 입력하세요."
@@ -93,11 +91,10 @@ export const StrategyGolden = () => {
                     />
                 </div>
             </div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">느린 이동 평균 기간</div>
-                </div>
-                <div className="strategy-input">
+            <div className={styles.select}>
+                <div className={styles.subtitle}>느린 이동 평균 기간</div>
+
+                <div className={styles.input}>
                     <InputBox
                         type="text"
                         placeholder="느린 이동 평균 기간을 입력하세요."
@@ -107,9 +104,9 @@ export const StrategyGolden = () => {
                     />
                 </div>
             </div>
-            <div className="strategy-btn-wrapper" id="btn-to-result">
-                <ColorBtn id="colorBtn-prev" text="< 이전" onClick={handlePrevClick} />
-                <ColorBtn id="colorBtn-next" text="백테스트" onClick={handleSubmit} />
+            <div className={styles.btnWrapper}>
+                <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick} />
+                <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit} />
             </div>
         </div>
     );

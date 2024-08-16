@@ -14,11 +14,11 @@
     font-size: 12px;
 }
 
-.footerRight {
+.right {
     display: flex;
 }
 
-.footerRight div {
+.right div {
     margin-left: 24px;
 }
 

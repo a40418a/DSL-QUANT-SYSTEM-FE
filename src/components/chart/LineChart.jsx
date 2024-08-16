@@ -2,6 +2,7 @@ import React from 'react';
 import Chart from 'react-apexcharts';
 import { userData01 } from '../../data/dummyData01';
 import './chart.css';
+import styles from './chart.module.css';
 
 // Chart01 컴포넌트 정의
 export const LineChart = ({ title, dataKey }) => {
@@ -50,7 +51,7 @@ export const LineChart = ({ title, dataKey }) => {
                     reset: true,
                     customIcons: [
                         {
-                            icon: '<div class="custom-icon">1Y</div>', // 사용자 정의 아이콘 (1년)
+                            icon: '<div class="icon">1Y</div>', // 사용자 정의 아이콘 (1년)
                             index: 1,
                             title: '1 Year',
 
@@ -62,7 +63,7 @@ export const LineChart = ({ title, dataKey }) => {
                             },
                         },
                         {
-                            icon: '<div class="custom-icon">6M</div>', // 사용자 정의 아이콘 (6개월)
+                            icon: '<div class="icon">6M</div>', // 사용자 정의 아이콘 (6개월)
                             index: 2,
                             title: '6 Month',
 
@@ -74,7 +75,7 @@ export const LineChart = ({ title, dataKey }) => {
                             },
                         },
                         {
-                            icon: '<div class="custom-icon">3M</div>', // 사용자 정의 아이콘 (3개월)
+                            icon: '<div class="icon">3M</div>', // 사용자 정의 아이콘 (3개월)
                             index: 3,
                             title: '3 Month',
 
@@ -86,7 +87,7 @@ export const LineChart = ({ title, dataKey }) => {
                             },
                         },
                         {
-                            icon: '<div class="custom-icon">1M</div>', // 사용자 정의 아이콘 (1개월)
+                            icon: '<div class="icon">1M</div>', // 사용자 정의 아이콘 (1개월)
                             index: 4,
                             title: '1 Month',
 
@@ -98,7 +99,7 @@ export const LineChart = ({ title, dataKey }) => {
                             },
                         },
                         {
-                            icon: '<div class="custom-icon">1W</div>', // 사용자 정의 아이콘 (1주일)
+                            icon: '<div class="icon">1W</div>', // 사용자 정의 아이콘 (1주일)
                             index: 5,
                             title: '1 Week',
 
@@ -135,7 +136,7 @@ export const LineChart = ({ title, dataKey }) => {
             },
             custom: function ({ series, seriesIndex, dataPointIndex, w }) {
                 const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex].meta;
-                return `<div class="tooltip-box">
+                return `<div class="tooltip">
                           <div><strong>Date:</strong> ${new Date(data.date).toLocaleDateString()}</div>
                           <div><strong>Open:</strong> ${data.open}</div>
                           <div><strong>Close:</strong> ${data.close}</div>
@@ -180,7 +181,7 @@ export const LineChart = ({ title, dataKey }) => {
     };
 
     return (
-        <div className="chart">
+        <div className={styles.chart}>
             <Chart options={options} series={[{ name: dataKey, data }]} type="area" height="100%" />
         </div>
     );

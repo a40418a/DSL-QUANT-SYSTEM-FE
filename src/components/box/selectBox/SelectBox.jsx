@@ -1,20 +1,20 @@
 import React from 'react';
-import './selectBox.css';
+import styles from './selectBox.module.css';
 
-export const SelectBox = (props) => {
+export const SelectBox = ({ disabled, name, value, onChange, placeholder, options }) => {
     return (
         <select
-            className="selectBox"
-            disabled={props.disabled}
-            name={props.name}
-            value={props.value}
-            onChange={props.onChange}
-            placeholder={props.placeholder}
+            className={styles.selectBox}
+            disabled={disabled}
+            name={name}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
         >
             <option value="" disabled>
-                {props.placeholder}
+                {placeholder}
             </option>
-            {props.options.map((option, index) => (
+            {options.map((option, index) => (
                 <option key={index} value={option.value}>
                     {option.label}
                 </option>

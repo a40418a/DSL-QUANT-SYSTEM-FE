@@ -1,4 +1,4 @@
-.featuredinfo {
+.chartBox {
     box-sizing: border-box;
     flex: 1;
     padding: var(--padding);
@@ -8,46 +8,46 @@
     height: 100%;
 }
 
-.featuredinfo-text {
+.text {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
 }
 
-.featuredinfo-title {
+.title {
     font-size: 18px;
     font-family: var(--font-1);
     color: var(--main-color);
 }
 
-.featuredinfo-money {
+.money {
     display: flex;
     align-items: center;
     font-family: var(--font-2);
     font-size: 12px;
 }
 
-.featuredinfo-money > * {
+.money > * {
     margin-left: 12px; /* 오른쪽 마진을 추가하여 요소들 사이의 간격 조절 */
 }
 
-.featuredinfo-chart {
+.chart {
     width: 100%;
     height: 80%;
 }
 
-.featuredinfo-sub {
+.sub {
     font-size: 10px;
     color: var(--color-3);
 }
 
 /* 반응형 */
 @media (max-width: 1068px) {
-    .featuredinfo {
+    .wrapper {
         width: 64vw;
     }
-    .featuredinfo-sub {
+    .sub {
         display: none;
     }
 }

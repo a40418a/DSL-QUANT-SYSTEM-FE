@@ -1,17 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './colorBtn.css';
+import styles from './colorBtn.module.css';
 
-export const ColorBtn = (props) => {
+export const ColorBtn = ({ onClick, id, text }) => {
     const handleClick = (event) => {
-        if (props.onClick) {
-            props.onClick(event); // 클릭 이벤트 상위 컴포넌트로 전달
+        if (onClick) {
+            onClick(event); // 클릭 이벤트 상위 컴포넌트로 전달
         }
     };
 
     return (
-        <div className="colorBtn" id={props.id} onClick={handleClick}>
-            {props.text}
+        <div className={styles.colorBtn} id={id} onClick={handleClick}>
+            {text}
         </div>
     );
 };

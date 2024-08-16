@@ -1,6 +1,6 @@
 import React from 'react';
-import './login.css';
-import { ImageBtn } from '../../../components/button/imgBtn/ImgBtn';
+import styles from './login.module.css';
+import { ImgBtn } from '../../../components/button/imgBtn/ImgBtn';
 import KakaoLoginLogo from '../../../assets/kakao_login_medium_wide.png';
 
 export const Login = () => {
@@ -14,13 +14,11 @@ export const Login = () => {
     };
 
     return (
-        <div className="login">
-            <div className="login-wrapper">
-                <div className="login-title">로그인</div>
-                <div className="login-btn-wrapper">
-                    <div className="login-btn">
-                        <ImageBtn onClick={kakaoHandler} imageSrc={KakaoLoginLogo} alt="kakao" />
-                    </div>
+        <div className={styles.login}>
+            <div className={styles.box}>
+                <div className={styles.title}>로그인</div>
+                <div className={styles.btn}>
+                    <ImgBtn onClick={kakaoHandler} imageSrc={KakaoLoginLogo} alt="kakao" />
                 </div>
             </div>
         </div>

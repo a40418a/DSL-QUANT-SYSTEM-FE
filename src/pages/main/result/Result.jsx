@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import './result.css';
+import styles from './result.module.css';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useParams } from 'react-router-dom';
 
@@ -52,14 +52,14 @@ export const Result = () => {
     };
 
     return (
-        <div className="result">
-            <div className="result-title">
-                <div className="result-title-name">최승아</div>
-                <div className="result-title-content">님의 전략선택옵션</div>
+        <div className={styles.result}>
+            <div className={styles.title}>
+                <div className={styles.name}>최승아</div>
+                <div className={styles.sub}>님의 전략선택옵션</div>
             </div>
-            <div className="result-info">
-                <div className="result-info-title">공통 전략 데이터</div>
-                <table className="result-info-table">
+            <div className={styles.wrapper}>
+                <div className={styles.infoTitle}>공통 전략 데이터</div>
+                <table className={styles.table}>
                     <tbody>
                         {Object.entries(strategyCommonData).map(([key, value]) => (
                             <tr key={key}>
@@ -69,10 +69,10 @@ export const Result = () => {
                         ))}
                     </tbody>
                 </table>
-                <div className="result-info-title">
+                <div className={styles.infoTitle}>
                     선택 전략 <p>{id}</p> 데이터
                 </div>
-                <table className="result-info-table">
+                <table className={styles.table}>
                     <tbody>
                         {id === 'golden' &&
                             Object.entries(strategy1Data).map(([key, value]) => (
@@ -98,14 +98,14 @@ export const Result = () => {
                     </tbody>
                 </table>
             </div>
-            <div className="result-title">
-                <div className="result-title-name">최승아</div>
-                <div className="result-title-content">님의 백테스팅 결과</div>
+            <div className={styles.title}>
+                <div className={styles.name}>최승아</div>
+                <div className={styles.sub}>님의 백테스팅 결과</div>
             </div>
-            <div className="result-explain">
+            <div className={styles.box}>
                 <div>해당 분석 결과를 추후에도 확인하고 싶다면 아래의 html로 저장하기 버튼을 눌러주세요</div>
                 <div>파일 분석 팁💡💡</div>
-                <div className="result-explain-download" onClick={saveHtml}>
+                <div className={styles.download} onClick={saveHtml}>
                     HTML로 저장하기
                 </div>
             </div>

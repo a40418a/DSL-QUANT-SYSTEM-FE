@@ -2,7 +2,7 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 import { userData01 } from '../../data/dummyData01';
-import './chart.css';
+import styles from './chart.module.css';
 
 export const BarChart = ({ title, dataKey }) => {
     const length = userData01.length; // 데이터 길이 저장
@@ -48,7 +48,7 @@ export const BarChart = ({ title, dataKey }) => {
     };
 
     return (
-        <div className="chart">
+        <div className={styles.chart}>
             {/* ApexCharts 컴포넌트 렌더링 */}
             <Chart options={options} series={[{ name: dataKey, data }]} type="bar" height="20%" />
         </div>

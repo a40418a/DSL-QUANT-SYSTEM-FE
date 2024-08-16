@@ -1,12 +1,13 @@
 import React from 'react';
-import './horizonTable.css';
+import styles from './horizonTable.module.css';
 import { userData03 } from '../../../data/dummyData03';
+import { styled } from '@mui/material';
 
 export const HorizonTableTop20 = ({ title }) => {
     return (
-        <div id="table-top20">
-            <div className="tableTitle">{title}</div>
-            <table className="table-h">
+        <div className={styles.horizonTableTop20}>
+            <div className={styles.title}>{title}</div>
+            <table className={styles.head}>
                 <thead>
                     <tr>
                         <th>순위</th>
@@ -20,12 +21,12 @@ export const HorizonTableTop20 = ({ title }) => {
                     {userData03.map((data, index) => (
                         <tr key={index}>
                             <td>{data.rank}</td>
-                            <td className="data-text"> {data.name}</td>
-                            <td className="data-num">{data.now.toLocaleString()}</td>
-                            <td className={`data-num ${data.rate > 0 ? 'positive' : 'negative'}`}>
+                            <td className={styles.dataText}> {data.name}</td>
+                            <td className={styles.dataNum}>{data.now.toLocaleString()}</td>
+                            <td className={`${styles.dataNum} ${data.rate > 0 ? styles.positive : styles.negative}`}>
                                 {data.calc.toLocaleString()}
                             </td>
-                            <td className={`data-num ${data.rate > 0 ? 'positive' : 'negative'}`}>
+                            <td className={`${styles.dataNum} ${data.rate > 0 ? styles.positive : styles.negative}`}>
                                 {(data.rate * 100).toFixed(2)}%
                             </td>
                         </tr>

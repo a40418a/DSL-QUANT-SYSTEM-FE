@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import './myPage.css';
+import styles from './myPage.module.css';
 import { VerticalTable } from '../../../components/table/verticalTable/VerticalTable';
 
 export const MyPage = () => {
     return (
-        <div className="mypage">
-            <div className="mypage-title">
-                <div className="mypage-title-name">최승아</div>
-                <div className="mypage-title-content">님의 마이페이지</div>
+        <div className={styles.mypage}>
+            <div className={styles.title}>
+                <div className={styles.name}>최승아</div>
+                <div className={styles.sub}>님의 마이페이지</div>
             </div>
-            <div className="mypage-info">
-                <div className="mypage-main-title">회원 개인정보</div>
+            <div className={styles.info}>
+                <div className={styles.infoTitle}>회원 개인정보</div>
                 <VerticalTable />
             </div>
-            <div className="mypage-backtest">
-                <div className="mypage-main-title">백테스팅 기록</div>
-                <table className="mypage-main-table">
+            <div className={styles.info}>
+                <div className={styles.infoTitle}>백테스팅 기록</div>
+                <table className={styles.table}>
                     <thead>
                         <tr>
                             <th>date</th>

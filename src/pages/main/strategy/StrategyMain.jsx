@@ -1,9 +1,9 @@
 //공통전략설정 및 전략 선택 페이지
 
 import React, { useContext, useState } from 'react';
-import './strategy.css';
+import styles from './strategy.module.css';
 import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
-import { InputBox, InputHalfBox } from '../../../components/box/inputBox/InputBox';
+import { InputBox } from '../../../components/box/inputBox/InputBox';
 import { SelectBox } from '../../../components/box/selectBox/SelectBox';
 import { StrategyCommonDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
@@ -147,14 +147,12 @@ export const StrategyMain = () => {
     };
 
     return (
-        <div className="strategy">
-            <div className="strategy-title">공통 변수 설정</div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">초기 투자 금액</div>
-                </div>
-                <div className="strategy-input">
-                    <div className="input-inital-investment">
+        <div className={styles.strategy}>
+            <div className={styles.title}>공통 변수 설정</div>
+            <div className={styles.select}>
+                <div className={styles.subtitle}>초기 투자 금액</div>
+                <div className={styles.input}>
+                    <div className={styles.initInvestment}>
                         <InputBox
                             type="text"
                             placeholder="초기 투자 금액을 입력해주세요."
@@ -166,11 +164,9 @@ export const StrategyMain = () => {
                     <span>만원</span>
                 </div>
             </div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">거래 수수료</div>
-                </div>
-                <div className="strategy-input">
+            <div className={styles.select}>
+                <div className={styles.subtitle}>거래 수수료</div>
+                <div className={styles.input}>
                     <SelectBox
                         placeholder="거래 수수료를 선택해주세요."
                         options={options_tax}
@@ -180,31 +176,22 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">기간 설정</div>
-                </div>
-                <div className="strategy-input">
-                    <div className="half-input-wrapper">
-                        <div className="strategy-subtitle-date">시작일 설정</div>
-                        <InputHalfBox
-                            type="date"
-                            name="start_date"
-                            value={formData.start_date}
-                            onChange={handleChange}
-                        />
+            <div className={styles.select}>
+                <div className={styles.subtitle}>기간 설정</div>
+                <div className={styles.input}>
+                    <div className={styles.inputHalf}>
+                        <div className={styles.subtitleDate}>시작일 설정</div>
+                        <InputBox type="date" name="start_date" value={formData.start_date} onChange={handleChange} />
                     </div>
-                    <div className="half-input-wrapper">
-                        <div className="strategy-subtitle-date">종료일 설정</div>
-                        <InputHalfBox type="date" name="end_date" value={formData.end_date} onChange={handleChange} />
+                    <div className={styles.inputHalf}>
+                        <div className={styles.subtitleDate}>종료일 설정</div>
+                        <InputBox type="date" name="end_date" value={formData.end_date} onChange={handleChange} />
                     </div>
                 </div>
             </div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">종목 이름(TargetItem)</div>
-                </div>
-                <div className="strategy-input">
+            <div className={styles.select}>
+                <div className={styles.subtitle}>종목 이름(TargetItem)</div>
+                <div className={styles.input}>
                     <InputBox
                         type="text"
                         placeholder="종목 이름을 정확히 입력하세요."
@@ -214,11 +201,9 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">캔들 종류(TickKind)</div>
-                </div>
-                <div className="strategy-input">
+            <div className={styles.select}>
+                <div className={styles.subtitle}>캔들 종류(TickKind)</div>
+                <div className={styles.input}>
                     <SelectBox
                         placeholder="캔들 종류를 선택해주세요."
                         options={options_candle}
@@ -228,11 +213,9 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            <div className="strategy-select">
-                <div className="strategy-subtitle-wrapper">
-                    <div className="strategy-subtitle">조회 범위(InqRange)</div>
-                </div>
-                <div className="strategy-input">
+            <div className={styles.select}>
+                <div className={styles.subtitle}>조회 범위(InqRange)</div>
+                <div className={styles.input}>
                     <InputBox
                         type="text"
                         placeholder="조회 범위를 입력하세요."
@@ -242,9 +225,9 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            <div className="strategy-title">전략 선택</div>
-            <div className="strategy-select">
-                <div className="strategy-input">
+            <div className={styles.title}>전략 선택</div>
+            <div className={styles.select}>
+                <div className={styles.input}>
                     <SelectBox
                         placeholder="전략을 선택하세요."
                         options={options_strategy}
@@ -254,8 +237,8 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            <div className="strategy-btn-wrapper" id="btn-to-result">
-                <ColorBtn id="colorBtn-next" text="세부 전략 선택" onClick={handleSubmit} />
+            <div className={styles.btnWrapper}>
+                <ColorBtn className={styles.btnNext} text="세부 전략 선택" onClick={handleSubmit} />
             </div>
         </div>
     );

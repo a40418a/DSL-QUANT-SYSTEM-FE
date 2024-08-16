@@ -6,7 +6,7 @@
     justify-content: center;
 }
 
-.login-wrapper {
+.box {
     box-sizing: border-box;
     width: 520px;
     height: 360px;
@@ -19,14 +19,14 @@
     padding: 40px 24px 0 24px;
 }
 
-.login-title {
+.title {
     font-size: 24px;
     margin-bottom: 120px;
     color: var(--main-color);
     font-family: var(--font-1);
 }
 
-#kakao {
+/* #kakao {
     background-color: #fee500;
     box-shadow: 0px 0px 4px 0px #baa700;
-}
+} */

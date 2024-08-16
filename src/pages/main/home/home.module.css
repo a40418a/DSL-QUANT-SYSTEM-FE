@@ -6,7 +6,7 @@
     align-items: center;
 }
 
-.info {
+.wrapper {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -14,26 +14,26 @@
     margin-top: 40px;
 }
 
-.back-tested {
+.backTest {
     width: 54%;
 }
 
-.back-tested-title {
+.backTitle {
     font-weight: bold;
     margin-bottom: var(--margin);
 }
 
-.back-tested-chart {
+.backChart {
     width: 100%;
     height: 400px;
 }
 
-.top20 {
+.table {
     width: 42%;
     overflow-x: scroll;
 }
 
-.top20 td {
+.table td {
     text-overflow: ellipsis;
 }
 
@@ -42,27 +42,27 @@
     .home {
         width: 80%;
     }
-    .info {
+    .wrapper {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    .back-tested {
+    .backTest {
         width: 80%;
         margin-top: 280px;
     }
-    .top20 {
+    .table {
         width: 80%;
         margin-top: 40px;
     }
 }
 
 @media (max-width: 675px) {
-    .top20 td {
+    .table td {
         font-size: 12px;
     }
 
-    .top20 th {
+    .table th {
         font-size: 12px;
     }
 }

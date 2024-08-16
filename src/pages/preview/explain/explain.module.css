@@ -5,27 +5,27 @@
     height: 90vh;
 }
 
-.explain-title div {
+.title div {
     font-family: var(--font-1);
     text-align: center;
     font-size: 64px;
     color: var(--main-color);
 }
 
-.explain-content-wrapper {
+.wrapper {
     margin-left: 40px;
 }
 
-.explain-content {
+.content {
     margin-bottom: 60px;
 }
 
-.explain-content div {
+.content div {
     font-size: 20px;
     margin-bottom: 16px;
 }
 
-.explain-content-btn {
+.btn {
     display: flex;
     justify-content: center;
     font-size: 32px;

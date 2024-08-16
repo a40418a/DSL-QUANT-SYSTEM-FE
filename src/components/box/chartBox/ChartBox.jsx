@@ -1,20 +1,18 @@
 //주식 참고 자료 박스
 import React from 'react';
-import './chartBox.css';
+import styles from './chartBox.module.css';
 
-export const ChartBox = (props) => {
+export const ChartBox = ({ title, currency, price, arrow, rate, chart, sub }) => {
     return (
-        <div className="featuredinfo">
-            <div className="featuredinfo-text">
-                <div className="featuredinfo-title">{props.title}</div>
-                <div className="featuredinfo-money">
-                    <div className="featuredinfo-money-content">
-                        {props.currency} {props.price} {props.arrow} {props.rate}
-                    </div>
+        <div className={styles.chartBox}>
+            <div className={styles.text}>
+                <div className={styles.title}>{title}</div>
+                <div className={styles.money}>
+                    {currency} {price} {arrow} {rate}
                 </div>
             </div>
-            <div className="featuredinfo-chart">{props.chart}</div>
-            <span className="featuredinfo-sub">{props.sub}</span>
+            <div className={styles.chart}>{chart}</div>
+            <span className={styles.sub}>{sub}</span>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import { FeaturedInfo } from '../../../components/featuredInfo/FeaturedInfo';
-import './home.css';
+import styles from './home.module.css';
 import { HorizonTableTop20 } from '../../../components/table/horizonTable/HorizonTable';
 import { ArrowDown, ArrowUp } from '../../../components/emoticon/Arrow';
 import { ChartBox } from '../../../components/box/chartBox/ChartBox';
@@ -9,12 +9,12 @@ import { userData01 } from '../../../data/dummyData01';
 
 export const Home = () => {
     return (
-        <div className="home">
-            <FeaturedInfo className="container-featuredinfo" />
-            <div className="info">
-                <div className="back-tested">
-                    <div className="back-tested-title">백테스팅 결과</div>
-                    <div className="back-tested-chart">
+        <div className={styles.home}>
+            <FeaturedInfo className={styles.featuredInfo} />
+            <div className={styles.wrapper}>
+                <div className={styles.backTest}>
+                    <div className={styles.backTitle}>백테스팅 결과</div>
+                    <div className={styles.backChart}>
                         <ChartBox
                             title="최근 주식 종목"
                             currency="₩"
@@ -26,7 +26,7 @@ export const Home = () => {
                         />
                     </div>
                 </div>
-                <div className="top20">
+                <div className={styles.table}>
                     <HorizonTableTop20 title={'TOP 20 종목'} />
                 </div>
             </div>

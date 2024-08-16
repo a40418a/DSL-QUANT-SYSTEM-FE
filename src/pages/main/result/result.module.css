@@ -6,24 +6,24 @@
     align-items: center;
 }
 
-.result-title {
+.title {
     display: flex;
     align-items: end;
     margin-bottom: 32px;
 }
 
-.result-title-name {
+.name {
     font-family: var(--font-1);
     font-size: 24px;
     color: var(--main-color);
 }
 
-.result-title-content {
+.sub {
     font-size: 16px;
     margin-left: 8px;
 }
 
-.result-explain {
+.box {
     box-sizing: border-box;
     border: solid 1px var(--main-color);
     border-radius: 8px;
@@ -31,49 +31,42 @@
     padding: var(--padding);
 }
 
-.result-info {
+.wrapper {
     box-sizing: border-box;
     width: 100%;
 }
 
-.result-info-title {
+.infoTitle {
     margin-bottom: 8px;
     display: flex;
     align-items: end;
     font-weight: bold;
 }
 
-.result-info-title p {
+.infoTitle p {
     font-family: var(--font-1);
     color: var(--main-color);
     font-size: 20px;
     margin: 0 8px;
 }
 
-.result-info-data-title {
-    font-weight: bold;
-    margin-bottom: 8px;
-    font-family: var(--font-1);
-    font-size: 16px;
-}
-
-.result-info-table {
+.table {
     box-sizing: border-box;
     width: 100%;
     margin-bottom: 32px;
     overflow-x: scroll;
 }
 
-.result-info-table th {
+.table th {
     width: 32%;
 }
 
-.result-info-table td {
+.table td {
     text-align: left;
     padding: 0 var(--padding);
 }
 
-.result-explain-download {
+.download {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -84,6 +77,6 @@
     color: var(--color-3);
 }
 
-.result-explain-download:hover {
+.download:hover {
     cursor: pointer;
 }

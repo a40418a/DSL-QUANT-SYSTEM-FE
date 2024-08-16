@@ -1,28 +1,15 @@
 import React from 'react';
-import './inputBox.css';
+import styles from './inputBox.module.css';
 
-export const InputBox = (props) => {
+export const InputBox = ({ type, placeholder, name, value, onChange }) => {
     return (
         <input
-            className="inputBox"
-            type={props.type}
-            placeholder={props.placeholder}
-            name={props.name}
-            value={props.value}
-            onChange={props.onChange}
-        />
-    );
-};
-
-export const InputHalfBox = (props) => {
-    return (
-        <input
-            className="inputHalfBox"
-            type={props.type}
-            placeholder={props.placeholder}
-            name={props.name}
-            value={props.value}
-            onChange={props.onChange}
+            className={styles.inputBox}
+            type={type}
+            placeholder={placeholder}
+            name={name}
+            value={value}
+            onChange={onChange}
         />
     );
 };

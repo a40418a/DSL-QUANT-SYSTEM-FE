@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.stockinfo-title {
+.title {
     width: 100%;
     display: flex;
     justify-content: left;
@@ -16,21 +16,21 @@
     color: var(--main-color);
 }
 
-.stockinfo-table {
+.table {
     margin: 40px 0;
 }
 
-.stockinfo-table th {
+.table th {
     width: 15%;
 }
 
-.stockinfo-table th,
-.stockinfo-table td {
+.table th,
+.table td {
     padding: 8px 0;
 }
 
-.stockinfo-chart-line,
-.stockinfo-chart-candle {
+.line,
+.candle {
     width: 640px;
     height: 400px;
     margin: 40px 0;
@@ -41,8 +41,8 @@
     .stockinfo {
         width: 80%;
     }
-    .stockinfo-chart-line,
-    .stockinfo-chart-candle {
+    .line,
+    .candle {
         width: 100%;
     }
 }

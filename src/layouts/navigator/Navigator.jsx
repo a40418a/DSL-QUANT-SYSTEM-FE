@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
-import './navigator.css';
+import styles from './navigator.module.css';
 
 export const Navigator = () => {
     const [activePage, setActivePage] = useState('');
@@ -48,43 +48,41 @@ export const Navigator = () => {
 
     if (location.pathname !== '/' && location.pathname !== '/login') {
         return (
-            <div className="navigator">
-                <div className="navigator-wrapper">
-                    <div className="navigator-title">
-                        <Link to="/home" className="navigator-title">
-                            DSL QUANT
-                        </Link>
-                    </div>
-                    <ul className="navigator-menu-wrapper">
-                        <li
-                            className={`navigator-menu ${activePage === '/stockinfo' ? 'active' : ''}`}
-                            onClick={() => navigate('/stockinfo')}
-                        >
-                            상세정보
-                        </li>
-                        <li
-                            className={`navigator-menu ${
-                                activePage === '/strategy' ||
-                                activePage === '/strategy/golden' ||
-                                activePage === '/strategy/bollinger' ||
-                                activePage === '/strategy/rsi' ||
-                                activePage.startsWith('/result')
-                                    ? 'active'
-                                    : ''
-                            }`}
-                            onClick={() => navigate('/strategy')}
-                        >
-                            전략설정
-                        </li>
-                    </ul>
-                    <div className="navigator-account">
-                        <Link to="/mypage" onClick={() => navigate('/mypage')} className="navigator-account-name">
-                            <p>최승아</p>님
-                        </Link>
-                        <Link to="/" onClick={logoutHandler} className="navigator-account-logout">
-                            로그아웃
-                        </Link>
-                    </div>
+            <div className={styles.navigator}>
+                <div>
+                    <Link to="/home" className={styles.title}>
+                        DSL QUANT
+                    </Link>
+                </div>
+                <ul className={styles.menuWrapper}>
+                    <li
+                        className={`${styles.menu} ${activePage === '/stockinfo' ? 'active' : ''}`}
+                        onClick={() => navigate('/stockinfo')}
+                    >
+                        상세정보
+                    </li>
+                    <li
+                        className={`${styles.menu} ${
+                            activePage === '/strategy' ||
+                            activePage === '/strategy/golden' ||
+                            activePage === '/strategy/bollinger' ||
+                            activePage === '/strategy/rsi' ||
+                            activePage.startsWith('/result')
+                                ? 'active'
+                                : ''
+                        }`}
+                        onClick={() => navigate('/strategy')}
+                    >
+                        전략설정
+                    </li>
+                </ul>
+                <div className={styles.account}>
+                    <Link to="/mypage" onClick={() => navigate('/mypage')} className={styles.accountName}>
+                        <p>최승아</p>님
+                    </Link>
+                    <Link to="/" onClick={logoutHandler} className={styles.accountLogout}>
+                        로그아웃
+                    </Link>
                 </div>
             </div>
         );

@@ -1,8 +1,8 @@
-//상단 메뉴 박스
-import { Link, useLocation, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect, useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { AuthContext } from '../../context/AuthContext';
+import classNames from 'classnames';
 import styles from './navigator.module.css';
 
 export const Navigator = () => {
@@ -11,17 +11,13 @@ export const Navigator = () => {
     const navigate = useNavigate();
     const { logout } = useContext(AuthContext);
 
-    // useLocation의 pathname을 기반으로 현재 페이지 설정
     useEffect(() => {
         setActivePage(location.pathname);
     }, [location]);
 
     const logoutHandler = async () => {
         try {
-            // 로컬 스토리지에서 JWT 토큰 가져오기
             const token = localStorage.getItem('jwt');
-
-            // 서버에 로그아웃 요청 보내기
             await axios.post(
                 'http://43.200.199.72:8080/logout',
                 {},
@@ -34,14 +30,9 @@ export const Navigator = () => {
             );
 
             logout();
-
-            // 로그아웃 성공 메시지 표시
             alert('로그아웃 완료');
-
-            // 로그인 페이지로 리다이렉트
             navigate('/login');
         } catch (error) {
-            // 로그아웃 과정에서 에러가 발생한 경우 콘솔에 에러 메시지 출력
             console.error('로그아웃 진행 도중에 오류가 발생했습니다', error);
         }
     };
@@ -56,21 +47,22 @@ export const Navigator = () => {
                 </div>
                 <ul className={styles.menuWrapper}>
                     <li
-                        className={`${styles.menu} ${activePage === '/stockinfo' ? 'active' : ''}`}
-                        onClick={() => navigate('/stockinfo')}
+                        className={classNames(styles.menu, {
+                            [styles.active]: activePage === '/stocklist' || activePage === '/stockinfo',
+                        })}
+                        onClick={() => navigate('/stocklist')}
                     >
                         상세정보
                     </li>
                     <li
-                        className={`${styles.menu} ${
-                            activePage === '/strategy' ||
-                            activePage === '/strategy/golden' ||
-                            activePage === '/strategy/bollinger' ||
-                            activePage === '/strategy/rsi' ||
-                            activePage.startsWith('/result')
-                                ? 'active'
-                                : ''
-                        }`}
+                        className={classNames(styles.menu, {
+                            [styles.active]:
+                                activePage === '/strategy' ||
+                                activePage === '/strategy/golden' ||
+                                activePage === '/strategy/bollinger' ||
+                                activePage === '/strategy/rsi' ||
+                                activePage.startsWith('/result'),
+                        })}
                         onClick={() => navigate('/strategy')}
                     >
                         전략설정

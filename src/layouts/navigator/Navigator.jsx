@@ -76,16 +76,11 @@ export const Navigator = () => {
                         >
                             전략설정
                         </li>
-                        <li
-                            className={`navigator-menu ${
-                                activePage === '/mypagecheck' || activePage === '/mypage' ? 'active' : ''
-                            }`}
-                            onClick={() => navigate('/mypagecheck')}
-                        >
-                            마이페이지
-                        </li>
                     </ul>
                     <div className="navigator-logout">
+                        <Link to="/mypage" onClick={() => navigate('/mypage')}>
+                            <p>최승아</p> 님
+                        </Link>
                         <Link to="/" onClick={logoutHandler}>
                             로그아웃
                         </Link>

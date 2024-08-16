@@ -9,16 +9,31 @@ export const Result = () => {
 
     // HTML 콘텐츠를 저장하는 함수
     const saveHtml = () => {
-        // 현재 화면의 HTML 콘텐츠를 가져옵니다
-        const htmlContent = document.documentElement.outerHTML;
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-'); // 현재 시각을 포맷팅합니다
-        const filename = `result_${timestamp}.html`; // 파일명 생성
+        // Navigator 제거
+        // const navigatorElement = document.querySelector('.navigator');
+        // if (navigatorElement) {
+        //     navigatorElement.style.display = 'none';
+        // }
 
-        // HTML 콘텐츠로 Blob 객체를 생성합니다
+        // 이벤트 비활성화
+        const style = document.createElement('style');
+        style.type = 'text/css';
+        style.innerHTML = `
+            * {
+                pointer-events: none !important;
+                user-select: none !important;
+            }
+        `;
+        document.head.appendChild(style);
+
+        const htmlContent = document.documentElement.outerHTML;
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const filename = `result_${timestamp}.html`;
+
         const blob = new Blob([htmlContent], { type: 'text/html' });
         const url = URL.createObjectURL(blob);
 
-        // 다운로드 링크를 생성하여 클릭합니다
+        // 다운로드 링크를 생성
         const a = document.createElement('a');
         a.href = url;
         a.download = filename;
@@ -26,6 +41,14 @@ export const Result = () => {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+
+        // Navigator 복구
+        // if (navigatorElement) {
+        //     navigatorElement.style.display = '';
+        // }
+
+        // 이벤트 복구
+        document.head.removeChild(style);
     };
 
     return (
@@ -38,12 +61,12 @@ export const Result = () => {
                 <div className="result-info-title">공통 전략 데이터</div>
                 <table className="result-info-table">
                     <tbody>
-                    {Object.entries(strategyCommonData).map(([key, value]) => (
-                        <tr key={key}>
-                            <th>{key}</th>
-                            <td>{JSON.stringify(value)}</td>
-                        </tr>
-                    ))}
+                        {Object.entries(strategyCommonData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
                 <div className="result-info-title">
@@ -51,24 +74,27 @@ export const Result = () => {
                 </div>
                 <table className="result-info-table">
                     <tbody>
-                    {id === 'golden' && Object.entries(strategy1Data).map(([key, value]) => (
-                        <tr key={key}>
-                            <th>{key}</th>
-                            <td>{JSON.stringify(value)}</td>
-                        </tr>
-                    ))}
-                    {id === 'bollinger' && Object.entries(strategy2Data).map(([key, value]) => (
-                        <tr key={key}>
-                            <th>{key}</th>
-                            <td>{JSON.stringify(value)}</td>
-                        </tr>
-                    ))}
-                    {id === 'rsi' && Object.entries(strategy3Data).map(([key, value]) => (
-                        <tr key={key}>
-                            <th>{key}</th>
-                            <td>{JSON.stringify(value)}</td>
-                        </tr>
-                    ))}
+                        {id === 'golden' &&
+                            Object.entries(strategy1Data).map(([key, value]) => (
+                                <tr key={key}>
+                                    <th>{key}</th>
+                                    <td>{JSON.stringify(value)}</td>
+                                </tr>
+                            ))}
+                        {id === 'bollinger' &&
+                            Object.entries(strategy2Data).map(([key, value]) => (
+                                <tr key={key}>
+                                    <th>{key}</th>
+                                    <td>{JSON.stringify(value)}</td>
+                                </tr>
+                            ))}
+                        {id === 'rsi' &&
+                            Object.entries(strategy3Data).map(([key, value]) => (
+                                <tr key={key}>
+                                    <th>{key}</th>
+                                    <td>{JSON.stringify(value)}</td>
+                                </tr>
+                            ))}
                     </tbody>
                 </table>
             </div>

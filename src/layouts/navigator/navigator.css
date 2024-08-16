@@ -65,12 +65,21 @@ a {
     font-weight: bold;
 }
 
-.navigator-logout {
+.navigator-account {
     display: flex;
-    align-items: center;
 }
 
-.navigator-logout a {
+.navigator-account-name p {
+    text-decoration: underline;
+    font-size: 12px;
+    color: var(--color-3);
+}
+
+.navigator-account-name,
+.navigator-account-logout {
+    display: flex;
+    margin: 0 8px;
+    width: 56px;
     color: var(--color-3);
     font-size: 12px;
 }

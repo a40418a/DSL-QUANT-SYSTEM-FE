@@ -77,11 +77,11 @@ export const Navigator = () => {
                             전략설정
                         </li>
                     </ul>
-                    <div className="navigator-logout">
-                        <Link to="/mypage" onClick={() => navigate('/mypage')}>
-                            <p>최승아</p> 님
+                    <div className="navigator-account">
+                        <Link to="/mypage" onClick={() => navigate('/mypage')} className="navigator-account-name">
+                            <p>최승아</p>님
                         </Link>
-                        <Link to="/" onClick={logoutHandler}>
+                        <Link to="/" onClick={logoutHandler} className="navigator-account-logout">
                             로그아웃
                         </Link>
                     </div>

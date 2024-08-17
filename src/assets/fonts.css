@@ -3,30 +3,29 @@
 /* 제목 */
 /* 어그로체(300,500,700) */
 @font-face {
-    font-family: 'Freesentation-9Black';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
-    font-weight: 900;
+    font-family: 'JalnanGothic';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_231029@1.1/JalnanGothic.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
 }
 
 /* 부제목 */
 /* 프리텐다드(100~900) */
 @font-face {
-    font-family: 'Pretendard-Subtitle';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
-    font-weight: bold;
+    font-family: 'Freesentation-9Black';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
+    font-weight: 900;
     font-style: normal;
 }
 
 /* 내용 */
 /* 프리텐다드(100~900) */
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: regular;
-    font-style: normal;
+    font-family: 'Freesentation-6Black';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-6SemiBold.woff2') format('woff2');
+    font-weight: 900;
+    font-style: italic;
 }
-
 /* 기타 */
 /* Neo둥근모 */
 @font-face {

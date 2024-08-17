@@ -75,6 +75,7 @@
     border: solid 2px var(--point-color);
     border-radius: 16px;
     color: var(--color-3);
+    font-family: var(--font-1);
 }
 
 .download:hover {

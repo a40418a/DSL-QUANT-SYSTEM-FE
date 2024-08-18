@@ -7,7 +7,7 @@ export const HorizonTableTop20 = ({ title }) => {
     return (
         <div className={styles.horizonTableTop20}>
             <div className={styles.title}>{title}</div>
-            <table className={styles.head}>
+            <table className={styles.table}>
                 <thead>
                     <tr>
                         <th>순위</th>

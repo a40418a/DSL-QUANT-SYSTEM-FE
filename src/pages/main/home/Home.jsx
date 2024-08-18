@@ -13,7 +13,7 @@ export const Home = () => {
             <FeaturedInfo className={styles.featuredInfo} />
             <div className={styles.wrapper}>
                 <div className={styles.backTest}>
-                    <div className={styles.backTitle}>백테스팅 결과</div>
+                    <div className={styles.title}>백테스팅 결과</div>
                     <div className={styles.backChart}>
                         <ChartBox
                             title="최근 주식 종목"
@@ -27,7 +27,8 @@ export const Home = () => {
                     </div>
                 </div>
                 <div className={styles.table}>
-                    <HorizonTableTop20 title={'TOP 20 종목'} />
+                    <div className={styles.title}>TOP 20 종목</div>
+                    <HorizonTableTop20 />
                 </div>
             </div>
         </div>

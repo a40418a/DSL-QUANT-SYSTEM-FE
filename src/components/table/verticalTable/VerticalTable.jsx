@@ -8,19 +8,19 @@ export const VerticalTable = ({ title, data }) => {
             <table className={styles.table}>
                 <tr>
                     <th className={styles.head}>이름</th>
-                    <td className={styles.body}>최승아</td>
+                    <td className={styles.body}>{data.name}</td>
                 </tr>
                 <tr>
                     <th className={styles.head}>전화번호</th>
-                    <td className={styles.body}>010-7110-0441</td>
+                    <td className={styles.body}>{data.phonenumber}</td>
                 </tr>
                 <tr>
                     <th className={styles.head}>생년월일</th>
-                    <td className={styles.body}>2001.04.18</td>
+                    <td className={styles.body}>{data.birth}</td>
                 </tr>
                 <tr>
                     <th className={styles.head}>성별</th>
-                    <td className={styles.body}>여</td>
+                    <td className={styles.body}>{data.gender}</td>
                 </tr>
             </table>
         </div>

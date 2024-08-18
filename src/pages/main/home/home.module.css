@@ -18,9 +18,10 @@
     width: 54%;
 }
 
-.backTitle {
+.title {
     font-weight: bold;
     margin-bottom: var(--margin);
+    font-family: var(--font-1);
 }
 
 .backChart {

@@ -5,14 +5,41 @@ import { AuthContext } from '../../context/AuthContext';
 import classNames from 'classnames';
 import styles from './navigator.module.css';
 
+// 사용자 정보를 가져오는 API 호출 함수
+const getUserInfo = async () => {
+    try {
+        const response = await axios.get('http://43.200.199.72:8080/userinfo', {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Failed to fetch user info:', error);
+        return null;
+    }
+};
+
 export const Navigator = () => {
     const [activePage, setActivePage] = useState('');
+    const [userInfo, setUserInfo] = useState(null);
+
     const location = useLocation();
     const navigate = useNavigate();
     const { logout } = useContext(AuthContext);
 
     useEffect(() => {
         setActivePage(location.pathname);
+
+        const fetchData = async () => {
+            try {
+                const userInfoData = await getUserInfo();
+                setUserInfo(userInfoData);
+            } catch (error) {
+                console.error('Navigator fetchData error: ', error);
+            }
+        };
+        fetchData();
     }, [location]);
 
     const logoutHandler = async () => {
@@ -70,7 +97,7 @@ export const Navigator = () => {
                 </ul>
                 <div className={styles.account}>
                     <Link to="/mypage" onClick={() => navigate('/mypage')} className={styles.accountName}>
-                        <p>최승아</p>님
+                        <p>{userInfo ? `${userInfo.name}님` : '이름'}</p> 님
                     </Link>
                     <Link to="/" onClick={logoutHandler} className={styles.accountLogout}>
                         로그아웃

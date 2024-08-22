@@ -8,7 +8,7 @@ const SURL=import.meta.env.VITE_APP_URI;
 
 export const getStockList = async () => {
     try {
-        const response = await axios.get(`${SURL}/stocklist`, {
+        const response = await axios.get(`http://${SURL}/stocklist`, {
             params: {
                 sort: 'top', //정렬 기준
             },

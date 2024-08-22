@@ -3,11 +3,12 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = 'http://43.200.199.72:8080';
+const SURL=import.meta.env.VITE_APP_URI;
+
 
 export const getBackHistory = async () => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/backtest/history`);
+        const response = await axios.get(`${SURL}/backtest/history`);
         return response.data;
     } catch (error) {
         console.error('getBackHistory error: ', error);

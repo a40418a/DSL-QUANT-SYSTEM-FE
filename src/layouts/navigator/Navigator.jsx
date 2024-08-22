@@ -7,8 +7,9 @@ import styles from './navigator.module.css';
 
 // 사용자 정보를 가져오는 API 호출 함수
 const getUserInfo = async () => {
+    const SURL=import.meta.env.VITE_APP_URI;
     try {
-        const response = await axios.get('http://43.200.199.72:8080/userinfo', {
+        const response = await axios.get(`${SURL}/userinfo`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`,
             },

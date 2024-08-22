@@ -3,11 +3,12 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = 'http://43.200.199.72:8080';
+
+const SURL=import.meta.env.VITE_APP_URI;
 
 export const getUserInfo = async () => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/user/info`);
+        const response = await axios.get(`${SURL}/user/info`);
         return response.data;
     } catch (error) {
         console.error('getUserInfo error: ', error);

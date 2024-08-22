@@ -7,6 +7,7 @@ export const LoginHandler = (props) => {
     const navigate = useNavigate();
     const code = new URL(window.location.href).searchParams.get('code'); //  인가 코드를 추출
     const { login } = useContext(AuthContext);
+    const SURL=import.meta.env.VITE_APP_URI;
 
     // 인가코드를 백엔드로 보내는 코드
     useEffect(() => {
@@ -19,7 +20,7 @@ export const LoginHandler = (props) => {
 
             try {
                 // 백엔드로 인가 코드 전송
-                const res = await axios.get(`http://43.200.199.72:8080/login/oauth2/code/kakao`, {
+                const res = await axios.get(`${SURL}/login/oauth2/code/kakao`, {
                     params: { code: code },
                     headers: {
                         'Content-Type': 'application/json;charset=utf-8',

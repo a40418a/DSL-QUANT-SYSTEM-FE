@@ -11,6 +11,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export const StrategyMain = () => {
+    const SURL=import.meta.env.VITE_APP_URI;
     const { setStrategyCommonData } = useContext(StrategyContext);
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -96,7 +97,7 @@ export const StrategyMain = () => {
 
         try {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
-            const response = await axios.post('http://localhost:8080/strategy', strategyCommonDTO, {
+            const response = await axios.post(`${SURL}/strategy`, strategyCommonDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -181,11 +182,11 @@ export const StrategyMain = () => {
                 <div className={styles.input}>
                     <div className={styles.inputHalf}>
                         <div className={styles.subtitleDate}>시작일 설정</div>
-                        <InputBox type="date" name="start_date" value={formData.start_date} onChange={handleChange} />
+                        <InputBox type="date" name="start_date" value={formData.start_date} onChange={handleChange}/>
                     </div>
                     <div className={styles.inputHalf}>
                         <div className={styles.subtitleDate}>종료일 설정</div>
-                        <InputBox type="date" name="end_date" value={formData.end_date} onChange={handleChange} />
+                        <InputBox type="date" name="end_date" value={formData.end_date} onChange={handleChange}/>
                     </div>
                 </div>
             </div>
@@ -238,7 +239,7 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.btnWrapper}>
-                <ColorBtn className={styles.btnNext} text="세부 전략 선택" onClick={handleSubmit} />
+                <ColorBtn className={styles.btnNext} text="세부 전략 선택" onClick={handleSubmit}/>
             </div>
         </div>
     );

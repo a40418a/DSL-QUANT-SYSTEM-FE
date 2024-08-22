@@ -52,7 +52,7 @@ export const StrategyGolden = () => {
 
         try {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
-            const response = await axios.post(`${SURL}/strategy/golden`, strategy1DTO, {
+            const response = await axios.post(`http://${SURL}/strategy/golden`, strategy1DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

@@ -97,7 +97,7 @@ export const StrategyMain = () => {
 
         try {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
-            const response = await axios.post(`${SURL}/strategy`, strategyCommonDTO, {
+            const response = await axios.post(`http://${SURL}/strategy`, strategyCommonDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

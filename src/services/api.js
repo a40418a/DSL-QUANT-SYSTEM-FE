@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // GET 요청 보내기
 axios
-    .get('43.200.199.72:8080')
+    .get(`${SURL}`)
     .then((response) => {
         // 응답 데이터를 처리합니다.
         console.log(response.data);
@@ -14,7 +14,7 @@ axios
 
 // POST 요청 보내기
 axios
-    .post('43.200.199.72:8080', { key: 'value' })
+    .post(`${SURL}`, { key: 'value' })
     .then((response) => {
         // 응답 데이터를 처리합니다.
         console.log(response.data);

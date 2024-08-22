@@ -14,7 +14,7 @@ export const Result = () => {
         const token = localStorage.getItem('jwt');
 
 
-        fetch(`${SURL}/result/${id}`, { // 백엔드의 정확한 URL을 사용합니다.`
+        fetch(`http://${SURL}/result/${id}`, { // 백엔드의 정확한 URL을 사용합니다.`
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,

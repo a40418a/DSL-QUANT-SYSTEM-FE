@@ -9,7 +9,7 @@ import styles from './navigator.module.css';
 const getUserInfo = async () => {
     const SURL=import.meta.env.VITE_APP_URI;
     try {
-        const response = await axios.get(`${SURL}/userinfo`, {
+        const response = await axios.get(`http://${SURL}/userinfo`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`,
             },

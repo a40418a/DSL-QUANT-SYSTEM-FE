@@ -8,7 +8,7 @@ const SURL=import.meta.env.VITE_APP_URI;
 
 export const getBackHistory = async () => {
     try {
-        const response = await axios.get(`${SURL}/backtest/history`);
+        const response = await axios.get(`http://${SURL}/backtest/history`);
         return response.data;
     } catch (error) {
         console.error('getBackHistory error: ', error);

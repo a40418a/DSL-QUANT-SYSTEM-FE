@@ -28,84 +28,111 @@ export class Top20 {
 //주식 차트 정보
 export class Kospi {
     date: string;
-    currentPrice: number;
-    alldayRatio: number;
-    percentChange: number;
+    closingPrice: number;
+    openingPrice: number;
+    highPrice: number;
+    lowPrice: number;
+    tradingVolume: string;
+    fluctuationRate: string;
     kospiData: { time: string; value: number }[];
 
     constructor(data: {
         date: string;
-        currentPrice: number;
-        alldayRatio: number;
-        percentChange: number;
+        closingPrice: number;
+        openingPrice: number;
+        highPrice: number;
+        lowPrice: number;
+        tradingVolume: string;
+        fluctuationRate: string;
         kospiData: { time: string; value: number }[];
     }) {
         this.date = data.date;
-        this.currentPrice = data.currentPrice;
-        this.alldayRatio = data.alldayRatio;
-        this.percentChange = data.percentChange;
+        this.closingPrice = data.closingPrice;
+        this.openingPrice = data.openingPrice;
+        this.highPrice = data.highPrice;
+        this.lowPrice = data.lowPrice;
+        this.tradingVolume = data.tradingVolume;
+        this.fluctuationRate = data.fluctuationRate;
         this.kospiData = data.kospiData;
     }
 
     getKospi(): string {
-        return `${this.date} - ${this.currentPrice} - ${this.alldayRatio} - ${this.percentChange} - ${JSON.stringify(
-            this.kospiData
-        )}`;
+        return `${this.date} - ${this.closingPrice} - ${this.openingPrice} - ${this.highPrice} - ${this.lowPrice} - ${
+            this.tradingVolume
+        } - ${this.fluctuationRate} - ${JSON.stringify(this.kospiData)}`;
     }
 }
 
 export class Kosdak {
     date: string;
-    currentPrice: number;
-    alldayRatio: number;
-    percentChange: number;
+    closingPrice: number;
+    openingPrice: number;
+    highPrice: number;
+    lowPrice: number;
+    tradingVolume: string;
+    fluctuationRate: string;
     kosdakData: { time: string; value: number }[];
 
     constructor(data: {
         date: string;
-        currentPrice: number;
-        alldayRatio: number;
-        percentChange: number;
+        closingPrice: number;
+        openingPrice: number;
+        highPrice: number;
+        lowPrice: number;
+        tradingVolume: string;
+        fluctuationRate: string;
         kosdakData: { time: string; value: number }[];
     }) {
         this.date = data.date;
-        this.currentPrice = data.currentPrice;
-        this.alldayRatio = data.alldayRatio;
-        this.percentChange = data.percentChange;
+        this.closingPrice = data.closingPrice;
+        this.openingPrice = data.openingPrice;
+        this.highPrice = data.highPrice;
+        this.lowPrice = data.lowPrice;
+        this.tradingVolume = data.tradingVolume;
+        this.fluctuationRate = data.fluctuationRate;
         this.kosdakData = data.kosdakData;
     }
 
-    getKospi(): string {
-        return `${this.date} - ${this.currentPrice} - ${this.alldayRatio} - ${this.percentChange} - ${JSON.stringify(
-            this.kosdakData
-        )}`;
+    getKosdak(): string {
+        return `${this.date} - ${this.closingPrice} - ${this.openingPrice} - ${this.highPrice} - ${this.lowPrice} - ${
+            this.tradingVolume
+        } - ${this.fluctuationRate} - ${JSON.stringify(this.kosdakData)}`;
     }
 }
 
 export class Kospi200 {
     date: string;
-    currentPrice: number;
-    alldayRatio: number;
-    percentChange: number;
+    closingPrice: number;
+    openingPrice: number;
+    highPrice: number;
+    lowPrice: number;
+    tradingVolume: string;
+    fluctuationRate: string;
     kospi200Data: { time: string; value: number }[];
 
     constructor(data: {
         date: string;
-        currentPrice: number;
-        alldayRatio: number;
-        percentChange: number;
+        closingPrice: number;
+        openingPrice: number;
+        highPrice: number;
+        lowPrice: number;
+        tradingVolume: string;
+        fluctuationRate: string;
         kospi200Data: { time: string; value: number }[];
     }) {
         this.date = data.date;
-        this.currentPrice = data.currentPrice;
-        this.alldayRatio = data.alldayRatio;
-        this.percentChange = data.percentChange;
+        this.closingPrice = data.closingPrice;
+        this.openingPrice = data.openingPrice;
+        this.highPrice = data.highPrice;
+        this.lowPrice = data.lowPrice;
+        this.tradingVolume = data.tradingVolume;
+        this.fluctuationRate = data.fluctuationRate;
         this.kospi200Data = data.kospi200Data;
     }
 
-    getKospi(): string {
-        return `${this.date} - ${this.currentPrice} - ${this.alldayRatio} - ${this.percentChange} - ${JSON.stringify(
-            this.kospi200Data
-        )}`;
+    getKospi200(): string {
+        return `${this.date} - ${this.closingPrice} - ${this.openingPrice} - ${this.highPrice} - ${this.lowPrice} - ${
+            this.tradingVolume
+        } - ${this.fluctuationRate} - ${JSON.stringify(this.kospi200Data)}`;
     }
 }

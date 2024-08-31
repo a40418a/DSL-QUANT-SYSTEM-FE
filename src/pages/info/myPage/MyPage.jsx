@@ -26,7 +26,6 @@ export const MyPage = () => {
         fetchData(); // fetchData 함수 실행
     }, []);
 
-    //
     if (!userInfo || !backHistory) {
         return <Loading />;
     }

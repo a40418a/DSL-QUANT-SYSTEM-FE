@@ -10,6 +10,8 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
 export const StrategyGolden = () => {
+    const SURL=import.meta.env.VITE_APP_URI;
+
     const { setStrategy1Data } = useContext(StrategyContext);
     const [formData, setFormData] = useState({
         //골든
@@ -50,7 +52,7 @@ export const StrategyGolden = () => {
 
         try {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
-            const response = await axios.post('http://localhost:8080/strategy/golden', strategy1DTO, {
+            const response = await axios.post(`http://${SURL}/strategy/golden`, strategy1DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -105,8 +107,8 @@ export const StrategyGolden = () => {
                 </div>
             </div>
             <div className={styles.btnWrapper}>
-                <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick} />
-                <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit} />
+                <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick}/>
+                <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit}/>
             </div>
         </div>
     );

@@ -3,11 +3,12 @@
 
 import axios from 'axios';
 
-const API_BASE_URL = 'http://43.200.199.72:5173';
+
+const SURL=import.meta.env.VITE_APP_URI;
 
 export const getKospi = async () => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/kospi`);
+        const response = await axios.get(`http://${SURL}/kospi`);
         return response.data;
     } catch (error) {
         console.error('getKospi error: ', error);

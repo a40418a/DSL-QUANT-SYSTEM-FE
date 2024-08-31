@@ -5,4 +5,6 @@
     border-radius: var(--border-radius);
     text-align: center;
     color: var(--color-2);
+    box-sizing: border-box;
+    padding: 0 var(--padding);
 }

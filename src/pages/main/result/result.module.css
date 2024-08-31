@@ -1,6 +1,6 @@
 .result {
     box-sizing: border-box;
-    width: 60%;
+    width: var(--width);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,24 +9,25 @@
 .title {
     display: flex;
     align-items: end;
-    margin-bottom: 32px;
+    margin-bottom: var(--margin);
 }
 
 .name {
     font-family: var(--font-1);
-    font-size: 24px;
+    font-size: var(--title-size);
     color: var(--main-color);
 }
 
 .sub {
-    font-size: 16px;
-    margin-left: 8px;
+    font-size: var(--subtitle-size);
+    margin-left: 8px; /*padding/3*/
+    font-family: var(--font-3);
 }
 
 .box {
     box-sizing: border-box;
     border: solid 1px var(--main-color);
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     width: 100%;
     padding: var(--padding);
 }
@@ -37,28 +38,29 @@
 }
 
 .infoTitle {
-    margin-bottom: 8px;
+    margin-bottom: 8px; /*margin/3*/
     display: flex;
     align-items: end;
-    font-weight: bold;
+    font-size: var(--subtitle-size);
+    font-family: var(--font-3);
 }
 
 .infoTitle p {
     font-family: var(--font-1);
     color: var(--main-color);
-    font-size: 20px;
-    margin: 0 8px;
+    font-size: var(--title-size);
+    margin: 0 8px; /*margin/3*/
 }
 
 .table {
     box-sizing: border-box;
     width: 100%;
-    margin-bottom: 32px;
+    margin-bottom: var(--margin);
     overflow-x: scroll;
 }
 
 .table th {
-    width: 32%;
+    width: 240px;
 }
 
 .table td {
@@ -70,14 +72,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 16px;
-    padding: 8px;
+    margin-top: var(--subtitle-size);
+    padding: 8px; /*padding/3*/
     border: solid 2px var(--point-color);
-    border-radius: 16px;
+    border-radius: var(--border-radius);
     color: var(--color-3);
     font-family: var(--font-1);
 }
 
 .download:hover {
     cursor: pointer;
+    box-shadow: 0px 0px 8px -1px var(--point-color);
 }

@@ -1,6 +1,6 @@
 .mypage {
     box-sizing: border-box;
-    width: 60%;
+    width: var(--width);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,18 +10,18 @@
     display: flex;
     justify-content: center;
     align-items: end;
-    margin-bottom: 32px;
+    margin-bottom: var(--margin);
 }
 
 .name {
     font-family: var(--font-1);
-    font-size: 24px;
+    font-size: var(--title-size);
     color: var(--main-color);
 }
 
 .sub {
-    font-size: 16px;
-    margin-left: 8px;
+    font-size: var(--subtitle-size);
+    margin-left: 8px; /*padding/3*/
 }
 
 .info {
@@ -31,7 +31,7 @@
 
 .infoTitle {
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 8px; /*padding/3*/
 }
 
 .table {

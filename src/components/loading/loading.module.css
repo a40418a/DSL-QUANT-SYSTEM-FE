@@ -9,20 +9,18 @@
 
 .box {
     display: flex;
-    width: 320px;
+    width: auto;
     height: auto;
-    border-radius: 50px;
     justify-content: space-between;
     gap: 16px;
-    margin-top: 40px;
 }
 
 .box div {
-    width: 250px;
-    height: 100px;
-    background-image: linear-gradient(to right, var(--point-color), #008800);
+    width: 24px;
+    height: 80px;
+    background-image: linear-gradient(to right, var(--point-color-3), pink);
     margin-right: 2px;
-    border-radius: 50px;
+    border-radius: var(--border-radius);
 }
 
 @keyframes box {

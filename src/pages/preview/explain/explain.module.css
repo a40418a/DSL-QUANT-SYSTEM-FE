@@ -1,8 +1,9 @@
 .explain {
-    padding: 0 80px;
+    /* padding: 0 80px; */
     display: flex;
     align-items: center;
-    height: 90vh;
+    width: var(--width);
+    height: var(--height);
 }
 
 .title div {
@@ -13,20 +14,26 @@
 }
 
 .wrapper {
-    margin-left: 40px;
+    margin-left: var(--margin);
 }
 
 .content {
-    margin-bottom: 60px;
+    margin-bottom: var(--margin);
 }
 
 .content div {
-    font-size: 20px;
-    margin-bottom: 16px;
+    font-size: var(--subtitle-size);
+    margin-bottom: 12px; /*margin/2*/
 }
 
 .btn {
     display: flex;
     justify-content: center;
-    font-size: 32px;
+}
+
+/* 반응형 */
+@media (max-width: 1068px) {
+    .explain {
+        width: 80%;
+    }
 }

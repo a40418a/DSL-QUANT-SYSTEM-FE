@@ -64,13 +64,12 @@ table {
 
 th,
 td {
-    padding: 4px;
     border-bottom: 1px solid var(--color-4);
     height: 24px;
 }
 
 th {
-    background-color: var(--main-color);
+    background-color: var(--point-color-2);
     color: var(--color-white);
     font-family: var(--font-3);
 }

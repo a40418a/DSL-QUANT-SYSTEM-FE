@@ -15,7 +15,7 @@
 }
 
 .backTest {
-    width: 54%;
+    width: 42%;
 }
 
 .title {
@@ -33,12 +33,18 @@
 }
 
 .table {
-    width: 42%;
+    box-sizing: border-box;
+    width: 54%;
     overflow-x: scroll;
+}
+
+.table th {
+    padding: 8px;
 }
 
 .table td {
     text-overflow: ellipsis;
+    padding: 8px;
 }
 
 /* 반응형 */

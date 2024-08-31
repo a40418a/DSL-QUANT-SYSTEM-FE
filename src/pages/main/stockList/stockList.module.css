@@ -15,22 +15,22 @@
 
 .table th {
     padding: 12px 0; /*padding/2*/
-    background-color: var(--point-color-2);
-    color: var(--color-1);
+}
+
+.table td {
+    padding: 12px 24px;
 }
 
 .dataText {
     text-align: left;
-    width: var(--width);
-    padding: 12px 10%; /*padding/2*/
+    width: 72%;
     white-space: nowrap;
     cursor: pointer;
 }
 
 .dataNum {
     text-align: right;
-    width: 30%;
-    padding: 12px 5%; /*padding/2*/
+    width: 20%;
     cursor: pointer;
 }
 

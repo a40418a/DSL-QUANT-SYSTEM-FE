@@ -1,36 +1,36 @@
-import React, {useContext, useEffect} from 'react';
+import React, { useContext, useEffect } from 'react';
 import styles from './result.module.css';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useParams } from 'react-router-dom';
 
 export const Result = () => {
-    const { strategyCommonData, strategy1Data, strategy2Data
-        , strategy3Data, resultData,setResultData} = useContext(StrategyContext);
+    const { strategyCommonData, strategy1Data, strategy2Data, strategy3Data, resultData, setResultData } =
+        useContext(StrategyContext);
     const { id } = useParams(); // URL에서 id를 추출합니다.
-    const SURL=import.meta.env.VITE_APP_URI;
+    const SURL = import.meta.env.VITE_APP_URI;
 
     useEffect(() => {
         // localStorage에서 토큰을 가져옵니다.
         const token = localStorage.getItem('jwt');
 
-
-        fetch(`http://${SURL}/result/${id}`, { // 백엔드의 정확한 URL을 사용합니다.`
+        fetch(`http://${SURL}/result/${id}`, {
+            // 백엔드의 정확한 URL을 사용합니다.`
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`,
-            }
+                Authorization: `Bearer ${token}`,
+            },
         })
-            .then(response => {
+            .then((response) => {
                 if (!response.ok) {
                     throw new Error('네트워크 응답이 올바르지 않습니다.');
                 }
                 return response.json();
             })
-            .then(data => {
+            .then((data) => {
                 setResultData(data);
                 console.log('Updated resultData:', data); // 상태 업데이트 후 로그 추가
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error('백엔드에서 결과 데이터를 가져오는 중 오류가 발생했습니다:', error);
             });
     }, [id]);
@@ -129,8 +129,9 @@ export const Result = () => {
             <div className={styles.title}>
                 <div className={styles.name}>최승아</div>
                 <div className={styles.sub}>님의 백테스팅 결과</div>
-                <table className="result-info-table result-backtest-table">
-                    <tbody>
+            </div>
+            <table className={styles.table}>
+                <tbody>
                     <tr>
                         <th>Final Cash</th>
                         <td>{resultData?.finalCash ?? 'Loading...'}</td>
@@ -155,9 +156,8 @@ export const Result = () => {
                         <th>Number of Trades</th>
                         <td>{resultData?.numberOfTrades ?? 'Loading...'}</td>
                     </tr>
-                    </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
             <div className={styles.box}>
                 <div>해당 분석 결과를 추후에도 확인하고 싶다면 아래의 html로 저장하기 버튼을 눌러주세요</div>
                 <div>파일 분석 팁💡💡</div>

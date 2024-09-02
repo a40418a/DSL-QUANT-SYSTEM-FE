@@ -8,10 +8,11 @@
     --font-3: 'Pretendard-Bold';
 
     /*색상표*/
-    --main-color: #7e3cf5;
-    --point-color: #70bff4;
+    --main-color: #554aa7;
+    --point-color: #8ddf00;
     --point-color-2: #7768e6;
-    --point-color-3: #ef50c1;
+    --point-color-3: #70bff4;
+    --point-color-4: #ef50c1;
     --color-1: #212121;
     --color-2: #0f0b0b;
     --color-3: #989898;
@@ -64,6 +65,7 @@ table {
 
 th,
 td {
+    border-top: 1px solid var(--color-4);
     border-bottom: 1px solid var(--color-4);
     height: 24px;
 }

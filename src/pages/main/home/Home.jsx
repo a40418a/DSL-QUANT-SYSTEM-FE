@@ -10,7 +10,7 @@ import { userData01 } from '../../../data/dummyData01';
 export const Home = () => {
     return (
         <div className={styles.home}>
-            <FeaturedInfo className={styles.featuredInfo} />
+            <FeaturedInfo />
             <div className={styles.wrapper}>
                 <div className={styles.backTest}>
                     <div className={styles.title}>백테스팅 결과</div>

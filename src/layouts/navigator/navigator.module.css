@@ -46,19 +46,18 @@ a {
     justify-content: center;
     margin: 0 40px;
     padding: 8px 16px;
-    border-radius: 24px;
     width: 120px;
 }
 
 .menu:hover {
-    box-shadow: 0px 0px 8px -1px var(--point-color);
+    box-shadow: 0px 8px 6px -6px var(--point-color);
     cursor: pointer;
 }
 
 .active {
-    background-color: var(--point-color);
+    font-family: var(--font-3);
     padding: 8px 16px;
-    font-weight: bold;
+    box-shadow: 0px 8px 6px -6px var(--point-color);
 }
 
 .account {

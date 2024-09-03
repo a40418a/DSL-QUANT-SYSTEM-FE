@@ -1,4 +1,3 @@
-//상단 타이틀 박스
 import React from 'react';
 import styles from './footer.module.css';
 
@@ -12,8 +11,12 @@ export const Footer = () => {
                 <div>T | 010-7110-0441</div>
             </div>
             <div className={styles.right}>
-                <div>개인정보약관</div>
-                <div>이용약관</div>
+                <a href="/개인정보처리방침.html" target="_blank">
+                    개인정보처리방침
+                </a>
+                <a href="/이용약관.html" target="_blank">
+                    이용약관
+                </a>
             </div>
         </div>
     );

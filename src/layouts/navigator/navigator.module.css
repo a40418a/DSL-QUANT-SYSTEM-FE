@@ -25,6 +25,7 @@ a {
 .title {
     font-family: var(--font-1);
     color: var(--main-color);
+    text-align: center;
 }
 
 .title a {

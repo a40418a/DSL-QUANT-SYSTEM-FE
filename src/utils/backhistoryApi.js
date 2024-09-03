@@ -3,12 +3,12 @@
 
 import axios from 'axios';
 
-const SURL=import.meta.env.VITE_APP_URI;
+const SURL = import.meta.env.VITE_APP_URI;
 
-
-export const getBackHistory = async () => {
+export const getBackHistory = async (strategy) => {
     try {
-        const response = await axios.get(`http://${SURL}/backtest/history`);
+        const SURL = import.meta.env.VITE_APP_URI;
+        const response = await axios.get(`http://${SURL}/backtest/history${strategy}`);
         return response.data;
     } catch (error) {
         console.error('getBackHistory error: ', error);

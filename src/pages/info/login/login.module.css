@@ -1,8 +1,8 @@
 .login {
     display: flex;
     align-items: center;
-    height: 80vh;
-    width: 60%;
+    height: var(--height);
+    width: var(--width);
     justify-content: center;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .title {
-    font-size: 24px;
+    font-size: var(--title-size);
     margin-bottom: 120px;
     color: var(--main-color);
     font-family: var(--font-1);

@@ -34,45 +34,53 @@ export const FeaturedInfo = () => {
         fetchData();
     }, []);
 
-    if (!kospi || !kosdaq || !kospi200) {
-        return <Loading />;
-    }
-
     return (
         <div className={styles.featuredInfo}>
             <div className={styles.box}>
-                <ChartBox
-                    title="코스닥"
-                    currency="₩"
-                    price={kosdaq.price}
-                    arrow={kosdaq.rate >= 0 ? <ArrowUp /> : <ArrowDown />} // 상승/하락 화살표
-                    rate={kosdaq.rate}
-                    chart={<LineChart data={kosdaq.chartData} dataKey="close" />}
-                    sub="Compared to last month"
-                />
+                {!kosdaq ? (
+                    <Loading />
+                ) : (
+                    <ChartBox
+                        title="코스닥"
+                        currency="₩"
+                        price={kosdaq.price}
+                        arrow={kosdaq.rate >= 0 ? <ArrowUp /> : <ArrowDown />}
+                        rate={kosdaq.rate}
+                        chart={<LineChart data={kosdaq.chartData} dataKey="close" />}
+                        sub="Compared to last month"
+                    />
+                )}
             </div>
             <div className={styles.box}>
-                <ChartBox
-                    title="코스피"
-                    currency="₩"
-                    price={kospi.price}
-                    arrow={kospi.rate >= 0 ? <ArrowUp /> : <ArrowDown />}
-                    rate={kospi.rate}
-                    chart={<LineChart data={kospi.chartData} dataKey="close" />}
-                    sub="Compared to last month"
-                />
+                {!kospi ? (
+                    <Loading />
+                ) : (
+                    <ChartBox
+                        title="코스피"
+                        currency="₩"
+                        price={kospi.price}
+                        arrow={kospi.rate >= 0 ? <ArrowUp /> : <ArrowDown />}
+                        rate={kospi.rate}
+                        chart={<LineChart data={kospi.chartData} dataKey="close" />}
+                        sub="Compared to last month"
+                    />
+                )}
             </div>
 
             <div className={styles.box}>
-                <ChartBox
-                    title="코스피200"
-                    currency="₩"
-                    price={kospi200.price}
-                    arrow={kospi200.rate >= 0 ? <ArrowUp /> : <ArrowDown />}
-                    rate={kospi200.rate}
-                    chart={<LineChart data={kospi200.chartData} dataKey="close" />}
-                    sub="Compared to last month"
-                />
+                {!kospi200 ? (
+                    <Loading />
+                ) : (
+                    <ChartBox
+                        title="코스피200"
+                        currency="₩"
+                        price={kospi200.price}
+                        arrow={kospi200.rate >= 0 ? <ArrowUp /> : <ArrowDown />}
+                        rate={kospi200.rate}
+                        chart={<LineChart data={kospi200.chartData} dataKey="close" />}
+                        sub="Compared to last month"
+                    />
+                )}
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 .mypage {
     box-sizing: border-box;
-    width: 60%;
+    width: var(--width);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -10,18 +10,19 @@
     display: flex;
     justify-content: center;
     align-items: end;
-    margin-bottom: 32px;
+    margin-bottom: var(--margin);
 }
 
 .name {
     font-family: var(--font-1);
-    font-size: 24px;
+    font-size: var(--title-size);
     color: var(--main-color);
 }
 
 .sub {
-    font-size: 16px;
-    margin-left: 8px;
+    font-size: var(--subtitle-size);
+    margin-left: 8px; /*padding/3*/
+    font-family: var(--font-3);
 }
 
 .info {
@@ -31,28 +32,57 @@
 
 .infoTitle {
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 8px; /*padding/3*/
+    font-family: var(--font-3);
+    font-size: var(--subtitle-size);
 }
 
-.table {
+.tableV {
+    width: 100%;
+    height: 80px;
+}
+
+.tableH {
     width: 100%;
     height: 160px;
+    table-layout: fixed;
 }
 
-.table th,
-.table td {
+.tableH th,
+.tableH td {
     border-left: 1px solid var(--color-4);
     border-right: 1px solid var(--color-4);
 }
 
-.table th:first-child,
-.table td:first-child {
+.tableH th:first-child,
+.tableH td:first-child {
     border-left: none; /* Hide left border for the first column */
 }
 
-.table th:last-child,
-.table td:last-child {
+.tableH th:last-child,
+.tableH td:last-child {
     border-right: none; /* Hide right border for the last column */
+}
+.select {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--margin);
+    height: 64px;
+}
+
+.input {
+    width: 80%;
+}
+
+.btn {
+    width: 16%;
+    font-size: var(--subtitle-size);
+    background-color: var(--point-color);
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    height: 56px;
 }
 
 /* 반응형 */

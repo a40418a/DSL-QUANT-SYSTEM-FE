@@ -1,5 +1,5 @@
 .icon {
-    font-size: 13px;
+    font-size: 14px;
     color: var(--main-color);
 }
 
@@ -9,10 +9,10 @@
 }
 
 .tooltip strong {
-    font-size: 14px;
+    font-size: var(--content-size);
     color: var(--main-color);
 }
 
 .tooltip div {
-    font-size: 14px;
+    font-size: var(--content-size);
 }

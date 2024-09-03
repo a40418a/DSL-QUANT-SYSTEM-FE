@@ -1,6 +1,6 @@
 .stocklist {
     box-sizing: border-box;
-    width: 60%;
+    width: var(--width);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -9,28 +9,28 @@
 .title {
     font-family: var(--font-1);
     color: var(--main-color);
-    font-size: 24px;
-    margin-bottom: 20px;
+    font-size: var(--title-size);
+    margin-bottom: var(--margin);
 }
 
 .table th {
-    padding: 10px 0;
-    background-color: var(--point-color-2);
-    color: var(--color-1);
+    padding: 12px 0; /*padding/2*/
+}
+
+.table td {
+    padding: 12px 24px;
 }
 
 .dataText {
     text-align: left;
-    width: 60%;
-    padding: 10px 10%;
+    width: 72%;
     white-space: nowrap;
     cursor: pointer;
 }
 
 .dataNum {
     text-align: right;
-    width: 30%;
-    padding: 10px 5%;
+    width: 20%;
     cursor: pointer;
 }
 

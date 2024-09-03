@@ -1,6 +1,6 @@
 .stockinfo {
     box-sizing: border-box;
-    width: 60%;
+    width: var(--width);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -12,28 +12,29 @@
     display: flex;
     justify-content: left;
     font-family: var(--font-1);
-    font-size: 32px;
+    font-size: var(--title-size);
     color: var(--main-color);
 }
 
 .table {
-    margin: 40px 0;
+    margin: 48px 0; /*margin*2*/
 }
 
 .table th {
     width: 15%;
+    height: ;
 }
 
 .table th,
 .table td {
-    padding: 8px 0;
+    padding: 8px 0; /*padding/3*/
 }
 
 .line,
 .candle {
     width: 640px;
     height: 400px;
-    margin: 40px 0;
+    margin: 48px 0; /*margin*2*/
 }
 
 /* 반응형 */

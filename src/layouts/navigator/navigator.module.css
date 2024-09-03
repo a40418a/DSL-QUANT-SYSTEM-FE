@@ -4,6 +4,7 @@ a {
     font-family: inherit;
     cursor: pointer; /* 링크 커서 스타일 */
 }
+
 .navigator {
     width: auto;
     height: 100px;
@@ -24,10 +25,11 @@ a {
 .title {
     font-family: var(--font-1);
     color: var(--main-color);
+    text-align: center;
 }
 
 .title a {
-    font-size: 24px;
+    font-size: var(--title-size);
 }
 
 .menuWrapper {
@@ -45,19 +47,18 @@ a {
     justify-content: center;
     margin: 0 40px;
     padding: 8px 16px;
-    border-radius: 24px;
     width: 120px;
 }
 
 .menu:hover {
-    box-shadow: 0px 0px 8px -1px var(--point-color);
+    box-shadow: 0px 8px 6px -6px var(--point-color);
     cursor: pointer;
 }
 
 .active {
-    background-color: var(--point-color);
+    font-family: var(--font-3);
     padding: 8px 16px;
-    font-weight: bold;
+    box-shadow: 0px 8px 6px -6px var(--point-color);
 }
 
 .account {
@@ -65,9 +66,9 @@ a {
 }
 
 .accountName p {
-    text-decoration: underline;
-    font-size: 12px;
+    font-size: var(--content-size);
     color: var(--color-3);
+    font-family: var(--font-3);
     margin-right: 8px;
 }
 
@@ -77,7 +78,7 @@ a {
     margin: 0 8px;
     width: 56px;
     color: var(--color-3);
-    font-size: 12px;
+    font-size: var(--content-size);
 }
 
 /* 반응형 */

@@ -9,7 +9,8 @@
     padding: 0 10vw;
 }
 
-.footer div {
+.footer div,
+.footer a {
     color: var(--color-3);
     font-size: 12px;
 }
@@ -18,8 +19,8 @@
     display: flex;
 }
 
-.right div {
-    margin-left: 24px;
+.right a {
+    margin-left: var(--margin);
 }
 
 /* 반응형 */

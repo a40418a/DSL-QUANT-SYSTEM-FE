@@ -12,20 +12,21 @@
 /* 부제목 */
 /* 프리텐다드(100~900) */
 @font-face {
-    font-family: 'Freesentation-9Black';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-9Black.woff2') format('woff2');
-    font-weight: 900;
+    font-family: 'Pretendard-Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 
 /* 내용 */
 /* 프리텐다드(100~900) */
 @font-face {
-    font-family: 'Freesentation-6Black';
-    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2404@1.0/Freesentation-6SemiBold.woff2') format('woff2');
-    font-weight: 900;
-    font-style: italic;
+    font-family: 'Pretendard-Medium';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
+
 /* 기타 */
 /* Neo둥근모 */
 @font-face {

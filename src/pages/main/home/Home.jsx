@@ -10,10 +10,21 @@ import { userData01 } from '../../../data/dummyData01';
 export const Home = () => {
     return (
         <div className={styles.home}>
-            <FeaturedInfo className={styles.featuredInfo} />
+            <FeaturedInfo />
             <div className={styles.wrapper}>
                 <div className={styles.backTest}>
                     <div className={styles.title}>백테스팅 결과</div>
+                    <div className={styles.backChart}>
+                        <ChartBox
+                            title="최근 주식 종목"
+                            currency="₩"
+                            price="73,700"
+                            arrow={<ArrowDown />}
+                            rate="-1"
+                            chart={<LineChart data={userData01} dataKey="lowest" />}
+                            sub="Compared to last month"
+                        />
+                    </div>
                     <div className={styles.backChart}>
                         <ChartBox
                             title="최근 주식 종목"

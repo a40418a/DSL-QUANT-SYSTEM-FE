@@ -12,24 +12,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: var(--margin);
 }
 
 .title {
-    font-size: 18px;
+    font-size: var(--subtitle-size);
     font-family: var(--font-1);
-    color: var(--main-color);
 }
 
 .money {
     display: flex;
     align-items: center;
     font-family: var(--font-2);
-    font-size: 12px;
+    font-size: var(--content-font);
 }
 
 .money > * {
-    margin-left: 12px; /* 오른쪽 마진을 추가하여 요소들 사이의 간격 조절 */
+    margin-left: var(--margin); /* 오른쪽 마진을 추가하여 요소들 사이의 간격 조절 */
 }
 
 .chart {

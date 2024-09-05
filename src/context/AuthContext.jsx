@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
             const token = localStorage.getItem('jwt');
             if (token) {
                 try {
-                    const response = await axios.get(`http://${SURL}/api/user-info`, {
+                    const response = await axios.get(`${SURL}/api/user-info`, {
                         headers: {
                             Authorization: `Bearer ${token}`,
                         },

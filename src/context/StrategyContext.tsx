@@ -1,7 +1,7 @@
 // 전략 설정 관련 Context
 
 import React, { createContext, useState, useContext } from 'react';
-import { StrategyCommonDTO, StrategyGoldenDTO, StrategyBollingerDTO, StrategyRsiDTO } from '../types/StrategyDTO';
+import { StrategyCommonDTO, StrategyGoldenDTO, StrategyBollingerDTO, StrategyRsiDTO, StrategyEnvDTO, StrategyWDTO} from '../types/StrategyDTO';
 import { ResultDTO } from '../types/ResultDTO';
 
 // 초기 상태값
@@ -27,7 +27,17 @@ const initialStrategy2Data: StrategyBollingerDTO = {
 };
 
 const initialStrategy3Data: StrategyRsiDTO = {
-    rsiPeriod: '',
+    rsiPeriod: 0,
+};
+
+const initialStrategy4Data: StrategyEnvDTO = {
+    moving_up: 0,
+    moving_down: 0,
+    movingAveragePeriod: 0,
+};
+
+const initialStrategy5Data: StrategyWDTO = {
+    williamsPeriod: 0,
 };
 
 const initialResultData: ResultDTO = {
@@ -49,6 +59,10 @@ export const StrategyContext = createContext<{
     setStrategy2Data: React.Dispatch<React.SetStateAction<StrategyBollingerDTO>>;
     strategy3Data: StrategyRsiDTO;
     setStrategy3Data: React.Dispatch<React.SetStateAction<StrategyRsiDTO>>;
+    strategy4Data: StrategyEnvDTO;
+    setStrategy4Data: React.Dispatch<React.SetStateAction<StrategyEnvDTO>>;
+    strategy5Data: StrategyWDTO;
+    setStrategy5Data: React.Dispatch<React.SetStateAction<StrategyWDTO>>;
     resultData: ResultDTO;
     setResultData: React.Dispatch<React.SetStateAction<ResultDTO>>;
 }>({
@@ -60,6 +74,10 @@ export const StrategyContext = createContext<{
     setStrategy2Data: () => {},
     strategy3Data: initialStrategy3Data,
     setStrategy3Data: () => {},
+    strategy4Data: initialStrategy4Data,
+    setStrategy4Data: () => {},
+    strategy5Data: initialStrategy5Data,
+    setStrategy5Data: () => {},
     resultData: initialResultData,
     setResultData: () => {},
 });
@@ -71,6 +89,8 @@ export const StrategyProvider: React.FC = ({ children }) => {
     const [strategy1Data, setStrategy1Data] = useState<StrategyGoldenDTO>(initialStrategy1Data);
     const [strategy2Data, setStrategy2Data] = useState<StrategyBollingerDTO>(initialStrategy2Data);
     const [strategy3Data, setStrategy3Data] = useState<StrategyRsiDTO>(initialStrategy3Data);
+    const [strategy4Data, setStrategy4Data] = useState<StrategyEnvDTO>(initialStrategy4Data);
+    const [strategy5Data, setStrategy5Data] = useState<StrategyWDTO>(initialStrategy5Data);
     const [resultData, setResultData] = useState<ResultDTO>(initialResultData);
 
     return (
@@ -84,6 +104,10 @@ export const StrategyProvider: React.FC = ({ children }) => {
                 setStrategy2Data,
                 strategy3Data,
                 setStrategy3Data,
+                strategy4Data,
+                setStrategy4Data,
+                strategy5Data,
+                setStrategy5Data,
                 resultData,
                 setResultData,
             }}

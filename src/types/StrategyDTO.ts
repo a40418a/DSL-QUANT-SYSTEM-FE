@@ -56,10 +56,36 @@ export class StrategyBollingerDTO {
 
 export class StrategyRsiDTO {
     //RSI,MFI,MACD
-    rsiPeriod: string;
+    rsiPeriod: number;
 
-    constructor(data: { rsiPeriod: string;}) {
+    constructor(data: { rsiPeriod: number;}) {
         this.rsiPeriod = data.rsiPeriod;
+    }
+
+}
+
+export class StrategyEnvDTO {
+    moving_up: number;
+    moving_down: number;
+    movingAveragePeriod: number;
+
+    constructor(data: {
+        moving_up: number;
+        moving_down: number;
+        movingAveragePeriod: number;}) {
+        this.moving_up = data.moving_up;
+        this.moving_down = data.moving_down;
+        this.movingAveragePeriod = data.movingAveragePeriod;
+    }
+
+}
+
+export class StrategyWDTO {
+    //RSI,MFI,MACD
+    williamsPeriod: number;
+
+    constructor(data: { williamsPeriod: number;}) {
+        this.williamsPeriod = data.williamsPeriod;
     }
 
 }

@@ -10,6 +10,7 @@ const initialStrategyCommonData: StrategyCommonDTO = {
     tax: 0.01,
     start_date: '',
     end_date: '',
+    backtesting_date: '',
     target_item: '',
     tick_kind: '',
     inq_range: 100,

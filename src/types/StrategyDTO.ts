@@ -4,6 +4,7 @@ export class StrategyCommonDTO {
     tax: number;
     start_date: string;
     end_date: string;
+    backtesting_date : string;
     target_item: string;
     tick_kind: string;
     inq_range: number;
@@ -14,6 +15,7 @@ export class StrategyCommonDTO {
         tax: number;
         start_date: string;
         end_date: string;
+        backtesting_date : string;
         target_item: string;
         tick_kind: string;
         inq_range: number;
@@ -23,6 +25,7 @@ export class StrategyCommonDTO {
         this.tax = data.tax;
         this.start_date = data.start_date;
         this.end_date = data.end_date;
+        this.backtesting_date=data.backtesting_date;
         this.target_item = data.target_item;
         this.tick_kind = data.tick_kind;
         this.inq_range = data.inq_range;

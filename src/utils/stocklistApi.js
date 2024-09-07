@@ -4,11 +4,11 @@
 
 import axios from 'axios';
 
-const SURL=import.meta.env.VITE_APP_URI;
+const SURL = import.meta.env.VITE_APP_URI;
 
 export const getStockList = async () => {
     try {
-        const response = await axios.get(`http://${SURL}/stocklist`, {
+        const response = await axios.get(`https://${SURL}/stocklist`, {
             params: {
                 sort: 'top', //정렬 기준
             },

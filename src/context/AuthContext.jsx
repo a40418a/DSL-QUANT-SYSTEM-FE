@@ -9,13 +9,12 @@ export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-
-        const SURL=import.meta.env.VITE_APP_URI;
+        const SURL = import.meta.env.VITE_APP_URI;
         const checkUser = async () => {
             const token = localStorage.getItem('jwt');
             if (token) {
                 try {
-                    const response = await axios.get(`http://${SURL}/api/user-info`, {
+                    const response = await axios.get(`https://${SURL}/api/user-info`, {
                         headers: {
                             Authorization: `Bearer ${token}`,
                         },

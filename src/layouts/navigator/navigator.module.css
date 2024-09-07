@@ -69,16 +69,21 @@ a {
     font-size: var(--content-size);
     color: var(--color-3);
     font-family: var(--font-3);
-    margin-right: 8px;
+    margin-right: 4px;
 }
 
 .accountName,
 .accountLogout {
     display: flex;
-    margin: 0 8px;
+    justify-content: right;
     width: 56px;
+    margin: 0 8px;
     color: var(--color-3);
     font-size: var(--content-size);
+}
+
+.accountName {
+    width: 88px;
 }
 
 /* 반응형 */

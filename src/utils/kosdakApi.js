@@ -3,12 +3,11 @@
 
 import axios from 'axios';
 
-
-const SURL=import.meta.env.VITE_APP_URI;
+const SURL = import.meta.env.VITE_APP_URI;
 
 export const getKosdaq = async () => {
     try {
-        const response = await axios.get(`http://${SURL}/kosdaq`);
+        const response = await axios.get(`https://${SURL}/kosdaq`);
         return response.data;
     } catch (error) {
         console.error('getKosdaq error: ', error);

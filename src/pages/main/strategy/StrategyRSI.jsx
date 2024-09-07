@@ -37,14 +37,14 @@ export const StrategyRSI = () => {
     };
 
     const handleSubmit = async () => {
-        const SURL=import.meta.env.VITE_APP_URI;
+        const SURL = import.meta.env.VITE_APP_URI;
         const strategy3DTO = new StrategyRsiDTO(formData);
         console.log(strategy3DTO);
         setStrategy3Data(strategy3DTO);
 
         try {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
-            const response = await axios.post(`http://${SURL}/strategy/rsi`, strategy3DTO, {
+            const response = await axios.post(`https://${SURL}/strategy/rsi`, strategy3DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -84,8 +84,8 @@ export const StrategyRSI = () => {
             </div>
 
             <div className={styles.btnWrapper}>
-                <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick}/>
-                <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit}/>
+                <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick} />
+                <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit} />
             </div>
         </div>
     );

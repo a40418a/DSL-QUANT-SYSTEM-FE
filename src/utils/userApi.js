@@ -3,12 +3,11 @@
 
 import axios from 'axios';
 
-
-const SURL=import.meta.env.VITE_APP_URI;
+const SURL = import.meta.env.VITE_APP_URI;
 
 export const getUserInfo = async () => {
     try {
-        const response = await axios.get(`http://${SURL}/user/info`);
+        const response = await axios.get(`https://${SURL}/user/info`);
         return response.data;
     } catch (error) {
         console.error('getUserInfo error: ', error);

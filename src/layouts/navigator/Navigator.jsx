@@ -7,9 +7,9 @@ import styles from './navigator.module.css';
 
 // 사용자 정보를 가져오는 API 호출 함수
 const getUserInfo = async () => {
-    const SURL=import.meta.env.VITE_APP_URI;
+    const SURL = import.meta.env.VITE_APP_URI;
     try {
-        const response = await axios.get(`http://${SURL}/userinfo`, {
+        const response = await axios.get(`https://${SURL}/userinfo`, {
             headers: {
                 Authorization: `Bearer ${localStorage.getItem('jwt')}`,
             },
@@ -47,7 +47,7 @@ export const Navigator = () => {
         try {
             const token = localStorage.getItem('jwt');
             await axios.post(
-                'http://43.200.199.72:8080/logout',
+                'https://43.200.199.72:8080/logout',
                 {},
                 {
                     headers: {
@@ -98,7 +98,7 @@ export const Navigator = () => {
                 </ul>
                 <div className={styles.account}>
                     <Link to="/mypage" onClick={() => navigate('/mypage')} className={styles.accountName}>
-                        <p>{userInfo ? `${userInfo.name}님` : '이름'}</p> 님
+                        <p>{userInfo ? `${userInfo.name}` : '이름'}</p> 님
                     </Link>
                     <Link to="/" onClick={logoutHandler} className={styles.accountLogout}>
                         로그아웃

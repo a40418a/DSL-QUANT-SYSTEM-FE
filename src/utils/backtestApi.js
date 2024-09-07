@@ -3,12 +3,11 @@
 
 import axios from 'axios';
 
-
-const SURL=import.meta.env.VITE_APP_URI;
+const SURL = import.meta.env.VITE_APP_URI;
 
 export const getBacktest = async () => {
     try {
-        const response = await axios.get(`http://${SURL}/backtest`);
+        const response = await axios.get(`https://${SURL}/backtest`);
         return response.data;
     } catch (error) {
         console.error('getBacktest error: ', error);
@@ -18,7 +17,7 @@ export const getBacktest = async () => {
 
 export const postBacktest = async (data) => {
     try {
-        const response = await axios.post(`http://${SURL}/backtest`, data);
+        const response = await axios.post(`https://${SURL}/backtest`, data);
         return response.data;
     } catch (error) {
         console.error('postBacktest error: ', error);

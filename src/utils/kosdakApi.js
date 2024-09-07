@@ -7,7 +7,7 @@ const SURL = import.meta.env.VITE_APP_URI;
 
 export const getKosdaq = async () => {
     try {
-        const response = await axios.get(`https://${SURL}/kosdaq`);
+        const response = await axios.get(`${SURL}/kosdaq`);
         return response.data;
     } catch (error) {
         console.error('getKosdaq error: ', error);

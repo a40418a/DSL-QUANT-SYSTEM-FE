@@ -54,6 +54,8 @@ export const StrategyMain = () => {
         { label: '골든/데드', value: 'strategy/golden' },
         { label: '볼린저밴드', value: 'strategy/bollinger' },
         { label: 'RSI, MFI, MACD 지표 이용', value: 'strategy/rsi' },
+        { label: '엔벨로프', value: 'strategy/env' },
+        { label: '윌리엄스%R', value: 'strategy/williams' },
     ];
 
     const handleChange = (e) => {
@@ -97,7 +99,7 @@ export const StrategyMain = () => {
 
         try {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
-            const response = await axios.post(`https://${SURL}/strategy`, strategyCommonDTO, {
+            const response = await axios.post(`${SURL}/strategy`, strategyCommonDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

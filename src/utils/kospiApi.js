@@ -7,7 +7,7 @@ const SURL = import.meta.env.VITE_APP_URI;
 
 export const getKospi = async () => {
     try {
-        const response = await axios.get(`https://${SURL}/kospi`);
+        const response = await axios.get(`${SURL}/kospi`);
         return response.data;
     } catch (error) {
         console.error('getKospi error: ', error);

@@ -1,18 +1,18 @@
-//볼린저밴드 전략페이지
+//Williams 지표 이용 전략 설정 페이지
 
 import React, { useContext, useState } from 'react';
 import styles from './strategy.module.css';
 import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
 import { InputBox } from '../../../components/box/inputBox/InputBox';
-import { StrategyBollingerDTO } from '../../../types/StrategyDTO';
+import { StrategyWDTO } from '../../../types/StrategyDTO';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import axios from 'axios';
 
-export const StrategyBollinger = () => {
-    const { setStrategy2Data } = useContext(StrategyContext);
+export const StrategyWilliams = () => {
+    const { setStrategy5Data } = useContext(StrategyContext);
     const [formData, setFormData] = useState({
-        move_period: [0, 0],
+        williamsPeriod: 0,
     });
 
     const navigate = useNavigate();
@@ -25,9 +25,9 @@ export const StrategyBollinger = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => {
-            const newFormData = { ...prevData, [name]: value };
+            const newFormData = { ...prevData, [name]: Number(value) };
 
-            if (name === 'moveAvg' && parseFloat(value) < 0) {
+            if (name === 'williamsPeriod' && parseFloat(value) < 0) {
                 alert('입력값은 0보다 작을 수 없습니다.');
                 return prevData;
             }
@@ -37,14 +37,14 @@ export const StrategyBollinger = () => {
     };
 
     const handleSubmit = async () => {
-        const SURL = import.meta.env.VITE_APP_URI;
-        const strategy2DTO = new StrategyBollingerDTO(formData);
-        console.log(strategy2DTO);
-        setStrategy2Data(strategy2DTO);
+        const SURL=import.meta.env.VITE_APP_URI;
+        const strategy5DTO = new StrategyWDTO(formData);
+        console.log(strategy5DTO);
+        setStrategy5Data(strategy5DTO);
 
         try {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
-            const response = await axios.post(`${SURL}/strategy/bollinger`, strategy2DTO, {
+            const response = await axios.post(`${SURL}/strategy/williams`, strategy5DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -54,10 +54,12 @@ export const StrategyBollinger = () => {
             console.error('There was an error submitting the common strategy!', error);
         }
 
-        if (formData.moveAvg) {
+        if (formData.williamsPeriod) {
             navigate(`/result/${id}`);
         } else {
-            alert('이동 평균 기간을 입력해주세요.');
+            if (!formData.williamsPeriod) {
+                alert('Williams %R 데이터를 입력해주세요.(기본값은 14입니다.)');
+            }
         }
     };
 
@@ -67,22 +69,23 @@ export const StrategyBollinger = () => {
 
     return (
         <div className={styles.strategy}>
-            <div className={styles.title}>볼린저밴드 전략 설정 페이지</div>
+            <div className={styles.title}>Williams %R 지표 이용 전략 설정 페이지</div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>이동 평균 기간</div>
+                <div className={styles.subtitle}>빠른 이동 평균 기간</div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"
-                        placeholder="이동 평균 기간을 입력하세요."
-                        name="moveAvg"
-                        value={formData.moveAvg}
+                        placeholder="Williams 기간을 입력하세요."
+                        name="williamsPeriod"
+                        value={formData.williamsPeriod}
                         onChange={handleChange}
                     />
                 </div>
             </div>
-            <div className={styles.btnWrapper} id="btn-to-result">
-                <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick} />
-                <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit} />
+
+            <div className={styles.btnWrapper}>
+                <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick}/>
+                <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit}/>
             </div>
         </div>
     );

@@ -7,7 +7,7 @@ const SURL = import.meta.env.VITE_APP_URI;
 
 export const getUserInfo = async () => {
     try {
-        const response = await axios.get(`https://${SURL}/user/info`);
+        const response = await axios.get(`${SURL}/user/info`);
         return response.data;
     } catch (error) {
         console.error('getUserInfo error: ', error);

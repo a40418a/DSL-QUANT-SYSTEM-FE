@@ -4,6 +4,7 @@ export class StrategyCommonDTO {
     tax: number;
     start_date: string;
     end_date: string;
+    backtesting_date : string;
     target_item: string;
     tick_kind: string;
     inq_range: number;
@@ -14,6 +15,7 @@ export class StrategyCommonDTO {
         tax: number;
         start_date: string;
         end_date: string;
+        backtesting_date : string;
         target_item: string;
         tick_kind: string;
         inq_range: number;
@@ -23,6 +25,7 @@ export class StrategyCommonDTO {
         this.tax = data.tax;
         this.start_date = data.start_date;
         this.end_date = data.end_date;
+        this.backtesting_date=data.backtesting_date;
         this.target_item = data.target_item;
         this.tick_kind = data.tick_kind;
         this.inq_range = data.inq_range;
@@ -56,10 +59,36 @@ export class StrategyBollingerDTO {
 
 export class StrategyRsiDTO {
     //RSI,MFI,MACD
-    rsiPeriod: string;
+    rsiPeriod: number;
 
-    constructor(data: { rsiPeriod: string;}) {
+    constructor(data: { rsiPeriod: number;}) {
         this.rsiPeriod = data.rsiPeriod;
+    }
+
+}
+
+export class StrategyEnvDTO {
+    moving_up: number;
+    moving_down: number;
+    movingAveragePeriod: number;
+
+    constructor(data: {
+        moving_up: number;
+        moving_down: number;
+        movingAveragePeriod: number;}) {
+        this.moving_up = data.moving_up;
+        this.moving_down = data.moving_down;
+        this.movingAveragePeriod = data.movingAveragePeriod;
+    }
+
+}
+
+export class StrategyWDTO {
+    //RSI,MFI,MACD
+    williamsPeriod: number;
+
+    constructor(data: { williamsPeriod: number;}) {
+        this.williamsPeriod = data.williamsPeriod;
     }
 
 }

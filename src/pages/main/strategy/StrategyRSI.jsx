@@ -44,7 +44,7 @@ export const StrategyRSI = () => {
 
         try {
             const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
-            const response = await axios.post(`https://${SURL}/strategy/rsi`, strategy3DTO, {
+            const response = await axios.post(`${SURL}/strategy/rsi`, strategy3DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },

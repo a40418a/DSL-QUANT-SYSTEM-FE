@@ -13,7 +13,7 @@ export const Result = () => {
         // localStorage에서 토큰을 가져옵니다.
         const token = localStorage.getItem('jwt');
 
-        fetch(`https://${SURL}/result/${id}`, {
+        fetch(`${SURL}/result/${id}`, {
             // 백엔드의 정확한 URL을 사용합니다.`
             method: 'GET',
             headers: {

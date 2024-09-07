@@ -5,7 +5,6 @@
     flex-direction: column;
     align-items: center;
 }
-
 .wrapper {
     width: 100%;
     display: flex;
@@ -35,7 +34,6 @@
 .table {
     box-sizing: border-box;
     width: 54%;
-    overflow-x: scroll;
 }
 
 .table th {
@@ -56,6 +54,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        margin-top: -220px;
     }
     .backTest {
         width: 80%;
@@ -67,12 +66,12 @@
     }
 }
 
-@media (max-width: 675px) {
-    .table td {
-        font-size: var(--content-size);
+@media (max-width: 770px) {
+    .table {
+        overflow-x: auto;
     }
-
+    .table td,
     .table th {
-        font-size: var(--content-size);
+        font-size: 12px;
     }
 }

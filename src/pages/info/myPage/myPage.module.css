@@ -42,6 +42,10 @@
     height: 80px;
 }
 
+.tableV th {
+    width: 30%;
+}
+
 .tableH {
     width: 100%;
     height: 160px;
@@ -62,6 +66,10 @@
 .tableH th:last-child,
 .tableH td:last-child {
     border-right: none; /* Hide right border for the last column */
+}
+
+.tableH td {
+    overflow: auto;
 }
 .select {
     display: flex;

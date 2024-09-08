@@ -10,8 +10,7 @@
 
 .text {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     margin-bottom: var(--margin);
 }
 
@@ -22,7 +21,7 @@
 
 .money {
     display: flex;
-    align-items: center;
+    align-items: right;
     font-family: var(--font-2);
     font-size: var(--content-font);
 }

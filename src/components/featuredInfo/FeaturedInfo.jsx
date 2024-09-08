@@ -43,15 +43,13 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스닥"
                         currency="₩"
-                        price={kosdaq[kosdaq.length - 1]?.closingPrice}
-                        arrow={
-                            kosdaq[kosdaq.length - 1]?.fluctuatingRate >= 0 ? (
-                                <ArrowUp />
-                            ) : (
-                                <ArrowDown />
-                            )
-                        }
-                        rate={kosdaq[kosdaq.length - 1]?.fluctuatingRate}
+                        open={kosdaq.openingPrice}
+                        close={kosdaq.closingPrice}
+                        highest={kosdaq.highPrice}
+                        lowest={kosdaq.lowPrice}
+                        arrow={kosdaq.fluctuatingRate >= 0 ? <ArrowUp /> : <ArrowDown />}
+                        rate={kosdaq.fluctuatingRate}
+                        volume={kosdaq.tradingVolume}
                         chart={
                             <LineChart
                                 dataKey="close"
@@ -62,7 +60,7 @@ export const FeaturedInfo = () => {
                                     low: item.lowPrice,
                                     volume: item.tradingVolume,
                                     rate: item.fluctuatingRate,
-                                    date: item.date,
+                                    date: item.date || "", // date가 없을 경우 빈 문자열
                                 }))}
                             />
                         }
@@ -77,15 +75,13 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스피"
                         currency="₩"
-                        price={kospi[kospi.length - 1]?.closingPrice}
-                        arrow={
-                            kospi[kospi.length - 1]?.fluctuatingRate >= 0 ? (
-                                <ArrowUp />
-                            ) : (
-                                <ArrowDown />
-                            )
-                        }
-                        rate={kospi[kospi.length - 1]?.fluctuatingRate}
+                        open={kospi.openingPrice}
+                        close={kospi.closingPrice}
+                        highest={kospi.highPrice}
+                        lowest={kospi.lowPrice}
+                        arrow={kospi.fluctuatingRate >= 0 ? <ArrowUp /> : <ArrowDown />}
+                        rate={kospi.fluctuatingRate}
+                        volume={kospi.tradingVolume}
                         chart={
                             <LineChart
                                 dataKey="close"
@@ -96,7 +92,7 @@ export const FeaturedInfo = () => {
                                     low: item.lowPrice,
                                     volume: item.tradingVolume,
                                     rate: item.fluctuatingRate,
-                                    date: item.date,
+                                    date: item.date || " ",
                                 }))}
                             />
                         }
@@ -112,15 +108,13 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스피200"
                         currency="₩"
-                        price={kospi200[kospi200.length - 1]?.closingPrice}
-                        arrow={
-                            kospi200[kospi200.length - 1]?.fluctuatingRate >= 0 ? (
-                                <ArrowUp />
-                            ) : (
-                                <ArrowDown />
-                            )
-                        }
-                        rate={kospi200[kospi200.length - 1]?.fluctuatingRate}
+                        open={kospi200.openingPrice}
+                        close={kospi200.closingPrice}
+                        highest={kospi200.highPrice}
+                        lowest={kospi200.lowPrice}
+                        arrow={kospi200.fluctuatingRate >= 0 ? <ArrowUp /> : <ArrowDown />}
+                        rate={kospi200.fluctuatingRate}
+                        volume={kospi200.tradingVolume}
                         chart={
                             <LineChart
                                 dataKey="close"
@@ -131,7 +125,7 @@ export const FeaturedInfo = () => {
                                     low: item.lowPrice,
                                     volume: item.tradingVolume,
                                     rate: item.fluctuatingRate,
-                                    date: item.date,
+                                    date: item.date || " ",
                                 }))}
                             />
                         }

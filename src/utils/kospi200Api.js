@@ -1,7 +1,7 @@
 // 코스피200 1년치 정보 받아오는 API
 // GET
 
-import axios from 'axios';
+import axios from "axios";
 
 const SURL = import.meta.env.VITE_APP_URI;
 
@@ -11,7 +11,7 @@ export const getKospi200 = async () => {
 
         return response.data;
     } catch (error) {
-        console.error('getKospi200 error: ', error);
+        console.error("getKospi200 error: ", error);
         throw error;
     }
 };

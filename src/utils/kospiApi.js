@@ -1,7 +1,7 @@
 // 코스피 1년치 정보 받아오는 API
 // GET
 
-import axios from 'axios';
+import axios from "axios";
 
 const SURL = import.meta.env.VITE_APP_URI;
 
@@ -10,7 +10,7 @@ export const getKospi = async () => {
         const response = await axios.get(`${SURL}/home/kospi`);
         return response.data;
     } catch (error) {
-        console.error('getKospi error: ', error);
+        console.error("getKospi error: ", error);
         throw error;
     }
 };

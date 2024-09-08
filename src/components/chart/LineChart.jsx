@@ -2,6 +2,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 import styles from "./chart.module.css";
 import { Loading } from "../loading/Loading";
+import { meta } from "eslint-plugin-prettier";
 
 // Chart01 컴포넌트 정의
 export const LineChart = ({ title, dataKey, chartData }) => {
@@ -23,8 +24,9 @@ export const LineChart = ({ title, dataKey, chartData }) => {
 
     // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
     const data = chartData.map((entry) => ({
-        x: new Date(entry.date).getTime(), // 날짜를 타임스탬프로 변환
+        x: entry.date ? new Date(entry.date).getTime() : new Date().getTime(), // 날짜를 타임스탬프로 변환
         y: entry[dataKey], // 캔들차트 데이터 형식
+        meta: { ...entry }, // 메타데이터 추가
     }));
 
     const options = {
@@ -139,14 +141,16 @@ export const LineChart = ({ title, dataKey, chartData }) => {
             },
             custom: function ({ seriesIndex, dataPointIndex, w }) {
                 const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex].meta;
+                const date = data.date ? new Date(data.date).toLocaleDateString() : "N/A";
+
                 return `<div class="tooltip">
-                          <div><strong>Date:</strong> ${new Date(data.date).toLocaleDateString()}</div>
+                          <div><strong>Date:</strong> ${date}</div>
                           <div><strong>Open:</strong> ${data.open}</div>
                           <div><strong>Close:</strong> ${data.close}</div>
-                          <div><strong>Highest:</strong> ${data.highest}</div>
-                          <div><strong>Lowest:</strong> ${data.lowest}</div>
+                          <div><strong>Highest:</strong> ${data.high}</div>
+                          <div><strong>Lowest:</strong> ${data.low}</div>
                           <div><strong>Volume:</strong> ${data.volume}</div>
-                          <div><strong>Change:</strong> ${(data.change * 100).toFixed(2)}%</div>
+                          <div><strong>Change:</strong> ${(data.rate * 100).toFixed(2)}%</div>
                         </div>`;
             },
         },
@@ -156,7 +160,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
         annotations: {
             yaxis: [
                 {
-                    y: chartData[length - 2][dataKey],
+                    y: chartData[chartData.length - 2][dataKey],
                     borderColor: "var(--color-3)",
                     strokeDashArray: "var(--stroke-dash-array)",
                 },

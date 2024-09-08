@@ -3,6 +3,7 @@ import Chart from "react-apexcharts";
 import styles from "./chart.module.css";
 import { Loading } from "../loading/Loading";
 import { meta } from "eslint-plugin-prettier";
+import { max } from "moment/moment";
 
 // Chart01 컴포넌트 정의
 export const LineChart = ({ title, dataKey, chartData }) => {
@@ -20,7 +21,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
     const minClose = Math.min(...chartData.map((entry) => entry.close));
 
     // y축 범위를 조절하기 위한 일정 값 설정
-    const range = 1000;
+    const range = maxClose * 0.1;
 
     // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
     const data = chartData.map((entry) => ({
@@ -173,8 +174,8 @@ export const LineChart = ({ title, dataKey, chartData }) => {
             type: "gradient",
             gradient: {
                 shadeIntensity: 1,
-                opacityFrom: 0.7,
-                opacityTo: 0.3,
+                opacityFrom: 0.4,
+                opacityTo: 0,
                 stops: [0, 90, 100],
             },
         },

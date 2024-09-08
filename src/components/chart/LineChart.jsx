@@ -173,8 +173,8 @@ export const LineChart = ({ title, dataKey, chartData }) => {
             type: "gradient",
             gradient: {
                 shadeIntensity: 1,
-                opacityFrom: 0.4,
-                opacityTo: 0,
+                opacityFrom: 0.7,
+                opacityTo: 0.3,
                 stops: [0, 90, 100],
             },
         },
@@ -182,9 +182,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
             size: 0,
         },
         colors: [
-            chartData[length - 2][dataKey] < chartData[length - 1][dataKey]
-                ? "var(--up-color)"
-                : "var(--down-color)",
+            chartData[1][dataKey] < chartData[0][dataKey] ? "var(--up-color)" : "var(--down-color)",
         ],
     };
 

@@ -56,7 +56,12 @@ export const FeaturedInfo = () => {
                             <LineChart
                                 dataKey="close"
                                 chartData={kosdaq.map((item) => ({
+                                    open: item.openingPrice,
                                     close: item.closingPrice,
+                                    high: item.highPrice,
+                                    low: item.lowPrice,
+                                    volume: item.tradingVolume,
+                                    rate: item.fluctuatingRate,
                                     date: item.date,
                                 }))}
                             />
@@ -85,7 +90,12 @@ export const FeaturedInfo = () => {
                             <LineChart
                                 dataKey="close"
                                 chartData={kospi.map((item) => ({
+                                    open: item.openingPrice,
                                     close: item.closingPrice,
+                                    high: item.highPrice,
+                                    low: item.lowPrice,
+                                    volume: item.tradingVolume,
+                                    rate: item.fluctuatingRate,
                                     date: item.date,
                                 }))}
                             />
@@ -115,7 +125,12 @@ export const FeaturedInfo = () => {
                             <LineChart
                                 dataKey="close"
                                 chartData={kospi200.map((item) => ({
+                                    open: item.openingPrice,
                                     close: item.closingPrice,
+                                    high: item.highPrice,
+                                    low: item.lowPrice,
+                                    volume: item.tradingVolume,
+                                    rate: item.fluctuatingRate,
                                     date: item.date,
                                 }))}
                             />

@@ -8,7 +8,7 @@ export const ChartBox = ({ title, currency, price, arrow, rate, chart, sub }) =>
             <div className={styles.text}>
                 <div className={styles.title}>{title}</div>
                 <div className={styles.money}>
-                    {currency} {price} {arrow} {rate}%
+                    {currency} {price} {arrow} {rate}
                 </div>
             </div>
             <div className={styles.chart}>{chart}</div>

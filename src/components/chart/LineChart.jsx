@@ -13,8 +13,8 @@ export const LineChart = ({ title, dataKey, chartData }) => {
     const length = chartData.length; // 데이터 길이 저장
 
     // 각 데이터 항목에서 특정 속성의 최대값과 최소값 계산
-    const maxClose = Math.max(...chartData.map((entry) => entry[dataKey]));
-    const minClose = Math.min(...chartData.map((entry) => entry[dataKey]));
+    const maxClose = Math.max(...chartData.map((entry) => entry.high));
+    const minClose = Math.min(...chartData.map((entry) => entry.low));
 
     // y축 범위를 조절하기 위한 일정 값 설정
     const range = 1000;
@@ -126,8 +126,8 @@ export const LineChart = ({ title, dataKey, chartData }) => {
             },
         },
         yaxis: {
-            min: minClose - range,
-            max: maxClose + range,
+            min: minLowest - range,
+            max: maxHighest + range,
             show: false,
         },
         tooltip: {

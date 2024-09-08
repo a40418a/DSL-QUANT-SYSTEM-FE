@@ -136,7 +136,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
         },
         tooltip: {
             x: {
-                format: "yy/MM",
+                format: "dd/yy/MM",
                 show: false,
             },
             custom: function ({ seriesIndex, dataPointIndex, w }) {
@@ -150,7 +150,6 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                           <div><strong>Highest:</strong> ${data.high}</div>
                           <div><strong>Lowest:</strong> ${data.low}</div>
                           <div><strong>Volume:</strong> ${data.volume}</div>
-                          <div><strong>Change:</strong> ${(data.rate * 100).toFixed(2)}%</div>
                         </div>`;
             },
         },

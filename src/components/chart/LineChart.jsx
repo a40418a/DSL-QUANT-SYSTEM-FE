@@ -1,7 +1,7 @@
-import React from 'react';
-import Chart from 'react-apexcharts';
-import styles from './chart.module.css';
-import { Loading } from '../loading/Loading';
+import React from "react";
+import Chart from "react-apexcharts";
+import styles from "./chart.module.css";
+import { Loading } from "../loading/Loading";
 
 // Chart01 컴포넌트 정의
 export const LineChart = ({ title, dataKey, chartData }) => {
@@ -13,12 +13,8 @@ export const LineChart = ({ title, dataKey, chartData }) => {
     const length = chartData.length; // 데이터 길이 저장
 
     // 각 데이터 항목에서 특정 속성의 최대값과 최소값 계산
-    const maxOpen = Math.max(...chartData.map((entry) => entry.open));
-    const minOpen = Math.min(...chartData.map((entry) => entry.open));
-    const maxClose = Math.max(...chartData.map((entry) => entry.close));
-    const minClose = Math.min(...chartData.map((entry) => entry.close));
-    const maxHighest = Math.max(...chartData.map((entry) => entry.highest));
-    const minLowest = Math.min(...chartData.map((entry) => entry.lowest));
+    const maxClose = Math.max(...chartData.map((entry) => entry[dataKey]));
+    const minClose = Math.min(...chartData.map((entry) => entry[dataKey]));
 
     // y축 범위를 조절하기 위한 일정 값 설정
     const range = 1000;
@@ -26,20 +22,19 @@ export const LineChart = ({ title, dataKey, chartData }) => {
     // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
     const data = chartData.map((entry) => ({
         x: new Date(entry.date).getTime(), // 날짜를 타임스탬프로 변환
-        y: [entry.open, entry.close, entry.lowest, entry.highest], // 캔들차트 데이터 형식
-        meta: { ...entry }, // 메타데이터 추가
+        y: entry[dataKey], // 캔들차트 데이터 형식
     }));
 
     const options = {
         chart: {
-            type: 'area',
-            height: '100%',
+            type: "area",
+            height: "100%",
             animations: {
                 enabled: false,
             },
             zoom: {
                 enabled: true, // 확대/축소 기능 활성화
-                type: 'x', // 확대/축소 유형: x와 y축 모두
+                type: "x", // 확대/축소 유형: x와 y축 모두
                 autoScaleYaxis: true, // 확대 시 y축 자동 스케일링
             },
             toolbar: {
@@ -54,55 +49,65 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                         {
                             icon: '<div class="icon">1Y</div>', // 사용자 정의 아이콘 (1년)
                             index: 1,
-                            title: '1 Year',
+                            title: "1 Year",
                             click: function (chart) {
                                 chart.zoomX(
-                                    new Date(new Date().setFullYear(new Date().getFullYear() - 1)).getTime(),
-                                    new Date().getTime()
+                                    new Date(
+                                        new Date().setFullYear(new Date().getFullYear() - 1),
+                                    ).getTime(),
+                                    new Date().getTime(),
                                 );
                             },
                         },
                         {
                             icon: '<div class="icon">6M</div>', // 사용자 정의 아이콘 (6개월)
                             index: 2,
-                            title: '6 Month',
+                            title: "6 Month",
                             click: function (chart) {
                                 chart.zoomX(
-                                    new Date(new Date().setMonth(new Date().getMonth() - 6)).getTime(),
-                                    new Date().getTime()
+                                    new Date(
+                                        new Date().setMonth(new Date().getMonth() - 6),
+                                    ).getTime(),
+                                    new Date().getTime(),
                                 );
                             },
                         },
                         {
                             icon: '<div class="icon">3M</div>', // 사용자 정의 아이콘 (3개월)
                             index: 3,
-                            title: '3 Month',
+                            title: "3 Month",
                             click: function (chart) {
                                 chart.zoomX(
-                                    new Date(new Date().setMonth(new Date().getMonth() - 3)).getTime(),
-                                    new Date().getTime()
+                                    new Date(
+                                        new Date().setMonth(new Date().getMonth() - 3),
+                                    ).getTime(),
+                                    new Date().getTime(),
                                 );
                             },
                         },
                         {
                             icon: '<div class="icon">1M</div>', // 사용자 정의 아이콘 (1개월)
                             index: 4,
-                            title: '1 Month',
+                            title: "1 Month",
                             click: function (chart) {
                                 chart.zoomX(
-                                    new Date(new Date().setMonth(new Date().getMonth() - 1)).getTime(),
-                                    new Date().getTime()
+                                    new Date(
+                                        new Date().setMonth(new Date().getMonth() - 1),
+                                    ).getTime(),
+                                    new Date().getTime(),
                                 );
                             },
                         },
                         {
                             icon: '<div class="icon">1W</div>', // 사용자 정의 아이콘 (1주일)
                             index: 5,
-                            title: '1 Week',
+                            title: "1 Week",
                             click: function (chart) {
                                 chart.zoomX(
-                                    new Date(new Date().setDate(new Date().getDate() - 7)).getTime(),
-                                    new Date().getTime()
+                                    new Date(
+                                        new Date().setDate(new Date().getDate() - 7),
+                                    ).getTime(),
+                                    new Date().getTime(),
                                 );
                             },
                         },
@@ -112,22 +117,22 @@ export const LineChart = ({ title, dataKey, chartData }) => {
         },
         title: {
             text: title,
-            align: 'left',
+            align: "left",
         },
         xaxis: {
-            type: 'datetime',
+            type: "datetime",
             labels: {
-                format: 'MM/dd',
+                format: "MM/dd",
             },
         },
         yaxis: {
-            min: minLowest - range,
-            max: maxHighest + range,
+            min: minClose - range,
+            max: maxClose + range,
             show: false,
         },
         tooltip: {
             x: {
-                format: 'yy/MM',
+                format: "yy/MM",
                 show: false,
             },
             custom: function ({ seriesIndex, dataPointIndex, w }) {
@@ -150,17 +155,17 @@ export const LineChart = ({ title, dataKey, chartData }) => {
             yaxis: [
                 {
                     y: chartData[length - 2][dataKey],
-                    borderColor: 'var(--color-3)',
-                    strokeDashArray: 'var(--stroke-dash-array)',
+                    borderColor: "var(--color-3)",
+                    strokeDashArray: "var(--stroke-dash-array)",
                 },
             ],
         },
         stroke: {
-            curve: 'straight',
+            curve: "straight",
             width: 2,
         },
         fill: {
-            type: 'gradient',
+            type: "gradient",
             gradient: {
                 shadeIntensity: 1,
                 opacityFrom: 0.4,
@@ -172,7 +177,9 @@ export const LineChart = ({ title, dataKey, chartData }) => {
             size: 0,
         },
         colors: [
-            chartData[length - 2][dataKey] < chartData[length - 1][dataKey] ? 'var(--up-color)' : 'var(--down-color)',
+            chartData[length - 2][dataKey] < chartData[length - 1][dataKey]
+                ? "var(--up-color)"
+                : "var(--down-color)",
         ],
     };
 

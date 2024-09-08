@@ -52,10 +52,15 @@ export const FeaturedInfo = () => {
                             )
                         }
                         rate={kosdaq[kosdaq.length - 1]?.fluctuatingRate}
-                        chart={kosdaq.map((item) => ({
-                            close: item.closingPrice,
-                            date: item.date,
-                        }))}
+                        chart={
+                            <LineChart
+                                dataKey="close"
+                                chartData={kosdaq.map((item) => ({
+                                    close: item.closingPrice,
+                                    date: item.date,
+                                }))}
+                            />
+                        }
                         sub="Compared to last month"
                     />
                 )}
@@ -76,10 +81,15 @@ export const FeaturedInfo = () => {
                             )
                         }
                         rate={kospi[kospi.length - 1]?.fluctuatingRate}
-                        chart={kospi.map((item) => ({
-                            close: item.closingPrice,
-                            date: item.date,
-                        }))}
+                        chart={
+                            <LineChart
+                                dataKey="close"
+                                chartData={kospi.map((item) => ({
+                                    close: item.closingPrice,
+                                    date: item.date,
+                                }))}
+                            />
+                        }
                         sub="Compared to last month"
                     />
                 )}
@@ -101,10 +111,15 @@ export const FeaturedInfo = () => {
                             )
                         }
                         rate={kospi200[kospi200.length - 1]?.fluctuatingRate}
-                        chart={kospi200.map((item) => ({
-                            close: item.closingPrice,
-                            date: item.date,
-                        }))}
+                        chart={
+                            <LineChart
+                                dataKey="close"
+                                chartData={kospi200.map((item) => ({
+                                    close: item.closingPrice,
+                                    date: item.date,
+                                }))}
+                            />
+                        }
                         sub="Compared to last month"
                     />
                 )}

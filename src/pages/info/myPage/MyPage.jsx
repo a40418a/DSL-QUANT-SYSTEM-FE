@@ -35,9 +35,9 @@ export const MyPage = () => {
     }, []);
 
     const options_strategy = [
-        { label: '골든/데드', value: '/golden' },
-        { label: '볼린저밴드', value: '/bollinger' },
-        { label: 'RSI, MFI, MACD 지표 이용', value: '/rsi' },
+        { label: '골든/데드', value: 'golden' },
+        { label: '볼린저밴드', value: 'bollinger' },
+        { label: 'RSI, MFI, MACD 지표 이용', value: 'rsi' },
     ];
 
     const handleBtnClick = async () => {

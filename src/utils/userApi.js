@@ -5,9 +5,13 @@ import axios from 'axios';
 
 const SURL = import.meta.env.VITE_APP_URI;
 
-export const getUserInfo = async () => {
+export const getUserInfo = async (token) => {
     try {
-        const response = await axios.get(`${SURL}/user/info`);
+        const response = await axios.get(`${SURL}/user/info`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
         console.error('getUserInfo error: ', error);

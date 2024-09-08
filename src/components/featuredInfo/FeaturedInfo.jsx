@@ -1,13 +1,13 @@
 // 상단 참고 주식 자료 구조
-import React, { useEffect, useState } from 'react';
-import styles from './featuredInfo.module.css';
-import { ArrowDown, ArrowUp } from '../emoticon/Arrow';
-import { ChartBox } from '../box/chartBox/ChartBox';
-import { LineChart } from '../chart/LineChart';
-import { Loading } from '../loading/Loading';
-import { getKosdaq } from '../../utils/kosdakApi';
-import { getKospi } from '../../utils/kospiApi';
-import { getKospi200 } from '../../utils/kospi200Api';
+import React, { useEffect, useState } from "react";
+import styles from "./featuredInfo.module.css";
+import { ArrowDown, ArrowUp } from "../emoticon/Arrow";
+import { ChartBox } from "../box/chartBox/ChartBox";
+import { LineChart } from "../chart/LineChart";
+import { Loading } from "../loading/Loading";
+import { getKosdaq } from "../../utils/kosdakApi";
+import { getKospi } from "../../utils/kospiApi";
+import { getKospi200 } from "../../utils/kospi200Api";
 
 export const FeaturedInfo = () => {
     //API를 통해 받아온 데이터를 저장
@@ -21,14 +21,17 @@ export const FeaturedInfo = () => {
             try {
                 const kospiData = await getKospi();
                 setKospi(kospiData);
+                console.log("kospi data", kospiData);
 
                 const kosdaqData = await getKosdaq();
                 setKosdaq(kosdaqData);
+                console.log("kosdaq data", kosdaqData);
 
                 const kospi200Data = await getKospi200();
                 setKospi200(kospi200Data);
+                console.log("kospi200 data", kospi200Data);
             } catch (error) {
-                console.error('FeaturedInfo fetchData error: ', error);
+                console.error("FeaturedInfo fetchData error: ", error);
             }
         };
         fetchData();
@@ -43,9 +46,13 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스닥"
                         currency="₩"
-                        price={kosdaq.price}
-                        arrow={kosdaq.rate >= 0 ? <ArrowUp /> : <ArrowDown />}
-                        rate={kosdaq.rate}
+                        openingPrice={kosdaq.openingPrice}
+                        closingPrice={kosdaq.closingPrice}
+                        highPrice={kosdaq.highPrice}
+                        lowPrice={kosdaq.lowPrice}
+                        arrow={kosdaq.fluctuatingRate >= 0 ? <ArrowUp /> : <ArrowDown />}
+                        rate={kosdaq.fluctuatingRate}
+                        volume={kosdaq.tradingVolume}
                         chart={<LineChart data={kosdaq.chartData} dataKey="close" />}
                         sub="Compared to last month"
                     />

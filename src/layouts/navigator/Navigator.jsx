@@ -47,7 +47,7 @@ export const Navigator = () => {
         try {
             const token = localStorage.getItem('jwt');
             await axios.post(
-                'https://43.200.199.72:8080/logout',
+                'https:///api.dslquant.site/logout',
                 {},
                 {
                     headers: {

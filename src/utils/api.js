@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const SURL=import.meta.env.VITE_APP_URI;
+const SURL = import.meta.env.VITE_APP_URI;
 // GET 요청 보내기
 axios
 

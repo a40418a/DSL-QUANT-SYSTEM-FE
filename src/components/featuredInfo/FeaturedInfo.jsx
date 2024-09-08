@@ -21,15 +21,12 @@ export const FeaturedInfo = () => {
             try {
                 const kospiData = await getKospi();
                 setKospi(kospiData);
-                console.log("kospi data", kospiData);
 
                 const kosdaqData = await getKosdaq();
                 setKosdaq(kosdaqData);
-                console.log("kosdaq data", kosdaqData);
 
                 const kospi200Data = await getKospi200();
                 setKospi200(kospi200Data);
-                console.log("kospi200 data", kospi200Data);
             } catch (error) {
                 console.error("FeaturedInfo fetchData error: ", error);
             }
@@ -46,14 +43,19 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스닥"
                         currency="₩"
-                        openingPrice={kosdaq.openingPrice}
-                        closingPrice={kosdaq.closingPrice}
-                        highPrice={kosdaq.highPrice}
-                        lowPrice={kosdaq.lowPrice}
-                        arrow={kosdaq.fluctuatingRate >= 0 ? <ArrowUp /> : <ArrowDown />}
-                        rate={kosdaq.fluctuatingRate}
-                        volume={kosdaq.tradingVolume}
-                        chart={<LineChart data={kosdaq.chartData} dataKey="close" />}
+                        price={kosdaq[kosdaq.length - 1]?.closingPrice}
+                        arrow={
+                            kosdaq[kosdaq.length - 1]?.fluctuatingRate >= 0 ? (
+                                <ArrowUp />
+                            ) : (
+                                <ArrowDown />
+                            )
+                        }
+                        rate={kosdaq[kosdaq.length - 1]?.fluctuatingRate}
+                        chart={kosdaq.map((item) => ({
+                            close: item.closingPrice,
+                            date: item.date,
+                        }))}
                         sub="Compared to last month"
                     />
                 )}
@@ -65,10 +67,19 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스피"
                         currency="₩"
-                        price={kospi.price}
-                        arrow={kospi.rate >= 0 ? <ArrowUp /> : <ArrowDown />}
-                        rate={kospi.rate}
-                        chart={<LineChart data={kospi.chartData} dataKey="close" />}
+                        price={kospi[kospi.length - 1]?.closingPrice}
+                        arrow={
+                            kospi[kospi.length - 1]?.fluctuatingRate >= 0 ? (
+                                <ArrowUp />
+                            ) : (
+                                <ArrowDown />
+                            )
+                        }
+                        rate={kospi[kospi.length - 1]?.fluctuatingRate}
+                        chart={kospi.map((item) => ({
+                            close: item.closingPrice,
+                            date: item.date,
+                        }))}
                         sub="Compared to last month"
                     />
                 )}
@@ -81,10 +92,19 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스피200"
                         currency="₩"
-                        price={kospi200.price}
-                        arrow={kospi200.rate >= 0 ? <ArrowUp /> : <ArrowDown />}
-                        rate={kospi200.rate}
-                        chart={<LineChart data={kospi200.chartData} dataKey="close" />}
+                        price={kospi200[kospi200.length - 1]?.closingPrice}
+                        arrow={
+                            kospi200[kospi200.length - 1]?.fluctuatingRate >= 0 ? (
+                                <ArrowUp />
+                            ) : (
+                                <ArrowDown />
+                            )
+                        }
+                        rate={kospi200[kospi200.length - 1]?.fluctuatingRate}
+                        chart={kospi200.map((item) => ({
+                            close: item.closingPrice,
+                            date: item.date,
+                        }))}
                         sub="Compared to last month"
                     />
                 )}

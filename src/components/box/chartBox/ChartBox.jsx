@@ -2,7 +2,7 @@
 import React from "react";
 import styles from "./chartBox.module.css";
 
-export const ChartBox = ({ title, currency, price, arrow, rate, chart, sub }) => {
+export const ChartBox = ({ title, currency, price, arrow, rate, chart }) => {
     return (
         <div className={styles.chartBox}>
             <div className={styles.text}>
@@ -12,7 +12,6 @@ export const ChartBox = ({ title, currency, price, arrow, rate, chart, sub }) =>
                 </div>
             </div>
             <div className={styles.chart}>{chart}</div>
-            <span className={styles.sub}>{sub}</span>
         </div>
     );
 };

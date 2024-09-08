@@ -60,7 +60,6 @@ export const FeaturedInfo = () => {
                                 }))}
                             />
                         }
-                        sub="Compared to last month"
                     />
                 )}
             </div>
@@ -88,7 +87,6 @@ export const FeaturedInfo = () => {
                                 }))}
                             />
                         }
-                        sub="Compared to last month"
                     />
                 )}
             </div>
@@ -117,7 +115,6 @@ export const FeaturedInfo = () => {
                                 }))}
                             />
                         }
-                        sub="Compared to last month"
                     />
                 )}
             </div>

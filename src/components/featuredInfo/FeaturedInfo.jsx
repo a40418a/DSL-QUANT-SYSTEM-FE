@@ -43,13 +43,9 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스닥"
                         currency="₩"
-                        open={kosdaq.openingPrice}
-                        close={kosdaq.closingPrice}
-                        highest={kosdaq.highPrice}
-                        lowest={kosdaq.lowPrice}
+                        price={kosdaq[0].closingPrice}
                         arrow={kosdaq.fluctuatingRate >= 0 ? <ArrowUp /> : <ArrowDown />}
-                        rate={kosdaq.fluctuatingRate}
-                        volume={kosdaq.tradingVolume}
+                        rate={kosdaq[0].fluctuatingRate}
                         chart={
                             <LineChart
                                 dataKey="close"
@@ -75,13 +71,9 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스피"
                         currency="₩"
-                        open={kospi.openingPrice}
-                        close={kospi.closingPrice}
-                        highest={kospi.highPrice}
-                        lowest={kospi.lowPrice}
+                        price={kospi[0].closingPrice}
                         arrow={kospi.fluctuatingRate >= 0 ? <ArrowUp /> : <ArrowDown />}
-                        rate={kospi.fluctuatingRate}
-                        volume={kospi.tradingVolume}
+                        rate={kospi[0].fluctuatingRate}
                         chart={
                             <LineChart
                                 dataKey="close"
@@ -108,13 +100,9 @@ export const FeaturedInfo = () => {
                     <ChartBox
                         title="코스피200"
                         currency="₩"
-                        open={kospi200.openingPrice}
-                        close={kospi200.closingPrice}
-                        highest={kospi200.highPrice}
-                        lowest={kospi200.lowPrice}
+                        price={kospi200[0].closingPrice}
                         arrow={kospi200.fluctuatingRate >= 0 ? <ArrowUp /> : <ArrowDown />}
-                        rate={kospi200.fluctuatingRate}
-                        volume={kospi200.tradingVolume}
+                        rate={kospi200[0].fluctuatingRate}
                         chart={
                             <LineChart
                                 dataKey="close"

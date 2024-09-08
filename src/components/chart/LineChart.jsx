@@ -136,7 +136,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
         },
         tooltip: {
             x: {
-                format: "dd/yy/MM",
+                format: "yy/MM",
                 show: false,
             },
             custom: function ({ seriesIndex, dataPointIndex, w }) {

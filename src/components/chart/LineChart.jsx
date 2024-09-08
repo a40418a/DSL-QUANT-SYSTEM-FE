@@ -21,7 +21,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
     const minClose = Math.min(...chartData.map((entry) => entry.close));
 
     // y축 범위를 조절하기 위한 일정 값 설정
-    const range = maxClose * 0.1;
+    const range = maxHighest * 0.1;
 
     // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
     const data = chartData.map((entry) => ({

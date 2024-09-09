@@ -2,10 +2,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 import styles from "./chart.module.css";
 import { Loading } from "../loading/Loading";
-import { meta } from "eslint-plugin-prettier";
-import { max } from "moment/moment";
 
-// Chart01 컴포넌트 정의
 export const LineChart = ({ title, dataKey, chartData }) => {
     // chartData가 비어있거나 undefined일 때 처리
     if (!Array.isArray(chartData) || chartData.length === 0) {
@@ -45,7 +42,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
             toolbar: {
                 tools: {
                     selection: true,
-                    zoom: false,
+                    zoom: true,
                     zoomin: false,
                     zoomout: false,
                     pan: true,
@@ -117,6 +114,18 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                             },
                         },
                     ],
+                },
+            },
+            // 최대 확대 범위는 일주일로 설정
+            events: {
+                zoomed: function (chartContext, { xaxis }) {
+                    const minX = xaxis.min;
+                    const maxX = xaxis.max;
+                    const oneWeek = 7 * 24 * 60 * 60 * 1000; // 1주일을 밀리초로 변환
+
+                    if (maxX - minX < oneWeek) {
+                        chartContext.zoomX(minX, minX + oneWeek);
+                    }
                 },
             },
         },

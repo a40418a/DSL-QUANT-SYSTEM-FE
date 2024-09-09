@@ -1,10 +1,23 @@
-import React from 'react';
-import styles from './stockInfo.module.css';
-import { CandleChart } from '../../../components/chart/CandleChart';
-import { LineChart } from '../../../components/chart/LineChart';
-import { userData01 } from '../../../data/dummyData01';
+import React, { useEffect, useState } from "react";
+import styles from "./stockInfo.module.css";
+import { CandleChart } from "../../../components/chart/CandleChart";
+import { LineChart } from "../../../components/chart/LineChart";
+import { getKosdaq } from "../../../utils/kosdakApi";
 
 export const StockInfo = () => {
+    const [kosdaq, setKosdaq] = useState(null);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const kosdaqData = await getKosdaq();
+                setKosdaq(kosdaqData);
+            } catch (error) {
+                console.error("StockInfo fetchData error: ", error);
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
         <div className={styles.stockinfo}>
             <div className={styles.title}>삼성전자</div>
@@ -27,10 +40,32 @@ export const StockInfo = () => {
                 </tr>
             </table>
             <div className={styles.candle}>
-                <CandleChart data={userData01} dataKey="close" />
+                <CandleChart
+                    dataKey="close"
+                    chartData={kosdaq.map((item) => ({
+                        open: item.openingPrice,
+                        close: item.closingPrice,
+                        high: item.highPrice,
+                        low: item.lowPrice,
+                        volume: item.tradingVolume,
+                        rate: item.fluctuatingRate,
+                        date: item.date || "", // date가 없을 경우 빈 문자열
+                    }))}
+                />
             </div>
             <div className={styles.line}>
-                <LineChart data={userData01} dataKey="close" />
+                <LineChart
+                    dataKey="close"
+                    chartData={kosdaq.map((item) => ({
+                        open: item.openingPrice,
+                        close: item.closingPrice,
+                        high: item.highPrice,
+                        low: item.lowPrice,
+                        volume: item.tradingVolume,
+                        rate: item.fluctuatingRate,
+                        date: item.date || "", // date가 없을 경우 빈 문자열
+                    }))}
+                />
             </div>
         </div>
     );

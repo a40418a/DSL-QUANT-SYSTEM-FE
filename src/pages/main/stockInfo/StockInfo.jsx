@@ -41,7 +41,6 @@ export const StockInfo = () => {
             </table>
             <div className={styles.candle}>
                 <CandleChart
-                    dataKey="close"
                     chartData={kosdaq.map((item) => ({
                         open: item.openingPrice,
                         close: item.closingPrice,

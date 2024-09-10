@@ -3,6 +3,7 @@ import styles from "./stockInfo.module.css";
 import { CandleChart } from "../../../components/chart/CandleChart";
 import { LineChart } from "../../../components/chart/LineChart";
 import { getKosdaq } from "../../../utils/kosdakApi";
+import { Loading } from "../../../components/loading/Loading";
 
 export const StockInfo = () => {
     const [kosdaq, setKosdaq] = useState(null);
@@ -17,6 +18,14 @@ export const StockInfo = () => {
         };
         fetchData();
     }, []);
+
+    if (!kosdaq) {
+        return (
+            <div>
+                <Loading />
+            </div>
+        );
+    }
 
     return (
         <div className={styles.stockinfo}>

@@ -2,6 +2,7 @@ import React from "react";
 import Chart from "react-apexcharts";
 import styles from "./chart.module.css";
 import "./chart.css";
+import { Loading } from "../loading/Loading";
 
 export const CandleChart = ({ title, dataKey, chartData }) => {
     if (!Array.isArray(chartData) || chartData.length === 0) {
@@ -12,8 +13,6 @@ export const CandleChart = ({ title, dataKey, chartData }) => {
 
     const maxHighest = Math.max(...chartData.map((entry) => entry.high));
     const minLowest = Math.min(...chartData.map((entry) => entry.low));
-    const maxClose = Math.max(...chartData.map((entry) => entry.close));
-    const minClose = Math.min(...chartData.map((entry) => entry.close));
     const maxVolume = Math.max(...chartData.map((entry) => entry.volume));
 
     const range = maxHighest * 0.1;

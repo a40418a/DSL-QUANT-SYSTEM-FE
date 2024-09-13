@@ -159,7 +159,7 @@ export const CandleChart = ({ title, chartData }) => {
             {
                 opposite: true,
                 show: false, // y축 표시
-                max: maxVolume * 1000, // 막대 차트 y축 최대값
+                max: maxVolume * 10000000000, // 막대 차트 y축 최대값
                 min: 0, // 막대 차트 y축 최소값
                 height: "20%", // 볼륨 차트의 높이 20%
                 offsetY: 80, // 볼륨 차트를 캔들스틱 차트 아래에 위치

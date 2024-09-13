@@ -148,14 +148,14 @@ export const CandleChart = ({ title, dataKey, chartData }) => {
             {
                 min: minLowest, // 캔들 차트 y축 최소값
                 max: maxHighest, // 캔들 차트 y축 최대값
-                show: false,
+                show: true, // y축 표시
                 tooltip: {
                     enabled: true,
                 },
             },
             {
                 opposite: true,
-                show: false,
+                show: true, // y축 표시
                 max: maxVolume, // 막대 차트 y축 최대값
                 min: 0, // 막대 차트 y축 최소값
             },
@@ -210,8 +210,8 @@ export const CandleChart = ({ title, dataKey, chartData }) => {
             <Chart
                 options={options}
                 series={[
-                    { name: "Candlestick", type: "candlestick", data: candleData },
-                    { name: "Volume", type: "bar", data: volumeData, yAxisIndex: 1 },
+                    { name: "Candlestick", type: "candlestick", data: candleData, yAxisIndex: 0 }, // 캔들 차트 y축 인덱스
+                    { name: "Volume", type: "bar", data: volumeData, yAxisIndex: 1 }, // 막대 차트 y축 인덱스
                 ]}
                 type="candlestick"
                 height="100%"

@@ -103,7 +103,7 @@ export const Navigator = () => {
                         onClick={() => navigate("/mypage")}
                         className={styles.accountName}
                     >
-                        <p>{userInfo ? `${userInfo.name}` : "이름"}</p> 님
+                        <p>{userInfo ? userInfo.name : "이름"}</p> 님
                     </Link>
                     <Link to="/" onClick={logoutHandler} className={styles.accountLogout}>
                         로그아웃

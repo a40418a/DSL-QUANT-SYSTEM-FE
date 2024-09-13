@@ -3,6 +3,7 @@ import Chart from "react-apexcharts";
 import styles from "./chart.module.css";
 import "./chart.css";
 import { Loading } from "../loading/Loading";
+import { height } from "@mui/system";
 
 export const CandleChart = ({ title, chartData }) => {
     if (!Array.isArray(chartData) || chartData.length === 0) {
@@ -152,27 +153,24 @@ export const CandleChart = ({ title, chartData }) => {
                 tooltip: {
                     enabled: true,
                 },
-                // 확인용
-                title: {
-                    text: "Candlestick",
-                },
+                height: "80%", // 캔들스틱 차트의 높이 80%
+                offsetY: 0, // 캔들스틱 차트를 상단에 위치
             },
             {
                 opposite: true,
                 show: false, // y축 표시
                 max: maxVolume, // 막대 차트 y축 최대값
                 min: 0, // 막대 차트 y축 최소값
-                title: {
-                    text: "Volume",
-                },
+                height: "20%", // 볼륨 차트의 높이 20%
+                offsetY: 80, // 볼륨 차트를 캔들스틱 차트 아래에 위치
             },
         ],
         tooltip: {
             shared: true, // 툴팁 공유
-            // x: {
-            //     format: "yy/MM", // 툴팁 날짜 포맷
-            //     show: false,
-            // },
+            x: {
+                format: "yy/MM", // 툴팁 날짜 포맷
+                show: false,
+            },
             custom: function ({ seriesIndex, dataPointIndex, w }) {
                 const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex].meta;
                 const date = data.date ? new Date(data.date).toLocaleDateString() : "N/A";

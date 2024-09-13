@@ -15,7 +15,7 @@ export const getUserInfo = async () => {
         }
 
         //API 호출 시 Authorization 헤더에 토큰을 담아서 요청
-        const response = await axios.get(`${SURL}/userinfo`, {
+        const response = await axios.get(`${SURL}/mypage/user`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },

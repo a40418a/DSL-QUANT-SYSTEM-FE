@@ -1,7 +1,7 @@
-import React from 'react';
-import styles from './horizonTable.module.css';
-import { userData03 } from '../../../data/dummyData03';
-import { styled } from '@mui/material';
+import React from "react";
+import styles from "./horizonTable.module.css";
+import { userData03 } from "../../../data/dummyData03";
+import { styled } from "@mui/material";
 
 export const HorizonTableTop20 = ({ title }) => {
     return (
@@ -23,10 +23,14 @@ export const HorizonTableTop20 = ({ title }) => {
                             <td>{data.rank}</td>
                             <td className={styles.dataText}> {data.name}</td>
                             <td className={styles.dataNum}>{data.now.toLocaleString()}</td>
-                            <td className={`${styles.dataNum} ${data.rate > 0 ? styles.positive : styles.negative}`}>
+                            <td
+                                className={`${styles.dataNum} ${data.rate > 0 ? styles.positive : styles.negative}`}
+                            >
                                 {data.calc.toLocaleString()}
                             </td>
-                            <td className={`${styles.dataNum} ${data.rate > 0 ? styles.positive : styles.negative}`}>
+                            <td
+                                className={`${styles.dataNum} ${data.rate > 0 ? styles.positive : styles.negative}`}
+                            >
                                 {(data.rate * 100).toFixed(2)}%
                             </td>
                         </tr>

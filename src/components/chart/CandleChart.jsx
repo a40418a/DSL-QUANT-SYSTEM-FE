@@ -9,8 +9,6 @@ export const CandleChart = ({ title, dataKey, chartData }) => {
         return <Loading />;
     }
 
-    const length = userData01.length;
-
     const maxHighest = Math.max(...chartData.map((entry) => entry.high));
     const minLowest = Math.min(...chartData.map((entry) => entry.low));
     const maxVolume = Math.max(...chartData.map((entry) => entry.volume));
@@ -220,14 +218,4 @@ export const CandleChart = ({ title, dataKey, chartData }) => {
             />
         </div>
     );
-};
-
-// 최대 종가 계산 함수
-export const MaxClose = () => {
-    return Math.max(...userData01.map((entry) => entry.close));
-};
-
-// 최소 종가 계산 함수
-export const MinClose = () => {
-    return Math.min(...userData01.map((entry) => entry.close));
 };

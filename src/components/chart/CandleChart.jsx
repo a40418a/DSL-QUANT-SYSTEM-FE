@@ -24,9 +24,9 @@ export const CandleChart = ({ title, chartData }) => {
 
     const maxHighest = Math.max(...chartData.map((entry) => entry.high));
     const minLowest = Math.min(...chartData.map((entry) => entry.low));
-    const maxVolume = Math.max(...chartData.map((entry) => entry.volume));
+    const maxVolume = Math.max(...chartData.map((entry) => convertToNumber(entry.volume)));
 
-    const range = maxHighest * 0.05;
+    const range = maxHighest * 0.01;
 
     // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
     const candleData = chartData.map((entry) => ({

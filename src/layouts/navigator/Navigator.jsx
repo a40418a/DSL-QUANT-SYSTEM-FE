@@ -4,10 +4,10 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import classNames from "classnames";
 import styles from "./navigator.module.css";
+const SURL = import.meta.env.VITE_APP_URI;
 
 // 사용자 정보를 가져오는 API 호출 함수
 const getUserInfo = async () => {
-    const SURL = import.meta.env.VITE_APP_URI;
     try {
         const response = await axios.get(`${SURL}/userinfo`, {
             headers: {

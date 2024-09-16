@@ -14,7 +14,7 @@ const getUserInfo = async () => {
                 Authorization: `Bearer ${localStorage.getItem("jwt")}`,
             },
         });
-        return response.data;
+        return response.data.name; // 사용자 이름만 반환
     } catch (error) {
         console.error("Failed to fetch user info:", error);
         return null;
@@ -23,7 +23,7 @@ const getUserInfo = async () => {
 
 export const Navigator = () => {
     const [activePage, setActivePage] = useState("");
-    const [userInfo, setUserInfo] = useState(null);
+    const [userName, setUserName] = useState("");
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -34,8 +34,8 @@ export const Navigator = () => {
 
         const fetchData = async () => {
             try {
-                const userInfoData = await getUserInfo();
-                setUserInfo(userInfoData);
+                const name = await getUserInfo();
+                setUserName(name);
             } catch (error) {
                 console.error("Navigator fetchData error: ", error);
             }
@@ -103,7 +103,7 @@ export const Navigator = () => {
                         onClick={() => navigate("/mypage")}
                         className={styles.accountName}
                     >
-                        <p>{userInfo ? userInfo.name : "이름"}</p> 님
+                        <p>{userName ? userName : "이름"}</p> 님
                     </Link>
                     <Link to="/" onClick={logoutHandler} className={styles.accountLogout}>
                         로그아웃

@@ -147,9 +147,9 @@ export const CandleChart = ({ title, chartData }) => {
         },
         yaxis: [
             {
-                min: 0 - range, // 캔들 차트 y축 최소값
-                max: maxVolume + range, // 캔들 차트 y축 최대값
-                show: true, // y축 표시
+                min: minLowest - range, // 캔들 차트 y축 최소값
+                max: maxHighest + range, // 캔들 차트 y축 최대값
+                show: false, // y축 표시
                 tooltip: {
                     enabled: true,
                 },
@@ -158,7 +158,7 @@ export const CandleChart = ({ title, chartData }) => {
             },
             {
                 opposite: true,
-                show: true, // y축 표시
+                show: false, // y축 표시
                 max: maxVolume * 1.2, // 막대 차트 y축 최대값
                 min: 0, // 막대 차트 y축 최소값
                 height: "30%", // 볼륨 차트의 높이 20%

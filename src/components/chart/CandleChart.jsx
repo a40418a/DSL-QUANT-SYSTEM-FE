@@ -3,9 +3,21 @@ import Chart from "react-apexcharts";
 import styles from "./chart.module.css";
 import "./chart.css";
 import { Loading } from "../loading/Loading";
-import { height } from "@mui/system";
 
 export const CandleChart = ({ title, chartData }) => {
+    const convertToNumber = (value) => {
+        if (typeof value === "string") {
+            if (value.includes("B")) {
+                return parseFloat(value.replace("B", "")) * 1e9;
+            } else if (value.includes("M")) {
+                return parseFloat(value.replace("M", "")) * 1e6;
+            } else if (value.includes("K")) {
+                return parseFloat(value.replace("K", "")) * 1e3;
+            }
+        }
+        return parseFloat(value);
+    };
+
     if (!Array.isArray(chartData) || chartData.length === 0) {
         return <Loading />;
     }
@@ -25,14 +37,14 @@ export const CandleChart = ({ title, chartData }) => {
 
     const volumeData = chartData.map((entry) => ({
         x: new Date(entry.date).getTime(),
-        y: entry.volume,
+        y: convertToNumber(entry.volume),
         meta: { ...entry },
     }));
 
     const options = {
         chart: {
             type: "candlestick", // 차트 타입: 캔들차트
-            height: 100, // 차트 높이
+            height: "100%", // 차트 높이
             animations: {
                 enabled: false, // 애니메이션 비활성화
             },

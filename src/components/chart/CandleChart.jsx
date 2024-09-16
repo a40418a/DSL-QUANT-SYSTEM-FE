@@ -32,7 +32,7 @@ export const CandleChart = ({ title, chartData }) => {
     const options = {
         chart: {
             type: "candlestick", // 차트 타입: 캔들차트
-            height: "100%", // 차트 높이
+            height: 100, // 차트 높이
             animations: {
                 enabled: false, // 애니메이션 비활성화
             },
@@ -153,7 +153,7 @@ export const CandleChart = ({ title, chartData }) => {
                 tooltip: {
                     enabled: true,
                 },
-                height: "70%", // 캔들스틱 차트의 높이 80%
+                height: "70%",
                 offsetY: 0, // 캔들스틱 차트를 상단에 위치
             },
             {
@@ -161,8 +161,8 @@ export const CandleChart = ({ title, chartData }) => {
                 show: false, // y축 표시
                 max: maxVolume * 1.2, // 막대 차트 y축 최대값
                 min: 0, // 막대 차트 y축 최소값
-                height: "30%", // 볼륨 차트의 높이 20%
-                offsetY: -100, // 볼륨 차트를 캔들스틱 차트 아래에 위치
+                height: "30%",
+                offsetY: -30, // 볼륨 차트를 캔들스틱 차트 아래에 위치
             },
         ],
         tooltip: {

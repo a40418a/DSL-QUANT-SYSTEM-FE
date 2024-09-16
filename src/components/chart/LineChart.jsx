@@ -138,7 +138,6 @@ export const LineChart = ({ title, dataKey, chartData }) => {
             labels: {
                 format: "MM/dd",
             },
-            range: 30 * 24 * 60 * 60 * 1000,
         },
         yaxis: {
             min: minLowest - range,

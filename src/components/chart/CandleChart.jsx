@@ -156,6 +156,7 @@ export const CandleChart = ({ title, chartData }) => {
             labels: {
                 format: "MM/dd", // 날짜 형식 설정
             },
+            range: 30 * 24 * 60 * 60 * 1000, // 처음 차트가 로드될 때 1개월 (30일) 범위를 표시
         },
         yaxis: [
             {

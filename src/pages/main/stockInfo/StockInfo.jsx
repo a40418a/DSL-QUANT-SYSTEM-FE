@@ -19,6 +19,13 @@ export const StockInfo = () => {
         fetchData();
     }, []);
 
+    const close = kosdaq ? kosdaq[0].closingPrice : "num";
+    const high = kosdaq ? kosdaq[0].highPrice : "num";
+    const low = kosdaq ? kosdaq[0].lowPrice : "num";
+    const open = kosdaq ? kosdaq[0].openingPrice : "num";
+    const rate = kosdaq ? kosdaq[0].fluctuatingRate : "num";
+    const volume = kosdaq ? kosdaq[0].tradingVolume : "num";
+
     if (!kosdaq) {
         return (
             <div>
@@ -33,19 +40,19 @@ export const StockInfo = () => {
             <table className={styles.table}>
                 <tr>
                     <th>종가</th>
-                    <td>num</td>
+                    <td>{close}</td>
                     <th>고가</th>
-                    <td>num</td>
+                    <td>{high}</td>
                     <th>저가</th>
-                    <td>num</td>
+                    <td>{low}</td>
                 </tr>
                 <tr>
                     <th>시가</th>
-                    <td>num</td>
+                    <td>{open}</td>
                     <th>전일대비변동</th>
-                    <td>num</td>
+                    <td>{rate}</td>
                     <th>상장주식수</th>
-                    <td>num</td>
+                    <td>{volume}</td>
                 </tr>
             </table>
             <div className={styles.candle}>

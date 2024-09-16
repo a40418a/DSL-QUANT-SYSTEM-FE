@@ -1,11 +1,11 @@
 :root {
-    ---webkit-box-shadow: 0px 0px 12px -1px #7e3cf5;
-    --box-shadow: 0px 0px 12px -1px #7768e6;
+    ---webkit-box-shadow: 0px 0px 8px -1px #7e3cf5;
+    --box-shadow: 0px 0px 8px -1px #7768e6;
 
     /*폰트*/
-    --font-1: 'JalnanGothic';
-    --font-2: 'Pretendard-Medium';
-    --font-3: 'Pretendard-Bold';
+    --font-1: "JalnanGothic";
+    --font-2: "Pretendard-Medium";
+    --font-3: "Pretendard-Bold";
 
     /*색상표*/
     --main-color: #554aa7;

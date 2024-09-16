@@ -153,16 +153,16 @@ export const CandleChart = ({ title, chartData }) => {
                 tooltip: {
                     enabled: true,
                 },
-                height: "80%", // 캔들스틱 차트의 높이 80%
+                height: "70%", // 캔들스틱 차트의 높이 80%
                 offsetY: 0, // 캔들스틱 차트를 상단에 위치
             },
             {
                 opposite: true,
-                show: false, // y축 표시
-                max: maxVolume * 10000000000000, // 막대 차트 y축 최대값
+                show: true, // y축 표시
+                max: maxVolume * 1.2, // 막대 차트 y축 최대값
                 min: 0, // 막대 차트 y축 최소값
-                height: "20%", // 볼륨 차트의 높이 20%
-                offsetY: 80, // 볼륨 차트를 캔들스틱 차트 아래에 위치
+                height: "30%", // 볼륨 차트의 높이 20%
+                offsetY: -100, // 볼륨 차트를 캔들스틱 차트 아래에 위치
             },
         ],
         tooltip: {

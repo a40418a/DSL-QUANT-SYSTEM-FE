@@ -149,7 +149,7 @@ export const CandleChart = ({ title, chartData }) => {
             {
                 min: minLowest - range, // 캔들 차트 y축 최소값
                 max: maxHighest + range, // 캔들 차트 y축 최대값
-                show: false, // y축 표시
+                show: true, // y축 표시
                 tooltip: {
                     enabled: true,
                 },

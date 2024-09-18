@@ -28,22 +28,22 @@ export const getUserInfo = async () => {
 };
 
 // 골든 데이터를 받아오는 함수
-export const getMyGolden = async () => {
-    try {
-        const token = localStorage.getItem('jwt');
-        if (!token) {
-            throw new Error('토큰이 없습니다. 로그인이 필요합니다.');
-        }
+// export const getMyGolden = async () => {
+//     try {
+//         const token = localStorage.getItem('jwt');
+//         if (!token) {
+//             throw new Error('토큰이 없습니다. 로그인이 필요합니다.');
+//         }
 
-        const response = await axios.get(`${SURL}/history/golden`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
+//         const response = await axios.get(`${SURL}/history/golden`, {
+//             headers: {
+//                 Authorization: `Bearer ${token}`,
+//             },
+//         });
 
-        return response.data;
-    } catch (error) {
-        console.error('getMyGolden error: ', error);
-        throw error;
-    }
-};
+//         return response.data;
+//     } catch (error) {
+//         console.error('getMyGolden error: ', error);
+//         throw error;
+//     }
+// };

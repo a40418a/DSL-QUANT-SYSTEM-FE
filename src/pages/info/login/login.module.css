@@ -30,3 +30,7 @@
     background-color: #fee500;
     box-shadow: 0px 0px 4px 0px #baa700;
 } */
+
+.loading {
+    height: 90vh;
+}

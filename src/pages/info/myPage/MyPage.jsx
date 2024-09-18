@@ -45,7 +45,6 @@ export const MyPage = () => {
     const handleBtnClick = async () => {
         try {
             const backHistoryData = await getBackHistory(formData.strategy);
-            console.log(formData.strategy); //확인용
             setBackHistory(backHistoryData);
             setIsTableVisible(true);
         } catch (error) {

@@ -7,7 +7,6 @@ const SURL = import.meta.env.VITE_APP_URI;
 
 export const getBackHistory = async (strategy) => {
     try {
-        console.log(strategy); //확인용
         const token = localStorage.getItem('jwt');
         if (!token) {
             throw new Error('토큰이 없습니다.');

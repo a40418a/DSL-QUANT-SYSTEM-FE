@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { AuthContext } from "../../context/AuthContext";
-import classNames from "classnames";
-import styles from "./navigator.module.css";
+import React, { useState, useEffect, useContext } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { AuthContext } from '../../context/AuthContext';
+import classNames from 'classnames';
+import styles from './navigator.module.css';
 const SURL = import.meta.env.VITE_APP_URI;
 
 // 사용자 정보를 가져오는 API 호출 함수
@@ -11,19 +11,19 @@ const getUserInfo = async () => {
     try {
         const response = await axios.get(`${SURL}/userinfo`, {
             headers: {
-                Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+                Authorization: `Bearer ${localStorage.getItem('jwt')}`,
             },
         });
         return response.data; // 사용자 이름만 반환
     } catch (error) {
-        console.error("Failed to fetch user info:", error);
+        console.error('Failed to fetch user info:', error);
         return null;
     }
 };
 
 export const Navigator = () => {
-    const [activePage, setActivePage] = useState("");
-    const [userName, setUserName] = useState("");
+    const [activePage, setActivePage] = useState('');
+    const [userName, setUserName] = useState('');
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -37,7 +37,7 @@ export const Navigator = () => {
                 const name = await getUserInfo();
                 setUserName(name);
             } catch (error) {
-                console.error("Navigator fetchData error: ", error);
+                console.error('Navigator fetchData error: ', error);
             }
         };
         fetchData();
@@ -45,27 +45,27 @@ export const Navigator = () => {
 
     const logoutHandler = async () => {
         try {
-            const token = localStorage.getItem("jwt");
+            const token = localStorage.getItem('jwt');
             await axios.post(
-                "https:///api.dslquant.site/logout",
+                'https:///api.dslquant.site/logout',
                 {},
                 {
                     headers: {
                         Authorization: `Bearer ${token}`,
-                        "Content-Type": "application/json",
+                        'Content-Type': 'application/json',
                     },
                 },
             );
 
             logout();
-            alert("로그아웃 완료");
-            navigate("/login");
+            alert('로그아웃 완료');
+            navigate('/login');
         } catch (error) {
-            console.error("로그아웃 진행 도중에 오류가 발생했습니다", error);
+            console.error('로그아웃 진행 도중에 오류가 발생했습니다', error);
         }
     };
 
-    if (location.pathname !== "/" && location.pathname !== "/login") {
+    if (location.pathname !== '/' && location.pathname !== '/login') {
         return (
             <div className={styles.navigator}>
                 <div>
@@ -77,22 +77,22 @@ export const Navigator = () => {
                     <li
                         className={classNames(styles.menu, {
                             [styles.active]:
-                                activePage === "/stocklist" || activePage === "/stockinfo",
+                                activePage === '/stocklist' || activePage === '/stockinfo',
                         })}
-                        onClick={() => navigate("/stocklist")}
+                        onClick={() => navigate('/stocklist')}
                     >
                         상세정보
                     </li>
                     <li
                         className={classNames(styles.menu, {
                             [styles.active]:
-                                activePage === "/strategy" ||
-                                activePage === "/strategy/golden" ||
-                                activePage === "/strategy/bollinger" ||
-                                activePage === "/strategy/rsi" ||
-                                activePage.startsWith("/result"),
+                                activePage === '/strategy' ||
+                                activePage === '/strategy/golden' ||
+                                activePage === '/strategy/bollinger' ||
+                                activePage === '/strategy/rsi' ||
+                                activePage.startsWith('/result'),
                         })}
-                        onClick={() => navigate("/strategy")}
+                        onClick={() => navigate('/strategy')}
                     >
                         전략설정
                     </li>
@@ -100,10 +100,10 @@ export const Navigator = () => {
                 <div className={styles.account}>
                     <Link
                         to="/mypage"
-                        onClick={() => navigate("/mypage")}
+                        onClick={() => navigate('/mypage')}
                         className={styles.accountName}
                     >
-                        <p>{userName ? userName : "이름"}</p> 님
+                        <p>{userName ? userName : '이름'}</p> 님
                     </Link>
                     <Link to="/" onClick={logoutHandler} className={styles.accountLogout}>
                         로그아웃

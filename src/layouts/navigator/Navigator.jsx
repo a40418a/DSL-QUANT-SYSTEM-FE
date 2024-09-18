@@ -14,7 +14,7 @@ const getUserInfo = async () => {
                 Authorization: `Bearer ${localStorage.getItem("jwt")}`,
             },
         });
-        return response.data.name; // 사용자 이름만 반환
+        return response.data; // 사용자 이름만 반환
     } catch (error) {
         console.error("Failed to fetch user info:", error);
         return null;

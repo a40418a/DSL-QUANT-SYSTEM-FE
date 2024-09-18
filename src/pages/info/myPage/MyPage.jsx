@@ -1,32 +1,28 @@
-import React, { useState, useEffect } from 'react';
-import styles from './myPage.module.css';
-import { getUserInfo } from '../../../utils/userApi';
-import { getBackHistory } from '../../../utils/backhistoryApi';
-import { Loading } from '../../../components/loading/Loading';
-import { SelectBox } from '../../../components/box/selectBox/SelectBox';
+import React, { useState, useEffect } from "react";
+import styles from "./myPage.module.css";
+import { getUserInfo } from "../../../utils/userApi";
+import { getBackHistory } from "../../../utils/backhistoryApi";
+import { Loading } from "../../../components/loading/Loading";
+import { SelectBox } from "../../../components/box/selectBox/SelectBox";
 
 export const MyPage = () => {
     const [userInfo, setUserInfo] = useState(null);
     const [backHistory, setBackHistory] = useState([]);
     const [isTableVisible, setIsTableVisible] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true); //사용자 정보 로딩 상태
     const [formData, setFormData] = useState({
-        strategy: '',
+        strategy: "",
     });
 
-    if (loading || !userInfo) {
-        return <Loading />;
-    }
-
+    //사용자 정보를 가져오는 동안 로딩 상태 표시
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);
             try {
                 // 사용자 정보를 받아오는 API
                 const userInfoData = await getUserInfo();
                 setUserInfo(userInfoData);
             } catch (error) {
-                console.error('MyPage fetchData error: ', error);
+                console.error("MyPage fetchData error: ", error);
             } finally {
                 setLoading(false);
             }
@@ -34,25 +30,27 @@ export const MyPage = () => {
         fetchData(); // fetchData 함수 실행
     }, []);
 
+    if (loading || !userInfo) {
+        return <Loading />;
+    }
+
     const options_strategy = [
-        { label: '골든/데드', value: 'golden' },
-        { label: '볼린저밴드', value: 'bollinger' },
-        { label: 'RSI, MFI, MACD 지표 이용', value: 'rsi' },
+        { label: "골든/데드", value: "golden" },
+        { label: "볼린저밴드", value: "bollinger" },
+        { label: "RSI, MFI, MACD 지표 이용", value: "rsi" },
     ];
 
     const handleBtnClick = async () => {
-        setLoading(true);
         try {
             const backHistoryData = await getBackHistory(formData.strategy);
             setBackHistory(backHistoryData);
             setIsTableVisible(true);
         } catch (error) {
-            console.error('MyPage strategy fetchData error: ', error);
-        } finally {
-            setLoading(false);
+            console.error("MyPage strategy fetchData error: ", error);
         }
     };
 
+    //전략 변경 핸들러
     const handleChange = (e) => {
         setFormData({
             ...formData,
@@ -101,7 +99,7 @@ export const MyPage = () => {
                         조회
                     </button>
                 </div>
-                {isTableVisible && backHistory && (
+                {isTableVisible && backHistory.length > 0 && (
                     <table className={styles.tableH}>
                         <thead>
                             <tr>

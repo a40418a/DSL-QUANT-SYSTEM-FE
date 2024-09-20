@@ -4,7 +4,7 @@ import { StrategyContext } from '../../../context/StrategyContext';
 import { useParams } from 'react-router-dom';
 
 export const Result = () => {
-    const { strategyCommonData, strategy1Data, strategy2Data, strategy3Data, resultData, setResultData } =
+    const { strategyCommonData, strategy1Data, strategy2Data, strategy3Data, strategy4Data, strategy5Data, resultData, setResultData } =
         useContext(StrategyContext);
     const { id } = useParams(); // URL에서 id를 추출합니다.
     const SURL = import.meta.env.VITE_APP_URI;
@@ -118,6 +118,20 @@ export const Result = () => {
                             ))}
                         {id === 'rsi' &&
                             Object.entries(strategy3Data).map(([key, value]) => (
+                                <tr key={key}>
+                                    <th>{key}</th>
+                                    <td>{JSON.stringify(value)}</td>
+                                </tr>
+                            ))}
+                        {id === 'env' &&
+                            Object.entries(strategy4Data).map(([key, value]) => (
+                                <tr key={key}>
+                                    <th>{key}</th>
+                                    <td>{JSON.stringify(value)}</td>
+                                </tr>
+                            ))}
+                        {id === 'williams' &&
+                            Object.entries(strategy5Data).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>

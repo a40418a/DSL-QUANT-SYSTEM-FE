@@ -8,9 +8,6 @@ import { ResultDTO } from '../types/ResultDTO';
 const initialStrategyCommonData: StrategyCommonDTO = {
     initial_investment: 0,
     tax: 0.01,
-    start_date: '',
-    end_date: '',
-    backtesting_date: '',
     target_item: '',
     tick_kind: '',
     inq_range: 100,

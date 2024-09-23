@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './horizonTable.module.css';
 import { userData03 } from '../../../data/dummyData03';
 import { styled } from '@mui/material';
@@ -26,8 +26,9 @@ export const HorizonTableTop20 = ({ title }) => {
     return (
         <div className={styles.horizonTableTop20}>
             <div className={styles.title}>{title}</div>
-            {loading && <Loading />}
-            {!loading && (
+            {loading ? (
+                <Loading />
+            ) : top20 && top20.length > 0 ? (
                 <table className={styles.table}>
                     <thead>
                         <tr>
@@ -39,28 +40,31 @@ export const HorizonTableTop20 = ({ title }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {top20 &&
-                            top20.map((data, index) => (
-                                <tr key={index}>
-                                    <td>{data.rank}</td>
-                                    <td className={styles.dataText}> {data.market}</td>
-                                    <td className={styles.dataNum}>
-                                        {data.closingPrice.toLocaleString()}
-                                    </td>
-                                    <td
-                                        className={`${styles.dataNum} ${data.rate > 0 ? styles.positive : styles.negative}`}
-                                    >
-                                        {data.fluctuatingRate.toLocaleString()}
-                                    </td>
-                                    <td
-                                        className={`${styles.dataNum} ${data.rate > 0 ? styles.positive : styles.negative}`}
-                                    >
-                                        {(data.fluctuatingRate * 100).toFixed(2)}%
-                                    </td>
-                                </tr>
-                            ))}
+                        {top20.map((data, index) => (
+                            <tr key={index}>
+                                <td>{data.rank}</td>
+                                <td className={styles.dataText}> {data.market}</td>
+                                <td className={styles.dataNum}>
+                                    {data.closingPrice ? data.closingPrice.toLocaleString() : '-'}
+                                </td>
+                                <td
+                                    className={`${styles.dataNum} ${data.fluctuatingRate > 0 ? styles.positive : styles.negative}`}
+                                >
+                                    {data.fluctuatingRate
+                                        ? data.fluctuatingRate.toLocaleString()
+                                        : '-'}
+                                </td>
+                                <td
+                                    className={`${styles.dataNum} ${data.fluctuatingRate > 0 ? styles.positive : styles.negative}`}
+                                >
+                                    {(data.fluctuatingRate * 100).toFixed(2)}%
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
+            ) : (
+                <div>데이터가 없습니다.</div>
             )}
         </div>
     );

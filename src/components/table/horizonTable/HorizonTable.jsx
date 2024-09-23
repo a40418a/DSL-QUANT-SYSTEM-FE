@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './horizonTable.module.css';
 import { userData03 } from '../../../data/dummyData03';
 import { styled } from '@mui/material';
@@ -8,7 +8,6 @@ import { Loading } from '../../loading/Loading';
 export const HorizonTableTop20 = ({ title }) => {
     const [top20, setTop20] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {

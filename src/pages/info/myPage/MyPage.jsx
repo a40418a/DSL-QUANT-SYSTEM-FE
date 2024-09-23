@@ -109,7 +109,7 @@ export const MyPage = () => {
                     </button>
                 </div>
                 {errorMessage && <div className={styles.error}>{errorMessage}</div>}
-                {isTableVisible && backHistory.length > 0 && (
+                {!errorMessage && isTableVisible && backHistory.length > 0 && (
                     <table className={styles.tableH}>
                         <thead>
                             <tr>

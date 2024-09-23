@@ -71,14 +71,8 @@ export const StrategyEnv = () => {
         if (formData.moving_up && formData.moving_down && formData.movingAveragePeriod) {
             navigate(`/result/${id}`);
         } else {
-            if (!formData.moving_up) {
-                alert('상단폭 값을 입력해주세요(기본값 1)');
-            }
-            if (!formData.moving_down) {
-                alert('하단폭 값을 입력해주세요(기본값 1)');
-            }
-            if (!formData.movingAveragePeriod) {
-                alert('기간 값을 입력해주세요(기본값 20)');
+            if (!formData.moving_up || !formData.moving_down || !formData.movingAveragePeriod) {
+                alert('상단폭, 하단폭, 기간 값을 입력해주세요.');
             }
         }
     };

@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import styles from './horizonTable.module.css';
-import { userData03 } from '../../../data/dummyData03';
-import { styled } from '@mui/material';
 import { getTop20 } from '../../../utils/top20Api';
 import { Loading } from '../../loading/Loading';
 
@@ -42,7 +40,7 @@ export const HorizonTableTop20 = ({ title }) => {
                     <tbody>
                         {top20.map((data, index) => (
                             <tr key={index}>
-                                <td>{data.rank}</td>
+                                <td>{index + 1}</td>
                                 <td className={styles.dataText}> {data.market}</td>
                                 <td className={styles.dataNum}>
                                     {data.closingPrice ? data.closingPrice.toLocaleString() : '-'}

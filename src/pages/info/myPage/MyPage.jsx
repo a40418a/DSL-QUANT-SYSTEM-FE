@@ -108,7 +108,15 @@ export const MyPage = () => {
                         조회
                     </button>
                 </div>
-                {errorMessage && <div className={styles.error}>{errorMessage}</div>}
+                {errorMessage && (
+                    <>
+                        <div className={styles.error}>{errorMessage}</div>
+                        <div className={styles.error}>전략설정을 진행해주세요.</div>
+                        <div className={styles.error}>
+                            <a href="/strategy">전략설정하러 가기</a>
+                        </div>
+                    </>
+                )}
                 {!errorMessage && isTableVisible && backHistory.length > 0 && (
                     <table className={styles.tableH}>
                         <thead>

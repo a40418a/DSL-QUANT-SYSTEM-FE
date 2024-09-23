@@ -63,6 +63,8 @@ export const MyPage = () => {
         { label: '골든/데드', value: 'golden' },
         { label: '볼린저밴드', value: 'bollinger' },
         { label: 'RSI, MFI, MACD 지표 이용', value: 'rsi' },
+        { label: '엔벨로프', value: 'env' },
+        { label: '윌리엄스%R', value: 'williams' },
     ];
 
     return (

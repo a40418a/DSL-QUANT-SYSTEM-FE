@@ -25,17 +25,6 @@ export const Home = () => {
                             sub="Compared to last month"
                         />
                     </div>
-                    <div className={styles.backChart}>
-                        <ChartBox
-                            title="최근 주식 종목"
-                            currency="₩"
-                            price="73,700"
-                            arrow={<ArrowDown />}
-                            rate="-1"
-                            chart={<LineChart data={userData01} dataKey="lowest" />}
-                            sub="Compared to last month"
-                        />
-                    </div>
                 </div>
                 <div className={styles.table}>
                     <div className={styles.title}>TOP 20 종목</div>

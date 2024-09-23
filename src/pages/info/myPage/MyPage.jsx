@@ -13,6 +13,7 @@ export const MyPage = () => {
     const [formData, setFormData] = useState({
         strategy: '',
     });
+    const [errorMessage, setErrorMessage] = useState('');
 
     //사용자 정보를 가져오는 동안 로딩 상태 표시
     useEffect(() => {
@@ -43,11 +44,17 @@ export const MyPage = () => {
     };
 
     const handleBtnClick = async () => {
+        setErrorMessage(''); // 에러 메시지 초기화
         try {
             const backHistoryData = await getBackHistory(formData.strategy);
             setBackHistory(backHistoryData);
             setIsTableVisible(true);
         } catch (error) {
+            if (error.response && error.response.status == 404) {
+                setErrorMessage('백테스팅한 데이터가 없습니다.');
+            } else {
+                setErrorMessage('서버 문제 발생');
+            }
             console.error('MyPage strategy fetchData error: ', error);
         }
     };
@@ -99,6 +106,7 @@ export const MyPage = () => {
                         조회
                     </button>
                 </div>
+                {errorMessage && <div className={styles.error}>{errorMessage}</div>}
                 {isTableVisible && backHistory.length > 0 && (
                     <table className={styles.tableH}>
                         <thead>

@@ -47,7 +47,7 @@ export const StrategyGolden = () => {
 
     const handleSubmit = async () => {
         const strategy1DTO = new StrategyGoldenDTO(formData);
-        console.log(strategy1DTO);
+        // console.log(strategy1DTO);
         setStrategy1Data(strategy1DTO);
 
         try {
@@ -57,7 +57,7 @@ export const StrategyGolden = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log('Response:', response.data);
+            // console.log('Response:', response.data);
         } catch (error) {
             console.error('There was an error submitting the golden/dead cross strategy!', error);
         }

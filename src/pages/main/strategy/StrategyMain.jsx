@@ -61,7 +61,6 @@ export const StrategyMain = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: value };
 
-
             if (name === 'initial_investment' && parseFloat(value) < 0) {
                 alert('초기 투자 금액은 0보다 작을 수 없습니다.');
                 return prevData;
@@ -97,7 +96,7 @@ export const StrategyMain = () => {
         };
         const strategyCommonDTO = new StrategyCommonDTO(formDataWithTime);
 
-        console.log(strategyCommonDTO);
+        // console.log(strategyCommonDTO);
         setStrategyCommonData(strategyCommonDTO);
 
         try {
@@ -107,7 +106,7 @@ export const StrategyMain = () => {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            console.log('Response:', response.data);
+            // console.log('Response:', response.data);
         } catch (error) {
             console.error('There was an error submitting the common strategy!', error);
         }

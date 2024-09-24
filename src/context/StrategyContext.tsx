@@ -1,7 +1,14 @@
 // 전략 설정 관련 Context
 
 import React, { createContext, useState, useContext } from 'react';
-import { StrategyCommonDTO, StrategyGoldenDTO, StrategyBollingerDTO, StrategyRsiDTO, StrategyEnvDTO, StrategyWDTO} from '../types/StrategyDTO';
+import {
+    StrategyCommonDTO,
+    StrategyGoldenDTO,
+    StrategyBollingerDTO,
+    StrategyRsiDTO,
+    StrategyEnvDTO,
+    StrategyWDTO,
+} from '../types/StrategyDTO';
 import { ResultDTO } from '../types/ResultDTO';
 
 // 초기 상태값
@@ -12,7 +19,6 @@ const initialStrategyCommonData: StrategyCommonDTO = {
     tick_kind: '',
     inq_range: 100,
     strategy: '',
-
 };
 
 const initialStrategy1Data: StrategyGoldenDTO = {
@@ -44,7 +50,7 @@ const initialResultData: ResultDTO = {
     finalBalance: 0,
     profit: 0,
     profitRate: 0,
-    numberOfTrades: 0
+    numberOfTrades: 0,
 };
 
 // Context 생성
@@ -83,7 +89,8 @@ export const StrategyContext = createContext<{
 // Context Provider
 // @ts-ignore
 export const StrategyProvider: React.FC = ({ children }) => {
-    const [strategyCommonData, setStrategyCommonData] = useState<StrategyCommonDTO>(initialStrategyCommonData);
+    const [strategyCommonData, setStrategyCommonData] =
+        useState<StrategyCommonDTO>(initialStrategyCommonData);
     const [strategy1Data, setStrategy1Data] = useState<StrategyGoldenDTO>(initialStrategy1Data);
     const [strategy2Data, setStrategy2Data] = useState<StrategyBollingerDTO>(initialStrategy2Data);
     const [strategy3Data, setStrategy3Data] = useState<StrategyRsiDTO>(initialStrategy3Data);

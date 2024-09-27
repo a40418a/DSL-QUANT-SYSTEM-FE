@@ -176,27 +176,51 @@ export const Result = () => {
                 <tbody>
                     <tr>
                         <th>Final Cash</th>
-                        <td>{resultData?.finalCash ?? 'Loading...'}</td>
+                        <td>
+                            {resultData?.finalCash != null
+                                ? resultData.finalCash.toFixed(2)
+                                : 'Loading...'}
+                        </td>
                     </tr>
                     <tr>
                         <th>Final Asset</th>
-                        <td>{resultData?.finalAsset ?? 'Loading...'}</td>
+                        <td>
+                            {resultData?.finalAsset != null
+                                ? resultData.finalAsset.toFixed(2)
+                                : 'Loading...'}
+                        </td>
                     </tr>
                     <tr>
                         <th>Final Balance</th>
-                        <td>{resultData?.finalBalance ?? 'Loading...'}</td>
+                        <td>
+                            {resultData?.finalBalance != null
+                                ? resultData.finalBalance.toFixed(2)
+                                : 'Loading...'}
+                        </td>
                     </tr>
                     <tr>
                         <th>Profit</th>
-                        <td>{resultData?.profit ?? 'Loading...'}</td>
+                        <td>
+                            {resultData?.profit != null
+                                ? resultData.profit.toFixed(2)
+                                : 'Loading...'}
+                        </td>
                     </tr>
                     <tr>
                         <th>Profit Rate</th>
-                        <td>{resultData?.profitRate ?? 'Loading...'}</td>
+                        <td>
+                            {resultData?.profitRate != null
+                                ? resultData.profitRate.toFixed(2)
+                                : 'Loading...'}
+                        </td>
                     </tr>
                     <tr>
                         <th>Number of Trades</th>
-                        <td>{resultData?.numberOfTrades ?? 'Loading...'}</td>
+                        <td>
+                            {resultData?.numberOfTrades != null
+                                ? resultData.numberOfTrades.toFixed(2)
+                                : 'Loading...'}
+                        </td>
                     </tr>
                 </tbody>
             </table>

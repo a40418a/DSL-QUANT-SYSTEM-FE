@@ -2,8 +2,13 @@ import React, { useContext, useEffect } from 'react';
 import styles from './result.module.css';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useParams } from 'react-router-dom';
+import { getUserInfo } from '../../../utils/userApi';
 
 export const Result = () => {
+    const [userInfo, setUserInfo] = useState(null);
+    const [loading, setLoading] = useState(true); // 사용자 정보 로딩 상태
+    const [errorMessage, setErrorMessage] = useState('');
+
     const {
         strategyCommonData,
         strategy1Data,
@@ -21,8 +26,19 @@ export const Result = () => {
         // localStorage에서 토큰을 가져옵니다.
         const token = localStorage.getItem('jwt');
 
+        const fetchData = async () => {
+            try {
+                const userInfoData = await getUserInfo();
+                setUserInfo(userInfoData);
+            } catch (error) {
+                console.error('Result fetchData error: ', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchData();
+
         fetch(`${SURL}/result/${id}`, {
-            // 백엔드의 정확한 URL을 사용합니다.`
             method: 'GET',
             headers: {
                 Authorization: `Bearer ${token}`,
@@ -42,6 +58,10 @@ export const Result = () => {
                 console.error('백엔드에서 결과 데이터를 가져오는 중 오류가 발생했습니다:', error);
             });
     }, [id]);
+
+    if (loading || !userInfo) {
+        return <Loading />;
+    }
 
     // HTML 콘텐츠를 저장하는 함수
     const saveHtml = () => {
@@ -90,7 +110,7 @@ export const Result = () => {
     return (
         <div className={styles.result}>
             <div className={styles.title}>
-                <div className={styles.name}>최승아</div>
+                <div className={styles.name}>{userInfo.name}</div>
                 <div className={styles.sub}>님의 전략선택옵션</div>
             </div>
             <div className={styles.wrapper}>
@@ -149,7 +169,7 @@ export const Result = () => {
                 </table>
             </div>
             <div className={styles.title}>
-                <div className={styles.name}>최승아</div>
+                <div className={styles.name}>{userInfo.name}</div>
                 <div className={styles.sub}>님의 백테스팅 결과</div>
             </div>
             <table className={styles.table}>

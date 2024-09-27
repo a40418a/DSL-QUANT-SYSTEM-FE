@@ -39,12 +39,14 @@ export const StockList = () => {
             flex: 1,
             valueFormatter: ({ value }) => {
                 const numericValue = Number(value); // 문자열을 숫자로 변환
+                console.log('numericValue:', numericValue);
+                console.log('value:', value);
                 return !isNaN(numericValue)
                     ? numericValue.toLocaleString(undefined, {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                       })
-                    : '/'; // 숫자로 변환할 수 없는 경우 '/'
+                    : '-';
             },
         },
         {
@@ -53,7 +55,9 @@ export const StockList = () => {
             flex: 1,
             valueFormatter: ({ value }) => {
                 const rate = Number(value);
-                return !isNaN(rate) ? `${(rate * 100).toFixed(2)}%` : '/';
+                console.log('rate:', rate);
+                console.log('value:', value);
+                return !isNaN(rate) ? `${(rate * 100).toFixed(2)}%` : '-';
             },
         },
         {
@@ -62,12 +66,14 @@ export const StockList = () => {
             flex: 1,
             valueFormatter: ({ value }) => {
                 const numericValue = Number(value); // 문자열을 숫자로 변환
+                console.log('numericValue:', numericValue);
+                console.log('value:', value);
                 return !isNaN(numericValue)
                     ? numericValue.toLocaleString(undefined, {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                       })
-                    : '/'; // 숫자로 변환할 수 없는 경우 '/'
+                    : '/';
             },
         },
     ];

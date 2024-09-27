@@ -38,21 +38,21 @@ export const StockList = () => {
             headerName: '현재가',
             flex: 1,
             valueFormatter: ({ value }) =>
-                value !== undefined ? parseFloat(value).toLocaleString() : '',
+                value !== undefined ? parseFloat(value).toLocaleString() : '-',
         },
         {
             field: 'fluctuatingRate',
             headerName: '등락률 (%)',
             flex: 1,
             valueFormatter: ({ value }) =>
-                value !== undefined ? `${parseFloat(value * 100).toFixed(2)}%` : '',
+                value !== undefined ? `${parseFloat(value * 100).toFixed(2)}%` : '-',
         },
         {
             field: 'tradingVolume',
             headerName: '거래량',
             flex: 1,
             valueFormatter: ({ value }) =>
-                value !== undefined ? parseFloat(value).toLocaleString() : '',
+                value !== undefined ? parseFloat(value).toLocaleString() : '-',
         },
     ];
 
@@ -77,7 +77,7 @@ export const StockList = () => {
                         initialState={{
                             pagination: { paginationModel: { page: 0, pageSize: 20 } },
                         }}
-                        pageSizeOptions={[10, 20, 50, 100]}
+                        pageSizeOptions={[20, 50, 100]}
                         onRowClick={(params) => onClick(params.row.name)}
                     />
                 </Paper>

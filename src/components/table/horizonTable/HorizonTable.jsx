@@ -44,14 +44,14 @@ export const HorizonTableTop20 = ({ title }) => {
                                 <td className={styles.dataText}> {data.market}</td>
                                 <td className={styles.dataNum}>
                                     {data.closingPrice
-                                        ? data.closingPrice.toFixed(2).toLocaleString()
+                                        ? Number(data.closingPrice).toFixed(2).toLocaleString()
                                         : '-'}
                                 </td>
                                 <td
                                     className={`${styles.dataNum} ${data.fluctuatingRate > 0 ? styles.positive : styles.negative}`}
                                 >
                                     {data.fluctuatingRate
-                                        ? data.fluctuatingRate.toFixed(2).toLocaleString()
+                                        ? Number(data.fluctuatingRate).toFixed(2).toLocaleString()
                                         : '-'}
                                 </td>
                                 <td

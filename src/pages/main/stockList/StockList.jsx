@@ -1,42 +1,96 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './stockList.module.css';
-import { userData03 } from '../../../data/dummyData03';
 import { useNavigate } from 'react-router-dom';
+import { DataGrid } from '@mui/x-data-grid';
+import Paper from '@mui/material/Paper';
+import axios from 'axios';
 
 export const StockList = () => {
     const navigate = useNavigate();
+    const [stockData, setStockData] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchStockData = async () => {
+            try {
+                const data = await getStockListClosing();
+                setStockData(data);
+            } catch (error) {
+                console.error('Error fetching stock data:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchStockData();
+    }, []);
 
     const onClick = (name) => {
         navigate(`/stockinfo`);
-        // navigate(`/stockinfo/${name}`);
     };
 
+    const columns = [
+        { field: 'date', headerName: '날짜', flex: 1 },
+        {
+            field: 'closing_price',
+            headerName: '종가',
+            flex: 1,
+            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
+        },
+        {
+            field: 'fluctuating_rate',
+            headerName: '등락률 (%)',
+            flex: 1,
+            valueFormatter: ({ value }) => (value ? `${value}%` : ''),
+        },
+        {
+            field: 'opening_price',
+            headerName: '시가',
+            flex: 1,
+            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
+        },
+        {
+            field: 'high_price',
+            headerName: '고가',
+            flex: 1,
+            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
+        },
+        {
+            field: 'low_price',
+            headerName: '저가',
+            flex: 1,
+            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
+        },
+        {
+            field: 'trading_volume',
+            headerName: '거래량',
+            flex: 1,
+            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
+        },
+    ];
+
+    const rows = stockData.map((data, index) => ({
+        id: index,
+        date: data.date,
+        closing_price: data.closing_price,
+        fluctuating_rate: data.fluctuating_rate,
+        opening_price: data.opening_price,
+        high_price: data.high_price,
+        low_price: data.low_price,
+        trading_volume: data.trading_volume,
+    }));
+
+    if (loading) return <div>Loading...</div>;
+
     return (
-        <div className={styles.stocklist}>
-            <div className={styles.title}>코인 종목</div>
-            <table className={styles.table}>
-                <thead>
-                    <tr>
-                        <th>순위</th>
-                        <th>종목명</th>
-                        <th>현재가</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {userData03.map((data, index) => (
-                        <tr key={index}>
-                            <td>{data.rank}</td>
-                            <td className={styles.dataText} onClick={() => onClick(data.name)}>
-                                {' '}
-                                {data.name}
-                            </td>
-                            <td className={styles.dataNum} onClick={() => onClick(data.name)}>
-                                {data.now.toLocaleString()}
-                            </td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+        <Paper>
+            <DataGrid
+                rows={rows}
+                columns={columns}
+                initialState={{ pagination: { paginationModel: { page: 0, pageSize: 100 } } }}
+                pageSizeOptions={[10, 20, 50, 100]}
+                onRowClick={(params) => onClick(params.row.name)}
+            />
+        </Paper>
     );
 };

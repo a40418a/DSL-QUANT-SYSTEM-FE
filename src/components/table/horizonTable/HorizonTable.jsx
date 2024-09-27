@@ -33,7 +33,6 @@ export const HorizonTableTop20 = ({ title }) => {
                             <th>순위</th>
                             <th>종목명</th>
                             <th>현재가</th>
-                            <th>변동</th>
                             <th>등락률</th>
                         </tr>
                     </thead>
@@ -51,14 +50,6 @@ export const HorizonTableTop20 = ({ title }) => {
                                     {data.fluctuatingRate
                                         ? data.fluctuatingRate.toLocaleString()
                                         : '-'}
-                                </td>
-                                <td
-                                    className={`${styles.dataNum} ${data.fluctuatingRate > 0 ? styles.positive : styles.negative}`}
-                                >
-                                    {(data.fluctuatingRate != null &&
-                                    typeof data.fluctuatingRate === 'number'
-                                        ? (data.fluctuatingRate * 100).toFixed(2)
-                                        : '0.00') + '%'}
                                 </td>
                             </tr>
                         ))}

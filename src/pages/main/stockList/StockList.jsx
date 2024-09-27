@@ -5,6 +5,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
 import { getStockListClosing } from '../../../utils/stocklistApi';
+import { Loading } from '../../../components/loading/Loading';
 
 export const StockList = () => {
     const navigate = useNavigate();
@@ -60,7 +61,7 @@ export const StockList = () => {
         trading_volume: data.trading_volume,
     }));
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <Loading />;
 
     return (
         <div className={styles.stockList}>

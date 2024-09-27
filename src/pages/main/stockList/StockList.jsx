@@ -32,33 +32,35 @@ export const StockList = () => {
     };
 
     const columns = [
-        { field: 'date', headerName: '날짜', flex: 1 },
+        { field: 'market', headerName: '종목명', flex: 1 },
         {
-            field: 'closing_price',
+            field: 'closingPrice',
             headerName: '현재가',
             flex: 1,
-            valueFormatter: ({ value }) => (value !== undefined ? value.toLocaleString() : ''),
+            valueFormatter: ({ value }) =>
+                value !== undefined ? parseFloat(value).toLocaleString() : '',
         },
         {
-            field: 'fluctuating_rate',
+            field: 'fluctuatingRate',
             headerName: '등락률 (%)',
             flex: 1,
-            valueFormatter: ({ value }) => (value !== undefined ? `${value}%` : ''),
+            valueFormatter: ({ value }) =>
+                value !== undefined ? `${parseFloat(value * 100).toFixed(2)}%` : '',
         },
         {
-            field: 'trading_volume',
+            field: 'tradingVolume',
             headerName: '거래량',
             flex: 1,
-            valueFormatter: ({ value }) => (value !== undefined ? value.toLocaleString() : ''),
+            valueFormatter: ({ value }) =>
+                value !== undefined ? parseFloat(value).toLocaleString() : '',
         },
     ];
 
     const rows = stockData.map((data, index) => ({
-        id: index,
-        date: data.date,
-        closing_price: data.closing_price,
-        fluctuating_rate: data.fluctuating_rate,
-        trading_volume: data.trading_volume,
+        market: data.market,
+        closingPrice: data.closingPrice,
+        fluctuatingRate: data.fluctuatingRate,
+        tradingVolume: data.tradingVolume,
     }));
 
     if (loading) return <Loading />;

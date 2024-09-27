@@ -47,9 +47,7 @@ export const HorizonTableTop20 = ({ title }) => {
                                 <td
                                     className={`${styles.dataNum} ${data.fluctuatingRate > 0 ? styles.positive : styles.negative}`}
                                 >
-                                    {data.fluctuatingRate
-                                        ? data.fluctuatingRate.toLocaleString()
-                                        : '-'}
+                                    {(data.fluctuatingRate * 100).toFixed(2)}%
                                 </td>
                             </tr>
                         ))}

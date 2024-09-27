@@ -32,7 +32,7 @@ export const StockList = () => {
     };
 
     const columns = [
-        { field: 'market', headerName: '종목명', flex: 1 },
+        { field: 'market', headerName: '종목명', flex: 2 },
         {
             field: 'closingPrice',
             headerName: '현재가',
@@ -43,7 +43,7 @@ export const StockList = () => {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                       })
-                    : '-',
+                    : '/',
         },
         {
             field: 'fluctuatingRate',
@@ -52,7 +52,7 @@ export const StockList = () => {
             valueFormatter: ({ value }) => {
                 // value가 문자열로 되어 있으므로 숫자로 변환
                 const rate = parseFloat(value);
-                return !isNaN(rate) ? `${(rate * 100).toFixed(2)}%` : '-';
+                return !isNaN(rate) ? `${(rate * 100).toFixed(2)}%` : '/';
             },
         },
         {
@@ -65,7 +65,7 @@ export const StockList = () => {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                       })
-                    : '-',
+                    : '/',
         },
     ];
 

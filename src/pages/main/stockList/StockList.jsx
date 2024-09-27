@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
-import { getStockListClosing } from '../../../utils/stockApi';
+import { getStockListClosing } from '../../../utils/stocklistApi';
 
 export const StockList = () => {
     const navigate = useNavigate();
@@ -71,7 +71,7 @@ export const StockList = () => {
                         rows={rows}
                         columns={columns}
                         initialState={{
-                            pagination: { paginationModel: { page: 0, pageSize: 100 } },
+                            pagination: { paginationModel: { page: 0, pageSize: 20 } },
                         }}
                         pageSizeOptions={[10, 20, 50, 100]}
                         onRowClick={(params) => onClick(params.row.name)}

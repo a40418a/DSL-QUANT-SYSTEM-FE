@@ -56,9 +56,6 @@ export const StockList = () => {
         date: data.date,
         closing_price: data.closing_price,
         fluctuating_rate: data.fluctuating_rate,
-        opening_price: data.opening_price,
-        high_price: data.high_price,
-        low_price: data.low_price,
         trading_volume: data.trading_volume,
     }));
 

@@ -57,6 +57,7 @@ export const StockList = () => {
     ];
 
     const rows = stockData.map((data, index) => ({
+        id: index,
         market: data.market,
         closingPrice: data.closingPrice,
         fluctuatingRate: data.fluctuatingRate,

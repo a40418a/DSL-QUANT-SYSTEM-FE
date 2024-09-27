@@ -36,19 +36,19 @@ export const StockList = () => {
             field: 'closing_price',
             headerName: '현재가',
             flex: 1,
-            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
+            valueFormatter: ({ value }) => (value !== undefined ? value.toLocaleString() : ''),
         },
         {
             field: 'fluctuating_rate',
             headerName: '등락률 (%)',
             flex: 1,
-            valueFormatter: ({ value }) => (value ? `${value}%` : ''),
+            valueFormatter: ({ value }) => (value !== undefined ? `${value}%` : ''),
         },
         {
             field: 'trading_volume',
             headerName: '거래량',
             flex: 1,
-            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
+            valueFormatter: ({ value }) => (value !== undefined ? value.toLocaleString() : ''),
         },
     ];
 

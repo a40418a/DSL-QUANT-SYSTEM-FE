@@ -62,14 +62,21 @@ export const StockList = () => {
     if (loading) return <div>Loading...</div>;
 
     return (
-        <Paper>
-            <DataGrid
-                rows={rows}
-                columns={columns}
-                initialState={{ pagination: { paginationModel: { page: 0, pageSize: 100 } } }}
-                pageSizeOptions={[10, 20, 50, 100]}
-                onRowClick={(params) => onClick(params.row.name)}
-            />
-        </Paper>
+        <div className={styles.stockList}>
+            <div className={styles.title}>코인 종목</div>
+            <div className={styles.table}>
+                <Paper>
+                    <DataGrid
+                        rows={rows}
+                        columns={columns}
+                        initialState={{
+                            pagination: { paginationModel: { page: 0, pageSize: 100 } },
+                        }}
+                        pageSizeOptions={[10, 20, 50, 100]}
+                        onRowClick={(params) => onClick(params.row.name)}
+                    />
+                </Paper>
+            </div>
+        </div>
     );
 };

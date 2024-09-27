@@ -33,7 +33,7 @@ export const StockList = () => {
         { field: 'date', headerName: '날짜', flex: 1 },
         {
             field: 'closing_price',
-            headerName: '종가',
+            headerName: '현재가',
             flex: 1,
             valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
         },
@@ -42,24 +42,6 @@ export const StockList = () => {
             headerName: '등락률 (%)',
             flex: 1,
             valueFormatter: ({ value }) => (value ? `${value}%` : ''),
-        },
-        {
-            field: 'opening_price',
-            headerName: '시가',
-            flex: 1,
-            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
-        },
-        {
-            field: 'high_price',
-            headerName: '고가',
-            flex: 1,
-            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
-        },
-        {
-            field: 'low_price',
-            headerName: '저가',
-            flex: 1,
-            valueFormatter: ({ value }) => (value ? value.toLocaleString() : ''),
         },
         {
             field: 'trading_volume',

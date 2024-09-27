@@ -38,13 +38,19 @@ export const StockList = () => {
             headerName: '현재가',
             flex: 1,
             valueFormatter: ({ value }) =>
-                value !== undefined ? parseFloat(value).toFixed(2) : '-',
+                value !== undefined && value !== null
+                    ? parseFloat(value).toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                      })
+                    : '-',
         },
         {
             field: 'fluctuatingRate',
             headerName: '등락률 (%)',
             flex: 1,
             valueFormatter: ({ value }) => {
+                // value가 문자열로 되어 있으므로 숫자로 변환
                 const rate = parseFloat(value);
                 return !isNaN(rate) ? `${(rate * 100).toFixed(2)}%` : '-';
             },
@@ -54,7 +60,12 @@ export const StockList = () => {
             headerName: '거래량',
             flex: 1,
             valueFormatter: ({ value }) =>
-                value !== undefined ? parseFloat(value).toFixed(2) : '-',
+                value !== undefined && value !== null
+                    ? parseFloat(value).toLocaleString(undefined, {
+                          minimumFractionDigits: 2,
+                          maximumFractionDigits: 2,
+                      })
+                    : '-',
         },
     ];
 

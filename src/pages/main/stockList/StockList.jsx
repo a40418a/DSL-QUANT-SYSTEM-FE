@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import Paper from '@mui/material/Paper';
 import axios from 'axios';
+import { getStockListClosing } from '../../../utils/stockApi';
 
 export const StockList = () => {
     const navigate = useNavigate();

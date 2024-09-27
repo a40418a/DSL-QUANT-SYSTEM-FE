@@ -37,21 +37,22 @@ export const StockList = () => {
             field: 'closingPrice',
             headerName: '현재가',
             flex: 1,
-            valueFormatter: ({ value }) =>
-                value !== undefined && value !== null
-                    ? parseFloat(value).toLocaleString(undefined, {
+            valueFormatter: ({ value }) => {
+                const numericValue = Number(value); // 문자열을 숫자로 변환
+                return !isNaN(numericValue)
+                    ? numericValue.toLocaleString(undefined, {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                       })
-                    : '/',
+                    : '/'; // 숫자로 변환할 수 없는 경우 '/'
+            },
         },
         {
             field: 'fluctuatingRate',
             headerName: '등락률 (%)',
             flex: 1,
             valueFormatter: ({ value }) => {
-                // value가 문자열로 되어 있으므로 숫자로 변환
-                const rate = parseFloat(value);
+                const rate = Number(value);
                 return !isNaN(rate) ? `${(rate * 100).toFixed(2)}%` : '/';
             },
         },
@@ -59,13 +60,15 @@ export const StockList = () => {
             field: 'tradingVolume',
             headerName: '거래량',
             flex: 1,
-            valueFormatter: ({ value }) =>
-                value !== undefined && value !== null
-                    ? parseFloat(value).toLocaleString(undefined, {
+            valueFormatter: ({ value }) => {
+                const numericValue = Number(value); // 문자열을 숫자로 변환
+                return !isNaN(numericValue)
+                    ? numericValue.toLocaleString(undefined, {
                           minimumFractionDigits: 2,
                           maximumFractionDigits: 2,
                       })
-                    : '/',
+                    : '/'; // 숫자로 변환할 수 없는 경우 '/'
+            },
         },
     ];
 

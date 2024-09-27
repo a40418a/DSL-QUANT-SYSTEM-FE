@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styles from './result.module.css';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useParams } from 'react-router-dom';

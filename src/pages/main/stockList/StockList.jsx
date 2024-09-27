@@ -37,44 +37,27 @@ export const StockList = () => {
             field: 'closingPrice',
             headerName: '현재가',
             flex: 1,
-            valueFormatter: ({ value }) => {
-                const numericValue = Number(value); // 문자열을 숫자로 변환
-                console.log('numericValue:', numericValue);
-                console.log('value:', value);
-                return !isNaN(numericValue)
-                    ? numericValue.toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                      })
-                    : '-';
-            },
+            // valueFormatter: ({ value }) => {
+            //     const numericValue = Number(value); // 문자열을 숫자로 변환
+            //     console.log('numericValue:', numericValue);
+            //     console.log('value:', value);
+            //     return !isNaN(numericValue)
+            //         ? numericValue.toLocaleString(undefined, {
+            //               minimumFractionDigits: 2,
+            //               maximumFractionDigits: 2,
+            //           })
+            //         : '-';
+            // },
         },
         {
             field: 'fluctuatingRate',
             headerName: '등락률 (%)',
             flex: 1,
-            valueFormatter: ({ value }) => {
-                const rate = Number(value);
-                console.log('rate:', rate);
-                console.log('value:', value);
-                return !isNaN(rate) ? `${(rate * 100).toFixed(2)}%` : '-';
-            },
         },
         {
             field: 'tradingVolume',
             headerName: '거래량',
             flex: 1,
-            valueFormatter: ({ value }) => {
-                const numericValue = Number(value); // 문자열을 숫자로 변환
-                console.log('numericValue:', numericValue);
-                console.log('value:', value);
-                return !isNaN(numericValue)
-                    ? numericValue.toLocaleString(undefined, {
-                          minimumFractionDigits: 2,
-                          maximumFractionDigits: 2,
-                      })
-                    : '/';
-            },
         },
     ];
 

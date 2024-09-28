@@ -3,6 +3,7 @@ import styles from './result.module.css';
 import { StrategyContext } from '../../../context/StrategyContext';
 import { useParams } from 'react-router-dom';
 import { getUserInfo } from '../../../utils/userApi';
+import { Loading } from '../../../components/loading/Loading';
 
 export const Result = () => {
     const [userInfo, setUserInfo] = useState(null);
@@ -177,49 +178,61 @@ export const Result = () => {
                     <tr>
                         <th>Final Cash</th>
                         <td>
-                            {resultData?.finalCash != null
-                                ? resultData.finalCash.toFixed(2)
-                                : 'Loading...'}
+                            {resultData?.finalCash != null ? (
+                                resultData.finalCash.toFixed(2)
+                            ) : (
+                                <Loading />
+                            )}
                         </td>
                     </tr>
                     <tr>
                         <th>Final Asset</th>
                         <td>
-                            {resultData?.finalAsset != null
-                                ? resultData.finalAsset.toFixed(2)
-                                : 'Loading...'}
+                            {resultData?.finalAsset != null ? (
+                                resultData.finalAsset.toFixed(2)
+                            ) : (
+                                <Loading />
+                            )}
                         </td>
                     </tr>
                     <tr>
                         <th>Final Balance</th>
                         <td>
-                            {resultData?.finalBalance != null
-                                ? resultData.finalBalance.toFixed(2)
-                                : 'Loading...'}
+                            {resultData?.finalBalance != null ? (
+                                resultData.finalBalance.toFixed(2)
+                            ) : (
+                                <Loading />
+                            )}
                         </td>
                     </tr>
                     <tr>
                         <th>Profit</th>
                         <td>
-                            {resultData?.profit != null
-                                ? resultData.profit.toFixed(2)
-                                : 'Loading...'}
+                            {resultData?.profit != null ? (
+                                resultData.profit.toFixed(2)
+                            ) : (
+                                <Loading />
+                            )}
                         </td>
                     </tr>
                     <tr>
                         <th>Profit Rate</th>
                         <td>
-                            {resultData?.profitRate != null
-                                ? resultData.profitRate.toFixed(2)
-                                : 'Loading...'}
+                            {resultData?.profitRate != null ? (
+                                resultData.profitRate.toFixed(2)
+                            ) : (
+                                <Loading />
+                            )}
                         </td>
                     </tr>
                     <tr>
                         <th>Number of Trades</th>
                         <td>
-                            {resultData?.numberOfTrades != null
-                                ? resultData.numberOfTrades.toFixed(2)
-                                : 'Loading...'}
+                            {resultData?.numberOfTrades != null ? (
+                                resultData.numberOfTrades.toFixed(2)
+                            ) : (
+                                <Loading />
+                            )}
                         </td>
                     </tr>
                 </tbody>

@@ -25,6 +25,7 @@ export const LoginHandler = () => {
                         "Content-Type": "application/json;charset=utf-8",
                         'Access-Control-Allow-Origin': '*',
                     },
+                    withCredentials: true,  // 자격 증명을 함께 보냄
                 });
 
                 const jwt = res.data.jwtToken;

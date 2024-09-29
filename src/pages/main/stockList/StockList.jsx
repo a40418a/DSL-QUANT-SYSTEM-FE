@@ -63,7 +63,7 @@ export const StockList = () => {
     }, []);
 
     const onClick = (name) => {
-        navigate(`/stockinfo/?market=${name}`);
+        navigate(`/stockinfo/${name}`);
     };
 
     const columns = [

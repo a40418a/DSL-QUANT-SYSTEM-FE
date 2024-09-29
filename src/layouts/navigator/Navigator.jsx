@@ -77,7 +77,8 @@ export const Navigator = () => {
                     <li
                         className={classNames(styles.menu, {
                             [styles.active]:
-                                activePage === '/strategy/' || activePage.startsWith('/result/'),
+                                activePage.startsWith('/strategy/') ||
+                                activePage.startsWith('/result/'),
                         })}
                         onClick={() => navigate('/strategy/')}
                     >

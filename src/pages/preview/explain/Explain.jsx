@@ -7,7 +7,7 @@ export const Explain = () => {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        navigate('/login');
+        navigate('/login/');
     };
 
     return (

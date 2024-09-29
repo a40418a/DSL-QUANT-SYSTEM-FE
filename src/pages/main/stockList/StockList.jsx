@@ -144,6 +144,8 @@ export const StockList = () => {
                         pageSizeOptions={[20, 50, 100]}
                         slots={{ pagination: CustomPagination }}
                         onRowClick={(params) => onClick(params.row.market)}
+                        disableColumnResize
+                        disableColumnReorder
                     />
                 </Box>
             </div>

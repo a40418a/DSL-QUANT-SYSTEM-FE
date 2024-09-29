@@ -72,6 +72,11 @@ export const StockList = () => {
             headerName: '종목명',
             flex: 2,
             headerAlign: 'center',
+            renderCell: (params) => (
+                <span style={{ cursor: 'pointer' }} onClick={() => onClick(params.row.market)}>
+                    {params.value}
+                </span>
+            ),
         },
         {
             field: 'closingPrice',
@@ -82,7 +87,7 @@ export const StockList = () => {
             renderCell: (params) => {
                 const value = Number(params.value);
                 const formattedValue = value ? new Intl.NumberFormat().format(value) : '-';
-                return <span>{formattedValue}</span>;
+                return <span style={{ cursor: 'pointer' }}>{formattedValue}</span>;
             },
         },
         {
@@ -92,9 +97,13 @@ export const StockList = () => {
             type: 'number',
             headerAlign: 'center',
             renderCell: (params) => {
-                const value = Number(params.value); // 값을 숫자로 변환
+                const value = Number(params.value);
                 const color = value < 0 ? 'var(--down-color)' : 'var(--up-color)';
-                return <span style={{ color }}> {value ? (value * 100).toFixed(2) : '-'}</span>; // 기본값 처리
+                return (
+                    <span style={{ color, cursor: 'pointer' }}>
+                        {value ? (value * 100).toFixed(2) : '-'}
+                    </span>
+                );
             },
         },
         {
@@ -106,7 +115,7 @@ export const StockList = () => {
             renderCell: (params) => {
                 const value = Number(params.value);
                 const formattedValue = value ? new Intl.NumberFormat().format(value) : '-';
-                return <span>{formattedValue}</span>;
+                return <span style={{ cursor: 'pointer' }}>{formattedValue}</span>;
             },
         },
     ];

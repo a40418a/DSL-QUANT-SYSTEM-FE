@@ -62,7 +62,6 @@ export const StrategyMain = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: value };
 
-
             if (name === 'initial_investment' && parseFloat(value) < 0) {
                 alert('초기 투자 금액은 0보다 작을 수 없습니다.');
                 return prevData;
@@ -100,35 +99,30 @@ export const StrategyMain = () => {
 
         setStrategyCommonData(strategyCommonDTO);
 
+        try {
+            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const response = await axios.post(`${SURL}/strategy`, strategyCommonDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
-       try {
-           const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
-           const response = await axios.post(`${SURL}/strategy`, strategyCommonDTO, {
-               headers: {
-                   Authorization: `Bearer ${token}`,
-               },
-           });
+            // 다양한 가능성으로 헤더 값 확인
+            const newToken =
+                response.headers['Authorization'] ||
+                response.headers['authorization'] ||
+                response.headers['Authorization'.toLowerCase()];
 
+            if (newToken) {
+                localStorage.setItem('jwt', newToken); // 새로운 토큰 저장
+            } else {
+                console.warn('New token not found in the response headers');
+            }
 
-           // 다양한 가능성으로 헤더 값 확인
-           const newToken = response.headers['Authorization'] ||
-                            response.headers['authorization'] ||
-                            response.headers['Authorization'.toLowerCase()];
-
-
-
-
-           if (newToken) {
-               localStorage.setItem('jwt', newToken); // 새로운 토큰 저장
-           } else {
-               console.warn('New token not found in the response headers');
-           }
-
-           console.log('Response:', response.data);
-       } catch (error) {
-           console.error('There was an error submitting the common strategy!', error);
-       }
-
+            console.log('Response:', response.data);
+        } catch (error) {
+            console.error('There was an error submitting the common strategy!', error);
+        }
 
         // 선택된 전략의 value 값을 가져옵니다.
         const selectedStrategy = formData.strategy;
@@ -144,23 +138,15 @@ export const StrategyMain = () => {
         ) {
             navigate(`/${selectedStrategy}`);
         } else {
-            if (!selectedStrategy) {
-                alert('전략을 선택해주세요.');
-            }
-            if (!formData.initial_investment) {
-                alert('초기 투자 금액을 입력해주세요.');
-            }
-            if (!formData.tax) {
-                alert('거래 수수료를 선택해주세요.');
-            }
-            if (!formData.target_item) {
-                alert('종목 이름을 입력해주세요.');
-            }
-            if (!formData.tick_kind) {
-                alert('캔들 종류를 선택해주세요.');
-            }
-            if (!formData.inq_range) {
-                alert('조회 범위를 입력해주세요.');
+            if (
+                !selectedStrategy ||
+                !formData.initial_investment ||
+                !formData.tax ||
+                !formData.target_item ||
+                !formData.tick_kind ||
+                !formData.inq_range
+            ) {
+                alert('선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요');
             }
         }
     };
@@ -249,9 +235,6 @@ export const StrategyMain = () => {
         </div>
     );
 };
-
-
-
 
 /*
 import React, { useContext, useState } from 'react';

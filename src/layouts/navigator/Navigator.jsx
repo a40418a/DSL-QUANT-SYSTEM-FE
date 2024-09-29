@@ -10,7 +10,7 @@ const SURL = import.meta.env.VITE_APP_URI;
 export const Navigator = () => {
     const [activePage, setActivePage] = useState('');
     const [userName, setUserName] = useState('');
-    const { token, logout } = useContext(AuthContext);  // AuthContext에서 token과 logout 가져오기
+    const { token, logout } = useContext(AuthContext); // AuthContext에서 token과 logout 가져오기
     const location = useLocation();
     const navigate = useNavigate();
 
@@ -18,7 +18,8 @@ export const Navigator = () => {
         setActivePage(location.pathname);
 
         const fetchData = async () => {
-            if (token) {  // 토큰이 있을 때만 사용자 정보 요청
+            if (token) {
+                // 토큰이 있을 때만 사용자 정보 요청
                 try {
                     const response = await axios.get(`${SURL}/userinfo`, {
                         headers: {
@@ -32,37 +33,43 @@ export const Navigator = () => {
             }
         };
         fetchData();
-    }, [location, token]);  // 토큰이 변경되거나 위치가 바뀔 때마다 다시 요청
+    }, [location, token]); // 토큰이 변경되거나 위치가 바뀔 때마다 다시 요청
 
     const logoutHandler = async () => {
         try {
-            await axios.post(`${SURL}/logout`, {}, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                    'Content-Type': 'application/json',
+            await axios.post(
+                `${SURL}/logout/`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
                 },
-            });
+            );
 
-            logout();  // AuthContext에서 로그아웃 처리
+            logout(); // AuthContext에서 로그아웃 처리
             alert('로그아웃 완료');
-            navigate('/login');
+            navigate('/login/');
         } catch (error) {
             console.error('로그아웃 진행 도중에 오류가 발생했습니다', error);
         }
     };
 
-    if (location.pathname !== '/' && location.pathname !== '/login') {
+    if (location.pathname !== '/' && location.pathname !== '/login/') {
         return (
             <div className={styles.navigator}>
                 <div>
-                    <Link to="/home" className={styles.title}>
+                    <Link to="/home/" className={styles.title}>
                         DSL QUANT
                     </Link>
                 </div>
                 <ul className={styles.menuWrapper}>
                     <li
                         className={classNames(styles.menu, {
-                            [styles.active]: activePage === '/stocklist' || activePage === '/stockinfo',
+                            [styles.active]:
+                                activePage === '/stocklist/' ||
+                                activePage.startsWith('/stockinfo/'),
                         })}
                         onClick={() => navigate('/stocklist')}
                     >
@@ -71,8 +78,8 @@ export const Navigator = () => {
                     <li
                         className={classNames(styles.menu, {
                             [styles.active]:
-                                activePage === '/strategy' ||
-                                activePage.startsWith('/result'),
+                                activePage.startsWith('/strategy/') ||
+                                activePage.startsWith('/result/'),
                         })}
                         onClick={() => navigate('/strategy')}
                     >
@@ -80,7 +87,11 @@ export const Navigator = () => {
                     </li>
                 </ul>
                 <div className={styles.account}>
-                    <Link to="/mypage" onClick={() => navigate('/mypage')} className={styles.accountName}>
+                    <Link
+                        to="/mypage/"
+                        onClick={() => navigate('/mypage/')}
+                        className={styles.accountName}
+                    >
                         <p>{userName ? userName : '이름'}</p> 님
                     </Link>
                     <Link to="/" onClick={logoutHandler} className={styles.accountLogout}>

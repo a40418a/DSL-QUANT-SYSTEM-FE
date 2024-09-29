@@ -18,6 +18,11 @@ import { render } from '@testing-library/react';
 
 const CustomPagination = () => {
     const apiRef = useGridApiContext();
+
+    if (!apiRef) {
+        return null;
+    }
+
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageCount = useGridSelector(apiRef, gridPageCountSelector);
 

@@ -131,7 +131,7 @@ export const StockList = () => {
     if (loading) return <Loading />;
 
     return (
-        <div className={styles.stockList}>
+        <div className={styles.stocklist}>
             <div className={styles.title}>코인 종목</div>
             <Box
                 sx={{

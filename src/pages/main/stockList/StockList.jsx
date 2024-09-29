@@ -133,31 +133,39 @@ export const StockList = () => {
     return (
         <div className={styles.stockList}>
             <div className={styles.title}>코인 종목</div>
-            <div className={styles.table}>
-                <Box
-                    sx={{
-                        width: '100%',
-                        '& .MuiDataGrid-columnHeader': {
-                            backgroundColor: 'var(--point-color-2) ',
-                            '& .MuiDataGrid-columnHeaderTitle': {
-                                color: 'var(--color-white) ',
-                            },
+            <Box
+                sx={{
+                    width: '100%',
+                    '& .MuiDataGrid-columnHeader': {
+                        backgroundColor: 'var(--point-color-2)',
+                        '& .MuiDataGrid-columnHeaderTitle': {
+                            color: 'var(--color-white)',
                         },
-                    }}
-                >
-                    <DataGrid
-                        rows={rows}
-                        columns={columns}
-                        paginationModel={paginationModel}
-                        onPaginationModelChange={setPaginationModel}
-                        pageSizeOptions={[20, 50, 100]}
-                        slots={{ pagination: CustomPagination }}
-                        onRowClick={(params) => onClick(params.row.market)}
-                        disableColumnResize
-                        disableColumnReorder
-                    />
-                </Box>
-            </div>
+                    },
+                    '& .MuiDataGrid-row': {
+                        borderBottom: '1px solid var(--color-4)',
+                    },
+                    '& .MuiDataGrid-cell': {
+                        borderTop: '1px solid var(--color-4)',
+                        borderBottom: 'none',
+                    },
+                    '& .MuiDataGrid-cell:hover': {
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    },
+                }}
+            >
+                <DataGrid
+                    rows={rows}
+                    columns={columns}
+                    paginationModel={paginationModel}
+                    onPaginationModelChange={setPaginationModel}
+                    pageSizeOptions={[20, 50, 100]}
+                    slots={{ pagination: CustomPagination }}
+                    onRowClick={(params) => onClick(params.row.market)}
+                    disableColumnResize
+                    disableColumnReorder
+                />
+            </Box>
         </div>
     );
 };

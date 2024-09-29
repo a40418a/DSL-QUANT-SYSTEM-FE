@@ -1,16 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import styles from './stockList.module.css';
 import { useNavigate } from 'react-router-dom';
-import { DataGrid } from '@mui/x-data-grid';
-import Paper from '@mui/material/Paper';
+import {
+    DataGrid,
+    gridPageCountSelector,
+    gridPageSelector,
+    useGridApiContext,
+    useGridSelector,
+} from '@mui/x-data-grid';
 import axios from 'axios';
 import { getStockListClosing } from '../../../utils/stocklistApi';
 import { Loading } from '../../../components/loading/Loading';
+import { Box } from '@mui/system';
+import Pagination from '@mui/material/Pagination';
+import PaginationItem from '@mui/material/PaginationItem';
+
+const CustomPagination = () => {
+    const apiRef = useGridApiContext();
+    const page = useGridSelector(apiRef, gridPageSelector);
+    const pageCount = useGridSelector(apiRef, gridPageCountSelector);
+
+    return (
+        <Pagination
+            color="primary"
+            variant="outlined"
+            shape="rounded"
+            page={page + 1}
+            count={pageCount}
+            renderItem={(props) => <PaginationItem {...props} disableRipple />}
+            onChange={(event, value) => apiRef.current.setPage(value - 1)}
+        />
+    );
+};
 
 export const StockList = () => {
     const navigate = useNavigate();
     const [stockData, setStockData] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [paginationModel, setPaginationModel] = useState({
+        page: 0,
+        pageSize: 20,
+    });
 
     useEffect(() => {
         const fetchStockData = async () => {
@@ -32,32 +62,42 @@ export const StockList = () => {
     };
 
     const columns = [
-        { field: 'market', headerName: '종목명', flex: 2 },
+        {
+            field: 'market',
+            headerName: '종목명',
+            flex: 2,
+            headerAlign: 'center',
+        },
         {
             field: 'closingPrice',
             headerName: '현재가',
             flex: 1,
-            // valueFormatter: ({ value }) => {
-            //     const numericValue = Number(value); // 문자열을 숫자로 변환
-            //     console.log('numericValue:', numericValue);
-            //     console.log('value:', value);
-            //     return !isNaN(numericValue)
-            //         ? numericValue.toLocaleString(undefined, {
-            //               minimumFractionDigits: 2,
-            //               maximumFractionDigits: 2,
-            //           })
-            //         : '-';
-            // },
+            type: 'number',
+            headerAlign: 'center',
+            valueFormatter: ({ value }) => {
+                return value ? value.toFixed(2) : '-'; // 소수점 2자리까지 표시
+            },
         },
         {
             field: 'fluctuatingRate',
             headerName: '등락률 (%)',
             flex: 1,
+            type: 'number',
+            headerAlign: 'center',
+            renderCell: (params) => {
+                const color = params.value < 0 ? 'var(--down-color)' : 'var(--up-color)';
+                return <span style={{ color }}> {params.value.toFixed(2)}</span>;
+            },
         },
         {
             field: 'tradingVolume',
             headerName: '거래량',
             flex: 1,
+            type: 'number',
+            headerAlign: 'center',
+            valueFormatter: ({ value }) => {
+                return value ? value.toFixed(2) : '-'; // 소수점 2자리까지 표시
+            },
         },
     ];
 
@@ -75,17 +115,26 @@ export const StockList = () => {
         <div className={styles.stockList}>
             <div className={styles.title}>코인 종목</div>
             <div className={styles.table}>
-                <Paper>
+                <Box
+                    sx={{
+                        '& .MuiDataGrid-columnHeader': {
+                            backgroundColor: 'var(--point-color-2) ',
+                            '& .MuiDataGrid-columnHeaderTitle': {
+                                color: 'var(--color-white) ',
+                            },
+                        },
+                    }}
+                >
                     <DataGrid
                         rows={rows}
                         columns={columns}
-                        initialState={{
-                            pagination: { paginationModel: { page: 0, pageSize: 20 } },
-                        }}
+                        paginationModel={paginationModel}
+                        onPaginationModelChange={setPaginationModel}
                         pageSizeOptions={[20, 50, 100]}
-                        onRowClick={(params) => onClick(params.row.name)}
+                        slots={{ pagination: CustomPagination }}
+                        onRowClick={(params) => onClick(params.row.market)}
                     />
-                </Paper>
+                </Box>
             </div>
         </div>
     );

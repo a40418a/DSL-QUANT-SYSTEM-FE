@@ -101,7 +101,7 @@ export const StockList = () => {
                 const color = value < 0 ? 'var(--down-color)' : 'var(--up-color)';
                 return (
                     <span style={{ color, cursor: 'pointer' }}>
-                        {value ? (value * 100).toFixed(2) : '00.00'}
+                        {value ? (value * 100).toFixed(2) : '0.00'}
                     </span>
                 );
             },

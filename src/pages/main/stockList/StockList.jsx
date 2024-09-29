@@ -14,6 +14,7 @@ import { Loading } from '../../../components/loading/Loading';
 import { Box } from '@mui/system';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
+import { render } from '@testing-library/react';
 
 const CustomPagination = () => {
     const apiRef = useGridApiContext();
@@ -74,9 +75,9 @@ export const StockList = () => {
             flex: 1,
             type: 'number',
             headerAlign: 'center',
-            valueFormatter: ({ value }) => {
-                const numericValue = Number(value);
-                return !isNaN(numericValue) ? numericValue.toFixed(2) : '-'; // 소수점 2자리까지 표시
+            renderCell: (params) => {
+                const value = Number(params.value);
+                return <span>{value ? value.toFixed(2) : '-'}</span>;
             },
         },
         {
@@ -97,9 +98,9 @@ export const StockList = () => {
             flex: 1,
             type: 'number',
             headerAlign: 'center',
-            valueFormatter: ({ value }) => {
-                const numericValue = Number(value);
-                return !isNaN(numericValue) ? numericValue.toFixed(2) : '-'; // 소수점 2자리까지 표시
+            renderCell: (params) => {
+                const value = Number(params.value);
+                return <span>{value ? value.toFixed(2) : '-'}</span>;
             },
         },
     ];

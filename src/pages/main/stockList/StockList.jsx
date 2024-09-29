@@ -88,7 +88,7 @@ export const StockList = () => {
             renderCell: (params) => {
                 const value = Number(params.value); // 값을 숫자로 변환
                 const color = value < 0 ? 'var(--down-color)' : 'var(--up-color)';
-                return <span style={{ color }}> {value ? value.toFixed(2) : '-'}</span>; // 기본값 처리
+                return <span style={{ color }}> {value ? (value * 100).toFixed(2) : '-'}</span>; // 기본값 처리
             },
         },
         {

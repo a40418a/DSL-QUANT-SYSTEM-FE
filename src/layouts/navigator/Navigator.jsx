@@ -68,20 +68,19 @@ export const Navigator = () => {
                     <li
                         className={classNames(styles.menu, {
                             [styles.active]:
-                                activePage === '/stocklist/' ||
-                                activePage.startsWith('/stockinfo/'),
+                                activePage === '/stocklist/' || activePage.startsWith('/stockinfo'),
                         })}
-                        onClick={() => navigate('/stocklist')}
+                        onClick={() => navigate('/stocklist/')}
                     >
                         상세정보
                     </li>
                     <li
                         className={classNames(styles.menu, {
                             [styles.active]:
-                                activePage.startsWith('/strategy/') ||
-                                activePage.startsWith('/result/'),
+                                activePage.startsWith('/strategy') ||
+                                activePage.startsWith('/result'),
                         })}
-                        onClick={() => navigate('/strategy')}
+                        onClick={() => navigate('/strategy/')}
                     >
                         전략설정
                     </li>

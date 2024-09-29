@@ -101,7 +101,7 @@ export const StockList = () => {
                 const color = value < 0 ? 'var(--down-color)' : 'var(--up-color)';
                 return (
                     <span style={{ color, cursor: 'pointer' }}>
-                        {value ? (value * 100).toFixed(2) : '-'}
+                        {value ? (value * 100).toFixed(2) : '00.00'}
                     </span>
                 );
             },
@@ -146,11 +146,11 @@ export const StockList = () => {
                         borderBottom: '1px solid var(--color-4)',
                     },
                     '& .MuiDataGrid-cell': {
-                        borderTop: '1px solid var(--color-4)',
-                        borderBottom: 'none',
-                    },
-                    '& .MuiDataGrid-cell:hover': {
-                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                        borderBottom: '1px solid var(--color-4)',
+                        borderTop: 'none',
+                        borderRight: 'none',
+                        borderLeft: 'none',
+                        borderRadius: 0,
                     },
                 }}
             >

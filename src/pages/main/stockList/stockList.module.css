@@ -1,6 +1,6 @@
 .stocklist {
     box-sizing: border-box;
-    width: var(--width) !important;
+    width: var(--width);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -13,12 +13,8 @@
     margin-bottom: var(--margin);
 }
 
-/* .table {
-    width: 100%;
-}
-
 .table th {
-    padding: 12px 0; 
+    padding: 12px 0; /*padding/2*/
 }
 
 .table td {
@@ -36,7 +32,7 @@
     text-align: right;
     width: 20%;
     cursor: pointer;
-} */
+}
 
 /* 반응형 */
 @media (max-width: 1068px) {

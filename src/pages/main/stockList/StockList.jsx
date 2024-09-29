@@ -14,7 +14,6 @@ import { Loading } from '../../../components/loading/Loading';
 import { Box } from '@mui/system';
 import Pagination from '@mui/material/Pagination';
 import PaginationItem from '@mui/material/PaginationItem';
-import { render } from '@testing-library/react';
 
 const CustomPagination = () => {
     const apiRef = useGridApiContext();

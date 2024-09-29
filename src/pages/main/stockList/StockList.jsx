@@ -121,6 +121,7 @@ export const StockList = () => {
             <div className={styles.table}>
                 <Box
                     sx={{
+                        width: '100%',
                         '& .MuiDataGrid-columnHeader': {
                             backgroundColor: 'var(--point-color-2) ',
                             '& .MuiDataGrid-columnHeaderTitle': {

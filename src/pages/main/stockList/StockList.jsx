@@ -144,14 +144,14 @@ export const StockList = () => {
                     },
                     '& .MuiDataGrid-row': {
                         borderBottom: '1px solid var(--color-4)',
-                    },
-                    '& .MuiDataGrid-cell': {
-                        borderBottom: '1px solid var(--color-4)',
                         borderTop: 'none',
                         borderRight: 'none',
                         borderLeft: 'none',
                         borderRadius: 0,
                     },
+                    // '& .MuiDataGrid-cell': {
+
+                    // },
                 }}
             >
                 <DataGrid

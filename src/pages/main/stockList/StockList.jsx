@@ -75,7 +75,8 @@ export const StockList = () => {
             type: 'number',
             headerAlign: 'center',
             valueFormatter: ({ value }) => {
-                return value ? value.toFixed(2) : '-'; // 소수점 2자리까지 표시
+                const numericValue = Number(value);
+                return !isNaN(numericValue) ? numericValue.toFixed(2) : '-'; // 소수점 2자리까지 표시
             },
         },
         {
@@ -85,8 +86,9 @@ export const StockList = () => {
             type: 'number',
             headerAlign: 'center',
             renderCell: (params) => {
-                const color = params.value < 0 ? 'var(--down-color)' : 'var(--up-color)';
-                return <span style={{ color }}> {params.value.toFixed(2)}</span>;
+                const value = Number(params.value); // 값을 숫자로 변환
+                const color = value < 0 ? 'var(--down-color)' : 'var(--up-color)';
+                return <span style={{ color }}> {value ? value.toFixed(2) : '-'}</span>; // 기본값 처리
             },
         },
         {
@@ -96,7 +98,8 @@ export const StockList = () => {
             type: 'number',
             headerAlign: 'center',
             valueFormatter: ({ value }) => {
-                return value ? value.toFixed(2) : '-'; // 소수점 2자리까지 표시
+                const numericValue = Number(value);
+                return !isNaN(numericValue) ? numericValue.toFixed(2) : '-'; // 소수점 2자리까지 표시
             },
         },
     ];

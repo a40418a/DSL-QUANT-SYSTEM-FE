@@ -81,7 +81,8 @@ export const StockList = () => {
             headerAlign: 'center',
             renderCell: (params) => {
                 const value = Number(params.value);
-                return <span>{value ? value.toFixed(2) : '-'}</span>;
+                const formattedValue = value ? new Intl.NumberFormat().format(value) : '-';
+                return <span>{formattedValue}</span>;
             },
         },
         {
@@ -104,7 +105,8 @@ export const StockList = () => {
             headerAlign: 'center',
             renderCell: (params) => {
                 const value = Number(params.value);
-                return <span>{value ? value.toFixed(2) : '-'}</span>;
+                const formattedValue = value ? new Intl.NumberFormat().format(value) : '-';
+                return <span>{formattedValue}</span>;
             },
         },
     ];

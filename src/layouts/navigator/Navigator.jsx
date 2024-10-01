@@ -38,7 +38,7 @@ export const Navigator = () => {
     const logoutHandler = async () => {
         try {
             await axios.post(
-                `${SURL}/logout/`,
+                `${SURL}/logout`,
                 {},
                 {
                     headers: {

@@ -15,7 +15,8 @@ export const MyPage = () => {
     const [isTableVisible, setIsTableVisible] = useState(false);
     const [loading, setLoading] = useState(true); //사용자 정보 로딩 상태
     const [formData, setFormData] = useState({
-        strategy: '',
+        strategy: '', // 일반 조회 전략
+        backtestingStrategy: '', // 백테스팅 전략
     });
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -71,7 +72,7 @@ export const MyPage = () => {
 
     const handleBacktestingClick = async () => {
         // 선택된 전략을 가져옵니다.
-        const strategy = formData.strategy;
+        const strategy = formData.backtestingStrategy;
 
         // 백테스팅 API 호출
         let apiUrl;
@@ -218,8 +219,8 @@ export const MyPage = () => {
                     <SelectBox
                         placeholder="전략을 선택하세요."
                         options={options_backtesting}
-                        name="strategy"
-                        value={formData.strategy}
+                        name="backtestingStrategy"
+                        value={formData.backtestingStrategy}
                         onChange={handleChange}
                     />
                 </div>

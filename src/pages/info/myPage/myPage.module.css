@@ -89,6 +89,7 @@
     font-size: var(--subtitle-size);
     font-family: var(--font-1);
     background-color: var(--main-color);
+    color: var(--color-white);
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;

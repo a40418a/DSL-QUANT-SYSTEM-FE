@@ -184,13 +184,13 @@ export const MyPage = () => {
     }));
 
     const columns = [
-        { field: 'date', headerName: '날짜', flex: 1 },
-        { field: 'finalCash', headerName: '최종 현금', flex: 1 },
-        { field: 'finalAsset', headerName: '최종 자산', flex: 1 },
-        { field: 'finalBalance', headerName: '최종 잔액', flex: 1 },
-        { field: 'profit', headerName: '수익', flex: 1 },
-        { field: 'profitRate', headerName: '수익률', flex: 1 },
-        { field: 'numberOfTrades', headerName: '거래 횟수', flex: 1 },
+        { field: 'date', headerName: '날짜', flex: 1, headerAlign: 'center' },
+        { field: 'finalCash', headerName: '최종 현금', flex: 1, headerAlign: 'center' },
+        { field: 'finalAsset', headerName: '최종 자산', flex: 1, headerAlign: 'center' },
+        { field: 'finalBalance', headerName: '최종 잔액', flex: 1, headerAlign: 'center' },
+        { field: 'profit', headerName: '수익', flex: 1, headerAlign: 'center' },
+        { field: 'profitRate', headerName: '수익률', flex: 1, headerAlign: 'center' },
+        { field: 'numberOfTrades', headerName: '거래 횟수', flex: 1, headerAlign: 'center' },
     ];
 
     return (

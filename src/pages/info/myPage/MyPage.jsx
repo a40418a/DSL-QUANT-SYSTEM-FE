@@ -184,13 +184,43 @@ export const MyPage = () => {
     }));
 
     const columns = [
-        { field: 'date', headerName: '날짜', flex: 1, headerAlign: 'center' },
-        { field: 'finalCash', headerName: '최종 현금', flex: 1, headerAlign: 'center' },
-        { field: 'finalAsset', headerName: '최종 자산', flex: 1, headerAlign: 'center' },
-        { field: 'finalBalance', headerName: '최종 잔액', flex: 1, headerAlign: 'center' },
-        { field: 'profit', headerName: '수익', flex: 1, headerAlign: 'center' },
-        { field: 'profitRate', headerName: '수익률', flex: 1, headerAlign: 'center' },
-        { field: 'numberOfTrades', headerName: '거래 횟수', flex: 1, headerAlign: 'center' },
+        { field: 'date', headerName: '날짜', flex: 1, headerAlign: 'center', type: 'date' },
+        {
+            field: 'finalCash',
+            headerName: '최종 현금',
+            flex: 1,
+            headerAlign: 'center',
+            type: 'number',
+        },
+        {
+            field: 'finalAsset',
+            headerName: '최종 자산',
+            flex: 1,
+            headerAlign: 'center',
+            type: 'number',
+        },
+        {
+            field: 'finalBalance',
+            headerName: '최종 잔액',
+            flex: 1,
+            headerAlign: 'center',
+            type: 'number',
+        },
+        { field: 'profit', headerName: '수익', flex: 1, headerAlign: 'center', type: 'number' },
+        {
+            field: 'profitRate',
+            headerName: '수익률',
+            flex: 1,
+            headerAlign: 'center',
+            type: 'number',
+        },
+        {
+            field: 'numberOfTrades',
+            headerName: '거래 횟수',
+            flex: 1,
+            headerAlign: 'center',
+            type: 'number',
+        },
     ];
 
     return (

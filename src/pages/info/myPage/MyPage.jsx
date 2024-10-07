@@ -274,7 +274,7 @@ export const MyPage = () => {
                     </>
                 )}
 
-                {!errorMessage && isTableVisible && backHistory.length > 0 && (
+                {/* {!errorMessage && isTableVisible && backHistory.length > 0 && (
                     <table className={styles.tableH}>
                         <thead>
                             <tr>
@@ -301,7 +301,7 @@ export const MyPage = () => {
                             ))}
                         </tbody>
                     </table>
-                )}
+                )} */}
                 {!errorMessage && isTableVisible && backHistory.length > 0 && (
                     <Box
                         sx={{

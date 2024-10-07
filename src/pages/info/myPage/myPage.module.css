@@ -88,8 +88,7 @@
     width: 16%;
     font-size: var(--subtitle-size);
     font-family: var(--font-1);
-    background-color: var(--main-color);
-    color: var(--color-white);
+    background-color: var(--point-color);
     border: none;
     border-radius: var(--border-radius);
     cursor: pointer;

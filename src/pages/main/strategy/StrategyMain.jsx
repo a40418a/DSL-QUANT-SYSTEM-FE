@@ -85,9 +85,6 @@ export const StrategyMain = () => {
     };
 
     const handleSubmit = async () => {
-        //제출 후 formData를 localStorage에서 삭제합니다.
-        localStorage.removeItem('formData');
-
         const currentTime = new Date();
         const year = currentTime.getFullYear();
         const month = String(currentTime.getMonth() + 1).padStart(2, '0');
@@ -155,6 +152,8 @@ export const StrategyMain = () => {
             formData.tick_kind &&
             formData.inq_range
         ) {
+            //제출 후 formData를 localStorage에서 삭제합니다.
+            localStorage.removeItem('formData');
             navigate(`/${selectedStrategy}`);
         } else {
             alert('선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요');
@@ -164,8 +163,13 @@ export const StrategyMain = () => {
     return (
         <div className={styles.strategy}>
             <div className={styles.title}>공통 변수 설정</div>
+            <div className={styles.info}>
+                해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
+            </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>초기 투자 금액</div>
+                <div className={styles.subtitle} title="주식 투자 시 처음으로 투입하는 자본">
+                    초기 투자 금액
+                </div>
                 <div className={styles.input}>
                     <div className={styles.initInvestment}>
                         <InputBox
@@ -180,7 +184,9 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>거래 수수료</div>
+                <div className={styles.subtitle} title="주식을 매매할 때 증권사에 지불하는 비용">
+                    거래 수수료
+                </div>
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="거래 수수료를 선택해주세요."
@@ -192,7 +198,12 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>종목 이름(TargetItem)</div>
+                <div
+                    className={styles.subtitle}
+                    title="주식 시장에서 거래되는 특정 회사의 주식을 나타내는 고유한 이름"
+                >
+                    종목 이름(TargetItem)
+                </div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"
@@ -204,7 +215,9 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>캔들 종류(TickKind)</div>
+                <div className={styles.subtitle} title="대표적으로 양봉(상승)과 음봉(하락)">
+                    캔들 종류(TickKind)
+                </div>
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="캔들 종류를 선택해주세요."
@@ -216,7 +229,12 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>조회 범위(InqRange)</div>
+                <div
+                    className={styles.subtitle}
+                    title="주식 데이터를 검색하거나 분석할 때 설정하는 기간 또는 범위"
+                >
+                    조회 범위(InqRange)
+                </div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"

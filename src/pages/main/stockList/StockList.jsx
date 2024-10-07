@@ -8,7 +8,6 @@ import {
     useGridApiContext,
     useGridSelector,
 } from '@mui/x-data-grid';
-import axios from 'axios';
 import { getStockListClosing } from '../../../utils/stocklistApi';
 import { Loading } from '../../../components/loading/Loading';
 import { Box } from '@mui/system';
@@ -136,7 +135,7 @@ export const StockList = () => {
             <Box
                 sx={{
                     width: '100%',
-                    // height: 1200,
+                    height: 1280,
                     '& .MuiDataGrid-columnHeader': {
                         backgroundColor: 'var(--point-color-2)',
                         '& .MuiDataGrid-columnHeaderTitle': {

@@ -13,11 +13,11 @@ export const StrategyGolden = () => {
     const SURL = import.meta.env.VITE_APP_URI;
 
     const { setStrategy1Data } = useContext(StrategyContext);
-    const [formData, setFormData] = useState({
-        //골든
+    const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
         fastMoveAvg: 0,
         slowMoveAvg: 0,
-    });
+    };
+    const [formData, setFormData] = useState(initialFormData);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -41,6 +41,8 @@ export const StrategyGolden = () => {
                 return prevData;
             }
 
+            localStorage.setItem('formData', JSON.stringify(newFormData));
+
             return newFormData;
         });
     };
@@ -63,6 +65,7 @@ export const StrategyGolden = () => {
         }
 
         if (formData.fastMoveAvg && formData.slowMoveAvg) {
+            localStorage.removeItem('formData');
             navigate(`/result/${id}`);
         } else {
             if (!formData.fastMoveAvg || !formData.slowMoveAvg) {
@@ -77,9 +80,22 @@ export const StrategyGolden = () => {
 
     return (
         <div className={styles.strategy}>
-            <div className={styles.title}>골든/데드 전략 설정 페이지</div>
+            <div
+                className={styles.title}
+                title="이동 평균선의 교차를 기반으로 한 매매 전략으로, 단기 이동 평균선이 장기 이동 평균선을 위로 교차할 때 매수(골든 크로스), 아래로 교차할 때 매도(데드 크로스) 신호로 해석"
+            >
+                골든/데드 전략 설정 페이지
+            </div>
+            <div className={styles.info}>
+                해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
+            </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>빠른 이동 평균 기간</div>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 단기 가격 변동을 반영하기 위해 짧은 기간(예: 5일, 10일 등) 동안의 평균 가격을 계산하는 데 사용되는 기간"
+                >
+                    빠른 이동 평균 기간
+                </div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"
@@ -91,7 +107,12 @@ export const StrategyGolden = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>느린 이동 평균 기간</div>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 장기 가격 변동을 반영하기 위해 긴 기간(예: 20일, 50일, 200일 등) 동안의 평균 가격을 계산하는 데 사용되는 기간"
+                >
+                    느린 이동 평균 기간
+                </div>
 
                 <div className={styles.input}>
                     <InputBox

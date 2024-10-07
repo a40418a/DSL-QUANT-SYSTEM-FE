@@ -70,6 +70,10 @@ span {
     margin: 0 var(--margin);
 }
 
+.info {
+    color: var(--color-3);
+}
+
 /* 반응형 */
 @media (max-width: 1068px) {
     .strategy {

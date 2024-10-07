@@ -11,9 +11,11 @@ import axios from 'axios';
 
 export const StrategyBollinger = () => {
     const { setStrategy2Data } = useContext(StrategyContext);
-    const [formData, setFormData] = useState({
+
+    const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
         move_period: [0, 0],
-    });
+    };
+    const [formData, setFormData] = useState(initialFormData);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -31,6 +33,8 @@ export const StrategyBollinger = () => {
                 alert('입력값은 0보다 작을 수 없습니다.');
                 return prevData;
             }
+
+            localStorage.setItem('formData', JSON.stringify(newFormData));
 
             return newFormData;
         });
@@ -55,6 +59,7 @@ export const StrategyBollinger = () => {
         }
 
         if (formData.moveAvg) {
+            localStorage.removeItem('formData');
             navigate(`/result/${id}`);
         } else {
             alert('이동 평균 기간을 입력해주세요.');
@@ -67,9 +72,23 @@ export const StrategyBollinger = () => {
 
     return (
         <div className={styles.strategy}>
-            <div className={styles.title}>볼린저밴드 전략 설정 페이지</div>
+            <div
+                className={styles.title}
+                title="주가의 변동성을 기준으로 상한선과 하한선을 설정하여, 주가가 밴드의 상한선에 가까울 때는 과매수, 하한선에 가까울 때는 과매도를 판단해 매매하는 전략"
+            >
+                볼린저밴드 전략 설정 페이지
+            </div>
+            <div className={styles.info}>
+                해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
+            </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>이동 평균 기간</div>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 평균 가격을 계산할 때 사용하는 일정 기간을 의미하며, 보통 단기(5일), 중기(20일), 장기(60일) 등으로 구분"
+                >
+                    이동 평균 기간
+                </div>
+
                 <div className={styles.input}>
                     <InputBox
                         type="text"

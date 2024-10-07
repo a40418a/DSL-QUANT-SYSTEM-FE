@@ -37,7 +37,7 @@
     },
     "scripts": {
         "dev": "vite --host 0.0.0.0 --port 5173",
-        "start": "node ./src/data/excelToDummy.js && vite",
+        "start": "vite",
         "build": "vite build",
         "test": "vite test",
         "eject": "vite eject",

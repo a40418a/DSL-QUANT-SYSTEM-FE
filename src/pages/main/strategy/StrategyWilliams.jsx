@@ -11,9 +11,10 @@ import axios from 'axios';
 
 export const StrategyWilliams = () => {
     const { setStrategy5Data } = useContext(StrategyContext);
-    const [formData, setFormData] = useState({
+    const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
         williamsPeriod: 0,
-    });
+    };
+    const [formData, setFormData] = useState(initialFormData);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -31,6 +32,8 @@ export const StrategyWilliams = () => {
                 alert('입력값은 0보다 작을 수 없습니다.');
                 return prevData;
             }
+
+            localStorage.setItem('formData', JSON.stringify(newFormData));
 
             return newFormData;
         });
@@ -55,6 +58,7 @@ export const StrategyWilliams = () => {
         }
 
         if (formData.williamsPeriod) {
+            localStorage.removeItem('formData');
             navigate(`/result/${id}`);
         } else {
             if (!formData.williamsPeriod) {
@@ -69,9 +73,22 @@ export const StrategyWilliams = () => {
 
     return (
         <div className={styles.strategy}>
-            <div className={styles.title}>Williams %R 지표 이용 전략 설정 페이지</div>
+            <div
+                className={styles.title}
+                title="시장의 과매도 및 과매수 상태를 판단하기 위해 사용되는 기술적 분석 지표"
+            >
+                Williams 지표 이용 전략 설정 페이지
+            </div>
+            <div className={styles.info}>
+                해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
+            </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>빠른 이동 평균 기간</div>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 단기 가격 변동을 반영하기 위해 짧은 기간(예: 5일, 10일 등) 동안의 평균 가격을 계산하는 데 사용되는 기간"
+                >
+                    빠른 이동 평균 기간
+                </div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"

@@ -13,12 +13,12 @@ export const StrategyEnv = () => {
     const SURL = import.meta.env.VITE_APP_URI;
 
     const { setStrategy4Data } = useContext(StrategyContext);
-    const [formData, setFormData] = useState({
-        //골든
-        moving_up: '',
-        moving_down: '',
-        movingAveragePeriod: 0,
-    });
+    const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
+        moving_up: 1,
+        moving_down: 1,
+        movingAveragePeriod: 20,
+    };
+    const [formData, setFormData] = useState(initialFormData);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -47,6 +47,8 @@ export const StrategyEnv = () => {
                 return prevData;
             }
 
+            localStorage.setItem('formData', JSON.stringify(newFormData));
+
             return newFormData;
         });
     };
@@ -69,6 +71,7 @@ export const StrategyEnv = () => {
         }
 
         if (formData.moving_up && formData.moving_down && formData.movingAveragePeriod) {
+            localStorage.removeItem('formData');
             navigate(`/result/${id}`);
         } else {
             if (!formData.moving_up || !formData.moving_down || !formData.movingAveragePeriod) {
@@ -83,9 +86,22 @@ export const StrategyEnv = () => {
 
     return (
         <div className={styles.strategy}>
-            <div className={styles.title}>엔벨로프 전략 설정 페이지</div>
+            <div
+                className={styles.title}
+                title="주가의 이동평균선을 기준으로 일정 비율 위아래에 밴드를 설정해, 주가가 상단 밴드에 도달하면 매도하고, 하단 밴드에 도달하면 매수하는 추세 추종 전략"
+            >
+                엔벨로프 전략 설정 페이지
+            </div>
+            <div className={styles.info}>
+                해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
+            </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>상단 폭 값</div>
+                <div
+                    className={styles.subtitle}
+                    title="주가의 이동 평균선에서 상단 밴드까지의 거리를 나타내며, 주가의 변동성을 측정하는 데 사용"
+                >
+                    상단 폭 값
+                </div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"
@@ -97,7 +113,12 @@ export const StrategyEnv = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>하단 폭 값</div>
+                <div
+                    className={styles.subtitle}
+                    title="주가의 이동 평균선에서 하단 밴드까지의 거리를 나타내며, 주가의 변동성을 측정하는 데 사용"
+                >
+                    하단 폭 값
+                </div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"
@@ -109,7 +130,12 @@ export const StrategyEnv = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>기간 값</div>
+                <div
+                    className={styles.subtitle}
+                    title="주식 분석에서 특정 지표나 전략을 계산할 때 사용하는 시간 범위"
+                >
+                    기간 값
+                </div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"

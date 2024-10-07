@@ -5,7 +5,6 @@ import { HorizonTableTop20 } from '../../../components/table/horizonTable/Horizo
 import { ArrowDown, ArrowUp } from '../../../components/emoticon/Arrow';
 import { ChartBox } from '../../../components/box/chartBox/ChartBox';
 import { LineChart } from '../../../components/chart/LineChart';
-import { userData01 } from '../../../data/dummyData01';
 
 export const Home = () => {
     return (
@@ -21,7 +20,7 @@ export const Home = () => {
                             price="73,700"
                             arrow={<ArrowDown />}
                             rate="-1"
-                            chart={<LineChart data={userData01} dataKey="lowest" />}
+                            // chart={<LineChart data={userData01} dataKey="lowest" />}
                             sub="Compared to last month"
                         />
                     </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';  // react-router-dom에서 useNavigate 가져오기
+import { useNavigate } from 'react-router-dom'; // react-router-dom에서 useNavigate 가져오기
 import styles from './myPage.module.css';
 import { getUserInfo } from '../../../utils/userApi';
 import { getBackHistory } from '../../../utils/backhistoryApi';
@@ -47,12 +47,11 @@ export const MyPage = () => {
     // 전략 변경 핸들러
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(prevData => ({
+        setFormData((prevData) => ({
             ...prevData,
             [name]: value, // name에 따라 strategy 또는 backtesting 업데이트
         }));
     };
-
 
     const handleBtnClick = async () => {
         setErrorMessage(''); // 에러 메시지 초기화
@@ -148,14 +147,14 @@ export const MyPage = () => {
                         <div className={styles.infoTitle}>회원 개인정보</div>
                         <table className={styles.tableV}>
                             <tbody>
-                            <tr>
-                                <th>이름</th>
-                                <td>{userInfo.name}</td>
-                            </tr>
-                            <tr>
-                                <th>이메일</th>
-                                <td>{userInfo.email}</td>
-                            </tr>
+                                <tr>
+                                    <th>이름</th>
+                                    <td>{userInfo.name}</td>
+                                </tr>
+                                <tr>
+                                    <th>이메일</th>
+                                    <td>{userInfo.email}</td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>
@@ -189,49 +188,48 @@ export const MyPage = () => {
                 {!errorMessage && isTableVisible && backHistory.length > 0 && (
                     <table className={styles.tableH}>
                         <thead>
-                        <tr>
-                            <th>final cash</th>
-                            <th>final asset</th>
-                            <th>final balance</th>
-                            <th>profit</th>
-                            <th>profit rate</th>
-                            <th>number of trades</th>
-                        </tr>
+                            <tr>
+                                <th>final cash</th>
+                                <th>final asset</th>
+                                <th>final balance</th>
+                                <th>profit</th>
+                                <th>profit rate</th>
+                                <th>number of trades</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        {backHistory.map((record, index) => (
-                            <tr key={index}>
-                                <td>{record.finalCash.toFixed(2)}</td>
-                                <td>{record.finalAsset.toFixed(2)}</td>
-                                <td>{record.finalBalance.toFixed(2)}</td>
-                                <td>{record.profit.toFixed(2)}</td>
-                                <td>{record.profitRate.toFixed(2)}</td>
-                                <td>{record.numberOfTrades.toFixed(2)}</td>
-                            </tr>
-                        ))}
+                            {backHistory.map((record, index) => (
+                                <tr key={index}>
+                                    <td>{record.finalCash.toFixed(2)}</td>
+                                    <td>{record.finalAsset.toFixed(2)}</td>
+                                    <td>{record.finalBalance.toFixed(2)}</td>
+                                    <td>{record.profit.toFixed(2)}</td>
+                                    <td>{record.profitRate.toFixed(2)}</td>
+                                    <td>{record.numberOfTrades.toFixed(2)}</td>
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 )}
-            </div>
-            <div className={styles.infoTitle}>자동 백테스팅</div>
-            <div className={styles.select}>
-                <div className={styles.input}>
-                    <SelectBox
-                        placeholder="전략을 선택하세요."
-                        options={options_backtesting}
-                        name="backtestingStrategy"
-                        value={formData.backtestingStrategy}
-                        onChange={handleChange}
-                    />
+                <div className={styles.infoTitle}>자동 백테스팅</div>
+                <div className={styles.select}>
+                    <div className={styles.input}>
+                        <SelectBox
+                            placeholder="전략을 선택하세요."
+                            options={options_backtesting}
+                            name="backtestingStrategy"
+                            value={formData.backtestingStrategy}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <button className={styles.btn} onClick={handleBacktestingClick}>
+                        실행
+                    </button>
                 </div>
-                <button className={styles.btn} onClick={handleBacktestingClick}>
-                    실행
-                </button>
             </div>
         </div>
     );
 };
-
 
 /*
 import React, { useState, useEffect } from 'react';

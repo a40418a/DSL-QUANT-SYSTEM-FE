@@ -322,6 +322,8 @@ export const MyPage = () => {
                         />
                     </Box>
                 )}
+            </div>
+            <div className={styles.info}>
                 <div className={styles.infoTitle}>자동 백테스팅</div>
                 <div className={styles.select}>
                     <div className={styles.input}>

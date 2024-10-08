@@ -101,3 +101,9 @@
         width: 80%;
     }
 }
+
+@media (max-width: 980px) {
+    .mypage {
+        width: 96%;
+    }
+}

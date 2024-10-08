@@ -19,3 +19,9 @@
         width: 80%;
     }
 }
+
+@media (max-width: 980px) {
+    .stocklist {
+        width: 96%;
+    }
+}

@@ -85,3 +85,9 @@ span {
         width: 30%;
     }
 }
+
+@media (max-width: 980px) {
+    .strategy {
+        width: 96%;
+    }
+}

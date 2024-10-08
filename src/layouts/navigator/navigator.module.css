@@ -92,7 +92,7 @@ a {
         display: flex;
         flex-direction: row;
     }
-    .menu-wrapper {
+    .menuWrapper {
         width: 90%;
         display: flex;
         justify-content: left;
@@ -102,10 +102,17 @@ a {
     }
 }
 
-@media (max-width: 686px) {
+@media (max-width: 980px) {
     .navigator {
         display: flex;
         flex-direction: column;
         align-items: space-around;
+    }
+
+    .menuWrapper {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0;
     }
 }

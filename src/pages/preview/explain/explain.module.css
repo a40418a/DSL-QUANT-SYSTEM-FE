@@ -37,3 +37,9 @@
         width: 80%;
     }
 }
+
+@media (max-width: 980px) {
+    .explain {
+        width: 96%;
+    }
+}

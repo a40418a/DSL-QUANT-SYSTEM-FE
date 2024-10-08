@@ -28,3 +28,9 @@
         margin-bottom: var(--margin);
     }
 }
+
+@media (max-width: 980px) {
+    .featuredInfo {
+        width: 96%;
+    }
+}

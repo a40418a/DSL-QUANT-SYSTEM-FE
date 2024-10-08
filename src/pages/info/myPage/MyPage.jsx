@@ -311,6 +311,7 @@ export const MyPage = () => {
                                 backgroundColor: "var(--point-color-2)",
                                 "& .MuiDataGrid-columnHeaderTitle": {
                                     color: "var(--color-white)",
+                                    fontWeight: "bold",
                                 },
                             },
                             "& .MuiDataGrid-row": {

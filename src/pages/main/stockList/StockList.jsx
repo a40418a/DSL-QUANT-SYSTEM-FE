@@ -140,6 +140,7 @@ export const StockList = () => {
                         backgroundColor: "var(--point-color-2)",
                         "& .MuiDataGrid-columnHeaderTitle": {
                             color: "var(--color-white)",
+                            fontWeight: "bold",
                         },
                     },
                     "& .MuiDataGrid-row": {

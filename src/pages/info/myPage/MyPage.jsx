@@ -292,20 +292,20 @@ export const MyPage = () => {
                                     fontFamily: "var(--font-3)",
                                 },
                             },
-                            "& .MuiDataGrid-row": {
-                                borderBottom: "1px solid var(--color-4)",
-                                borderTop: "none",
-                                borderRight: "none",
-                                borderLeft: "none",
-                                borderRadius: 0,
-                            },
-                            // '& .MuiDataGrid-cell': {
-
-                            // },
                         }}
                     >
                         <DataGrid
-                            sx={{ width: "100%", height: "100%" }}
+                            sx={{
+                                width: "100%",
+                                height: "100%",
+                                "& .MuiDataGrid-row": {
+                                    borderBottom: "1px solid var(--color-4)",
+                                    borderTop: "none",
+                                    borderRight: "none",
+                                    borderLeft: "none",
+                                    borderRadius: 0,
+                                },
+                            }}
                             rows={rows}
                             columns={columns}
                             paginationModel={paginationModel}

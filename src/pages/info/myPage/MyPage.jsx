@@ -149,7 +149,9 @@ export const MyPage = () => {
             });
 
             if (response.status === 200) {
-                alert("백테스팅 데이터가 성공적으로 추가되었습니다.");
+                alert(
+                    "백테스팅 데이터가 성공적으로 추가되었습니다.\n결과는 백테스팅 기록에서 확인할 수 있습니다.",
+                );
             }
         } catch (error) {
             console.error("백테스팅 호출 중 에러 발생:", error);

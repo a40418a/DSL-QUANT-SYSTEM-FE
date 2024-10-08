@@ -209,10 +209,19 @@ export const MyPage = () => {
         { field: "profit", headerName: "수익", flex: 1, headerAlign: "center", type: "number" },
         {
             field: "profitRate",
-            headerName: "수익률",
+            headerName: "수익률(%)",
             flex: 1,
             headerAlign: "center",
             type: "number",
+            renderCell: (params) => {
+                const value = Number(params.value);
+                const color = value < 0 ? "var(--down-color)" : "var(--up-color)";
+                return (
+                    <span style={{ color, cursor: "pointer" }}>
+                        {value ? (value * 100).toFixed(2) : "0.00"}
+                    </span>
+                );
+            },
         },
         {
             field: "numberOfTrades",
@@ -273,35 +282,6 @@ export const MyPage = () => {
                         </div>
                     </>
                 )}
-
-                {/* {!errorMessage && isTableVisible && backHistory.length > 0 && (
-                    <table className={styles.tableH}>
-                        <thead>
-                            <tr>
-                                <th>날짜</th>
-                                <th>최종 현금</th>
-                                <th>최종 자산</th>
-                                <th>최종 잔액</th>
-                                <th>수익</th>
-                                <th>수익률</th>
-                                <th>거래 횟수</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {backHistory.map((record, index) => (
-                                <tr key={index}>
-                                    <td>{record.date}</td>
-                                    <td>{record.finalCash.toFixed(2)}</td>
-                                    <td>{record.finalAsset.toFixed(2)}</td>
-                                    <td>{record.finalBalance.toFixed(2)}</td>
-                                    <td>{record.profit.toFixed(2)}</td>
-                                    <td>{record.profitRate.toFixed(2)}</td>
-                                    <td>{record.numberOfTrades.toFixed(2)}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                )} */}
                 {!errorMessage && isTableVisible && backHistory.length > 0 && (
                     <Box
                         sx={{

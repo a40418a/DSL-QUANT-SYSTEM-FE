@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './verticalTable.module.css';
+import React from "react";
+import styles from "./verticalTable.module.css";
 
 export const VerticalTable = ({ name, email }) => {
     return (

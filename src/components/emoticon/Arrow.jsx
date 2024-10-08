@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
-import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import { css } from "@emotion/react";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 const arrowUpStyle = css`
     font-size: 1rem;

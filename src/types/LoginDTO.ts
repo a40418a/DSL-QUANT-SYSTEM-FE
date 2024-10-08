@@ -10,7 +10,7 @@ export class KakaoLoginResponseDTO {
      */
     constructor(
         public code: string,
-        public kakaoName: string = '',
-        public email: string = '',
+        public kakaoName: string = "",
+        public email: string = "",
     ) {}
 }

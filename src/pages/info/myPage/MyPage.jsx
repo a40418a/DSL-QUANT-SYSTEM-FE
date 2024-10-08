@@ -1,21 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom'; // react-router-dom에서 useNavigate 가져오기
-import styles from './myPage.module.css';
-import { getUserInfo } from '../../../utils/userApi';
-import { getBackHistory } from '../../../utils/backhistoryApi';
-import { Loading } from '../../../components/loading/Loading';
-import { SelectBox } from '../../../components/box/selectBox/SelectBox';
-import axios from 'axios';
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom"; // react-router-dom에서 useNavigate 가져오기
+import styles from "./myPage.module.css";
+import { getUserInfo } from "../../../utils/userApi";
+import { getBackHistory } from "../../../utils/backhistoryApi";
+import { Loading } from "../../../components/loading/Loading";
+import { SelectBox } from "../../../components/box/selectBox/SelectBox";
+import axios from "axios";
 import {
     DataGrid,
     gridPageCountSelector,
     gridPageSelector,
     useGridApiContext,
     useGridSelector,
-} from '@mui/x-data-grid';
-import { Box } from '@mui/system';
-import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
+} from "@mui/x-data-grid";
+import { Box } from "@mui/system";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
 
 const CustomPagination = () => {
     const apiRef = useGridApiContext();
@@ -48,10 +48,10 @@ export const MyPage = () => {
     const [isTableVisible, setIsTableVisible] = useState(false);
     const [loading, setLoading] = useState(true); //사용자 정보 로딩 상태
     const [formData, setFormData] = useState({
-        strategy: '', // 일반 조회 전략
-        backtestingStrategy: '', // 백테스팅 전략
+        strategy: "", // 일반 조회 전략
+        backtestingStrategy: "", // 백테스팅 전략
     });
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState("");
     const [paginationModel, setPaginationModel] = useState({
         page: 0,
         pageSize: 5,
@@ -63,13 +63,13 @@ export const MyPage = () => {
                 // 사용자 정보를 받아오는 API
                 const userInfoData = await getUserInfo();
                 if (!userInfoData) {
-                    navigate('/login'); // 사용자 정보가 없으면 로그인 페이지로 리다이렉트
+                    navigate("/login"); // 사용자 정보가 없으면 로그인 페이지로 리다이렉트
                     return;
                 }
                 setUserInfo(userInfoData);
             } catch (error) {
-                console.error('MyPage fetchData error: ', error);
-                navigate('/login'); // 에러 발생 시 로그인 페이지로 리다이렉트
+                console.error("MyPage fetchData error: ", error);
+                navigate("/login"); // 에러 발생 시 로그인 페이지로 리다이렉트
             } finally {
                 setLoading(false); // 사용자 정보 로딩이 끝나면 false로 설정
             }
@@ -91,18 +91,18 @@ export const MyPage = () => {
     };
 
     const handleBtnClick = async () => {
-        setErrorMessage(''); // 에러 메시지 초기화
+        setErrorMessage(""); // 에러 메시지 초기화
         try {
             const backHistoryData = await getBackHistory(formData.strategy);
             setBackHistory(backHistoryData);
             setIsTableVisible(true);
         } catch (error) {
             if (error.response && error.response.status == 404) {
-                setErrorMessage('백테스팅한 데이터가 없습니다.');
+                setErrorMessage("백테스팅한 데이터가 없습니다.");
             } else {
-                setErrorMessage('서버 문제 발생');
+                setErrorMessage("서버 문제 발생");
             }
-            console.error('MyPage strategy fetchData error: ', error);
+            console.error("MyPage strategy fetchData error: ", error);
         }
     };
 
@@ -113,31 +113,31 @@ export const MyPage = () => {
         // 백테스팅 API 호출
         let apiUrl;
         switch (strategy) {
-            case 'gd':
+            case "gd":
                 apiUrl = `${SURL}/backtesting_mine_gd`;
                 break;
-            case 'bb':
+            case "bb":
                 apiUrl = `${SURL}/backtesting_mine_bb`;
                 break;
-            case 'ind':
+            case "ind":
                 apiUrl = `${SURL}/backtesting_mine_ind`;
                 break;
-            case 'env':
+            case "env":
                 apiUrl = `${SURL}/backtesting_mine_env`;
                 break;
-            case 'williams':
+            case "williams":
                 apiUrl = `${SURL}/backtesting_mine_williams`;
                 break;
             default:
-                alert('전략을 선택해주세요.');
+                alert("전략을 선택해주세요.");
                 return;
         }
 
         try {
-            const token = localStorage.getItem('jwt'); // JWT 토큰이 localStorage에 저장되어 있다고 가정
+            const token = localStorage.getItem("jwt"); // JWT 토큰이 localStorage에 저장되어 있다고 가정
 
             if (!token) {
-                alert('로그인 후 이용해주세요.');
+                alert("로그인 후 이용해주세요.");
                 return;
             }
 
@@ -148,28 +148,28 @@ export const MyPage = () => {
             });
 
             if (response.status === 200) {
-                alert('백테스팅 데이터가 성공적으로 추가되었습니다.');
+                alert("백테스팅 데이터가 성공적으로 추가되었습니다.");
             }
         } catch (error) {
-            console.error('백테스팅 호출 중 에러 발생:', error);
-            alert('백테스팅 실행에 실패했습니다.');
+            console.error("백테스팅 호출 중 에러 발생:", error);
+            alert("백테스팅 실행에 실패했습니다.");
         }
     };
 
     const options_strategy = [
-        { label: '골든/데드', value: 'golden' },
-        { label: '볼린저밴드', value: 'bollinger' },
-        { label: 'RSI, MFI, MACD 지표 이용', value: 'rsi' },
-        { label: '엔벨로프', value: 'env' },
-        { label: '윌리엄스', value: 'williams' },
+        { label: "골든/데드", value: "golden" },
+        { label: "볼린저밴드", value: "bollinger" },
+        { label: "RSI, MFI, MACD 지표 이용", value: "rsi" },
+        { label: "엔벨로프", value: "env" },
+        { label: "윌리엄스", value: "williams" },
     ];
 
     const options_backtesting = [
-        { label: '골든/데드', value: 'gd' },
-        { label: '볼린저밴드', value: 'bb' },
-        { label: 'RSI, MFI, MACD 지표 이용', value: 'ind' },
-        { label: '엔벨로프', value: 'env' },
-        { label: '윌리엄스', value: 'williams' },
+        { label: "골든/데드", value: "gd" },
+        { label: "볼린저밴드", value: "bb" },
+        { label: "RSI, MFI, MACD 지표 이용", value: "ind" },
+        { label: "엔벨로프", value: "env" },
+        { label: "윌리엄스", value: "williams" },
     ];
 
     const rows = backHistory.map((record, index) => ({
@@ -184,42 +184,42 @@ export const MyPage = () => {
     }));
 
     const columns = [
-        { field: 'date', headerName: '날짜', flex: 1, headerAlign: 'center', type: 'date' },
+        { field: "date", headerName: "날짜", flex: 1, headerAlign: "center", type: "date" },
         {
-            field: 'finalCash',
-            headerName: '최종 현금',
+            field: "finalCash",
+            headerName: "최종 현금",
             flex: 1,
-            headerAlign: 'center',
-            type: 'number',
+            headerAlign: "center",
+            type: "number",
         },
         {
-            field: 'finalAsset',
-            headerName: '최종 자산',
+            field: "finalAsset",
+            headerName: "최종 자산",
             flex: 1,
-            headerAlign: 'center',
-            type: 'number',
+            headerAlign: "center",
+            type: "number",
         },
         {
-            field: 'finalBalance',
-            headerName: '최종 잔액',
+            field: "finalBalance",
+            headerName: "최종 잔액",
             flex: 1,
-            headerAlign: 'center',
-            type: 'number',
+            headerAlign: "center",
+            type: "number",
         },
-        { field: 'profit', headerName: '수익', flex: 1, headerAlign: 'center', type: 'number' },
+        { field: "profit", headerName: "수익", flex: 1, headerAlign: "center", type: "number" },
         {
-            field: 'profitRate',
-            headerName: '수익률',
+            field: "profitRate",
+            headerName: "수익률",
             flex: 1,
-            headerAlign: 'center',
-            type: 'number',
+            headerAlign: "center",
+            type: "number",
         },
         {
-            field: 'numberOfTrades',
-            headerName: '거래 횟수',
+            field: "numberOfTrades",
+            headerName: "거래 횟수",
             flex: 1,
-            headerAlign: 'center',
-            type: 'number',
+            headerAlign: "center",
+            type: "number",
         },
     ];
 
@@ -305,19 +305,19 @@ export const MyPage = () => {
                 {!errorMessage && isTableVisible && backHistory.length > 0 && (
                     <Box
                         sx={{
-                            width: '100%',
+                            width: "100%",
                             // height: 1200,
-                            '& .MuiDataGrid-columnHeader': {
-                                backgroundColor: 'var(--point-color-2)',
-                                '& .MuiDataGrid-columnHeaderTitle': {
-                                    color: 'var(--color-white)',
+                            "& .MuiDataGrid-columnHeader": {
+                                backgroundColor: "var(--point-color-2)",
+                                "& .MuiDataGrid-columnHeaderTitle": {
+                                    color: "var(--color-white)",
                                 },
                             },
-                            '& .MuiDataGrid-row': {
-                                borderBottom: '1px solid var(--color-4)',
-                                borderTop: 'none',
-                                borderRight: 'none',
-                                borderLeft: 'none',
+                            "& .MuiDataGrid-row": {
+                                borderBottom: "1px solid var(--color-4)",
+                                borderTop: "none",
+                                borderRight: "none",
+                                borderLeft: "none",
                                 borderRadius: 0,
                             },
                             // '& .MuiDataGrid-cell': {

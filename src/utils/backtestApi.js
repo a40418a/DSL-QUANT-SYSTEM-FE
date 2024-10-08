@@ -1,7 +1,7 @@
 // 백테스팅한 결과를 제공하고 받아오는 API
 // GET, POST
 
-import axios from 'axios';
+import axios from "axios";
 
 const SURL = import.meta.env.VITE_APP_URI;
 
@@ -10,7 +10,7 @@ export const getBacktest = async () => {
         const response = await axios.get(`${SURL}/backtest`);
         return response.data;
     } catch (error) {
-        console.error('getBacktest error: ', error);
+        console.error("getBacktest error: ", error);
         throw error;
     }
 };
@@ -20,7 +20,7 @@ export const postBacktest = async (data) => {
         const response = await axios.post(`${SURL}/backtest`, data);
         return response.data;
     } catch (error) {
-        console.error('postBacktest error: ', error);
+        console.error("postBacktest error: ", error);
         throw error;
     }
 };

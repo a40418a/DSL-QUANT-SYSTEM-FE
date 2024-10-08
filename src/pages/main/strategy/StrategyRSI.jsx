@@ -1,17 +1,17 @@
 //rsi, mfi, macd 지표 이용 전략 설정 페이지
 
-import React, { useContext, useState } from 'react';
-import styles from './strategy.module.css';
-import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
-import { InputBox } from '../../../components/box/inputBox/InputBox';
-import { StrategyRsiDTO } from '../../../types/StrategyDTO';
-import { StrategyContext } from '../../../context/StrategyContext';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import React, { useContext, useState } from "react";
+import styles from "./strategy.module.css";
+import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../components/box/inputBox/InputBox";
+import { StrategyRsiDTO } from "../../../types/StrategyDTO";
+import { StrategyContext } from "../../../context/StrategyContext";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import axios from "axios";
 
 export const StrategyRSI = () => {
     const { setStrategy3Data } = useContext(StrategyContext);
-    const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
+    const initialFormData = JSON.parse(localStorage.getItem("formData")) || {
         rsiPeriod: 0,
     };
     const [formData, setFormData] = useState(initialFormData);
@@ -20,7 +20,7 @@ export const StrategyRSI = () => {
     const location = useLocation();
 
     // 현재 경로에서 숫자 부분 추출
-    const pathSegments = location.pathname.split('/');
+    const pathSegments = location.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1]; // 경로의 마지막 부분이 ID
 
     const handleChange = (e) => {
@@ -28,12 +28,12 @@ export const StrategyRSI = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: Number(value) };
 
-            if (name === 'rsiPeriod' && parseFloat(value) < 0) {
-                alert('입력값은 0보다 작을 수 없습니다.');
+            if (name === "rsiPeriod" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
-            localStorage.setItem('formData', JSON.stringify(newFormData));
+            localStorage.setItem("formData", JSON.stringify(newFormData));
 
             return newFormData;
         });
@@ -46,7 +46,7 @@ export const StrategyRSI = () => {
         setStrategy3Data(strategy3DTO);
 
         try {
-            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
             const response = await axios.post(`${SURL}/strategy/rsi`, strategy3DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -54,21 +54,21 @@ export const StrategyRSI = () => {
             });
             // console.log('Response:', response.data);
         } catch (error) {
-            console.error('There was an error submitting the common strategy!', error);
+            console.error("There was an error submitting the common strategy!", error);
         }
 
         if (formData.rsiPeriod) {
-            localStorage.removeItem('formData');
+            localStorage.removeItem("formData");
             navigate(`/result/${id}`);
         } else {
             if (!formData.rsiPeriod) {
-                alert('RSI 계산을 위한 시작일과 종료일을 입력해주세요.');
+                alert("RSI 계산을 위한 시작일과 종료일을 입력해주세요.");
             }
         }
     };
 
     const handlePrevClick = () => {
-        navigate('/strategy');
+        navigate("/strategy");
     };
 
     return (

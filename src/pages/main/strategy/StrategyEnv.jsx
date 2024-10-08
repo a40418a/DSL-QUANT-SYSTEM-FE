@@ -1,19 +1,19 @@
 //엔벨로프 전략페이지
 
-import React, { useContext, useState } from 'react';
-import styles from './strategy.module.css';
-import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
-import { InputBox } from '../../../components/box/inputBox/InputBox';
-import { StrategyEnvDTO } from '../../../types/StrategyDTO';
-import { StrategyContext } from '../../../context/StrategyContext';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import React, { useContext, useState } from "react";
+import styles from "./strategy.module.css";
+import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../components/box/inputBox/InputBox";
+import { StrategyEnvDTO } from "../../../types/StrategyDTO";
+import { StrategyContext } from "../../../context/StrategyContext";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import axios from "axios";
 
 export const StrategyEnv = () => {
     const SURL = import.meta.env.VITE_APP_URI;
 
     const { setStrategy4Data } = useContext(StrategyContext);
-    const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
+    const initialFormData = JSON.parse(localStorage.getItem("formData")) || {
         moving_up: 1,
         moving_down: 1,
         movingAveragePeriod: 20,
@@ -24,7 +24,7 @@ export const StrategyEnv = () => {
     const location = useLocation();
 
     // 현재 경로에서 숫자 부분 추출
-    const pathSegments = location.pathname.split('/');
+    const pathSegments = location.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1]; // 경로의 마지막 부분이 ID
 
     const handleChange = (e) => {
@@ -32,22 +32,22 @@ export const StrategyEnv = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: Number(value) };
 
-            if (name === 'moving_up' && parseFloat(value) < 0) {
-                alert('입력값은 0보다 작을 수 없습니다.');
+            if (name === "moving_up" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
-            if (name === 'moving_down' && parseFloat(value) < 0) {
-                alert('입력값은 0보다 작을 수 없습니다.');
+            if (name === "moving_down" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
-            if (name === 'movingAveragePeriod' && parseFloat(value) < 0) {
-                alert('입력값은 0보다 작을 수 없습니다.');
+            if (name === "movingAveragePeriod" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
-            localStorage.setItem('formData', JSON.stringify(newFormData));
+            localStorage.setItem("formData", JSON.stringify(newFormData));
 
             return newFormData;
         });
@@ -59,7 +59,7 @@ export const StrategyEnv = () => {
         setStrategy4Data(strategy4DTO);
 
         try {
-            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
             const response = await axios.post(`${SURL}/strategy/env`, strategy4DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -67,21 +67,21 @@ export const StrategyEnv = () => {
             });
             // console.log('Response:', response.data);
         } catch (error) {
-            console.error('There was an error submitting the envelope strategy!', error);
+            console.error("There was an error submitting the envelope strategy!", error);
         }
 
         if (formData.moving_up && formData.moving_down && formData.movingAveragePeriod) {
-            localStorage.removeItem('formData');
+            localStorage.removeItem("formData");
             navigate(`/result/${id}`);
         } else {
             if (!formData.moving_up || !formData.moving_down || !formData.movingAveragePeriod) {
-                alert('선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요');
+                alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
             }
         }
     };
 
     const handlePrevClick = () => {
-        navigate('/strategy');
+        navigate("/strategy");
     };
 
     return (

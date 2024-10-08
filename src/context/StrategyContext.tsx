@@ -1,6 +1,6 @@
 // 전략 설정 관련 Context
 
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext } from "react";
 import {
     StrategyCommonDTO,
     StrategyGoldenDTO,
@@ -8,17 +8,17 @@ import {
     StrategyRsiDTO,
     StrategyEnvDTO,
     StrategyWDTO,
-} from '../types/StrategyDTO';
-import { ResultDTO } from '../types/ResultDTO';
+} from "../types/StrategyDTO";
+import { ResultDTO } from "../types/ResultDTO";
 
 // 초기 상태값
 const initialStrategyCommonData: StrategyCommonDTO = {
     initial_investment: 0,
     tax: 0.01,
-    target_item: '',
-    tick_kind: '',
+    target_item: "",
+    tick_kind: "",
     inq_range: 100,
-    strategy: '',
+    strategy: "",
 };
 
 const initialStrategy1Data: StrategyGoldenDTO = {
@@ -126,7 +126,7 @@ export const StrategyProvider: React.FC = ({ children }) => {
 export const useStrategy = () => {
     const context = useContext(StrategyContext);
     if (!context) {
-        throw new Error('useStrategy must be used within a StrategyProvider');
+        throw new Error("useStrategy must be used within a StrategyProvider");
     }
     return context;
 };

@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
-import React from 'react';
-import { Stack, CircularProgress } from '@mui/material';
-import styles from './loading.module.css';
+import { css } from "@emotion/react";
+import React from "react";
+import { Stack, CircularProgress } from "@mui/material";
+import styles from "./loading.module.css";
 
 const progress = css`
     .MuiCircularProgress-circle {

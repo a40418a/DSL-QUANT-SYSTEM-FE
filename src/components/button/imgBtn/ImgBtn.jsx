@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './imgBtn.module.css';
+import React from "react";
+import styles from "./imgBtn.module.css";
 
 export const ImgBtn = ({ onClick, id, imageSrc, altText }) => {
     const handleClick = (event) => {

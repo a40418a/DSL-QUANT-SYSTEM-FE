@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { FeaturedInfo } from '../../../components/featuredInfo/FeaturedInfo';
-import styles from './home.module.css';
-import { HorizonTableTop20 } from '../../../components/table/horizonTable/HorizonTable';
-import { ArrowDown, ArrowUp } from '../../../components/emoticon/Arrow';
-import { ChartBox } from '../../../components/box/chartBox/ChartBox';
-import { LineChart } from '../../../components/chart/LineChart';
+import React, { useState, useEffect } from "react";
+import { FeaturedInfo } from "../../../components/featuredInfo/FeaturedInfo";
+import styles from "./home.module.css";
+import { HorizonTableTop20 } from "../../../components/table/horizonTable/HorizonTable";
+import { ArrowDown, ArrowUp } from "../../../components/emoticon/Arrow";
+import { ChartBox } from "../../../components/box/chartBox/ChartBox";
+import { LineChart } from "../../../components/chart/LineChart";
 
 export const Home = () => {
     return (

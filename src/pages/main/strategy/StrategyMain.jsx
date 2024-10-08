@@ -1,14 +1,14 @@
 //공통전략설정 및 전략 선택 페이지
 
-import React, { useContext, useState } from 'react';
-import styles from './strategy.module.css';
-import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
-import { InputBox } from '../../../components/box/inputBox/InputBox';
-import { SelectBox } from '../../../components/box/selectBox/SelectBox';
-import { StrategyCommonDTO } from '../../../types/StrategyDTO';
-import { StrategyContext } from '../../../context/StrategyContext';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import React, { useContext, useState } from "react";
+import styles from "./strategy.module.css";
+import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../components/box/inputBox/InputBox";
+import { SelectBox } from "../../../components/box/selectBox/SelectBox";
+import { StrategyCommonDTO } from "../../../types/StrategyDTO";
+import { StrategyContext } from "../../../context/StrategyContext";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export const StrategyMain = () => {
     const SURL = import.meta.env.VITE_APP_URI;
@@ -16,50 +16,50 @@ export const StrategyMain = () => {
     const navigate = useNavigate();
 
     //컴포넌트가 로드될 때 localStroragedptj formlData를 가져옵니다.
-    const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
+    const initialFormData = JSON.parse(localStorage.getItem("formData")) || {
         initial_investment: 0,
         tax: 0.01,
-        target_item: '',
-        tick_kind: '',
+        target_item: "",
+        tick_kind: "",
         inq_range: 0,
-        strategy: '',
+        strategy: "",
     };
 
     const [formData, setFormData] = useState(initialFormData);
 
     const options_tax = [
-        { label: '0.01%', value: '0.01' },
-        { label: '0.02%', value: '0.02' },
-        { label: '0.03%', value: '0.03' },
-        { label: '0.04%', value: '0.04' },
-        { label: '0.05%', value: '0.05' },
-        { label: '0.06%', value: '0.06' },
-        { label: '0.07%', value: '0.07' },
-        { label: '0.08%', value: '0.08' },
-        { label: '0.09%', value: '0.09' },
-        { label: '0.1%', value: '0.1' },
+        { label: "0.01%", value: "0.01" },
+        { label: "0.02%", value: "0.02" },
+        { label: "0.03%", value: "0.03" },
+        { label: "0.04%", value: "0.04" },
+        { label: "0.05%", value: "0.05" },
+        { label: "0.06%", value: "0.06" },
+        { label: "0.07%", value: "0.07" },
+        { label: "0.08%", value: "0.08" },
+        { label: "0.09%", value: "0.09" },
+        { label: "0.1%", value: "0.1" },
     ];
 
     const options_candle = [
-        { label: '1분', value: '1' },
-        { label: '3분', value: '3' },
-        { label: '5분', value: '5' },
-        { label: '10분', value: '10' },
-        { label: '15분', value: '15' },
-        { label: '30분', value: '30' },
-        { label: '60분', value: '60' },
-        { label: '240분', value: '240' },
-        { label: '1일', value: 'D' },
-        { label: '1주', value: 'W' },
-        { label: '1개월', value: 'M' },
+        { label: "1분", value: "1" },
+        { label: "3분", value: "3" },
+        { label: "5분", value: "5" },
+        { label: "10분", value: "10" },
+        { label: "15분", value: "15" },
+        { label: "30분", value: "30" },
+        { label: "60분", value: "60" },
+        { label: "240분", value: "240" },
+        { label: "1일", value: "D" },
+        { label: "1주", value: "W" },
+        { label: "1개월", value: "M" },
     ];
 
     const options_strategy = [
-        { label: '골든/데드', value: 'strategy/golden' },
-        { label: '볼린저밴드', value: 'strategy/bollinger' },
-        { label: 'RSI, MFI, MACD 지표 이용', value: 'strategy/rsi' },
-        { label: '엔벨로프', value: 'strategy/env' },
-        { label: '윌리엄스', value: 'strategy/williams' },
+        { label: "골든/데드", value: "strategy/golden" },
+        { label: "볼린저밴드", value: "strategy/bollinger" },
+        { label: "RSI, MFI, MACD 지표 이용", value: "strategy/rsi" },
+        { label: "엔벨로프", value: "strategy/env" },
+        { label: "윌리엄스", value: "strategy/williams" },
     ];
 
     const handleChange = (e) => {
@@ -67,18 +67,18 @@ export const StrategyMain = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: value };
 
-            if (name === 'initial_investment' && parseFloat(value) < 0) {
-                alert('초기 투자 금액은 0보다 작을 수 없습니다.');
+            if (name === "initial_investment" && parseFloat(value) < 0) {
+                alert("초기 투자 금액은 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
-            if (name === 'inq_range' && parseFloat(value) < 0) {
-                alert('조회 범위는 0보다 작을 수 없습니다.');
+            if (name === "inq_range" && parseFloat(value) < 0) {
+                alert("조회 범위는 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
             //변경된 formData를 localStorage에 저장합니다.
-            localStorage.setItem('formData', JSON.stringify(newFormData));
+            localStorage.setItem("formData", JSON.stringify(newFormData));
 
             return newFormData;
         });
@@ -87,11 +87,11 @@ export const StrategyMain = () => {
     const handleSubmit = async () => {
         const currentTime = new Date();
         const year = currentTime.getFullYear();
-        const month = String(currentTime.getMonth() + 1).padStart(2, '0');
-        const day = String(currentTime.getDate()).padStart(2, '0');
-        const hours = String(currentTime.getHours()).padStart(2, '0');
-        const minutes = String(currentTime.getMinutes()).padStart(2, '0');
-        const seconds = String(currentTime.getSeconds()).padStart(2, '0');
+        const month = String(currentTime.getMonth() + 1).padStart(2, "0");
+        const day = String(currentTime.getDate()).padStart(2, "0");
+        const hours = String(currentTime.getHours()).padStart(2, "0");
+        const minutes = String(currentTime.getMinutes()).padStart(2, "0");
+        const seconds = String(currentTime.getSeconds()).padStart(2, "0");
 
         const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         const formDataWithTime = {
@@ -101,12 +101,12 @@ export const StrategyMain = () => {
         const strategyCommonDTO = new StrategyCommonDTO(formDataWithTime);
         setStrategyCommonData(strategyCommonDTO);
 
-        const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+        const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
 
         // 토큰이 없을 때 로그인 페이지로 리다이렉트
         if (!token) {
-            alert('로그인 정보가 없습니다. 다시 로그인해주세요.');
-            navigate('/login');
+            alert("로그인 정보가 없습니다. 다시 로그인해주세요.");
+            navigate("/login");
             return;
         }
 
@@ -119,25 +119,25 @@ export const StrategyMain = () => {
 
             // 새로운 토큰이 있으면 업데이트
             const newToken =
-                response.headers['Authorization'] ||
-                response.headers['authorization'] ||
-                response.headers['Authorization'.toLowerCase()];
+                response.headers["Authorization"] ||
+                response.headers["authorization"] ||
+                response.headers["Authorization".toLowerCase()];
 
             if (newToken) {
-                localStorage.setItem('jwt', newToken); // 새로운 토큰 저장
+                localStorage.setItem("jwt", newToken); // 새로운 토큰 저장
             }
 
-            console.log('Response:', response.data);
+            console.log("Response:", response.data);
         } catch (error) {
-            console.error('전략 제출 중 오류 발생:', error);
+            console.error("전략 제출 중 오류 발생:", error);
 
             // 401 에러가 발생하면 로그인 페이지로 리다이렉트
             if (error.response && error.response.status === 401) {
-                alert('로그인이 필요합니다. 다시 로그인해주세요.');
-                localStorage.removeItem('jwt');
-                navigate('/login');
+                alert("로그인이 필요합니다. 다시 로그인해주세요.");
+                localStorage.removeItem("jwt");
+                navigate("/login");
             } else {
-                alert('서버 오류가 발생했습니다. 다시 시도해주세요.');
+                alert("서버 오류가 발생했습니다. 다시 시도해주세요.");
             }
         }
 
@@ -153,10 +153,10 @@ export const StrategyMain = () => {
             formData.inq_range
         ) {
             //제출 후 formData를 localStorage에서 삭제합니다.
-            localStorage.removeItem('formData');
+            localStorage.removeItem("formData");
             navigate(`/${selectedStrategy}`);
         } else {
-            alert('선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요');
+            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }
     };
 

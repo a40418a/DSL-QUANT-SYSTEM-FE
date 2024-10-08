@@ -1,19 +1,19 @@
 //골든/데드 전략페이지
 
-import React, { useContext, useState } from 'react';
-import styles from './strategy.module.css';
-import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
-import { InputBox } from '../../../components/box/inputBox/InputBox';
-import { StrategyGoldenDTO } from '../../../types/StrategyDTO';
-import { StrategyContext } from '../../../context/StrategyContext';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import React, { useContext, useState } from "react";
+import styles from "./strategy.module.css";
+import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../components/box/inputBox/InputBox";
+import { StrategyGoldenDTO } from "../../../types/StrategyDTO";
+import { StrategyContext } from "../../../context/StrategyContext";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import axios from "axios";
 
 export const StrategyGolden = () => {
     const SURL = import.meta.env.VITE_APP_URI;
 
     const { setStrategy1Data } = useContext(StrategyContext);
-    const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
+    const initialFormData = JSON.parse(localStorage.getItem("formData")) || {
         fastMoveAvg: 0,
         slowMoveAvg: 0,
     };
@@ -23,7 +23,7 @@ export const StrategyGolden = () => {
     const location = useLocation();
 
     // 현재 경로에서 숫자 부분 추출
-    const pathSegments = location.pathname.split('/');
+    const pathSegments = location.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1]; // 경로의 마지막 부분이 ID
 
     const handleChange = (e) => {
@@ -31,17 +31,17 @@ export const StrategyGolden = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: Number(value) };
 
-            if (name === 'fastMoveAvg' && parseFloat(value) < 0) {
-                alert('입력값은 0보다 작을 수 없습니다.');
+            if (name === "fastMoveAvg" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
-            if (name === 'slowMoveAvg' && parseFloat(value) < 0) {
-                alert('입력값은 0보다 작을 수 없습니다.');
+            if (name === "slowMoveAvg" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
-            localStorage.setItem('formData', JSON.stringify(newFormData));
+            localStorage.setItem("formData", JSON.stringify(newFormData));
 
             return newFormData;
         });
@@ -53,7 +53,7 @@ export const StrategyGolden = () => {
         setStrategy1Data(strategy1DTO);
 
         try {
-            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
             const response = await axios.post(`${SURL}/strategy/golden`, strategy1DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -61,21 +61,21 @@ export const StrategyGolden = () => {
             });
             // console.log('Response:', response.data);
         } catch (error) {
-            console.error('There was an error submitting the golden/dead cross strategy!', error);
+            console.error("There was an error submitting the golden/dead cross strategy!", error);
         }
 
         if (formData.fastMoveAvg && formData.slowMoveAvg) {
-            localStorage.removeItem('formData');
+            localStorage.removeItem("formData");
             navigate(`/result/${id}`);
         } else {
             if (!formData.fastMoveAvg || !formData.slowMoveAvg) {
-                alert('이동 평균 기간을 입력해주세요.');
+                alert("이동 평균 기간을 입력해주세요.");
             }
         }
     };
 
     const handlePrevClick = () => {
-        navigate('/strategy');
+        navigate("/strategy");
     };
 
     return (

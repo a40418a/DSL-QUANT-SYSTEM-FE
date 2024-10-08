@@ -1,13 +1,13 @@
-import React from 'react';
-import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
-import styles from './explain.module.css';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
+import styles from "./explain.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const Explain = () => {
     const navigate = useNavigate();
 
     const handleSubmit = () => {
-        navigate('/login/');
+        navigate("/login/");
     };
 
     return (

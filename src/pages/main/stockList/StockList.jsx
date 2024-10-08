@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import styles from './stockList.module.css';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import styles from "./stockList.module.css";
+import { useNavigate } from "react-router-dom";
 import {
     DataGrid,
     gridPageCountSelector,
     gridPageSelector,
     useGridApiContext,
     useGridSelector,
-} from '@mui/x-data-grid';
-import { getStockListClosing } from '../../../utils/stocklistApi';
-import { Loading } from '../../../components/loading/Loading';
-import { Box } from '@mui/system';
-import Pagination from '@mui/material/Pagination';
-import PaginationItem from '@mui/material/PaginationItem';
+} from "@mui/x-data-grid";
+import { getStockListClosing } from "../../../utils/stocklistApi";
+import { Loading } from "../../../components/loading/Loading";
+import { Box } from "@mui/system";
+import Pagination from "@mui/material/Pagination";
+import PaginationItem from "@mui/material/PaginationItem";
 
 const CustomPagination = () => {
     const apiRef = useGridApiContext();
@@ -52,7 +52,7 @@ export const StockList = () => {
                 const data = await getStockListClosing();
                 setStockData(data);
             } catch (error) {
-                console.error('Error fetching stock data:', error);
+                console.error("Error fetching stock data:", error);
             } finally {
                 setLoading(false);
             }
@@ -67,54 +67,54 @@ export const StockList = () => {
 
     const columns = [
         {
-            field: 'market',
-            headerName: '종목명',
+            field: "market",
+            headerName: "종목명",
             flex: 2,
-            headerAlign: 'center',
+            headerAlign: "center",
             renderCell: (params) => (
-                <span style={{ cursor: 'pointer' }} onClick={() => onClick(params.row.market)}>
+                <span style={{ cursor: "pointer" }} onClick={() => onClick(params.row.market)}>
                     {params.value}
                 </span>
             ),
         },
         {
-            field: 'closingPrice',
-            headerName: '현재가',
+            field: "closingPrice",
+            headerName: "현재가",
             flex: 1,
-            type: 'number',
-            headerAlign: 'center',
+            type: "number",
+            headerAlign: "center",
             renderCell: (params) => {
                 const value = Number(params.value);
-                const formattedValue = value ? new Intl.NumberFormat().format(value) : '-';
-                return <span style={{ cursor: 'pointer' }}>{formattedValue}</span>;
+                const formattedValue = value ? new Intl.NumberFormat().format(value) : "-";
+                return <span style={{ cursor: "pointer" }}>{formattedValue}</span>;
             },
         },
         {
-            field: 'fluctuatingRate',
-            headerName: '등락률 (%)',
+            field: "fluctuatingRate",
+            headerName: "등락률 (%)",
             flex: 1,
-            type: 'number',
-            headerAlign: 'center',
+            type: "number",
+            headerAlign: "center",
             renderCell: (params) => {
                 const value = Number(params.value);
-                const color = value < 0 ? 'var(--down-color)' : 'var(--up-color)';
+                const color = value < 0 ? "var(--down-color)" : "var(--up-color)";
                 return (
-                    <span style={{ color, cursor: 'pointer' }}>
-                        {value ? (value * 100).toFixed(2) : '0.00'}
+                    <span style={{ color, cursor: "pointer" }}>
+                        {value ? (value * 100).toFixed(2) : "0.00"}
                     </span>
                 );
             },
         },
         {
-            field: 'tradingVolume',
-            headerName: '거래량',
+            field: "tradingVolume",
+            headerName: "거래량",
             flex: 1,
-            type: 'number',
-            headerAlign: 'center',
+            type: "number",
+            headerAlign: "center",
             renderCell: (params) => {
                 const value = Number(params.value);
-                const formattedValue = value ? new Intl.NumberFormat().format(value) : '-';
-                return <span style={{ cursor: 'pointer' }}>{formattedValue}</span>;
+                const formattedValue = value ? new Intl.NumberFormat().format(value) : "-";
+                return <span style={{ cursor: "pointer" }}>{formattedValue}</span>;
             },
         },
     ];
@@ -134,19 +134,19 @@ export const StockList = () => {
             <div className={styles.title}>코인 종목</div>
             <Box
                 sx={{
-                    width: '100%',
+                    width: "100%",
                     height: 1280,
-                    '& .MuiDataGrid-columnHeader': {
-                        backgroundColor: 'var(--point-color-2)',
-                        '& .MuiDataGrid-columnHeaderTitle': {
-                            color: 'var(--color-white)',
+                    "& .MuiDataGrid-columnHeader": {
+                        backgroundColor: "var(--point-color-2)",
+                        "& .MuiDataGrid-columnHeaderTitle": {
+                            color: "var(--color-white)",
                         },
                     },
-                    '& .MuiDataGrid-row': {
-                        borderBottom: '1px solid var(--color-4)',
-                        borderTop: 'none',
-                        borderRight: 'none',
-                        borderLeft: 'none',
+                    "& .MuiDataGrid-row": {
+                        borderBottom: "1px solid var(--color-4)",
+                        borderTop: "none",
+                        borderRight: "none",
+                        borderLeft: "none",
                         borderRadius: 0,
                     },
                     // '& .MuiDataGrid-cell': {

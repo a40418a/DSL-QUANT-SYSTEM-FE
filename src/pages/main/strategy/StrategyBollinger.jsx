@@ -1,18 +1,18 @@
 //볼린저밴드 전략페이지
 
-import React, { useContext, useState } from 'react';
-import styles from './strategy.module.css';
-import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
-import { InputBox } from '../../../components/box/inputBox/InputBox';
-import { StrategyBollingerDTO } from '../../../types/StrategyDTO';
-import { StrategyContext } from '../../../context/StrategyContext';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import React, { useContext, useState } from "react";
+import styles from "./strategy.module.css";
+import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../components/box/inputBox/InputBox";
+import { StrategyBollingerDTO } from "../../../types/StrategyDTO";
+import { StrategyContext } from "../../../context/StrategyContext";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
+import axios from "axios";
 
 export const StrategyBollinger = () => {
     const { setStrategy2Data } = useContext(StrategyContext);
 
-    const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
+    const initialFormData = JSON.parse(localStorage.getItem("formData")) || {
         move_period: [0, 0],
     };
     const [formData, setFormData] = useState(initialFormData);
@@ -21,7 +21,7 @@ export const StrategyBollinger = () => {
     const location = useLocation();
 
     // 현재 경로에서 숫자 부분 추출
-    const pathSegments = location.pathname.split('/');
+    const pathSegments = location.pathname.split("/");
     const id = pathSegments[pathSegments.length - 1]; // 경로의 마지막 부분이 ID
 
     const handleChange = (e) => {
@@ -29,12 +29,12 @@ export const StrategyBollinger = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: value };
 
-            if (name === 'moveAvg' && parseFloat(value) < 0) {
-                alert('입력값은 0보다 작을 수 없습니다.');
+            if (name === "moveAvg" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
-            localStorage.setItem('formData', JSON.stringify(newFormData));
+            localStorage.setItem("formData", JSON.stringify(newFormData));
 
             return newFormData;
         });
@@ -47,7 +47,7 @@ export const StrategyBollinger = () => {
         setStrategy2Data(strategy2DTO);
 
         try {
-            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
             const response = await axios.post(`${SURL}/strategy/bollinger`, strategy2DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
@@ -55,19 +55,19 @@ export const StrategyBollinger = () => {
             });
             // console.log('Response:', response.data);
         } catch (error) {
-            console.error('There was an error submitting the common strategy!', error);
+            console.error("There was an error submitting the common strategy!", error);
         }
 
         if (formData.moveAvg) {
-            localStorage.removeItem('formData');
+            localStorage.removeItem("formData");
             navigate(`/result/${id}`);
         } else {
-            alert('이동 평균 기간을 입력해주세요.');
+            alert("이동 평균 기간을 입력해주세요.");
         }
     };
 
     const handlePrevClick = () => {
-        navigate('/strategy');
+        navigate("/strategy");
     };
 
     return (

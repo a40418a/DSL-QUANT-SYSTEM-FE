@@ -1,25 +1,25 @@
 //페이지링크
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Navigator } from './layouts/navigator/Navigator';
-import { Footer } from './layouts/footer/Footer';
-import { Home } from './pages/main/home/Home';
-import { Explain } from './pages/preview/explain/Explain';
-import { Login } from './pages/info/login/Login';
-import { MyPage } from './pages/info/myPage/MyPage';
-import { Result } from './pages/main/result/Result';
-import { StrategyMain } from './pages/main/strategy/StrategyMain';
-import { StrategyGolden } from './pages/main/strategy/StrategyGolden';
-import { StrategyBollinger } from './pages/main/strategy/StrategyBollinger';
-import { StrategyRSI } from './pages/main/strategy/StrategyRSI';
-import { StrategyEnv } from './pages/main/strategy/StrategyEnv';
-import { StrategyWilliams } from './pages/main/strategy/StrategyWilliams';
-import { StockList } from './pages/main/stockList/StockList';
-import { StockInfo } from './pages/main/stockInfo/StockInfo';
-import { LoginHandler } from './pages/info/login/LoginHandler';
-import { AuthProvider } from './context/AuthContext';
-import { StrategyProvider } from './context/StrategyContext';
-import './app.css';
-import './assets/fonts.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Navigator } from "./layouts/navigator/Navigator";
+import { Footer } from "./layouts/footer/Footer";
+import { Home } from "./pages/main/home/Home";
+import { Explain } from "./pages/preview/explain/Explain";
+import { Login } from "./pages/info/login/Login";
+import { MyPage } from "./pages/info/myPage/MyPage";
+import { Result } from "./pages/main/result/Result";
+import { StrategyMain } from "./pages/main/strategy/StrategyMain";
+import { StrategyGolden } from "./pages/main/strategy/StrategyGolden";
+import { StrategyBollinger } from "./pages/main/strategy/StrategyBollinger";
+import { StrategyRSI } from "./pages/main/strategy/StrategyRSI";
+import { StrategyEnv } from "./pages/main/strategy/StrategyEnv";
+import { StrategyWilliams } from "./pages/main/strategy/StrategyWilliams";
+import { StockList } from "./pages/main/stockList/StockList";
+import { StockInfo } from "./pages/main/stockInfo/StockInfo";
+import { LoginHandler } from "./pages/info/login/LoginHandler";
+import { AuthProvider } from "./context/AuthContext";
+import { StrategyProvider } from "./context/StrategyContext";
+import "./app.css";
+import "./assets/fonts.css";
 
 function App() {
     return (

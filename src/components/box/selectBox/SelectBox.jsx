@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './selectBox.module.css';
+import React from "react";
+import styles from "./selectBox.module.css";
 
 export const SelectBox = ({ disabled, name, value, onChange, placeholder, options }) => {
     return (

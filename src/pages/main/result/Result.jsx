@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from 'react';
-import styles from './result.module.css';
-import { StrategyContext } from '../../../context/StrategyContext';
-import { useParams } from 'react-router-dom';
-import { getUserInfo } from '../../../utils/userApi';
-import { Loading } from '../../../components/loading/Loading';
+import React, { useContext, useEffect, useState } from "react";
+import styles from "./result.module.css";
+import { StrategyContext } from "../../../context/StrategyContext";
+import { useParams } from "react-router-dom";
+import { getUserInfo } from "../../../utils/userApi";
+import { Loading } from "../../../components/loading/Loading";
 
 export const Result = () => {
     const [userInfo, setUserInfo] = useState(null);
     const [loading, setLoading] = useState(true); // 사용자 정보 로딩 상태
-    const [errorMessage, setErrorMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState("");
 
     const {
         strategyCommonData,
@@ -25,14 +25,14 @@ export const Result = () => {
 
     useEffect(() => {
         // localStorage에서 토큰을 가져옵니다.
-        const token = localStorage.getItem('jwt');
+        const token = localStorage.getItem("jwt");
 
         const fetchData = async () => {
             try {
                 const userInfoData = await getUserInfo();
                 setUserInfo(userInfoData);
             } catch (error) {
-                console.error('Result fetchData error: ', error);
+                console.error("Result fetchData error: ", error);
             } finally {
                 setLoading(false);
             }
@@ -40,14 +40,14 @@ export const Result = () => {
         fetchData();
 
         fetch(`${SURL}/result/${id}`, {
-            method: 'GET',
+            method: "GET",
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         })
             .then((response) => {
                 if (!response.ok) {
-                    throw new Error('네트워크 응답이 올바르지 않습니다.');
+                    throw new Error("네트워크 응답이 올바르지 않습니다.");
                 }
                 return response.json();
             })
@@ -56,7 +56,7 @@ export const Result = () => {
                 // console.log('Updated resultData:', data); // 상태 업데이트 후 로그 추가
             })
             .catch((error) => {
-                console.error('백엔드에서 결과 데이터를 가져오는 중 오류가 발생했습니다:', error);
+                console.error("백엔드에서 결과 데이터를 가져오는 중 오류가 발생했습니다:", error);
             });
     }, [id]);
 
@@ -73,8 +73,8 @@ export const Result = () => {
         // }
 
         // 이벤트 비활성화
-        const style = document.createElement('style');
-        style.type = 'text/css';
+        const style = document.createElement("style");
+        style.type = "text/css";
         style.innerHTML = `
             * {
                 pointer-events: none !important;
@@ -84,14 +84,14 @@ export const Result = () => {
         document.head.appendChild(style);
 
         const htmlContent = document.documentElement.outerHTML;
-        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
         const filename = `result_${timestamp}.html`;
 
-        const blob = new Blob([htmlContent], { type: 'text/html' });
+        const blob = new Blob([htmlContent], { type: "text/html" });
         const url = URL.createObjectURL(blob);
 
         // 다운로드 링크를 생성
-        const a = document.createElement('a');
+        const a = document.createElement("a");
         a.href = url;
         a.download = filename;
         document.body.appendChild(a);
@@ -131,35 +131,35 @@ export const Result = () => {
                 </div>
                 <table className={styles.table}>
                     <tbody>
-                        {id === 'golden' &&
+                        {id === "golden" &&
                             Object.entries(strategy1Data).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>
                                 </tr>
                             ))}
-                        {id === 'bollinger' &&
+                        {id === "bollinger" &&
                             Object.entries(strategy2Data).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>
                                 </tr>
                             ))}
-                        {id === 'rsi' &&
+                        {id === "rsi" &&
                             Object.entries(strategy3Data).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>
                                 </tr>
                             ))}
-                        {id === 'env' &&
+                        {id === "env" &&
                             Object.entries(strategy4Data).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>
                                 </tr>
                             ))}
-                        {id === 'williams' &&
+                        {id === "williams" &&
                             Object.entries(strategy5Data).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>

@@ -1,5 +1,5 @@
-import React from 'react';
-import styles from './inputBox.module.css';
+import React from "react";
+import styles from "./inputBox.module.css";
 
 export const InputBox = ({ type, placeholder, name, value, onChange }) => {
     return (

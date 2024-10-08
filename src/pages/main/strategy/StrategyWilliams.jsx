@@ -1,75 +1,75 @@
 //Williams 지표 이용 전략 설정 페이지
 
-import React, { useContext, useState } from 'react';
-import styles from './strategy.module.css';
-import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn';
-import { InputBox } from '../../../components/box/inputBox/InputBox';
-import { StrategyWDTO } from '../../../types/StrategyDTO';
-import { StrategyContext } from '../../../context/StrategyContext';
-import { useNavigate, useParams, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import React, { useContext, useState } from 'react'
+import styles from './strategy.module.css'
+import { ColorBtn } from '../../../components/button/colorBtn/ColorBtn'
+import { InputBox } from '../../../components/box/inputBox/InputBox'
+import { StrategyWDTO } from '../../../types/StrategyDTO'
+import { StrategyContext } from '../../../context/StrategyContext'
+import { useNavigate, useParams, useLocation } from 'react-router-dom'
+import axios from 'axios'
 
 export const StrategyWilliams = () => {
-    const { setStrategy5Data } = useContext(StrategyContext);
+    const { setStrategy5Data } = useContext(StrategyContext)
     const initialFormData = JSON.parse(localStorage.getItem('formData')) || {
         williamsPeriod: 0,
-    };
-    const [formData, setFormData] = useState(initialFormData);
+    }
+    const [formData, setFormData] = useState(initialFormData)
 
-    const navigate = useNavigate();
-    const location = useLocation();
+    const navigate = useNavigate()
+    const location = useLocation()
 
     // 현재 경로에서 숫자 부분 추출
-    const pathSegments = location.pathname.split('/');
-    const id = pathSegments[pathSegments.length - 1]; // 경로의 마지막 부분이 ID
+    const pathSegments = location.pathname.split('/')
+    const id = pathSegments[pathSegments.length - 1] // 경로의 마지막 부분이 ID
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
+        const { name, value } = e.target
         setFormData((prevData) => {
-            const newFormData = { ...prevData, [name]: Number(value) };
+            const newFormData = { ...prevData, [name]: Number(value) }
 
             if (name === 'williamsPeriod' && parseFloat(value) < 0) {
-                alert('입력값은 0보다 작을 수 없습니다.');
-                return prevData;
+                alert('입력값은 0보다 작을 수 없습니다.')
+                return prevData
             }
 
-            localStorage.setItem('formData', JSON.stringify(newFormData));
+            localStorage.setItem('formData', JSON.stringify(newFormData))
 
-            return newFormData;
-        });
-    };
+            return newFormData
+        })
+    }
 
     const handleSubmit = async () => {
-        const SURL = import.meta.env.VITE_APP_URI;
-        const strategy5DTO = new StrategyWDTO(formData);
+        const SURL = import.meta.env.VITE_APP_URI
+        const strategy5DTO = new StrategyWDTO(formData)
         // console.log(strategy5DTO);
-        setStrategy5Data(strategy5DTO);
+        setStrategy5Data(strategy5DTO)
 
         try {
-            const token = localStorage.getItem('jwt'); // JWT 토큰 가져오기
+            const token = localStorage.getItem('jwt') // JWT 토큰 가져오기
             const response = await axios.post(`${SURL}/strategy/williams`, strategy5DTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
-            });
+            })
             // console.log('Response:', response.data);
         } catch (error) {
-            console.error('There was an error submitting the common strategy!', error);
+            console.error('There was an error submitting the common strategy!', error)
         }
 
         if (formData.williamsPeriod) {
-            localStorage.removeItem('formData');
-            navigate(`/result/${id}`);
+            localStorage.removeItem('formData')
+            navigate(`/result/${id}`)
         } else {
             if (!formData.williamsPeriod) {
-                alert('Williams 데이터를 입력해주세요.(기본값은 14입니다.)');
+                alert('Williams 데이터를 입력해주세요.(기본값은 14입니다.)')
             }
         }
-    };
+    }
 
     const handlePrevClick = () => {
-        navigate('/strategy');
-    };
+        navigate('/strategy')
+    }
 
     return (
         <div className={styles.strategy}>
@@ -105,5 +105,5 @@ export const StrategyWilliams = () => {
                 <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit} />
             </div>
         </div>
-    );
-};
+    )
+}

@@ -1,8 +1,8 @@
 //바차트 컴포넌트
-import React from 'react';
-import Chart from 'react-apexcharts';
-import { userData01 } from '../../data/dummyData01';
-import styles from './chart.module.css';
+import React from "react";
+import Chart from "react-apexcharts";
+import { userData01 } from "../../data/dummyData01";
+import styles from "./chart.module.css";
 
 export const BarChart = ({ title, dataKey }) => {
     const length = userData01.length; // 데이터 길이 저장
@@ -16,20 +16,20 @@ export const BarChart = ({ title, dataKey }) => {
     // ApexCharts 옵션 설정
     const options = {
         chart: {
-            type: 'bar', // 차트 타입: 라인 차트
-            height: '100%', // 차트 높이
+            type: "bar", // 차트 타입: 라인 차트
+            height: "100%", // 차트 높이
             animations: {
                 enabled: false, // 애니메이션 비활성화
             },
         },
         title: {
             text: title, // 차트 제목
-            align: 'left', // 제목 정렬: 중앙
+            align: "left", // 제목 정렬: 중앙
         },
         xaxis: {
-            type: 'datetime', // x축 타입: 날짜/시간
+            type: "datetime", // x축 타입: 날짜/시간
             labels: {
-                format: 'MM/dd', // 날짜 형식 설정
+                format: "MM/dd", // 날짜 형식 설정
             },
         },
         yaxis: {
@@ -37,14 +37,14 @@ export const BarChart = ({ title, dataKey }) => {
         },
         tooltip: {
             x: {
-                format: 'yyyy.MM.dd', // 툴팁 날짜 포맷
+                format: "yyyy.MM.dd", // 툴팁 날짜 포맷
             },
         },
         annotations: {},
         markers: {
             size: 0, // 마커 크기 (0으로 설정하여 마커 숨김)
         },
-        colors: ['gray'],
+        colors: ["gray"],
     };
 
     return (

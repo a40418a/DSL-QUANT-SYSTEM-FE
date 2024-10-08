@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import styles from './horizonTable.module.css';
-import { getTop20 } from '../../../utils/top20Api';
-import { Loading } from '../../loading/Loading';
+import React, { useState, useEffect } from "react";
+import styles from "./horizonTable.module.css";
+import { getTop20 } from "../../../utils/top20Api";
+import { Loading } from "../../loading/Loading";
 
 export const HorizonTableTop20 = ({ title }) => {
     const [top20, setTop20] = useState(null);
@@ -13,7 +13,7 @@ export const HorizonTableTop20 = ({ title }) => {
                 const top20Data = await getTop20();
                 setTop20(top20Data);
             } catch (error) {
-                console.error('Top20 fetchData error: ', error);
+                console.error("Top20 fetchData error: ", error);
             } finally {
                 setLoading(false);
             }
@@ -42,7 +42,7 @@ export const HorizonTableTop20 = ({ title }) => {
                                 <td>{index + 1}</td>
                                 <td className={styles.dataText}> {data.market}</td>
                                 <td className={styles.dataNum}>
-                                    {data.closingPrice ? data.closingPrice.toLocaleString() : '-'}
+                                    {data.closingPrice ? data.closingPrice.toLocaleString() : "-"}
                                 </td>
                                 <td
                                     className={`${styles.dataNum} ${data.fluctuatingRate > 0 ? styles.positive : styles.negative}`}

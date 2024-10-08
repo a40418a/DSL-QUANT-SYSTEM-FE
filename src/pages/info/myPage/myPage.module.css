@@ -33,6 +33,7 @@
 
 .infoTitle {
     font-weight: bold;
+    margin-top: var(--margin);
     margin-bottom: 8px; /*padding/3*/
     font-family: var(--font-3);
     font-size: var(--subtitle-size);
@@ -108,7 +109,6 @@
 
 .errorBtn {
     font-size: var(--subtitle-size);
-    margin-bottom: var(--margin);
     display: flex;
     justify-content: center;
     align-items: center;

@@ -146,7 +146,7 @@ export const StockList = () => {
             <Box
                 sx={{
                     width: "100%",
-                    height: 1040,
+                    height: 1148,
                     "& .MuiDataGrid-columnHeader": {
                         backgroundColor: "var(--point-color-2)",
                         "& .MuiDataGrid-columnHeaderTitle": {

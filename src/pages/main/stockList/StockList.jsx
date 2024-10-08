@@ -164,7 +164,7 @@ export const StockList = () => {
                 }}
             >
                 <DataGrid
-                    sx={{ height: "100%" }}
+                    sx={{ height: 1040 }}
                     rows={rows}
                     columns={columns}
                     paginationModel={paginationModel}

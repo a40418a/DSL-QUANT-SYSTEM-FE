@@ -16,6 +16,7 @@ import {
 import { Box } from "@mui/system";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
+import { AddChart } from "../../../components/emoticon/Add";
 
 const CustomPagination = () => {
     const apiRef = useGridApiContext();
@@ -98,7 +99,7 @@ export const MyPage = () => {
             setIsTableVisible(true);
         } catch (error) {
             if (error.response && error.response.status == 404) {
-                setErrorMessage("백테스팅한 데이터가 없습니다.");
+                setErrorMessage("아직 백테스팅한 데이터가 없습니다.");
             } else {
                 setErrorMessage("서버 문제 발생");
             }
@@ -274,13 +275,15 @@ export const MyPage = () => {
                     </button>
                 </div>
                 {errorMessage && (
-                    <>
-                        <div className={styles.error}>{errorMessage}</div>
-                        <div className={styles.error}>전략설정을 진행해주세요.</div>
-                        <div className={styles.error}>
-                            <a href="/strategy">전략설정하러 가기</a>
+                    <div className={styles.errorWrapper}>
+                        <div className={styles.errorMessage}>{errorMessage}</div>
+                        <div className={styles.errorBtn}>
+                            <a href="/strategy">
+                                전략 설정 바로가기
+                                <AddChart />
+                            </a>
                         </div>
-                    </>
+                    </div>
                 )}
                 {!errorMessage && isTableVisible && backHistory.length > 0 && (
                     <Box

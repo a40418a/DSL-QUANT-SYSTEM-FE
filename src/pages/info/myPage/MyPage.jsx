@@ -285,7 +285,6 @@ export const MyPage = () => {
                 {!errorMessage && isTableVisible && backHistory.length > 0 && (
                     <Box
                         sx={{
-                            width: "100%",
                             "& .MuiDataGrid-columnHeader": {
                                 backgroundColor: "var(--point-color-2)",
                                 "& .MuiDataGrid-columnHeaderTitle": {
@@ -306,7 +305,7 @@ export const MyPage = () => {
                         }}
                     >
                         <DataGrid
-                            sx={{ height: "100%" }}
+                            sx={{ width: "100%", height: "100%" }}
                             rows={rows}
                             columns={columns}
                             paginationModel={paginationModel}

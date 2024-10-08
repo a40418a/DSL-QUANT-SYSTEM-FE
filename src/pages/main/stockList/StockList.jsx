@@ -145,8 +145,6 @@ export const StockList = () => {
             <div className={styles.title}>코인 종목</div>
             <Box
                 sx={{
-                    width: "100%",
-                    // height: 1160,
                     "& .MuiDataGrid-columnHeader": {
                         backgroundColor: "var(--point-color-2)",
                         "& .MuiDataGrid-columnHeaderTitle": {
@@ -164,7 +162,7 @@ export const StockList = () => {
                 }}
             >
                 <DataGrid
-                    sx={{ height: 1040 }}
+                    sx={{ width: "100%", height: 1040 }}
                     rows={rows}
                     columns={columns}
                     paginationModel={paginationModel}

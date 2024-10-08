@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 import AddchartIcon from "@mui/icons-material/Addchart";
 
 const addChartStyle = css`
-    font-size: 1rem;
+    font-size: var(--subtitle-size);
     fill: var(--point-color-2);
     vertical-align: middle;
 `;

@@ -8,10 +8,9 @@
 
 .box {
     box-sizing: border-box;
-    padding: var(--padding);
     border-radius: var(--border-radius);
     height: 100%;
-    width: 33%;
+    width: 32%;
 }
 
 @media (max-width: 1068px) {

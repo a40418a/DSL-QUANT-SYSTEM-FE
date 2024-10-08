@@ -113,8 +113,19 @@ export const StockList = () => {
             headerAlign: "center",
             renderCell: (params) => {
                 const value = Number(params.value);
-                const formattedValue = value ? new Intl.NumberFormat().format(value) : "-";
-                return <span style={{ cursor: "pointer" }}>{formattedValue}</span>;
+                let displayValue = "0.00";
+                // 거래량이 1억 이상일 경우 1억 단위로 표시
+                if (value) {
+                    if (value >= 1_000_000_000) {
+                        displayValue = (value / 1_000_000_000).toFixed(2) + "B";
+                    } else if (value >= 1_000_000) {
+                        displayValue = (value / 1_000_000).toFixed(2) + "M";
+                    } else {
+                        displayValue = value.toFixed(2);
+                    }
+                }
+
+                return <span style={{ color, cursor: "pointer" }}>{displayValue}</span>;
             },
         },
     ];
@@ -135,7 +146,7 @@ export const StockList = () => {
             <Box
                 sx={{
                     width: "100%",
-                    height: 1280,
+                    height: "100%",
                     "& .MuiDataGrid-columnHeader": {
                         backgroundColor: "var(--point-color-2)",
                         "& .MuiDataGrid-columnHeaderTitle": {
@@ -150,9 +161,6 @@ export const StockList = () => {
                         borderLeft: "none",
                         borderRadius: 0,
                     },
-                    // '& .MuiDataGrid-cell': {
-
-                    // },
                 }}
             >
                 <DataGrid

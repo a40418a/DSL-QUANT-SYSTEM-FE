@@ -146,7 +146,7 @@ export const StockList = () => {
             <Box
                 sx={{
                     width: "100%",
-                    height: 1160,
+                    // height: 1160,
                     "& .MuiDataGrid-columnHeader": {
                         backgroundColor: "var(--point-color-2)",
                         "& .MuiDataGrid-columnHeaderTitle": {
@@ -164,6 +164,7 @@ export const StockList = () => {
                 }}
             >
                 <DataGrid
+                    sx={{ height: "100%" }}
                     rows={rows}
                     columns={columns}
                     paginationModel={paginationModel}

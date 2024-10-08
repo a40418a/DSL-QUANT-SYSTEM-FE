@@ -125,7 +125,7 @@ export const StockList = () => {
                     }
                 }
 
-                return <span style={{ color, cursor: "pointer" }}>{displayValue}</span>;
+                return <span style={{ cursor: "pointer" }}>{displayValue}</span>;
             },
         },
     ];

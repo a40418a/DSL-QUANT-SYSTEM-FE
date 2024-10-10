@@ -190,6 +190,11 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
         meta: { ...entry }, // 메타데이터 추가
     }));
 
+    // profitRate의 최소값과 최대값 계산
+    const profitRateValues = chartData.map((item) => item.profitRate);
+    const minProfitRate = Math.min(...profitRateValues) - 10; // 최소값 -10
+    const maxProfitRate = Math.max(...profitRateValues) + 10; // 최대값 +10
+
     const options = {
         chart: {
             type: "area",
@@ -259,7 +264,18 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
             show: false,
         },
         yaxis: {
-            show: false,
+            min: minProfitRate, // y축 최소값
+            max: maxProfitRate, // y축 최대값
+            show: false, // y축 숫자 숨기기
+            lines: {
+                show: true,
+            },
+            title: {
+                text: "Profit Rate", // y축 제목
+            },
+            tooltip: {
+                enabled: false,
+            },
         },
         tooltip: {
             x: {
@@ -270,9 +286,6 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
                 const date = data.backtesting_date
                     ? new Date(data.backtesting_date)
                           .toLocaleString("ko-KR", {
-                              year: "numeric",
-                              month: "2-digit",
-                              day: "2-digit",
                               hour: "2-digit",
                               minute: "2-digit",
                               hour12: false,
@@ -290,6 +303,15 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
         },
         dataLabels: {
             enabled: false,
+        },
+        annotations: {
+            yaxis: [
+                {
+                    y: 0,
+                    borderColor: "var(--color-3)",
+                    strokeDashArray: "var(--stroke-dash-array)",
+                },
+            ],
         },
         stroke: {
             curve: "straight",

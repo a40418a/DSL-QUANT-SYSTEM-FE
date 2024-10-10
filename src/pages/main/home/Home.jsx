@@ -66,13 +66,18 @@ export const Home = () => {
                                     currency="₩"
                                     price={backtestData[0].finalAsset.toFixed(2)}
                                     arrow={
-                                        backtestData.profitRate >= 0 ? <ArrowUp /> : <ArrowDown />
+                                        backtestData[0].profitRate >= 0 ? (
+                                            <ArrowUp />
+                                        ) : (
+                                            <ArrowDown />
+                                        )
                                     }
                                     rate={backtestData[0].profitRate.toFixed(2)}
                                     chart={
                                         <LineChartBacktest
                                             dataKey="profitRate"
                                             chartData={backtestData.map((item) => ({
+                                                id: item.id,
                                                 finalAsset: item.finalAsset,
                                                 profit: item.profit,
                                                 numberOfTrades: item.numberOfTrades,

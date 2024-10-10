@@ -221,17 +221,16 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
         },
         xaxis: {
             type: "numeric",
-            show: false,
+            labels: {
+                show: false,
+            },
         },
         yaxis: {
-            min: minProfitRate, // y축 최소값
-            max: maxProfitRate, // y축 최대값
-            show: false, // y축 숫자 숨기기
+            min: minProfitRate - 5,
+            max: maxProfitRate + 5,
+            show: false,
             lines: {
                 show: true,
-            },
-            title: {
-                text: "Profit Rate", // y축 제목
             },
             tooltip: {
                 enabled: false,

@@ -83,6 +83,11 @@ export const StrategyMain = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: value };
 
+            // 종목 이름(TargetItem) 변경 시 콘솔에 출력
+            if (name === "target_item") {
+                console.log("Selected Target Item:", value);
+            }
+
             if (name === "initial_investment" && parseFloat(value) < 0) {
                 alert("초기 투자 금액은 0보다 작을 수 없습니다.");
                 return prevData;

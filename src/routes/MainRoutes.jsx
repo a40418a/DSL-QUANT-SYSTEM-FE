@@ -24,6 +24,7 @@ const MainRoutes = () => {
             <Route path="/login/oauth2/code/kakao/" element={<LoginHandler />} />
             <Route path="/stocklist/" element={<StockList />} />
             <Route path="/stockinfo/" element={<StockInfo />} />
+            <Route path="/stockinfo/:id/" element={<StockInfo />} />
             <Route path="/mypage/" element={<MyPage />} />
             <Route path="/result/:id/" element={<Result />} />
             <Route path="/strategy/" element={<StrategyMain />} />

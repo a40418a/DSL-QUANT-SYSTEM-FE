@@ -1,34 +1,35 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom"; // useParams를 import
 import styles from "./stockInfo.module.css";
 import { CandleChart } from "../../../components/chart/CandleChart";
 import { LineChart } from "../../../components/chart/LineChart";
+import { getStockinfo } from "../../../utils/stockinfoApi"; // API 호출 수정
 import { Loading } from "../../../components/loading/Loading";
-import { getMarket } from "../../../utils/marketApi";
 
 export const StockInfo = () => {
-    const [market, setMarket] = useState(null);
+    const { id } = useParams(); // URL에서 id를 추출
+    const [stockData, setStockData] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const marketName = getMarket(window.location.pathname); // 현재 URL에서 market 추출
-                const marketData = await getStockinfo(marketName); // getStockinfo 호출
-                setMarket(marketData);
+                const data = await getStockinfo(id); // id를 이용해 API 호출
+                setStockData(data);
             } catch (error) {
                 console.error("StockInfo fetchData error: ", error);
             }
         };
         fetchData();
-    }, []);
+    }, [id]);
 
-    const close = market ? market[0].closingPrice : "num";
-    const high = market ? market[0].highPrice : "num";
-    const low = market ? market[0].lowPrice : "num";
-    const open = market ? market[0].openingPrice : "num";
-    const rate = market ? market[0].fluctuatingRate : "num";
-    const volume = market ? market[0].tradingVolume : "num";
+    const close = stockData ? stockData[0].closingPrice : "num";
+    const high = stockData ? stockData[0].highPrice : "num";
+    const low = stockData ? stockData[0].lowPrice : "num";
+    const open = stockData ? stockData[0].openingPrice : "num";
+    const rate = stockData ? stockData[0].fluctuatingRate : "num";
+    const volume = stockData ? stockData[0].tradingVolume : "num";
 
-    if (!market) {
+    if (!stockData) {
         return (
             <div>
                 <Loading />
@@ -38,7 +39,7 @@ export const StockInfo = () => {
 
     return (
         <div className={styles.stockinfo}>
-            <div className={styles.title}>삼성전자</div>
+            <div className={styles.title}>{id}</div> {/* id 값 출력 */}
             <table className={styles.table}>
                 <tr>
                     <th>종가</th>
@@ -59,28 +60,28 @@ export const StockInfo = () => {
             </table>
             <div className={styles.candle}>
                 <CandleChart
-                    chartData={market.map((item) => ({
+                    chartData={stockData.map((item) => ({
                         open: item.openingPrice,
                         close: item.closingPrice,
                         high: item.highPrice,
                         low: item.lowPrice,
                         volume: item.tradingVolume,
                         rate: item.fluctuatingRate,
-                        date: item.date || "", // date가 없을 경우 빈 문자열
+                        date: item.date || "",
                     }))}
                 />
             </div>
             <div className={styles.line}>
                 <LineChart
                     dataKey="close"
-                    chartData={market.map((item) => ({
+                    chartData={stockData.map((item) => ({
                         open: item.openingPrice,
                         close: item.closingPrice,
                         high: item.highPrice,
                         low: item.lowPrice,
                         volume: item.tradingVolume,
                         rate: item.fluctuatingRate,
-                        date: item.date || "", // date가 없을 경우 빈 문자열
+                        date: item.date || "",
                     }))}
                 />
             </div>

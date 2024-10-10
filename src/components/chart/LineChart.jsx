@@ -262,15 +262,16 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
         },
         tooltip: {
             x: {
-                format: "yy/MM",
                 show: false,
             },
             custom: function ({ seriesIndex, dataPointIndex, w }) {
                 const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex].meta;
-                const date = data.date ? new Date(data.date).toLocaleDateString() : "N/A";
+                const date = data.backtesting_date
+                    ? new Date(data.backtesting_date).toLocaleDateString()
+                    : "N/A";
 
                 return `<div class="tooltip">
-                          <div><strong>Date:</strong> ${backtesting_date}</div>
+                          <div><strong>Date:</strong> ${date}</div>
                           <div><strong>Final Asset:</strong> ${data.finalAsset.toLocaleString()}</div>
                           <div><strong>Profit:</strong> ${data.profit.toLocaleString()}</div>
                           <div><strong>Number of Trades:</strong> ${data.numberOfTrades.toLocaleString()}</div>

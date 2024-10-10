@@ -203,9 +203,7 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
                 enabled: false,
             },
             zoom: {
-                enabled: true, // 확대/축소 기능 활성화
-                type: "x", // 확대/축소 유형: x와 y축 모두
-                autoScaleYaxis: true, // 확대 시 y축 자동 스케일링
+                enabled: false,
             },
             toolbar: {
                 show: false,

@@ -8,10 +8,10 @@
 /* .custom-tooltip {
     background-color: white;
     box-shadow: var(--box-shadow);
-    padding: 0.25rem;
-    border-radius: 0.25rem;
+    padding: 4px;
+    border-radius: 4px;
 }
 
 .custom-tooltip p {
-    font-size: 0.625rem;
+    font-size: 10px;
 } */

@@ -54,10 +54,10 @@ export const StockInfo = () => {
                     <td>{open.toLocaleString()}</td>
                     <th>Rate (%)</th>
                     <td style={{ color: rate < 0 ? "var(--down-color)" : "var(--up-color)" }}>
-                        {(rate.toLocaleString() * 100).toFixed(2)}
+                        {(rate * 100).toFixed(2).toLocaleString()}
                     </td>
                     <th>Volume</th>
-                    <td>{volume.toLocaleString().toFixed(2)}</td>
+                    <td>{volume.toFixed(2).toLocaleString()}</td>
                 </tr>
             </table>
             <div className={styles.candle}>

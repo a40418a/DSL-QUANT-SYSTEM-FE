@@ -176,11 +176,15 @@ export const MyPage = () => {
     ];
 
     const rows = backHistory.map((record, index) => {
-        const date = new Date(record.backtesting_date);
+        const formattedDate = new Date(record.backtesting_date).toLocaleDateString("ko-KR", {
+            year: "2-digit",
+            month: "2-digit",
+            day: "2-digit",
+        });
 
         return {
             id: index,
-            date: date, // Date 객체로 유지
+            date: formattedDate,
             finalCash: record.finalCash.toFixed(2),
             finalAsset: record.finalAsset.toFixed(2),
             finalBalance: record.finalBalance.toFixed(2),
@@ -196,14 +200,7 @@ export const MyPage = () => {
             headerName: "Date",
             flex: 1,
             headerAlign: "center",
-            type: "date", // Date 타입으로 설정
-            renderCell: (params) => {
-                return params.value.toLocaleDateString("ko-KR", {
-                    year: "2-digit",
-                    month: "2-digit",
-                    day: "2-digit",
-                });
-            },
+            type: "string",
         },
         {
             field: "finalCash",

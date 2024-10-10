@@ -55,26 +55,27 @@ export const Home = () => {
                         onChange={handleChange}
                     />
                     <div className={styles.backChart}>
-                        {
-                            loading ? (
-                                <Loading />
-                            ) : (
-                                backtestData && (
-                                    <div>
-                                        price: {backtestData.target_item[0]?.finalAsset || "N/A"}
-                                    </div>
-                                )
+                        {loading ? (
+                            <Loading />
+                        ) : (
+                            backtestData && (
+                                <ChartBox
+                                    title={formData.label}
+                                    currency="₩"
+                                    price={backtestData[0].finalAsset}
+                                    arrow={
+                                        backtestData.profitRate >= 0 ? <ArrowUp /> : <ArrowDown />
+                                    }
+                                    rate={backtestData[0].profitRate}
+                                    chart={
+                                        <LineChart
+                                            dataKey="profitRate"
+                                            chartData={backtestData.map}
+                                        />
+                                    }
+                                />
                             )
-                            // <ChartBox
-                            //     title="최근 주식 종목"
-                            //     currency="₩"
-                            //     price="73,700"
-                            //     arrow={<ArrowDown />}
-                            //     rate="-1"
-                            //     // chart={<LineChart data={userData01} dataKey="lowest" />}
-                            //     sub="Compared to last month"
-                            // />
-                        }
+                        )}
                     </div>
                 </div>
                 <div className={styles.table}>

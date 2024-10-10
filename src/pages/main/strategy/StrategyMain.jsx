@@ -1,5 +1,4 @@
-//공통전략설정 및 전략 선택 페이지
-
+// 공통전략설정 및 전략 선택 페이지
 import React, { useContext, useState, useEffect } from "react";
 import styles from "./strategy.module.css";
 import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
@@ -32,13 +31,19 @@ export const StrategyMain = () => {
         const fetchMarkets = async () => {
             try {
                 const stockList = await getStockListClosing();
+                console.log("Fetched Stock List:", stockList); // API로부터 가져온 데이터 출력
+
+                // 주식 목록에서 market 필드를 사용하여 옵션 생성
                 const options = stockList.map((stock) => ({
                     label: stock.market,
                     value: stock.market,
                 }));
+
+                console.log("Options Created:", options); // 생성된 옵션 확인
                 setMarketOptions(options);
             } catch (error) {
                 console.error("Error fetching stock list:", error);
+                alert("주식 목록을 가져오는 중 오류가 발생했습니다. 다시 시도해 주세요.");
             }
         };
         fetchMarkets();
@@ -56,6 +61,7 @@ export const StrategyMain = () => {
         { label: "0.09%", value: "0.09" },
         { label: "0.1%", value: "0.1" },
     ];
+
     const options_candle = [
         { label: "1분", value: "1" },
         { label: "3분", value: "3" },
@@ -69,6 +75,7 @@ export const StrategyMain = () => {
         { label: "1주", value: "W" },
         { label: "1개월", value: "M" },
     ];
+
     const options_strategy = [
         { label: "골든/데드", value: "strategy/golden" },
         { label: "볼린저밴드", value: "strategy/bollinger" },
@@ -88,6 +95,7 @@ export const StrategyMain = () => {
                 console.log("Selected Target Item:", value);
             }
 
+            // 초기 투자 금액 및 조회 범위 유효성 검사
             if (name === "initial_investment" && parseFloat(value) < 0) {
                 alert("초기 투자 금액은 0보다 작을 수 없습니다.");
                 return prevData;
@@ -155,16 +163,7 @@ export const StrategyMain = () => {
         ) {
             navigate(`/${selectedStrategy}`);
         } else {
-            if (
-                !selectedStrategy ||
-                !formData.initial_investment ||
-                !formData.tax ||
-                !formData.target_item ||
-                !formData.tick_kind ||
-                !formData.inq_range
-            ) {
-                alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
-            }
+            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }
     };
 
@@ -203,7 +202,7 @@ export const StrategyMain = () => {
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="종목 이름을 선택하세요."
-                        options={options}
+                        options={marketOptions}
                         name="target_item"
                         value={formData.target_item}
                         onChange={handleChange}
@@ -232,13 +231,14 @@ export const StrategyMain = () => {
                         value={formData.inq_range}
                         onChange={handleChange}
                     />
+                    <span>개</span>
                 </div>
             </div>
-            <div className={styles.titleSecond}>전략 선택</div>
             <div className={styles.select}>
+                <div className={styles.subtitle}>전략 선택</div>
                 <div className={styles.input}>
                     <SelectBox
-                        placeholder="전략을 선택하세요."
+                        placeholder="전략을 선택해주세요."
                         options={options_strategy}
                         name="strategy"
                         value={formData.strategy}
@@ -246,8 +246,8 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            <div className={styles.btnWrapper}>
-                <ColorBtn className={styles.btnNext} text="세부 전략 선택" onClick={handleSubmit} />
+            <div className={styles.button}>
+                <ColorBtn onClick={handleSubmit} name="전략선택" />
             </div>
         </div>
     );

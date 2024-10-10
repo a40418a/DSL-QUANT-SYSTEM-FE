@@ -1,6 +1,6 @@
 :root {
-    ---webkit-box-shadow: 0px 0px 8px -1px #7e3cf5;
-    --box-shadow: 0px 0px 8px -1px #7768e6;
+    ---webkit-box-shadow: 0px 0px 0.5rem -0.0625rem #7e3cf5;
+    --box-shadow: 0px 0px 0.5rem -0.0625rem #7767e6;
 
     /*폰트*/
     --font-1: "JalnanGothic";
@@ -10,7 +10,7 @@
     /*색상표*/
     --main-color: #554aa7;
     --point-color: #8ddf00;
-    --point-color-2: #7768e6;
+    --point-color-2: #7767e6;
     --point-color-3: #70bff4;
     --point-color-4: #ef50c1;
     --color-1: #212121;
@@ -20,14 +20,14 @@
     --color-white: white;
 
     /* 기본 사이즈 */
-    --padding: 24px;
-    --margin: 24px;
-    --border-radius: 8px;
+    --padding: 1.5rem;
+    --margin: 1.5rem;
+    --border-radius: 0.5rem;
     --width: 60%;
     --height: 80vh;
-    --title-size: 24px;
-    --subtitle-size: 20px;
-    --content-size: 16px;
+    --title-size: 1.5rem;
+    --subtitle-size: 1.25rem;
+    --content-size: 1rem;
 
     /* 기타 설정 */
     --cursor: pointer;
@@ -46,14 +46,14 @@
     justify-content: center;
     width: 100%;
     height: 100%;
-    padding: 0 0 80px 0;
+    padding: 0 0 5rem 0;
 }
 
 * {
     font-family: var(--font-2);
     color: var(--color-1);
     margin: 0;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 /* 테이블 기본 레이아웃 세팅 */
@@ -67,7 +67,7 @@ th,
 td {
     border-top: 1px solid var(--color-4);
     border-bottom: 1px solid var(--color-4);
-    height: 24px;
+    height: 1.5rem;
 }
 
 th {

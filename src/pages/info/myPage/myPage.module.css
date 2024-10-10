@@ -119,13 +119,13 @@
 }
 
 /* 반응형 */
-@media (max-width: 1068px) {
+@media (max-width: 1023px) {
     .mypage {
         width: 80%;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .mypage {
         width: 96%;
     }

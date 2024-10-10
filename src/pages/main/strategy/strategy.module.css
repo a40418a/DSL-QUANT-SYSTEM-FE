@@ -76,7 +76,7 @@ span {
 }
 
 /* 반응형 */
-@media (max-width: 1068px) {
+@media (max-width: 1023px) {
     .strategy {
         width: 80%;
     }
@@ -86,7 +86,7 @@ span {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .strategy {
         width: 96%;
     }

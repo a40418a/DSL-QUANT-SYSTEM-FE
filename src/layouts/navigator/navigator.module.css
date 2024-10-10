@@ -87,7 +87,7 @@ a {
 }
 
 /* 반응형 */
-@media (max-width: 1068px) {
+@media (max-width: 1023px) {
     .wrapper {
         display: flex;
         flex-direction: row;
@@ -102,7 +102,7 @@ a {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .navigator {
         display: flex;
         flex-direction: column;

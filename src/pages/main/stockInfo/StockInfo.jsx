@@ -42,15 +42,15 @@ export const StockInfo = () => {
             <div className={styles.title}>{id}</div> {/* id 값 출력 */}
             <table className={styles.table}>
                 <tr>
-                    <th>Closing Price</th>
+                    <th>Closing Price (원)</th>
                     <td>{close.toLocaleString()}</td>
-                    <th>Highest Price</th>
+                    <th>Highest Price (원)</th>
                     <td>{high.toLocaleString()}</td>
-                    <th>Lowest Price</th>
+                    <th>Lowest Price (원)</th>
                     <td>{low.toLocaleString()}</td>
                 </tr>
                 <tr>
-                    <th>Opening Price</th>
+                    <th>Opening Price (원)</th>
                     <td>{open.toLocaleString()}</td>
                     <th>Rate (%)</th>
                     <td style={{ color: rate < 0 ? "var(--down-color)" : "var(--up-color)" }}>

@@ -26,8 +26,8 @@ export const StockInfo = () => {
     const high = stockData ? stockData[0].highPrice : "num";
     const low = stockData ? stockData[0].lowPrice : "num";
     const open = stockData ? stockData[0].openingPrice : "num";
-    const rate = stockData ? stockData[0].fluctuatingRate : "num";
-    const volume = stockData ? stockData[0].tradingVolume : "num";
+    const rate = stockData ? (stockData[0].fluctuatingRate * 100).toFixed(2) : "num";
+    const volume = stockData ? parseFloat(stockData[0].tradingVolume).toFixed(2) : "num";
 
     if (!stockData) {
         return (
@@ -52,7 +52,7 @@ export const StockInfo = () => {
                 <tr>
                     <th>Opening Price</th>
                     <td>{open.toLocaleString()}</td>
-                    <th>Rate</th>
+                    <th>Rate (%)</th>
                     <td style={{ color: rate < 0 ? "var(--down-color)" : "var(--up-color)" }}>
                         {rate}
                     </td>

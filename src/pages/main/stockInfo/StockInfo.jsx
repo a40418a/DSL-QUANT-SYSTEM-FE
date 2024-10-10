@@ -22,13 +22,6 @@ export const StockInfo = () => {
         fetchData();
     }, [id]);
 
-    const close = stockData[0]?.closingPrice || 0;
-    const high = stockData[0]?.highPrice || 0;
-    const low = stockData[0]?.lowPrice || 0;
-    const open = stockData[0]?.openingPrice || 0;
-    const rate = stockData[0]?.fluctuatingRate || 0;
-    const volume = stockData[0]?.tradingVolume || 0;
-
     if (!stockData) {
         return (
             <div>
@@ -37,6 +30,12 @@ export const StockInfo = () => {
         );
     }
 
+    const close = stockData[0]?.closingPrice || 0;
+    const high = stockData[0]?.highPrice || 0;
+    const low = stockData[0]?.lowPrice || 0;
+    const open = stockData[0]?.openingPrice || 0;
+    const rate = stockData[0]?.fluctuatingRate || 0;
+    const volume = stockData[0]?.tradingVolume || 0;
     return (
         <div className={styles.stockinfo}>
             <div className={styles.title}>{id}</div> {/* id 값 출력 */}

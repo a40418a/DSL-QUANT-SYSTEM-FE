@@ -21,8 +21,11 @@
 }
 
 .table th {
-    width: 15%;
-    height:;
+    width: 13%;
+}
+
+.table td {
+    width: 20%;
 }
 
 .table th,

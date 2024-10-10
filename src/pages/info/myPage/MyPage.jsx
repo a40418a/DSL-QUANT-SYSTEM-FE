@@ -177,7 +177,7 @@ export const MyPage = () => {
 
     const rows = backHistory.map((record, index) => ({
         id: index,
-        date: record.date,
+        date: new Date(record.backtesting_date).toLocaleDateString(), // backtesting_date를 Date 객체로 변환 후 로컬 날짜 형식으로 변환
         finalCash: record.finalCash.toFixed(2),
         finalAsset: record.finalAsset.toFixed(2),
         finalBalance: record.finalBalance.toFixed(2),
@@ -190,21 +190,21 @@ export const MyPage = () => {
         { field: "date", headerName: "날짜", flex: 1, headerAlign: "center", type: "date" },
         {
             field: "finalCash",
-            headerName: "최종 현금",
+            headerName: "Final Cash",
             flex: 1,
             headerAlign: "center",
             type: "number",
         },
         {
             field: "finalAsset",
-            headerName: "최종 자산",
+            headerName: "Final Asset",
             flex: 1,
             headerAlign: "center",
             type: "number",
         },
         {
             field: "finalBalance",
-            headerName: "최종 잔액",
+            headerName: "Final Balance",
             flex: 1,
             headerAlign: "center",
             type: "number",
@@ -212,7 +212,7 @@ export const MyPage = () => {
         { field: "profit", headerName: "수익", flex: 1, headerAlign: "center", type: "number" },
         {
             field: "profitRate",
-            headerName: "수익률(%)",
+            headerName: "Profit Rate(%)",
             flex: 1,
             headerAlign: "center",
             type: "number",
@@ -228,7 +228,7 @@ export const MyPage = () => {
         },
         {
             field: "numberOfTrades",
-            headerName: "거래 횟수",
+            headerName: "Number of Trades",
             flex: 1,
             headerAlign: "center",
             type: "number",

@@ -42,20 +42,22 @@ export const StockInfo = () => {
             <div className={styles.title}>{id}</div> {/* id 값 출력 */}
             <table className={styles.table}>
                 <tr>
-                    <th>종가</th>
-                    <td>{close}</td>
-                    <th>고가</th>
-                    <td>{high}</td>
-                    <th>저가</th>
-                    <td>{low}</td>
+                    <th>Closing Price</th>
+                    <td>{close.toLocaleString()}</td>
+                    <th>Highest Price</th>
+                    <td>{high.toLocaleString()}</td>
+                    <th>Lowest Price</th>
+                    <td>{low.toLocaleString()}</td>
                 </tr>
                 <tr>
-                    <th>시가</th>
-                    <td>{open}</td>
-                    <th>전일대비변동</th>
-                    <td>{rate}</td>
-                    <th>상장주식수</th>
-                    <td>{volume}</td>
+                    <th>Opening Price</th>
+                    <td>{open.toLocaleString()}</td>
+                    <th>Rate</th>
+                    <td style={{ color: rate < 0 ? "var(--down-color)" : "var(--up-color)" }}>
+                        {rate}
+                    </td>
+                    <th>Volume</th>
+                    <td>{volume.toLocaleString()}</td>
                 </tr>
             </table>
             <div className={styles.candle}>

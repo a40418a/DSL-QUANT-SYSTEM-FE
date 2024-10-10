@@ -68,7 +68,7 @@ export const StockList = () => {
     const columns = [
         {
             field: "market",
-            headerName: "종목명",
+            headerName: "Market Name",
             flex: 2,
             headerAlign: "center",
             renderCell: (params) => (
@@ -79,7 +79,7 @@ export const StockList = () => {
         },
         {
             field: "closingPrice",
-            headerName: "현재가",
+            headerName: "Closing Price (원)",
             flex: 1,
             type: "number",
             headerAlign: "center",
@@ -91,7 +91,7 @@ export const StockList = () => {
         },
         {
             field: "fluctuatingRate",
-            headerName: "등락률 (%)",
+            headerName: "Fluctuating Rate (%)",
             flex: 1,
             type: "number",
             headerAlign: "center",
@@ -107,7 +107,7 @@ export const StockList = () => {
         },
         {
             field: "tradingVolume",
-            headerName: "거래량",
+            headerName: "Trading Volume",
             flex: 1,
             type: "number",
             headerAlign: "center",

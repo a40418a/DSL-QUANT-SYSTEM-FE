@@ -177,7 +177,7 @@ export const MyPage = () => {
 
     const rows = backHistory.map((record, index) => ({
         id: index,
-        date: record.backtesting_date,
+        backtesting_date: record.backtesting_date,
         finalCash: record.finalCash.toFixed(2),
         finalAsset: record.finalAsset.toFixed(2),
         finalBalance: record.finalBalance.toFixed(2),
@@ -187,32 +187,38 @@ export const MyPage = () => {
     }));
 
     const columns = [
-        { field: "date", headerName: "날짜", flex: 1, headerAlign: "center", type: "date" },
+        {
+            field: "backtesting_date",
+            headerName: "Date",
+            flex: 1,
+            headerAlign: "center",
+            type: "date",
+        },
         {
             field: "finalCash",
-            headerName: "최종 현금",
+            headerName: "Final Cash(만원)",
             flex: 1,
             headerAlign: "center",
             type: "number",
         },
         {
             field: "finalAsset",
-            headerName: "최종 자산",
+            headerName: "Final Asset(만원)",
             flex: 1,
             headerAlign: "center",
             type: "number",
         },
         {
             field: "finalBalance",
-            headerName: "최종 잔액",
+            headerName: "Final Balance(만원)",
             flex: 1,
             headerAlign: "center",
             type: "number",
         },
-        { field: "profit", headerName: "수익", flex: 1, headerAlign: "center", type: "number" },
+        { field: "profit", headerName: "Profit", flex: 1, headerAlign: "center", type: "number" },
         {
             field: "profitRate",
-            headerName: "수익률(%)",
+            headerName: "Profit RateReview(%)",
             flex: 1,
             headerAlign: "center",
             type: "number",
@@ -228,7 +234,7 @@ export const MyPage = () => {
         },
         {
             field: "numberOfTrades",
-            headerName: "거래 횟수",
+            headerName: "Number of Trades",
             flex: 1,
             headerAlign: "center",
             type: "number",

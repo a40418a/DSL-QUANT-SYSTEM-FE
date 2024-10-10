@@ -49,32 +49,6 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                     reset: true,
                     customIcons: [
                         {
-                            icon: '<div class="icon">1Y</div>', // 사용자 정의 아이콘 (1년)
-                            index: 1,
-                            title: "1 Year",
-                            click: function (chart) {
-                                chart.zoomX(
-                                    new Date(
-                                        new Date().setFullYear(new Date().getFullYear() - 1),
-                                    ).getTime(),
-                                    new Date().getTime(),
-                                );
-                            },
-                        },
-                        {
-                            icon: '<div class="icon">6M</div>', // 사용자 정의 아이콘 (6개월)
-                            index: 2,
-                            title: "6 Month",
-                            click: function (chart) {
-                                chart.zoomX(
-                                    new Date(
-                                        new Date().setMonth(new Date().getMonth() - 6),
-                                    ).getTime(),
-                                    new Date().getTime(),
-                                );
-                            },
-                        },
-                        {
                             icon: '<div class="icon">3M</div>', // 사용자 정의 아이콘 (3개월)
                             index: 3,
                             title: "3 Month",
@@ -155,11 +129,11 @@ export const LineChart = ({ title, dataKey, chartData }) => {
 
                 return `<div class="tooltip">
                           <div><strong>Date:</strong> ${date}</div>
-                          <div><strong>Open:</strong> ${data.open}</div>
-                          <div><strong>Close:</strong> ${data.close}</div>
-                          <div><strong>Highest:</strong> ${data.high}</div>
-                          <div><strong>Lowest:</strong> ${data.low}</div>
-                          <div><strong>Volume:</strong> ${data.volume}</div>
+                          <div><strong>Open:</strong> ${data.open.toLocaleString()}</div>
+                          <div><strong>Close:</strong> ${data.close.toLocaleString()}</div>
+                          <div><strong>Highest:</strong> ${data.high.toLocaleString()}</div>
+                          <div><strong>Lowest:</strong> ${data.low.toLocaleString()}</div>
+                          <div><strong>Volume:</strong> ${data.volume.toLocaleString()}</div>
                         </div>`;
             },
         },

@@ -30,10 +30,10 @@ export const HorizonTableTop20 = ({ title }) => {
                 <table className={styles.table}>
                     <thead>
                         <tr>
-                            <th>순위</th>
-                            <th>종목명</th>
-                            <th>현재가</th>
-                            <th>등락률</th>
+                            <th>Ranking</th>
+                            <th>Market Name</th>
+                            <th>Closing Price</th>
+                            <th>Rate</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,7 +54,9 @@ export const HorizonTableTop20 = ({ title }) => {
                     </tbody>
                 </table>
             ) : (
-                <div>데이터가 없습니다.</div>
+                <div>
+                    <Loading />
+                </div>
             )}
         </div>
     );

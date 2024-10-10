@@ -256,6 +256,7 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
         },
         xaxis: {
             type: "numeric",
+            show: false,
         },
         yaxis: {
             show: false,

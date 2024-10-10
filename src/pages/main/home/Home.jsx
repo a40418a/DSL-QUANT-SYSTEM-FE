@@ -71,7 +71,7 @@ export const Home = () => {
                                     rate={backtestData[0].profitRate.toFixed(2)}
                                     chart={
                                         <LineChartBacktest
-                                            dataKey="profitRate"
+                                            dataKey="profit"
                                             chartData={backtestData.map((item) => ({
                                                 finalAsset: item.finalAsset,
                                                 profit: item.profit,

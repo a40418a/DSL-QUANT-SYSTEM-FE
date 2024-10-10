@@ -77,8 +77,13 @@ export const Home = () => {
                                         <LineChartBacktest
                                             dataKey="profitRate"
                                             chartData={backtestData.map((item) => ({
+                                                initial_investment: item.initial_investment,
+                                                tick_kind: item.tick_kind,
+                                                inq_range: item.inq_range,
                                                 id: item.id,
+                                                finalCash: item.finalCash,
                                                 finalAsset: item.finalAsset,
+                                                finalBalance: item.finalBalance,
                                                 profit: item.profit,
                                                 numberOfTrades: item.numberOfTrades,
                                                 backtesting_date: item.backtesting_date || "",

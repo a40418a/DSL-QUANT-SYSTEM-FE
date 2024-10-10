@@ -253,7 +253,15 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
                 return `<div class="tooltip">
                           <div><strong>Time:</strong> ${date}</div>
                           <div><strong>Final Asset:</strong> ${data.finalAsset.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
-                          <div><strong>Profit:</strong> ${data.profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>                          <div><strong>Number of Trades:</strong> ${data.numberOfTrades.toLocaleString()}</div>
+                          <div><strong>Profit:</strong> ${data.profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>        
+                          <div><strong>Number of Trades:</strong> ${data.numberOfTrades.toLocaleString()}</div>
+                          <div><strong>Profit Rate:</strong> ${data.profitRate.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%</div>
+                          <div><strong>initial_investment:</strong> ${data.initial_investment.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                          <div><strong>tick_kind:</strong> ${data.tick_kind}</div>
+                          <div><strong>inq_range:</strong> ${data.inq_range}</div>
+                          <div><strong>finalCash:</strong> ${data.finalCash.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                          <div><strong>finalBalance:</strong> ${data.finalBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+
                         </div>`;
             },
         },

@@ -1,11 +1,11 @@
 .icon {
-    font-size: 14px;
+    font-size: var(--content-size);
     color: var(--main-color);
 }
 
 .tooltip {
     padding: var(--padding);
-    width: 120px;
+    width: 7.5rem;
 }
 
 .tooltip strong {

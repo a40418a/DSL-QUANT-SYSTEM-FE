@@ -9,7 +9,7 @@
 .title div {
     font-family: var(--font-1);
     text-align: center;
-    font-size: 64px;
+    font-size: 4rem;
     color: var(--main-color);
 }
 
@@ -23,7 +23,7 @@
 
 .content div {
     font-size: var(--subtitle-size);
-    margin-bottom: 12px; /*margin/2*/
+    margin-bottom: 0.75rem; /*margin/2*/
 }
 
 .btn {
@@ -32,13 +32,13 @@
 }
 
 /* 반응형 */
-@media (max-width: 1068px) {
+@media (max-width: 1023px) {
     .explain {
         width: 80%;
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .explain {
         width: 96%;
     }

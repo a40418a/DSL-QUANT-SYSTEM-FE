@@ -34,12 +34,12 @@
 }
 
 .sub {
-    font-size: 10px;
+    font-size: 0.625;
     color: var(--color-3);
 }
 
 /* 반응형 */
-@media (max-width: 1068px) {
+@media (max-width: 1023px) {
     .wrapper {
         width: 64vw;
     }

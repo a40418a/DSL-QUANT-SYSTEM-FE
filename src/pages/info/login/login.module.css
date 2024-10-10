@@ -8,20 +8,20 @@
 
 .box {
     box-sizing: border-box;
-    width: 520px;
-    height: 360px;
+    width: 32.5rem;
+    height: 22.5rem;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     display: flex;
     flex-direction: column;
     justify-content: top;
     align-items: center;
-    padding: 40px 24px 0 24px;
+    padding: 2.5rem 1.5rem 0 1.5rem;
 }
 
 .title {
     font-size: var(--title-size);
-    margin-bottom: 120px;
+    margin-bottom: 7.5rem;
     color: var(--main-color);
     font-family: var(--font-1);
 }

@@ -18,14 +18,14 @@
     font-size: var(--title-size);
     font-family: var(--font-1);
     color: var(--main-color);
-    margin: 48px 0 12px 0;
+    margin: 3rem 0 0.75rem 0;
 }
 
 .subtitle {
     display: flex;
     align-items: center;
-    margin-top: 48px; /*margin*2*/
-    margin-bottom: 12px; /*margin/2*/
+    margin-top: 3rem; /*margin*2*/
+    margin-bottom: 0.75rem; /*margin/2*/
     font-family: var(--font-3);
     /* text-decoration: underline; */
     font-size: var(--subtitle-size);
@@ -38,7 +38,7 @@
 .btnWrapper {
     display: flex;
     justify-content: space-around;
-    margin: 160px 0;
+    margin: 10rem 0;
 }
 
 .input {
@@ -67,7 +67,7 @@
     color: var(--color-3);
 }
 span {
-    width: 32px;
+    width: 2rem;
     margin-left: var(--margin);
 }
 
@@ -76,7 +76,7 @@ span {
 }
 
 /* 반응형 */
-@media (max-width: 1068px) {
+@media (max-width: 1023px) {
     .strategy {
         width: 80%;
     }
@@ -86,7 +86,7 @@ span {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .strategy {
         width: 96%;
     }

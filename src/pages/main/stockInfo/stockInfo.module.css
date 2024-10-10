@@ -17,7 +17,7 @@
 }
 
 .table {
-    margin: 48px 0; /*margin*2*/
+    margin: 3rem 0; /*margin*2*/
 }
 
 .table th {
@@ -32,13 +32,13 @@
 
 .line,
 .candle {
-    width: 640px;
-    height: 400px;
-    margin: 48px 0; /*margin*2*/
+    width: 40rem;
+    height: 25rem;
+    margin: 3rem 0; /*margin*2*/
 }
 
 /* 반응형 */
-@media (max-width: 1068px) {
+@media (max-width: 1023px) {
     .stockinfo {
         width: 80%;
     }
@@ -48,7 +48,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .stockinfo {
         width: 96%;
     }

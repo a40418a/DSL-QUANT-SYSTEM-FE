@@ -17,7 +17,7 @@
 }
 
 .table {
-    margin: 48px 0; /*margin*2*/
+    margin: 3rem 0; /*margin*2*/
 }
 
 .table th {
@@ -27,14 +27,14 @@
 
 .table th,
 .table td {
-    padding: 8px 0; /*padding/3*/
+    padding: 0.5rem 0; /*padding/3*/
 }
 
 .line,
 .candle {
-    width: 640px;
-    height: 400px;
-    margin: 48px 0; /*margin*2*/
+    width: 40rem;
+    height: 25rem;
+    margin: 3rem 0; /*margin*2*/
 }
 
 /* 반응형 */

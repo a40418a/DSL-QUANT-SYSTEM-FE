@@ -9,7 +9,7 @@
 .title div {
     font-family: var(--font-1);
     text-align: center;
-    font-size: 64px;
+    font-size: 4rem;
     color: var(--main-color);
 }
 
@@ -23,7 +23,7 @@
 
 .content div {
     font-size: var(--subtitle-size);
-    margin-bottom: 12px; /*margin/2*/
+    margin-bottom: 0.75rem; /*margin/2*/
 }
 
 .btn {

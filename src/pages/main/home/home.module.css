@@ -11,7 +11,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 48px; /*margin*2*/
+    margin-top: 3rem; /*margin*2*/
 }
 
 .backTest {
@@ -28,8 +28,8 @@
 
 .backChart {
     width: 100%;
-    height: 400px;
-    margin-bottom: 24px;
+    height: 25eem;
+    margin-bottom: 1.5rem;
 }
 
 .table {
@@ -38,12 +38,12 @@
 }
 
 .table th {
-    padding: 8px;
+    padding: 0.5rem;
 }
 
 .table td {
     text-overflow: ellipsis;
-    padding: 8px;
+    padding: 0.5rem;
 }
 
 /* 반응형 */
@@ -55,15 +55,15 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: -220px;
+        margin-top: -13.75rem;
     }
     .backTest {
         width: 80%;
-        margin-top: 280px;
+        margin-top: 17.5rem;
     }
     .table {
         width: 80%;
-        margin-top: 48px; /*margin*2*/
+        margin-top: 3rem; /*margin*2*/
     }
 }
 
@@ -71,8 +71,8 @@
     .table {
         overflow-x: auto;
     }
-    .table td,
+    /* .table td,
     .table th {
-        font-size: 12px;
-    }
+        font-size: 0.75rem;
+    } */
 }

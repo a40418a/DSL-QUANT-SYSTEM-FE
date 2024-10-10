@@ -20,7 +20,7 @@
 
 .sub {
     font-size: var(--subtitle-size);
-    margin-left: 8px; /*padding/3*/
+    margin-left: 0.5rem; /*padding/3*/
     font-family: var(--font-3);
 }
 
@@ -38,7 +38,7 @@
 }
 
 .infoTitle {
-    margin-bottom: 8px; /*margin/3*/
+    margin-bottom: 0.5rem; /*margin/3*/
     display: flex;
     align-items: end;
     font-size: var(--subtitle-size);
@@ -49,7 +49,7 @@
     font-family: var(--font-1);
     color: var(--main-color);
     font-size: var(--title-size);
-    margin: 0 8px; /*margin/3*/
+    margin: 0 0.5rem; /*margin/3*/
 }
 
 .table {
@@ -60,7 +60,7 @@
 }
 
 .table th {
-    width: 240px;
+    width: 15rem;
 }
 
 .table td {
@@ -73,8 +73,8 @@
     justify-content: center;
     align-items: center;
     margin-top: var(--subtitle-size);
-    padding: 8px; /*padding/3*/
-    border: solid 2px var(--point-color);
+    padding: 0.5rem; /*padding/3*/
+    border: solid 0.125rem var(--point-color);
     border-radius: var(--border-radius);
     color: var(--color-3);
     font-family: var(--font-1);
@@ -82,5 +82,5 @@
 
 .download:hover {
     cursor: pointer;
-    box-shadow: 0px 0px 8px -1px var(--point-color);
+    box-shadow: 0 0 0.5rem -0.06rem var(--point-color) var(--point-color);
 }

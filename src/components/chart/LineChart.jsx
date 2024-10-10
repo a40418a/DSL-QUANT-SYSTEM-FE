@@ -207,57 +207,16 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
                 type: "x", // 확대/축소 유형: x와 y축 모두
                 autoScaleYaxis: true, // 확대 시 y축 자동 스케일링
             },
-            toolbar: {
-                tools: {
-                    selection: true,
-                    zoom: true,
-                    zoomin: false,
-                    zoomout: false,
-                    pan: true,
-                    reset: true,
-                    customIcons: [
-                        {
-                            icon: '<div class="icon">3M</div>', // 사용자 정의 아이콘 (3개월)
-                            index: 1,
-                            title: "3 Month",
-                            click: function (chart) {
-                                chart.zoomX(
-                                    new Date(
-                                        new Date().setMonth(new Date().getMonth() - 3),
-                                    ).getTime(),
-                                    new Date().getTime(),
-                                );
-                            },
-                        },
-                        {
-                            icon: '<div class="icon">1M</div>', // 사용자 정의 아이콘 (1개월)
-                            index: 2,
-                            title: "1 Month",
-                            click: function (chart) {
-                                chart.zoomX(
-                                    new Date(
-                                        new Date().setMonth(new Date().getMonth() - 1),
-                                    ).getTime(),
-                                    new Date().getTime(),
-                                );
-                            },
-                        },
-                        {
-                            icon: '<div class="icon">1W</div>', // 사용자 정의 아이콘 (1주일)
-                            index: 3,
-                            title: "1 Week",
-                            click: function (chart) {
-                                chart.zoomX(
-                                    new Date(
-                                        new Date().setDate(new Date().getDate() - 7),
-                                    ).getTime(),
-                                    new Date().getTime(),
-                                );
-                            },
-                        },
-                    ],
-                },
-            },
+            // toolbar: {
+            //     tools: {
+            //         selection: false,
+            //         zoom: false,
+            //         zoomin: false,
+            //         zoomout: false,
+            //         pan: false,
+            //         reset: false,
+            //     },
+            // },
         },
         xaxis: {
             type: "numeric",

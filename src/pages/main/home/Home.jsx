@@ -4,7 +4,7 @@ import styles from "./home.module.css";
 import { HorizonTableTop20 } from "../../../components/table/horizonTable/HorizonTable";
 import { ArrowDown, ArrowUp } from "../../../components/emoticon/Arrow";
 import { ChartBox } from "../../../components/box/chartBox/ChartBox";
-import { LineChart } from "../../../components/chart/LineChart";
+import { LineChart, LineChartBacktest } from "../../../components/chart/LineChart";
 import { SelectBox } from "../../../components/box/selectBox/SelectBox";
 import { getLastBack } from "../../../utils/lastBackApi";
 import { Loading } from "../../../components/loading/Loading";
@@ -70,15 +70,12 @@ export const Home = () => {
                                     }
                                     rate={backtestData[0].profitRate.toFixed(2)}
                                     chart={
-                                        <LineChart
+                                        <LineChartBacktest
                                             dataKey="profitRate"
                                             chartData={backtestData.map((item) => ({
-                                                // open: item.openingPrice,
-                                                // close: item.closingPrice,
-                                                // high: item.highPrice,
-                                                // low: item.lowPrice,
-                                                volume: item.numberOfTrades,
-                                                rate: item.profitRate,
+                                                finalAsset: item.finalAsset,
+                                                profit: item.profit,
+                                                numberOfTrades: item.numberOfTrades,
                                                 date: item.backtesting_date || "",
                                             }))}
                                         />

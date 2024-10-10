@@ -50,7 +50,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                     customIcons: [
                         {
                             icon: '<div class="icon">3M</div>', // 사용자 정의 아이콘 (3개월)
-                            index: 3,
+                            index: 1,
                             title: "3 Month",
                             click: function (chart) {
                                 chart.zoomX(
@@ -63,7 +63,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                         },
                         {
                             icon: '<div class="icon">1M</div>', // 사용자 정의 아이콘 (1개월)
-                            index: 4,
+                            index: 2,
                             title: "1 Month",
                             click: function (chart) {
                                 chart.zoomX(
@@ -76,7 +76,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                         },
                         {
                             icon: '<div class="icon">1W</div>', // 사용자 정의 아이콘 (1주일)
-                            index: 5,
+                            index: 3,
                             title: "1 Week",
                             click: function (chart) {
                                 chart.zoomX(
@@ -148,6 +148,137 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                     strokeDashArray: "var(--stroke-dash-array)",
                 },
             ],
+        },
+        stroke: {
+            curve: "straight",
+            width: 2,
+        },
+        fill: {
+            type: "gradient",
+            gradient: {
+                shadeIntensity: 1,
+                opacityFrom: 0.4,
+                opacityTo: 0,
+                stops: [0, 90, 100],
+            },
+        },
+        markers: {
+            size: 0,
+        },
+        colors: [
+            chartData[1][dataKey] < chartData[0][dataKey] ? "var(--up-color)" : "var(--down-color)",
+        ],
+    };
+
+    return (
+        <div className={styles.chart}>
+            <Chart options={options} series={[{ name: dataKey, data }]} type="area" height="100%" />
+        </div>
+    );
+};
+
+export const LineChartBacktest = ({ dataKey, chartData }) => {
+    // chartData가 비어있거나 undefined일 때 처리
+    if (!Array.isArray(chartData) || chartData.length === 0) {
+        return <Loading />;
+    }
+
+    // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
+    const data = chartData.map((entry) => ({
+        x: entry.id,
+        y: entry[dataKey], // 캔들차트 데이터 형식
+        meta: { ...entry }, // 메타데이터 추가
+    }));
+
+    const options = {
+        chart: {
+            type: "area",
+            height: "100%",
+            animations: {
+                enabled: false,
+            },
+            zoom: {
+                enabled: true, // 확대/축소 기능 활성화
+                type: "x", // 확대/축소 유형: x와 y축 모두
+                autoScaleYaxis: true, // 확대 시 y축 자동 스케일링
+            },
+            toolbar: {
+                tools: {
+                    selection: true,
+                    zoom: true,
+                    zoomin: false,
+                    zoomout: false,
+                    pan: true,
+                    reset: true,
+                    customIcons: [
+                        {
+                            icon: '<div class="icon">3M</div>', // 사용자 정의 아이콘 (3개월)
+                            index: 1,
+                            title: "3 Month",
+                            click: function (chart) {
+                                chart.zoomX(
+                                    new Date(
+                                        new Date().setMonth(new Date().getMonth() - 3),
+                                    ).getTime(),
+                                    new Date().getTime(),
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="icon">1M</div>', // 사용자 정의 아이콘 (1개월)
+                            index: 2,
+                            title: "1 Month",
+                            click: function (chart) {
+                                chart.zoomX(
+                                    new Date(
+                                        new Date().setMonth(new Date().getMonth() - 1),
+                                    ).getTime(),
+                                    new Date().getTime(),
+                                );
+                            },
+                        },
+                        {
+                            icon: '<div class="icon">1W</div>', // 사용자 정의 아이콘 (1주일)
+                            index: 3,
+                            title: "1 Week",
+                            click: function (chart) {
+                                chart.zoomX(
+                                    new Date(
+                                        new Date().setDate(new Date().getDate() - 7),
+                                    ).getTime(),
+                                    new Date().getTime(),
+                                );
+                            },
+                        },
+                    ],
+                },
+            },
+        },
+        xaxis: {
+            type: "numeric",
+        },
+        yaxis: {
+            show: false,
+        },
+        tooltip: {
+            x: {
+                format: "yy/MM",
+                show: false,
+            },
+            custom: function ({ seriesIndex, dataPointIndex, w }) {
+                const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex].meta;
+                const date = data.date ? new Date(data.date).toLocaleDateString() : "N/A";
+
+                return `<div class="tooltip">
+                          <div><strong>Date:</strong> ${backtesting_date}</div>
+                          <div><strong>Final Asset:</strong> ${data.finalAsset.toLocaleString()}</div>
+                          <div><strong>Profit:</strong> ${data.profit.toLocaleString()}</div>
+                          <div><strong>Number of Trades:</strong> ${data.numberOfTrades.toLocaleString()}</div>
+                        </div>`;
+            },
+        },
+        dataLabels: {
+            enabled: false,
         },
         stroke: {
             curve: "straight",

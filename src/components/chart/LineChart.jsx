@@ -207,16 +207,17 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
                 type: "x", // 확대/축소 유형: x와 y축 모두
                 autoScaleYaxis: true, // 확대 시 y축 자동 스케일링
             },
-            // toolbar: {
-            //     tools: {
-            //         selection: false,
-            //         zoom: false,
-            //         zoomin: false,
-            //         zoomout: false,
-            //         pan: false,
-            //         reset: false,
-            //     },
-            // },
+            toolbar: {
+                show: false,
+                // tools: {
+                //     selection: false,
+                //     zoom: false,
+                //     zoomin: false,
+                //     zoomout: false,
+                //     pan: false,
+                //     reset: false,
+                // },
+            },
         },
         xaxis: {
             type: "numeric",
@@ -255,8 +256,8 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
                 return `<div class="tooltip">
                           <div><strong>Date:</strong> ${date}</div>
                           <div><strong>Final Asset:</strong> ${data.finalAsset.toLocaleString()}</div>
-                          <div><strong>Profit:</strong> ${data.profit.toLocaleString().toFixed(2)}</div>
-                            <div><strong>Profit Rate:</strong> ${data.profitRate.toFixed(2)}%</div>
+                          <div><strong>Profit:</strong> ${data.profit.toLocaleString()}</div>
+                            <div><strong>Profit Rate:</strong> ${data.profitRate}%</div>
                           <div><strong>Number of Trades:</strong> ${data.numberOfTrades.toLocaleString()}</div>
                         </div>`;
             },

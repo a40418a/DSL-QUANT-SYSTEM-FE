@@ -255,7 +255,8 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
                 return `<div class="tooltip">
                           <div><strong>Date:</strong> ${date}</div>
                           <div><strong>Final Asset:</strong> ${data.finalAsset.toLocaleString()}</div>
-                          <div><strong>Profit:</strong> ${data.profit.toLocaleString()}</div>
+                          <div><strong>Profit:</strong> ${data.profit.toLocaleString().toFixed(2)}</div>
+                            <div><strong>Profit Rate:</strong> ${data.profitRate.toFixed(2)}%</div>
                           <div><strong>Number of Trades:</strong> ${data.numberOfTrades.toLocaleString()}</div>
                         </div>`;
             },

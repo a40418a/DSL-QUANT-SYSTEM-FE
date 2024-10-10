@@ -1,5 +1,6 @@
-// 공통전략설정 및 전략 선택 페이지
-import React, { useContext, useState, useEffect } from "react";
+//공통전략설정 및 전략 선택 페이지
+
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./strategy.module.css";
 import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
 import { InputBox } from "../../../components/box/inputBox/InputBox";
@@ -8,7 +9,7 @@ import { StrategyCommonDTO } from "../../../types/StrategyDTO";
 import { StrategyContext } from "../../../context/StrategyContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getStockListClosing } from "../../../api/stocklistApi";
+import { getStockListClosing } from "../../../utils/stocklistApi";
 
 export const StrategyMain = () => {
     const SURL = import.meta.env.VITE_APP_URI;
@@ -22,31 +23,21 @@ export const StrategyMain = () => {
         inq_range: 0,
         strategy: "",
     });
-
-    // 시장 이름 옵션을 저장할 상태 변수
-    const [marketOptions, setMarketOptions] = useState([]);
-
-    // 컴포넌트가 마운트될 때 종목 이름을 가져오는 함수
+    const [stockName, setStockName] = useState([]);
     useEffect(() => {
-        const fetchMarkets = async () => {
+        const fetchStockName = async () => {
             try {
-                const stockList = await getStockListClosing();
-                console.log("Fetched Stock List:", stockList); // API로부터 가져온 데이터 출력
-
-                // 주식 목록에서 market 필드를 사용하여 옵션 생성
-                const options = stockList.map((stock) => ({
+                const stockData = await getStockListClosing();
+                const options = stockData.map((stock) => ({
                     label: stock.market,
                     value: stock.market,
                 }));
-
-                console.log("Options Created:", options); // 생성된 옵션 확인
-                setMarketOptions(options);
+                setStockName(options);
             } catch (error) {
-                console.error("Error fetching stock list:", error);
-                alert("주식 목록을 가져오는 중 오류가 발생했습니다. 다시 시도해 주세요.");
+                console.error("StockName fetchData error: ", error);
             }
         };
-        fetchMarkets();
+        fetchStockName();
     }, []);
 
     const options_tax = [
@@ -61,7 +52,6 @@ export const StrategyMain = () => {
         { label: "0.09%", value: "0.09" },
         { label: "0.1%", value: "0.1" },
     ];
-
     const options_candle = [
         { label: "1분", value: "1" },
         { label: "3분", value: "3" },
@@ -75,7 +65,6 @@ export const StrategyMain = () => {
         { label: "1주", value: "W" },
         { label: "1개월", value: "M" },
     ];
-
     const options_strategy = [
         { label: "골든/데드", value: "strategy/golden" },
         { label: "볼린저밴드", value: "strategy/bollinger" },
@@ -90,12 +79,6 @@ export const StrategyMain = () => {
         setFormData((prevData) => {
             const newFormData = { ...prevData, [name]: value };
 
-            // 종목 이름(TargetItem) 변경 시 콘솔에 출력
-            if (name === "target_item") {
-                console.log("Selected Target Item:", value);
-            }
-
-            // 초기 투자 금액 및 조회 범위 유효성 검사
             if (name === "initial_investment" && parseFloat(value) < 0) {
                 alert("초기 투자 금액은 0보다 작을 수 없습니다.");
                 return prevData;
@@ -113,7 +96,16 @@ export const StrategyMain = () => {
     const handleSubmit = async () => {
         // 현재 시간을 추가합니다.
         const currentTime = new Date();
-        const formattedDate = `${currentTime.toISOString().slice(0, 19).replace("T", " ")}`;
+
+        // ISO 형식: "YYYY-MM-DD HH:MM:SS"
+        const year = currentTime.getFullYear();
+        const month = String(currentTime.getMonth() + 1).padStart(2, "0");
+        const day = String(currentTime.getDate()).padStart(2, "0");
+        const hours = String(currentTime.getHours()).padStart(2, "0");
+        const minutes = String(currentTime.getMinutes()).padStart(2, "0");
+        const seconds = String(currentTime.getSeconds()).padStart(2, "0");
+
+        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 
         // formData에 포맷된 시간을 추가하여 새로운 객체로 만듭니다.
         const formDataWithTime = {
@@ -163,7 +155,16 @@ export const StrategyMain = () => {
         ) {
             navigate(`/${selectedStrategy}`);
         } else {
-            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
+            if (
+                !selectedStrategy ||
+                !formData.initial_investment ||
+                !formData.tax ||
+                !formData.target_item ||
+                !formData.tick_kind ||
+                !formData.inq_range
+            ) {
+                alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
+            }
         }
     };
 
@@ -202,7 +203,7 @@ export const StrategyMain = () => {
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="종목 이름을 선택하세요."
-                        options={marketOptions}
+                        options={stockName}
                         name="target_item"
                         value={formData.target_item}
                         onChange={handleChange}
@@ -231,14 +232,13 @@ export const StrategyMain = () => {
                         value={formData.inq_range}
                         onChange={handleChange}
                     />
-                    <span>개</span>
                 </div>
             </div>
+            <div className={styles.titleSecond}>전략 선택</div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>전략 선택</div>
                 <div className={styles.input}>
                     <SelectBox
-                        placeholder="전략을 선택해주세요."
+                        placeholder="전략을 선택하세요."
                         options={options_strategy}
                         name="strategy"
                         value={formData.strategy}
@@ -246,8 +246,8 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            <div className={styles.button}>
-                <ColorBtn onClick={handleSubmit} name="전략선택" />
+            <div className={styles.btnWrapper}>
+                <ColorBtn className={styles.btnNext} text="세부 전략 선택" onClick={handleSubmit} />
             </div>
         </div>
     );

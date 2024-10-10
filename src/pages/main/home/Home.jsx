@@ -64,15 +64,23 @@ export const Home = () => {
                                 <ChartBox
                                     title={formData.label}
                                     currency="₩"
-                                    price={backtestData[0].finalAsset}
+                                    price={backtestData[0].finalAsset.toFixed(2)}
                                     arrow={
                                         backtestData.profitRate >= 0 ? <ArrowUp /> : <ArrowDown />
                                     }
-                                    rate={backtestData[0].profitRate}
+                                    rate="{backtestData[0].profitRate.toFixed(2)}%"
                                     chart={
                                         <LineChart
                                             dataKey="profitRate"
-                                            chartData={backtestData.map}
+                                            chartData={backtestData.map((item) => ({
+                                                // open: item.openingPrice,
+                                                // close: item.closingPrice,
+                                                // high: item.highPrice,
+                                                // low: item.lowPrice,
+                                                volume: item.numberOfTrades,
+                                                rate: item.profitRate,
+                                                date: item.backtesting_date || "",
+                                            }))}
                                         />
                                     }
                                 />

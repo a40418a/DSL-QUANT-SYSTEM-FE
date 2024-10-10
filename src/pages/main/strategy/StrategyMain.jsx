@@ -231,7 +231,7 @@ export const StrategyMain = () => {
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="종목 이름을 선택하세요."
-                        options={stockOptions} // 동적으로 생성된 종목 이름 옵션
+                        options={stockName} // 동적으로 생성된 종목 이름 옵션
                         name="target_item"
                         value={formData.target_item}
                         onChange={handleChange}

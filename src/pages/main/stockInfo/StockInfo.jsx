@@ -2,16 +2,18 @@ import React, { useEffect, useState } from "react";
 import styles from "./stockInfo.module.css";
 import { CandleChart } from "../../../components/chart/CandleChart";
 import { LineChart } from "../../../components/chart/LineChart";
-import { getKosdaq } from "../../../utils/kosdakApi";
 import { Loading } from "../../../components/loading/Loading";
+import { getMarket } from "../../../utils/marketApi";
 
 export const StockInfo = () => {
-    const [kosdaq, setKosdaq] = useState(null);
+    const [market, setMarket] = useState(null);
+
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const kosdaqData = await getKosdaq();
-                setKosdaq(kosdaqData);
+                const marketName = getMarket(window.location.pathname); // 현재 URL에서 market 추출
+                const marketData = await getStockinfo(marketName); // getStockinfo 호출
+                setMarket(marketData);
             } catch (error) {
                 console.error("StockInfo fetchData error: ", error);
             }
@@ -19,14 +21,14 @@ export const StockInfo = () => {
         fetchData();
     }, []);
 
-    const close = kosdaq ? kosdaq[0].closingPrice : "num";
-    const high = kosdaq ? kosdaq[0].highPrice : "num";
-    const low = kosdaq ? kosdaq[0].lowPrice : "num";
-    const open = kosdaq ? kosdaq[0].openingPrice : "num";
-    const rate = kosdaq ? kosdaq[0].fluctuatingRate : "num";
-    const volume = kosdaq ? kosdaq[0].tradingVolume : "num";
+    const close = market ? market[0].closingPrice : "num";
+    const high = market ? market[0].highPrice : "num";
+    const low = market ? market[0].lowPrice : "num";
+    const open = market ? market[0].openingPrice : "num";
+    const rate = market ? market[0].fluctuatingRate : "num";
+    const volume = market ? market[0].tradingVolume : "num";
 
-    if (!kosdaq) {
+    if (!market) {
         return (
             <div>
                 <Loading />
@@ -57,7 +59,7 @@ export const StockInfo = () => {
             </table>
             <div className={styles.candle}>
                 <CandleChart
-                    chartData={kosdaq.map((item) => ({
+                    chartData={market.map((item) => ({
                         open: item.openingPrice,
                         close: item.closingPrice,
                         high: item.highPrice,
@@ -71,7 +73,7 @@ export const StockInfo = () => {
             <div className={styles.line}>
                 <LineChart
                     dataKey="close"
-                    chartData={kosdaq.map((item) => ({
+                    chartData={market.map((item) => ({
                         open: item.openingPrice,
                         close: item.closingPrice,
                         high: item.highPrice,

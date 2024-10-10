@@ -114,6 +114,7 @@
 
 .errorBtn a {
     font-size: var(--subtitle-size);
+    color: var(--main-color);
     font-family: var(--font-3);
 }
 

@@ -4,7 +4,7 @@ import AddchartIcon from "@mui/icons-material/Addchart";
 
 const addChartStyle = css`
     font-size: var(--subtitle-size);
-    fill: var(--point-color-2);
+    fill: var(--main-color);
     vertical-align: middle;
 `;
 

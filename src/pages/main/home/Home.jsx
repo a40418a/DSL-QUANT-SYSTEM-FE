@@ -68,7 +68,7 @@ export const Home = () => {
                                     arrow={
                                         backtestData.profitRate >= 0 ? <ArrowUp /> : <ArrowDown />
                                     }
-                                    rate="{backtestData[0].profitRate.toFixed(2)}%"
+                                    rate={backtestData[0].profitRate.toFixed(2)}
                                     chart={
                                         <LineChart
                                             dataKey="profitRate"

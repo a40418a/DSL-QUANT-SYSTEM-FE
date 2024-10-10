@@ -177,7 +177,7 @@ export const MyPage = () => {
 
     const rows = backHistory.map((record, index) => ({
         id: index,
-        date: new Date(record.backtesting_date).toLocaleDateString(), // backtesting_date를 Date 객체로 변환 후 로컬 날짜 형식으로 변환
+        // date: new Date(record.backtesting_date).toLocaleDateString(), // backtesting_date를 Date 객체로 변환 후 로컬 날짜 형식으로 변환
         finalCash: record.finalCash.toFixed(2),
         finalAsset: record.finalAsset.toFixed(2),
         finalBalance: record.finalBalance.toFixed(2),
@@ -187,14 +187,14 @@ export const MyPage = () => {
     }));
 
     const columns = [
-        {
-            field: "date",
-            headerName: "날짜",
-            flex: 1,
-            headerAlign: "center",
-            type: "date",
-            valueGetter: (params) => new Date(params.row.backtesting_date),
-        },
+        // {
+        //     field: "date",
+        //     headerName: "날짜",
+        //     flex: 1,
+        //     headerAlign: "center",
+        //     type: "date",
+        //     valueGetter: (params) => new Date(params.row.backtesting_date),
+        // },
         {
             field: "finalCash",
             headerName: "Final Cash",

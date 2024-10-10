@@ -226,8 +226,8 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
             },
         },
         yaxis: {
-            min: minProfitRate - 5,
-            max: maxProfitRate + 5,
+            min: minProfitRate,
+            max: maxProfitRate,
             show: false,
             lines: {
                 show: true,
@@ -254,10 +254,8 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
 
                 return `<div class="tooltip">
                           <div><strong>Date:</strong> ${date}</div>
-                          <div><strong>Final Asset:</strong> ${data.finalAsset.toLocaleString()}</div>
-                          <div><strong>Profit:</strong> ${data.profit.toLocaleString()}</div>
-                            <div><strong>Profit Rate:</strong> ${data.profitRate}%</div>
-                          <div><strong>Number of Trades:</strong> ${data.numberOfTrades.toLocaleString()}</div>
+                          <div><strong>Final Asset:</strong> ${data.finalAsset.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
+                          <div><strong>Profit:</strong> ${data.profit.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>                          <div><strong>Number of Trades:</strong> ${data.numberOfTrades.toLocaleString()}</div>
                         </div>`;
             },
         },

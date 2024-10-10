@@ -47,13 +47,15 @@ export const Home = () => {
             <div className={styles.wrapper}>
                 <div className={styles.backTest}>
                     <div className={styles.title}>가장 최근에 진행한 백테스팅</div>
-                    <SelectBox
-                        placeholder="전략을 선택하세요."
-                        options={options_strategy}
-                        name="strategy"
-                        value={formData.strategy}
-                        onChange={handleChange}
-                    />
+                    <div className={styles.option}>
+                        <SelectBox
+                            placeholder="전략을 선택하세요."
+                            options={options_strategy}
+                            name="strategy"
+                            value={formData.strategy}
+                            onChange={handleChange}
+                        />
+                    </div>
                     <div className={styles.backChart}>
                         {loading ? (
                             <Loading />

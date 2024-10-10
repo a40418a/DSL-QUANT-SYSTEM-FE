@@ -267,8 +267,17 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
             custom: function ({ seriesIndex, dataPointIndex, w }) {
                 const data = w.globals.initialSeries[seriesIndex].data[dataPointIndex].meta;
                 const date = data.backtesting_date
-                    ? new Date(data.backtesting_date).toLocaleDateString()
-                    : "N/A";
+                    ? new Date(data.backtesting_date)
+                          .toLocaleString("ko-KR", {
+                              year: "numeric",
+                              month: "2-digit",
+                              day: "2-digit",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                              hour12: false,
+                          })
+                          .replace(",", "") // 콤마 제거
+                    : "-";
 
                 return `<div class="tooltip">
                           <div><strong>Date:</strong> ${date}</div>

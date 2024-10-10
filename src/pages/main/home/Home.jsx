@@ -76,7 +76,8 @@ export const Home = () => {
                                                 finalAsset: item.finalAsset,
                                                 profit: item.profit,
                                                 numberOfTrades: item.numberOfTrades,
-                                                date: item.backtesting_date || "",
+                                                backtesting_date: item.backtesting_date || "",
+                                                profitRate: item.profitRate,
                                             }))}
                                         />
                                     }

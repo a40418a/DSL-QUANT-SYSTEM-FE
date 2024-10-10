@@ -187,7 +187,14 @@ export const MyPage = () => {
     }));
 
     const columns = [
-        { field: "date", headerName: "날짜", flex: 1, headerAlign: "center", type: "date" },
+        {
+            field: "date",
+            headerName: "날짜",
+            flex: 1,
+            headerAlign: "center",
+            type: "date",
+            valueGetter: (params) => new Date(params.row.backtesting_date),
+        },
         {
             field: "finalCash",
             headerName: "Final Cash",

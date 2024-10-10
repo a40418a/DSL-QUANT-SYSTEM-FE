@@ -1,6 +1,6 @@
 //공통전략설정 및 전략 선택 페이지
 
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styles from "./strategy.module.css";
 import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
 import { InputBox } from "../../../components/box/inputBox/InputBox";
@@ -9,25 +9,40 @@ import { StrategyCommonDTO } from "../../../types/StrategyDTO";
 import { StrategyContext } from "../../../context/StrategyContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { getStockListClosing } from "../../../utils/stocklistApi";
+import { getStockListClosing } from "../../../api/stocklistApi";
 
 export const StrategyMain = () => {
     const SURL = import.meta.env.VITE_APP_URI;
     const { setStrategyCommonData } = useContext(StrategyContext);
     const navigate = useNavigate();
-
-    //컴포넌트가 로드될 때 localStroragedptj formlData를 가져옵니다.
-    const initialFormData = JSON.parse(localStorage.getItem("formData")) || {
+    const [formData, setFormData] = useState({
         initial_investment: 0,
         tax: 0.01,
         target_item: "",
         tick_kind: "",
         inq_range: 0,
         strategy: "",
-    };
+    });
 
-    const [formData, setFormData] = useState(initialFormData);
-    const [stockName, setStockName] = useState([]);
+    // 시장 이름 옵션을 저장할 상태 변수
+    const [marketOptions, setMarketOptions] = useState([]);
+
+    // 컴포넌트가 마운트될 때 종목 이름을 가져오는 함수
+    useEffect(() => {
+        const fetchMarkets = async () => {
+            try {
+                const stockList = await getStockListClosing();
+                const options = stockList.map((stock) => ({
+                    label: stock.market,
+                    value: stock.market,
+                }));
+                setMarketOptions(options);
+            } catch (error) {
+                console.error("Error fetching stock list:", error);
+            }
+        };
+        fetchMarkets();
+    }, []);
 
     const options_tax = [
         { label: "0.01%", value: "0.01" },
@@ -41,7 +56,6 @@ export const StrategyMain = () => {
         { label: "0.09%", value: "0.09" },
         { label: "0.1%", value: "0.1" },
     ];
-
     const options_candle = [
         { label: "1분", value: "1" },
         { label: "3분", value: "3" },
@@ -55,36 +69,14 @@ export const StrategyMain = () => {
         { label: "1주", value: "W" },
         { label: "1개월", value: "M" },
     ];
-
     const options_strategy = [
         { label: "골든/데드", value: "strategy/golden" },
         { label: "볼린저밴드", value: "strategy/bollinger" },
         { label: "RSI, MFI, MACD 지표 이용", value: "strategy/rsi" },
         { label: "엔벨로프", value: "strategy/env" },
         { label: "윌리엄스", value: "strategy/williams" },
+        { label: "복수선택", value: "strategy/select" },
     ];
-
-    useEffect(() => {
-        const fetchStockName = async () => {
-            try {
-                const response = await axios.get(`${SURL}/home/coinByClosingPrice`, {
-                    params: {
-                        sort: "top",
-                    },
-                });
-                // API에서 받은 종목 데이터로 옵션 배열 생성
-                const stockData = response.data.map((stock) => ({
-                    label: stock.name, // 종목 이름
-                    value: stock.symbol, // 종목의 고유값
-                }));
-                setStockName(stockData);
-            } catch (error) {
-                console.error("Failed to fetch stock list:", error);
-            }
-        };
-
-        fetchStockName();
-    }, [SURL]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -101,47 +93,33 @@ export const StrategyMain = () => {
                 return prevData;
             }
 
-            //변경된 formData를 localStorage에 저장합니다.
-            localStorage.setItem("formData", JSON.stringify(newFormData));
-
             return newFormData;
         });
     };
 
     const handleSubmit = async () => {
+        // 현재 시간을 추가합니다.
         const currentTime = new Date();
-        const year = currentTime.getFullYear();
-        const month = String(currentTime.getMonth() + 1).padStart(2, "0");
-        const day = String(currentTime.getDate()).padStart(2, "0");
-        const hours = String(currentTime.getHours()).padStart(2, "0");
-        const minutes = String(currentTime.getMinutes()).padStart(2, "0");
-        const seconds = String(currentTime.getSeconds()).padStart(2, "0");
+        const formattedDate = `${currentTime.toISOString().slice(0, 19).replace("T", " ")}`;
 
-        const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+        // formData에 포맷된 시간을 추가하여 새로운 객체로 만듭니다.
         const formDataWithTime = {
             ...formData,
-            backtesting_date: formattedDate,
+            backtesting_date: formattedDate, // ISO 형식으로 변환하여 시간을 보냅니다.
         };
         const strategyCommonDTO = new StrategyCommonDTO(formDataWithTime);
+
         setStrategyCommonData(strategyCommonDTO);
 
-        const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-
-        // 토큰이 없을 때 로그인 페이지로 리다이렉트
-        if (!token) {
-            alert("로그인 정보가 없습니다. 다시 로그인해주세요.");
-            navigate("/login");
-            return;
-        }
-
         try {
+            const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
             const response = await axios.post(`${SURL}/strategy`, strategyCommonDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
 
-            // 새로운 토큰이 있으면 업데이트
+            // 다양한 가능성으로 헤더 값 확인
             const newToken =
                 response.headers["Authorization"] ||
                 response.headers["authorization"] ||
@@ -149,25 +127,19 @@ export const StrategyMain = () => {
 
             if (newToken) {
                 localStorage.setItem("jwt", newToken); // 새로운 토큰 저장
+            } else {
+                console.warn("New token not found in the response headers");
             }
 
             console.log("Response:", response.data);
         } catch (error) {
-            console.error("전략 제출 중 오류 발생:", error);
-
-            // 401 에러가 발생하면 로그인 페이지로 리다이렉트
-            if (error.response && error.response.status === 401) {
-                alert("로그인이 필요합니다. 다시 로그인해주세요.");
-                localStorage.removeItem("jwt");
-                navigate("/login");
-            } else {
-                alert("서버 오류가 발생했습니다. 다시 시도해주세요.");
-            }
+            console.error("There was an error submitting the common strategy!", error);
         }
 
         // 선택된 전략의 value 값을 가져옵니다.
         const selectedStrategy = formData.strategy;
 
+        // 선택된 전략이 있으면 해당 주소로 이동합니다.
         if (
             selectedStrategy &&
             formData.initial_investment &&
@@ -176,24 +148,26 @@ export const StrategyMain = () => {
             formData.tick_kind &&
             formData.inq_range
         ) {
-            //제출 후 formData를 localStorage에서 삭제합니다.
-            localStorage.removeItem("formData");
             navigate(`/${selectedStrategy}`);
         } else {
-            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
+            if (
+                !selectedStrategy ||
+                !formData.initial_investment ||
+                !formData.tax ||
+                !formData.target_item ||
+                !formData.tick_kind ||
+                !formData.inq_range
+            ) {
+                alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
+            }
         }
     };
 
     return (
         <div className={styles.strategy}>
             <div className={styles.title}>공통 변수 설정</div>
-            <div className={styles.info}>
-                해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
-            </div>
             <div className={styles.select}>
-                <div className={styles.subtitle} title="주식 투자 시 처음으로 투입하는 자본">
-                    초기 투자 금액
-                </div>
+                <div className={styles.subtitle}>초기 투자 금액</div>
                 <div className={styles.input}>
                     <div className={styles.initInvestment}>
                         <InputBox
@@ -208,9 +182,7 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle} title="주식을 매매할 때 증권사에 지불하는 비용">
-                    거래 수수료
-                </div>
+                <div className={styles.subtitle}>거래 수수료</div>
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="거래 수수료를 선택해주세요."
@@ -222,16 +194,11 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div
-                    className={styles.subtitle}
-                    title="주식 시장에서 거래되는 특정 회사의 주식을 나타내는 고유한 이름"
-                >
-                    종목 이름(TargetItem)
-                </div>
+                <div className={styles.subtitle}>종목 이름(TargetItem)</div>
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="종목 이름을 선택하세요."
-                        options={stockName} // 동적으로 생성된 종목 이름 옵션
+                        options={marketOptions}
                         name="target_item"
                         value={formData.target_item}
                         onChange={handleChange}
@@ -239,9 +206,7 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle} title="대표적으로 양봉(상승)과 음봉(하락)">
-                    캔들 종류(TickKind)
-                </div>
+                <div className={styles.subtitle}>캔들 종류(TickKind)</div>
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="캔들 종류를 선택해주세요."
@@ -253,12 +218,7 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div
-                    className={styles.subtitle}
-                    title="주식 데이터를 검색하거나 분석할 때 설정하는 기간 또는 범위"
-                >
-                    조회 범위(InqRange)
-                </div>
+                <div className={styles.subtitle}>조회 범위(InqRange)</div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"
@@ -269,12 +229,12 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            <div className={styles.titleStrategy}>전략 선택</div>
+            <div className={styles.titleSecond}>전략 선택</div>
             <div className={styles.select}>
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="전략을 선택하세요."
-                        options={stockName}
+                        options={options_strategy}
                         name="strategy"
                         value={formData.strategy}
                         onChange={handleChange}

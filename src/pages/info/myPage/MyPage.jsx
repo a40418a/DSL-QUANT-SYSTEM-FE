@@ -177,7 +177,7 @@ export const MyPage = () => {
 
     const rows = backHistory.map((record, index) => ({
         id: index,
-        backtesting_date: record.backtesting_date,
+        date: record.date,
         finalCash: record.finalCash.toFixed(2),
         finalAsset: record.finalAsset.toFixed(2),
         finalBalance: record.finalBalance.toFixed(2),
@@ -187,38 +187,32 @@ export const MyPage = () => {
     }));
 
     const columns = [
-        {
-            field: "backtesting_date",
-            headerName: "Date",
-            flex: 1,
-            headerAlign: "center",
-            type: "date",
-        },
+        { field: "date", headerName: "날짜", flex: 1, headerAlign: "center", type: "date" },
         {
             field: "finalCash",
-            headerName: "Final Cash(만원)",
+            headerName: "최종 현금",
             flex: 1,
             headerAlign: "center",
             type: "number",
         },
         {
             field: "finalAsset",
-            headerName: "Final Asset(만원)",
+            headerName: "최종 자산",
             flex: 1,
             headerAlign: "center",
             type: "number",
         },
         {
             field: "finalBalance",
-            headerName: "Final Balance(만원)",
+            headerName: "최종 잔액",
             flex: 1,
             headerAlign: "center",
             type: "number",
         },
-        { field: "profit", headerName: "Profit", flex: 1, headerAlign: "center", type: "number" },
+        { field: "profit", headerName: "수익", flex: 1, headerAlign: "center", type: "number" },
         {
             field: "profitRate",
-            headerName: "Profit RateReview(%)",
+            headerName: "수익률(%)",
             flex: 1,
             headerAlign: "center",
             type: "number",
@@ -234,7 +228,7 @@ export const MyPage = () => {
         },
         {
             field: "numberOfTrades",
-            headerName: "Number of Trades",
+            headerName: "거래 횟수",
             flex: 1,
             headerAlign: "center",
             type: "number",

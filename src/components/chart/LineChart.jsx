@@ -133,7 +133,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                           <div><strong>Close:</strong> ${data.close.toLocaleString()}</div>
                           <div><strong>Highest:</strong> ${data.high.toLocaleString()}</div>
                           <div><strong>Lowest:</strong> ${data.low.toLocaleString()}</div>
-                          <div><strong>Volume:</strong> ${data.volume.toLocaleString()}</div>
+                          <div><strong>Volume:</strong> ${data.volume.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                         </div>`;
             },
         },

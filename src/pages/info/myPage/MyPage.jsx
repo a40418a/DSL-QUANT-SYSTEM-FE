@@ -177,7 +177,7 @@ export const MyPage = () => {
 
     const rows = backHistory.map((record, index) => ({
         id: index,
-        date: record.date,
+        date: record.backtesting_date,
         finalCash: record.finalCash.toFixed(2),
         finalAsset: record.finalAsset.toFixed(2),
         finalBalance: record.finalBalance.toFixed(2),

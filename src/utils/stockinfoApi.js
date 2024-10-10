@@ -7,7 +7,7 @@ const SURL = import.meta.env.VITE_APP_URI;
 
 export const getStockinfo = async (market) => {
     try {
-        const response = await axios.get(`${SURL}/home/stockinfo/${market}`);
+        const response = await axios.get(`${SURL}/home/coin/${market}`);
         return response.data;
     } catch (error) {
         console.error("getStockinfo error: ", error);

@@ -175,16 +175,24 @@ export const MyPage = () => {
         { label: "윌리엄스", value: "williams" },
     ];
 
-    const rows = backHistory.map((record, index) => ({
-        id: index,
-        date: record.backtesting_date,
-        finalCash: record.finalCash.toFixed(2),
-        finalAsset: record.finalAsset.toFixed(2),
-        finalBalance: record.finalBalance.toFixed(2),
-        profit: record.profit.toFixed(2),
-        profitRate: record.profitRate.toFixed(2),
-        numberOfTrades: record.numberOfTrades.toFixed(2),
-    }));
+    const rows = backHistory.map((record, index) => {
+        const formattedDate = new Date(record.backtesting_date).toLocaleDateString("ko-KR", {
+            year: "2-digit",
+            month: "2-digit",
+            day: "2-digit",
+        });
+
+        return {
+            id: index,
+            date: formattedDate,
+            finalCash: record.finalCash.toFixed(2),
+            finalAsset: record.finalAsset.toFixed(2),
+            finalBalance: record.finalBalance.toFixed(2),
+            profit: record.profit.toFixed(2),
+            profitRate: record.profitRate.toFixed(2),
+            numberOfTrades: record.numberOfTrades.toFixed(2),
+        };
+    });
 
     const columns = [
         {

@@ -22,12 +22,12 @@ export const StockInfo = () => {
         fetchData();
     }, [id]);
 
-    const close = stockData ? stockData[0].closingPrice : 0;
-    const high = stockData ? stockData[0].highPrice : 0;
-    const low = stockData ? stockData[0].lowPrice : 0;
-    const open = stockData ? stockData[0].openingPrice : 0;
-    const rate = stockData ? stockData[0].fluctuatingRate : 0;
-    const volume = stockData ? stockData[0].tradingVolume : 0;
+    const close = stockData[0]?.closingPrice || 0;
+    const high = stockData[0]?.highPrice || 0;
+    const low = stockData[0]?.lowPrice || 0;
+    const open = stockData[0]?.openingPrice || 0;
+    const rate = stockData[0]?.fluctuatingRate || 0;
+    const volume = stockData[0]?.tradingVolume || 0;
 
     if (!stockData) {
         return (
@@ -41,24 +41,26 @@ export const StockInfo = () => {
         <div className={styles.stockinfo}>
             <div className={styles.title}>{id}</div> {/* id 값 출력 */}
             <table className={styles.table}>
-                <tr>
-                    <th>Closing Price (원)</th>
-                    <td>{close.toLocaleString()}</td>
-                    <th>Highest Price (원)</th>
-                    <td>{high.toLocaleString()}</td>
-                    <th>Lowest Price (원)</th>
-                    <td>{low.toLocaleString()}</td>
-                </tr>
-                <tr>
-                    <th>Opening Price (원)</th>
-                    <td>{open.toLocaleString()}</td>
-                    <th>Rate (%)</th>
-                    <td style={{ color: rate < 0 ? "var(--down-color)" : "var(--up-color)" }}>
-                        {(rate * 100).toFixed(2).toLocaleString()}
-                    </td>
-                    <th>Volume</th>
-                    <td>{volume.toFixed(2).toLocaleString()}</td>
-                </tr>
+                <tbody>
+                    <tr>
+                        <th>Closing Price (원)</th>
+                        <td>{close.toLocaleString()}</td>
+                        <th>Highest Price (원)</th>
+                        <td>{high.toLocaleString()}</td>
+                        <th>Lowest Price (원)</th>
+                        <td>{low.toLocaleString()}</td>
+                    </tr>
+                    <tr>
+                        <th>Opening Price (원)</th>
+                        <td>{open.toLocaleString()}</td>
+                        <th>Rate (%)</th>
+                        <td style={{ color: rate < 0 ? "var(--down-color)" : "var(--up-color)" }}>
+                            {(rate * 100).toFixed(2).toLocaleString()}
+                        </td>
+                        <th>Volume</th>
+                        <td>{volume.toFixed(2).toLocaleString()}</td>
+                    </tr>
+                </tbody>
             </table>
             <div className={styles.candle}>
                 <CandleChart

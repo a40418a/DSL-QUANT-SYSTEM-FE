@@ -1,6 +1,6 @@
 //공통전략설정 및 전략 선택 페이지
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styles from "./strategy.module.css";
 import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
 import { InputBox } from "../../../components/box/inputBox/InputBox";
@@ -9,6 +9,7 @@ import { StrategyCommonDTO } from "../../../types/StrategyDTO";
 import { StrategyContext } from "../../../context/StrategyContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { getStockListClosing } from "../../../utils/stocklistApi";
 
 export const StrategyMain = () => {
     const SURL = import.meta.env.VITE_APP_URI;
@@ -26,6 +27,7 @@ export const StrategyMain = () => {
     };
 
     const [formData, setFormData] = useState(initialFormData);
+    const [stockName, setStockName] = useState([]);
 
     const options_tax = [
         { label: "0.01%", value: "0.01" },
@@ -61,6 +63,28 @@ export const StrategyMain = () => {
         { label: "엔벨로프", value: "strategy/env" },
         { label: "윌리엄스", value: "strategy/williams" },
     ];
+
+    useEffect(() => {
+        const fetchStockName = async () => {
+            try {
+                const response = await axios.get(`${SURL}/home/coinByClosingPrice`, {
+                    params: {
+                        sort: "top",
+                    },
+                });
+                // API에서 받은 종목 데이터로 옵션 배열 생성
+                const stockData = response.data.map((stock) => ({
+                    label: stock.name, // 종목 이름
+                    value: stock.symbol, // 종목의 고유값
+                }));
+                setStockName(stockData);
+            } catch (error) {
+                console.error("Failed to fetch stock list:", error);
+            }
+        };
+
+        fetchStockName();
+    }, [SURL]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -205,9 +229,9 @@ export const StrategyMain = () => {
                     종목 이름(TargetItem)
                 </div>
                 <div className={styles.input}>
-                    <InputBox
-                        type="text"
-                        placeholder="종목 이름을 정확히 입력하세요."
+                    <SelectBox
+                        placeholder="종목 이름을 선택하세요."
+                        options={stockOptions} // 동적으로 생성된 종목 이름 옵션
                         name="target_item"
                         value={formData.target_item}
                         onChange={handleChange}
@@ -250,7 +274,7 @@ export const StrategyMain = () => {
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="전략을 선택하세요."
-                        options={options_strategy}
+                        options={stockName}
                         name="strategy"
                         value={formData.strategy}
                         onChange={handleChange}

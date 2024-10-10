@@ -22,12 +22,12 @@ export const StockInfo = () => {
         fetchData();
     }, [id]);
 
-    const close = stockData ? stockData[0].closingPrice : "num";
-    const high = stockData ? stockData[0].highPrice : "num";
-    const low = stockData ? stockData[0].lowPrice : "num";
-    const open = stockData ? stockData[0].openingPrice : "num";
-    const rate = stockData ? stockData[0].fluctuatingRate : "num";
-    const volume = stockData ? stockData[0].tradingVolume : "num";
+    const close = stockData ? stockData[0].closingPrice : 0;
+    const high = stockData ? stockData[0].highPrice : 0;
+    const low = stockData ? stockData[0].lowPrice : 0;
+    const open = stockData ? stockData[0].openingPrice : 0;
+    const rate = stockData ? stockData[0].fluctuatingRate : 0;
+    const volume = stockData ? stockData[0].tradingVolume : 0;
 
     if (!stockData) {
         return (

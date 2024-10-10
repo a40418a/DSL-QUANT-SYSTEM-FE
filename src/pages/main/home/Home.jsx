@@ -12,10 +12,11 @@ import { Loading } from "../../../components/loading/Loading";
 export const Home = () => {
     const [formData, setFormData] = useState({
         strategy: "",
+        label: "",
     });
-    const [chartData, setChartData] = useState(null);
+    const [backtestData, setBacktestData] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [selectedStrategyLabel, setSelectedStrategyLabel] = useState("");
+
     const options_strategy = [
         { label: "골든/데드", value: "backtesting_gd" },
         { label: "볼린저밴드", value: "backtesting_bb" },
@@ -26,27 +27,17 @@ export const Home = () => {
 
     const handleChange = async (e) => {
         const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-
-        // 선택한 전략의 label 가져오기
         const selectedOption = options_strategy.find((option) => option.value === value);
-        if (selectedOption) {
-            setSelectedStrategyLabel(selectedOption.label); // 선택된 label 설정
-        }
+        setFormData({ ...formData, [name]: value, label: selectedOption.label });
+        setLoading(true);
 
-        if (value) {
-            setLoading(true);
-            try {
-                const data = await getLastBack(value);
-                setChartData(data);
-            } catch (error) {
-                console.error("Home handleChange error: ", error);
-            } finally {
-                setLoading(false);
-            }
+        try {
+            const data = await getLastBack(value);
+            setBacktestData(data);
+        } catch (error) {
+            console.error("Home handleChange error: ", error);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -56,37 +47,34 @@ export const Home = () => {
             <div className={styles.wrapper}>
                 <div className={styles.backTest}>
                     <div className={styles.title}>가장 최근에 진행한 백테스팅</div>
-                    <div className={styles.option}>
-                        <SelectBox
-                            placeholder="전략을 선택하세요."
-                            options={options_strategy}
-                            name="strategy"
-                            value={formData.strategy}
-                            onChange={handleChange}
-                        />
-                    </div>
+                    <SelectBox
+                        placeholder="전략을 선택하세요."
+                        options={options_strategy}
+                        name="strategy"
+                        value={formData.strategy}
+                        onChange={handleChange}
+                    />
                     <div className={styles.backChart}>
-                        {loading ? (
-                            <Loading />
-                        ) : (
-                            // chartData && (
-                            //     <ChartBox
-                            //         title={selectedStrategyLabel}
-                            //         currency="₩"
-                            //         price={chartData.price}
-                            //         arrow={chartData.rate < 0 ? <ArrowDown /> : <ArrowUp />}
-                            //         rate={chartData.rate}
-                            //         chart={
-                            //             <LineChart
-                            //                 data={chartData.chart}
-                            //                 dataKey="lowest" // 예시로 lowest 사용
-                            //             />
-                            //         }
-                            //         sub="Compared to last month"
-                            //     />
-                            // )
-                            <div>profit: {chartData.profit}</div>
-                        )}
+                        {
+                            loading ? (
+                                <Loading />
+                            ) : (
+                                backtestData && (
+                                    <div>
+                                        price: {backtestData.target_item[0]?.finalAsset || "N/A"}
+                                    </div>
+                                )
+                            )
+                            // <ChartBox
+                            //     title="최근 주식 종목"
+                            //     currency="₩"
+                            //     price="73,700"
+                            //     arrow={<ArrowDown />}
+                            //     rate="-1"
+                            //     // chart={<LineChart data={userData01} dataKey="lowest" />}
+                            //     sub="Compared to last month"
+                            // />
+                        }
                     </div>
                 </div>
                 <div className={styles.table}>

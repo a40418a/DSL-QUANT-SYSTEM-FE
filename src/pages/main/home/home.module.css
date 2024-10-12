@@ -51,6 +51,16 @@
 }
 
 /* 반응형 */
+@media (max-width: 767px) {
+    .table {
+        overflow-x: auto;
+    }
+    /* .table td,
+    .table th {
+        font-size: 12px;
+    } */
+}
+
 @media (max-width: 1023px) {
     .home {
         width: 80%;
@@ -69,14 +79,4 @@
         width: 80%;
         margin-top: 3rem; /*margin*2*/
     }
-}
-
-@media (max-width: 767px) {
-    .table {
-        overflow-x: auto;
-    }
-    /* .table td,
-    .table th {
-        font-size: 12px;
-    } */
 }

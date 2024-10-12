@@ -41,6 +41,12 @@
 }
 
 /* 반응형 */
+@media (max-width: 767px) {
+    .stockinfo {
+        width: 96%;
+    }
+}
+
 @media (max-width: 1023px) {
     .stockinfo {
         width: 80%;
@@ -48,11 +54,5 @@
     .line,
     .candle {
         width: 100%;
-    }
-}
-
-@media (max-width: 767px) {
-    .stockinfo {
-        width: 96%;
     }
 }

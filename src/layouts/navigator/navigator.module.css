@@ -87,20 +87,6 @@ a {
 }
 
 /* 반응형 */
-@media (max-width: 1023px) {
-    .wrapper {
-        display: flex;
-        flex-direction: row;
-    }
-    .menuWrapper {
-        width: 90%;
-        display: flex;
-        justify-content: left;
-    }
-    .menu {
-        width: 5.5rem;
-    }
-}
 
 @media (max-width: 767px) {
     .navigator {
@@ -114,5 +100,20 @@ a {
         display: flex;
         justify-content: center;
         padding: 0;
+    }
+}
+
+@media (max-width: 1023px) {
+    .wrapper {
+        display: flex;
+        flex-direction: row;
+    }
+    .menuWrapper {
+        width: 90%;
+        display: flex;
+        justify-content: left;
+    }
+    .menu {
+        width: 5.5rem;
     }
 }

@@ -32,14 +32,14 @@
 }
 
 /* 반응형 */
-@media (max-width: 1023px) {
-    .explain {
-        width: 80%;
-    }
-}
-
 @media (max-width: 767px) {
     .explain {
         width: 96%;
+    }
+}
+
+@media (max-width: 1023px) {
+    .explain {
+        width: 80%;
     }
 }

@@ -33,7 +33,6 @@ export const StrategyMain = () => {
                     value: stock.market,
                 }));
                 setStockName(options);
-                console.log("StockName fetched: ", options);
             } catch (error) {
                 console.error("StockName fetchData error: ", error);
             }

@@ -4,14 +4,3 @@
     height: 100%;
     box-sizing: border-box; /*padding이 width를 감소하지 않게 하기 위함*/
 }
-
-/* .custom-tooltip {
-    background-color: white;
-    box-shadow: var(--box-shadow);
-    padding: 4px;
-    border-radius: 4px;
-}
-
-.custom-tooltip p {
-    font-size: 10px;
-} */

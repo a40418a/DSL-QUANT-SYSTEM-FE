@@ -22,7 +22,7 @@ export const Home = () => {
         { label: "볼린저밴드", value: "backtesting_bb" },
         { label: "RSI, MFI, MACD 지표 이용", value: "backtesting_ind" },
         { label: "엔벨로프", value: "backtesting_env" },
-        { label: "윌리엄스", value: "backtest_w" },
+        { label: "윌리엄스", value: "backtesting_w" },
     ];
 
     const handleChange = async (e) => {

@@ -1,4 +1,4 @@
-// 코스피 1년치 정보 받아오는 API
+// 최근 백테스팅 내역
 // GET
 
 import axios from "axios";

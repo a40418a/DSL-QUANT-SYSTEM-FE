@@ -12,11 +12,11 @@ export const Result = () => {
 
     const {
         strategyCommonData,
-        strategy1Data,
-        strategy2Data,
-        strategy3Data,
-        strategy4Data,
-        strategy5Data,
+        strategyGolData,
+        strategyBolData,
+        strategyRsiData,
+        strategyEnvData,
+        strategyWilData,
         resultData,
         setResultData,
     } = useContext(StrategyContext);
@@ -132,35 +132,35 @@ export const Result = () => {
                 <table className={styles.table}>
                     <tbody>
                         {id === "golden" &&
-                            Object.entries(strategy1Data).map(([key, value]) => (
+                            Object.entries(strategyGolData).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>
                                 </tr>
                             ))}
                         {id === "bollinger" &&
-                            Object.entries(strategy2Data).map(([key, value]) => (
+                            Object.entries(strategyBolData).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>
                                 </tr>
                             ))}
                         {id === "rsi" &&
-                            Object.entries(strategy3Data).map(([key, value]) => (
+                            Object.entries(strategyRsiData).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>
                                 </tr>
                             ))}
                         {id === "env" &&
-                            Object.entries(strategy4Data).map(([key, value]) => (
+                            Object.entries(strategyEnvData).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>
                                 </tr>
                             ))}
                         {id === "williams" &&
-                            Object.entries(strategy5Data).map(([key, value]) => (
+                            Object.entries(strategyWilData).map(([key, value]) => (
                                 <tr key={key}>
                                     <th>{key}</th>
                                     <td>{JSON.stringify(value)}</td>

@@ -1,23 +1,28 @@
-//엔벨로프 전략페이지
+//볼린저밴드+엔벨로프 전략페이지
 
 import React, { useContext, useState } from "react";
-import styles from "./strategy.module.css";
-import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
-import { InputBox } from "../../../components/box/inputBox/InputBox";
-import { StrategyEnvDTO } from "../../../types/StrategyDTO";
-import { StrategyContext } from "../../../context/StrategyContext";
+import styles from "../strategy.module.css";
+import { ColorBtn } from "../../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../../components/box/inputBox/InputBox";
+import { StrategyGoldenDTO, StrategyEnvDTO } from "../../../../types/StrategyDTO";
+import { StrategyContext } from "../../../../context/StrategyContext";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
-export const StrategyEnv = () => {
-    const SURL = import.meta.env.VITE_APP_URI;
-
+export const StrategyEG = () => {
+    const { setStrategyGolData } = useContext(StrategyContext);
     const { setStrategyEnvData } = useContext(StrategyContext);
+
+    const initialFormDataGol = JSON.parse(localStorage.getItem("formDataGol")) || {
+        fastMoveAvg: 0,
+        slowMoveAvg: 0,
+    };
     const initialFormDataEnv = JSON.parse(localStorage.getItem("formDataEnv")) || {
         moving_up: 1,
         moving_down: 1,
         movingAveragePeriod: 20,
     };
+    const [formDataGol, setFormDataGol] = useState(initialFormDataGol);
     const [formDataEnv, setFormDataEnv] = useState(initialFormDataEnv);
 
     const navigate = useNavigate();
@@ -29,8 +34,25 @@ export const StrategyEnv = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        setFormDataGol((prevData) => {
+            const newFormDataGol = { ...prevData, [name]: Number(value) };
+
+            if (name === "fastMoveAvg" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
+                return prevData;
+            }
+
+            if (name === "slowMoveAvg" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
+                return prevData;
+            }
+
+            localStorage.setItem("formDataGol", JSON.stringify(newFormDataGol));
+
+            return newFormDataGol;
+        });
         setFormDataEnv((prevData) => {
-            const newFormDataEnv = { ...prevData, [name]: Number(value) };
+            const newFormDataEnv = { ...prevData, [name]: value };
 
             if (name === "moving_up" && parseFloat(value) < 0) {
                 alert("입력값은 0보다 작을 수 없습니다.");
@@ -54,33 +76,40 @@ export const StrategyEnv = () => {
     };
 
     const handleSubmit = async () => {
+        const SURL = import.meta.env.VITE_APP_URI;
+        const strategyGolDTO = new StrategyGoldenDTO(formDataGol);
         const strategyEnvDTO = new StrategyEnvDTO(formDataEnv);
-        // console.log(strategyEnvDTO);
+        setStrategyGolData(strategyGolDTO);
         setStrategyEnvData(strategyEnvDTO);
 
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            const response = await axios.post(`${SURL}/strategy/env`, strategyEnvDTO, {
+            await axios.post(`${SURL}/strategy/golden`, strategyGolDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            // console.log('Response:', response.data);
+            await axios.post(`${SURL}/strategy/env`, strategyEnvDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
         } catch (error) {
-            console.error("There was an error submitting the envelope strategy!", error);
+            console.error("There was an error submitting the common strategy!", error);
         }
 
-        if (formDataEnv.moving_up && formDataEnv.moving_down && formDataEnv.movingAveragePeriod) {
+        if (
+            formDataGol.fastMoveAvg &&
+            formDataGol.slowMoveAvg &&
+            formDataEnv.moving_up &&
+            formDataEnv.moving_down &&
+            formDataEnv.movingAveragePeriod
+        ) {
+            localStorage.removeItem("formDataGol");
             localStorage.removeItem("formDataEnv");
             navigate(`/result/${id}`);
         } else {
-            if (
-                !formDataEnv.moving_up ||
-                !formDataEnv.moving_down ||
-                !formDataEnv.movingAveragePeriod
-            ) {
-                alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
-            }
+            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }
     };
 
@@ -146,6 +175,47 @@ export const StrategyEnv = () => {
                         placeholder="기간 값을 입력해주세요(기본값 20)"
                         name="movingAveragePeriod"
                         value={formDataEnv.movingAveragePeriod}
+                        onChange={handleChange}
+                    />
+                </div>
+            </div>
+            <div
+                className={styles.title}
+                title="이동 평균선의 교차를 기반으로 한 매매 전략으로, 단기 이동 평균선이 장기 이동 평균선을 위로 교차할 때 매수(골든 크로스), 아래로 교차할 때 매도(데드 크로스) 신호로 해석"
+            >
+                골든/데드 전략 설정 페이지
+            </div>
+            <div className={styles.select}>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 단기 가격 변동을 반영하기 위해 짧은 기간(예: 5일, 10일 등) 동안의 평균 가격을 계산하는 데 사용되는 기간"
+                >
+                    빠른 이동 평균 기간
+                </div>
+                <div className={styles.input}>
+                    <InputBox
+                        type="text"
+                        placeholder="빠른 이동 평균 기간을 입력하세요."
+                        name="fastMoveAvg"
+                        value={formDataGol.fastMoveAvg}
+                        onChange={handleChange}
+                    />
+                </div>
+            </div>
+            <div className={styles.select}>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 장기 가격 변동을 반영하기 위해 긴 기간(예: 20일, 50일, 200일 등) 동안의 평균 가격을 계산하는 데 사용되는 기간"
+                >
+                    느린 이동 평균 기간
+                </div>
+
+                <div className={styles.input}>
+                    <InputBox
+                        type="text"
+                        placeholder="느린 이동 평균 기간을 입력하세요."
+                        name="slowMoveAvg"
+                        value={formDataGol.slowMoveAvg}
                         onChange={handleChange}
                     />
                 </div>

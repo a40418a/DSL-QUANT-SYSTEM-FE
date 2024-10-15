@@ -1,23 +1,27 @@
-//골든/데드 전략페이지
+//볼린저밴드+엔벨로프 전략페이지
 
 import React, { useContext, useState } from "react";
-import styles from "./strategy.module.css";
-import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
-import { InputBox } from "../../../components/box/inputBox/InputBox";
-import { StrategyGoldenDTO } from "../../../types/StrategyDTO";
-import { StrategyContext } from "../../../context/StrategyContext";
+import styles from "../strategy.module.css";
+import { ColorBtn } from "../../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../../components/box/inputBox/InputBox";
+import { StrategyGoldenDTO, StrategyRsiDTO } from "../../../../types/StrategyDTO";
+import { StrategyContext } from "../../../../context/StrategyContext";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
-export const StrategyGolden = () => {
-    const SURL = import.meta.env.VITE_APP_URI;
-
+export const StrategyGR = () => {
     const { setStrategyGolData } = useContext(StrategyContext);
+    const { setStrategyRsiData } = useContext(StrategyContext);
+
     const initialFormDataGol = JSON.parse(localStorage.getItem("formDataGol")) || {
         fastMoveAvg: 0,
         slowMoveAvg: 0,
     };
+    const initialFormDataRsi = JSON.parse(localStorage.getItem("formDataRsi")) || {
+        rsiPeriod: 0,
+    };
     const [formDataGol, setFormDataGol] = useState(initialFormDataGol);
+    const [formDataRsi, setFormDataRsi] = useState(initialFormDataRsi);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -45,32 +49,49 @@ export const StrategyGolden = () => {
 
             return newFormDataGol;
         });
+        setFormDataRsi((prevData) => {
+            const newFormDataRsi = { ...prevData, [name]: Number(value) };
+
+            if (name === "rsiPeriod" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
+                return prevData;
+            }
+
+            localStorage.setItem("formDataRsi", JSON.stringify(newFormDataRsi));
+
+            return newFormDataRsi;
+        });
     };
 
     const handleSubmit = async () => {
+        const SURL = import.meta.env.VITE_APP_URI;
         const strategyGolDTO = new StrategyGoldenDTO(formDataGol);
-        // console.log(strategyGolDTO);
+        const strategyRsiDTO = new StrategyRsiDTO(formDataRsi);
         setStrategyGolData(strategyGolDTO);
+        setStrategyRsiData(strategyRsiDTO);
 
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            const response = await axios.post(`${SURL}/strategy/golden`, strategyGolDTO, {
+            await axios.post(`${SURL}/strategy/golden`, strategyGolDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            // console.log('Response:', response.data);
+            await axios.post(`${SURL}/strategy/rsi`, strategyRsiDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
         } catch (error) {
-            console.error("There was an error submitting the golden/dead cross strategy!", error);
+            console.error("There was an error submitting the common strategy!", error);
         }
 
-        if (formDataGol.fastMoveAvg && formDataGol.slowMoveAvg) {
+        if (formDataGol.fastMoveAvg && formDataGol.slowMoveAvg && formDataRsi.rsiPeriod) {
             localStorage.removeItem("formDataGol");
+            localStorage.removeItem("formDataRsi");
             navigate(`/result/${id}`);
         } else {
-            if (!formDataGol.fastMoveAvg || !formDataGol.slowMoveAvg) {
-                alert("이동 평균 기간을 입력해주세요.");
-            }
+            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }
     };
 
@@ -120,6 +141,29 @@ export const StrategyGolden = () => {
                         placeholder="느린 이동 평균 기간을 입력하세요."
                         name="slowMoveAvg"
                         value={formDataGol.slowMoveAvg}
+                        onChange={handleChange}
+                    />
+                </div>
+            </div>
+            <div
+                className={styles.title}
+                title="각각의 기술적 지표를 조합하여 매매 신호를 찾는 방법"
+            >
+                RSI, MFI, MACD 지표 이용 전략 설정 페이지
+            </div>
+            <div className={styles.select}>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 단기 가격 변동을 반영하기 위해 짧은 기간(예: 5일, 10일 등) 동안의 평균 가격을 계산하는 데 사용되는 기간"
+                >
+                    빠른 이동 평균 기간
+                </div>
+                <div className={styles.input}>
+                    <InputBox
+                        type="text"
+                        placeholder="RSI 기간을 입력하세요."
+                        name="rsiPeriod"
+                        value={formDataRsi.rsiPeriod}
                         onChange={handleChange}
                     />
                 </div>

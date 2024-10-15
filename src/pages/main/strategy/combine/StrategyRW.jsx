@@ -1,19 +1,25 @@
-//Williams 지표 이용 전략 설정 페이지
+//볼린저밴드+엔벨로프 전략페이지
 
 import React, { useContext, useState } from "react";
-import styles from "./strategy.module.css";
-import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
-import { InputBox } from "../../../components/box/inputBox/InputBox";
-import { StrategyWDTO } from "../../../types/StrategyDTO";
-import { StrategyContext } from "../../../context/StrategyContext";
+import styles from "../strategy.module.css";
+import { ColorBtn } from "../../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../../components/box/inputBox/InputBox";
+import { StrategyRsiDTO, StrategyWDTO } from "../../../../types/StrategyDTO";
+import { StrategyContext } from "../../../../context/StrategyContext";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
-export const StrategyWilliams = () => {
+export const StrategyRW = () => {
+    const { setStrategyRsiData } = useContext(StrategyContext);
     const { setStrategyWilData } = useContext(StrategyContext);
+
+    const initialFormDataRsi = JSON.parse(localStorage.getItem("formDataRsi")) || {
+        rsiPeriod: 0,
+    };
     const initialFormDataWil = JSON.parse(localStorage.getItem("formDataWil")) || {
         williamsPeriod: 0,
     };
+    const [formDataRsi, setFormDataRsi] = useState(initialFormDataRsi);
     const [formDataWil, setFormDataWil] = useState(initialFormDataWil);
 
     const navigate = useNavigate();
@@ -25,6 +31,18 @@ export const StrategyWilliams = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        setFormDataRsi((prevData) => {
+            const newFormDataRsi = { ...prevData, [name]: Number(value) };
+
+            if (name === "rsiPeriod" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
+                return prevData;
+            }
+
+            localStorage.setItem("formDataRsi", JSON.stringify(newFormDataRsi));
+
+            return newFormDataRsi;
+        });
         setFormDataWil((prevData) => {
             const newFormDataWil = { ...prevData, [name]: Number(value) };
 
@@ -41,29 +59,33 @@ export const StrategyWilliams = () => {
 
     const handleSubmit = async () => {
         const SURL = import.meta.env.VITE_APP_URI;
+        const strategyRsiDTO = new StrategyRsiDTO(formDataRsi);
         const strategyWilDTO = new StrategyWDTO(formDataWil);
-        // console.log(strategyWilDTO);
+        setStrategyRsiData(strategyRsiDTO);
         setStrategyWilData(strategyWilDTO);
 
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            const response = await axios.post(`${SURL}/strategy/williams`, strategyWilDTO, {
+            await axios.post(`${SURL}/strategy/rsi`, strategyRsiDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            // console.log('Response:', response.data);
+            await axios.post(`${SURL}/strategy/williams`, strategyWilDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
         } catch (error) {
             console.error("There was an error submitting the common strategy!", error);
         }
 
-        if (formDataWil.williamsPeriod) {
+        if (formDataRsi.rsiPeriod && formDataWil.williamsPeriod) {
+            localStorage.removeItem("formDataRsi");
             localStorage.removeItem("formDataWil");
             navigate(`/result/${id}`);
         } else {
-            if (!formDataWil.williamsPeriod) {
-                alert("Williams 데이터를 입력해주세요.(기본값은 14입니다.)");
-            }
+            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }
     };
 
@@ -75,12 +97,35 @@ export const StrategyWilliams = () => {
         <div className={styles.strategy}>
             <div
                 className={styles.title}
-                title="시장의 과매도 및 과매수 상태를 판단하기 위해 사용되는 기술적 분석 지표"
+                title="각각의 기술적 지표를 조합하여 매매 신호를 찾는 방법"
             >
-                Williams 지표 이용 전략 설정 페이지
+                RSI, MFI, MACD 지표 이용 전략 설정 페이지
             </div>
             <div className={styles.info}>
                 해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
+            </div>
+            <div className={styles.select}>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 단기 가격 변동을 반영하기 위해 짧은 기간(예: 5일, 10일 등) 동안의 평균 가격을 계산하는 데 사용되는 기간"
+                >
+                    빠른 이동 평균 기간
+                </div>
+                <div className={styles.input}>
+                    <InputBox
+                        type="text"
+                        placeholder="RSI 기간을 입력하세요."
+                        name="rsiPeriod"
+                        value={formDataRsi.rsiPeriod}
+                        onChange={handleChange}
+                    />
+                </div>
+            </div>
+            <div
+                className={styles.title}
+                title="시장의 과매도 및 과매수 상태를 판단하기 위해 사용되는 기술적 분석 지표"
+            >
+                Williams 지표 이용 전략 설정 페이지
             </div>
             <div className={styles.select}>
                 <div

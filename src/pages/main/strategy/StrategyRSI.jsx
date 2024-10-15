@@ -10,44 +10,44 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
 export const StrategyRSI = () => {
-    const { setStrategy3Data } = useContext(StrategyContext);
-    const initialFormData = JSON.parse(localStorage.getItem("formData")) || {
+    const { setStrategyRsiData } = useContext(StrategyContext);
+    const initialFormDataRsi = JSON.parse(localStorage.getItem("formDataRsi")) || {
         rsiPeriod: 0,
     };
-    const [formData, setFormData] = useState(initialFormData);
+    const [formDataRsi, setFormDataRsi] = useState(initialFormDataRsi);
 
     const navigate = useNavigate();
     const location = useLocation();
 
-    // 현재 경로에서 숫자 부분 추출
-    const pathSegments = location.pathname.split("/");
-    const id = pathSegments[pathSegments.length - 1]; // 경로의 마지막 부분이 ID
+    // strategy/ 이후의 경로를 모두 ID로 추출
+    const pathSegments = location.pathname.split("/strategy/");
+    const id = pathSegments[1]; // 'strategy/' 이후의 모든 부분이 ID
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevData) => {
-            const newFormData = { ...prevData, [name]: Number(value) };
+        setFormDataRsi((prevData) => {
+            const newFormDataRsi = { ...prevData, [name]: Number(value) };
 
             if (name === "rsiPeriod" && parseFloat(value) < 0) {
                 alert("입력값은 0보다 작을 수 없습니다.");
                 return prevData;
             }
 
-            localStorage.setItem("formData", JSON.stringify(newFormData));
+            localStorage.setItem("formDataRsi", JSON.stringify(newFormDataRsi));
 
-            return newFormData;
+            return newFormDataRsi;
         });
     };
 
     const handleSubmit = async () => {
         const SURL = import.meta.env.VITE_APP_URI;
-        const strategy3DTO = new StrategyRsiDTO(formData);
-        // console.log(strategy3DTO);
-        setStrategy3Data(strategy3DTO);
+        const strategyRsiDTO = new StrategyRsiDTO(formDataRsi);
+        // console.log(strategyRsiDTO);
+        setStrategyRsiData(strategyRsiDTO);
 
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            const response = await axios.post(`${SURL}/strategy/rsi`, strategy3DTO, {
+            const response = await axios.post(`${SURL}/strategy/rsi`, strategyRsiDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -57,11 +57,11 @@ export const StrategyRSI = () => {
             console.error("There was an error submitting the common strategy!", error);
         }
 
-        if (formData.rsiPeriod) {
-            localStorage.removeItem("formData");
+        if (formDataRsi.rsiPeriod) {
+            localStorage.removeItem("formDataRsi");
             navigate(`/result/${id}`);
         } else {
-            if (!formData.rsiPeriod) {
+            if (!formDataRsi.rsiPeriod) {
                 alert("RSI 계산을 위한 시작일과 종료일을 입력해주세요.");
             }
         }
@@ -94,7 +94,7 @@ export const StrategyRSI = () => {
                         type="text"
                         placeholder="RSI 기간을 입력하세요."
                         name="rsiPeriod"
-                        value={formData.rsiPeriod}
+                        value={formDataRsi.rsiPeriod}
                         onChange={handleChange}
                     />
                 </div>

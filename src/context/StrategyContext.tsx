@@ -21,26 +21,26 @@ const initialStrategyCommonData: StrategyCommonDTO = {
     strategy: "",
 };
 
-const initialStrategy1Data: StrategyGoldenDTO = {
+const initialStrategyGolData: StrategyGoldenDTO = {
     fastMoveAvg: 0,
     slowMoveAvg: 0,
 };
 
-const initialStrategy2Data: StrategyBollingerDTO = {
+const initialStrategyBolData: StrategyBollingerDTO = {
     moveAvg: 0,
 };
 
-const initialStrategy3Data: StrategyRsiDTO = {
+const initialStrategyRsiData: StrategyRsiDTO = {
     rsiPeriod: 0,
 };
 
-const initialStrategy4Data: StrategyEnvDTO = {
+const initialStrategyEnvData: StrategyEnvDTO = {
     moving_up: 0,
     moving_down: 0,
     movingAveragePeriod: 0,
 };
 
-const initialStrategy5Data: StrategyWDTO = {
+const initialStrategyWilData: StrategyWDTO = {
     williamsPeriod: 0,
 };
 
@@ -57,31 +57,31 @@ const initialResultData: ResultDTO = {
 export const StrategyContext = createContext<{
     strategyCommonData: StrategyCommonDTO;
     setStrategyCommonData: React.Dispatch<React.SetStateAction<StrategyCommonDTO>>;
-    strategy1Data: StrategyGoldenDTO;
-    setStrategy1Data: React.Dispatch<React.SetStateAction<StrategyGoldenDTO>>;
-    strategy2Data: StrategyBollingerDTO;
-    setStrategy2Data: React.Dispatch<React.SetStateAction<StrategyBollingerDTO>>;
-    strategy3Data: StrategyRsiDTO;
-    setStrategy3Data: React.Dispatch<React.SetStateAction<StrategyRsiDTO>>;
-    strategy4Data: StrategyEnvDTO;
-    setStrategy4Data: React.Dispatch<React.SetStateAction<StrategyEnvDTO>>;
-    strategy5Data: StrategyWDTO;
-    setStrategy5Data: React.Dispatch<React.SetStateAction<StrategyWDTO>>;
+    strategyGolData: StrategyGoldenDTO;
+    setStrategyGolData: React.Dispatch<React.SetStateAction<StrategyGoldenDTO>>;
+    strategyBolData: StrategyBollingerDTO;
+    setStrategyBolData: React.Dispatch<React.SetStateAction<StrategyBollingerDTO>>;
+    strategyRsiData: StrategyRsiDTO;
+    setStrategyRsiData: React.Dispatch<React.SetStateAction<StrategyRsiDTO>>;
+    strategyEnvData: StrategyEnvDTO;
+    setStrategyEnvData: React.Dispatch<React.SetStateAction<StrategyEnvDTO>>;
+    strategyWilData: StrategyWDTO;
+    setStrategyWilData: React.Dispatch<React.SetStateAction<StrategyWDTO>>;
     resultData: ResultDTO;
     setResultData: React.Dispatch<React.SetStateAction<ResultDTO>>;
 }>({
     strategyCommonData: initialStrategyCommonData,
     setStrategyCommonData: () => {},
-    strategy1Data: initialStrategy1Data,
-    setStrategy1Data: () => {},
-    strategy2Data: initialStrategy2Data,
-    setStrategy2Data: () => {},
-    strategy3Data: initialStrategy3Data,
-    setStrategy3Data: () => {},
-    strategy4Data: initialStrategy4Data,
-    setStrategy4Data: () => {},
-    strategy5Data: initialStrategy5Data,
-    setStrategy5Data: () => {},
+    strategyGolData: initialStrategyGolData,
+    setStrategyGolData: () => {},
+    strategyBolData: initialStrategyBolData,
+    setStrategyBolData: () => {},
+    strategyRsiData: initialStrategyRsiData,
+    setStrategyRsiData: () => {},
+    strategyEnvData: initialStrategyEnvData,
+    setStrategyEnvData: () => {},
+    strategyWilData: initialStrategyWilData,
+    setStrategyWilData: () => {},
     resultData: initialResultData,
     setResultData: () => {},
 });
@@ -91,11 +91,13 @@ export const StrategyContext = createContext<{
 export const StrategyProvider: React.FC = ({ children }) => {
     const [strategyCommonData, setStrategyCommonData] =
         useState<StrategyCommonDTO>(initialStrategyCommonData);
-    const [strategy1Data, setStrategy1Data] = useState<StrategyGoldenDTO>(initialStrategy1Data);
-    const [strategy2Data, setStrategy2Data] = useState<StrategyBollingerDTO>(initialStrategy2Data);
-    const [strategy3Data, setStrategy3Data] = useState<StrategyRsiDTO>(initialStrategy3Data);
-    const [strategy4Data, setStrategy4Data] = useState<StrategyEnvDTO>(initialStrategy4Data);
-    const [strategy5Data, setStrategy5Data] = useState<StrategyWDTO>(initialStrategy5Data);
+    const [strategyGolData, setStrategyGolData] =
+        useState<StrategyGoldenDTO>(initialStrategyGolData);
+    const [strategyBolData, setStrategyBolData] =
+        useState<StrategyBollingerDTO>(initialStrategyBolData);
+    const [strategyRsiData, setStrategyRsiData] = useState<StrategyRsiDTO>(initialStrategyRsiData);
+    const [strategyEnvData, setStrategyEnvData] = useState<StrategyEnvDTO>(initialStrategyEnvData);
+    const [strategyWilData, setStrategyWilData] = useState<StrategyWDTO>(initialStrategyWilData);
     const [resultData, setResultData] = useState<ResultDTO>(initialResultData);
 
     return (
@@ -103,16 +105,16 @@ export const StrategyProvider: React.FC = ({ children }) => {
             value={{
                 strategyCommonData,
                 setStrategyCommonData,
-                strategy1Data,
-                setStrategy1Data,
-                strategy2Data,
-                setStrategy2Data,
-                strategy3Data,
-                setStrategy3Data,
-                strategy4Data,
-                setStrategy4Data,
-                strategy5Data,
-                setStrategy5Data,
+                strategyGolData,
+                setStrategyGolData,
+                strategyBolData,
+                setStrategyBolData,
+                strategyRsiData,
+                setStrategyRsiData,
+                strategyEnvData,
+                setStrategyEnvData,
+                strategyWilData,
+                setStrategyWilData,
                 resultData,
                 setResultData,
             }}

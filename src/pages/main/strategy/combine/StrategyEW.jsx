@@ -1,23 +1,27 @@
-//엔벨로프 전략페이지
+//볼린저밴드+엔벨로프 전략페이지
 
 import React, { useContext, useState } from "react";
-import styles from "./strategy.module.css";
-import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
-import { InputBox } from "../../../components/box/inputBox/InputBox";
-import { StrategyEnvDTO } from "../../../types/StrategyDTO";
-import { StrategyContext } from "../../../context/StrategyContext";
+import styles from "../strategy.module.css";
+import { ColorBtn } from "../../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../../components/box/inputBox/InputBox";
+import { StrategyWDTO, StrategyEnvDTO } from "../../../../types/StrategyDTO";
+import { StrategyContext } from "../../../../context/StrategyContext";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
-export const StrategyEnv = () => {
-    const SURL = import.meta.env.VITE_APP_URI;
-
+export const StrategyEW = () => {
+    const { setStrategyWilData } = useContext(StrategyContext);
     const { setStrategyEnvData } = useContext(StrategyContext);
+
+    const initialFormDataWil = JSON.parse(localStorage.getItem("formDataWil")) || {
+        williamsPeriod: 0,
+    };
     const initialFormDataEnv = JSON.parse(localStorage.getItem("formDataEnv")) || {
         moving_up: 1,
         moving_down: 1,
         movingAveragePeriod: 20,
     };
+    const [formDataWil, setFormDataWil] = useState(initialFormDataWil);
     const [formDataEnv, setFormDataEnv] = useState(initialFormDataEnv);
 
     const navigate = useNavigate();
@@ -29,8 +33,20 @@ export const StrategyEnv = () => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        setFormDataWil((prevData) => {
+            const newFormDataWil = { ...prevData, [name]: Number(value) };
+
+            if (name === "williamsPeriod" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
+                return prevData;
+            }
+
+            localStorage.setItem("formDataWil", JSON.stringify(newFormDataWil));
+
+            return newFormDataWil;
+        });
         setFormDataEnv((prevData) => {
-            const newFormDataEnv = { ...prevData, [name]: Number(value) };
+            const newFormDataEnv = { ...prevData, [name]: value };
 
             if (name === "moving_up" && parseFloat(value) < 0) {
                 alert("입력값은 0보다 작을 수 없습니다.");
@@ -54,33 +70,39 @@ export const StrategyEnv = () => {
     };
 
     const handleSubmit = async () => {
+        const SURL = import.meta.env.VITE_APP_URI;
+        const strategyWilDTO = new StrategyWDTO(formDataWil);
         const strategyEnvDTO = new StrategyEnvDTO(formDataEnv);
-        // console.log(strategyEnvDTO);
+        setStrategyWilData(strategyWilDTO);
         setStrategyEnvData(strategyEnvDTO);
 
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            const response = await axios.post(`${SURL}/strategy/env`, strategyEnvDTO, {
+            await axios.post(`${SURL}/strategy/williams`, strategyWilDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            // console.log('Response:', response.data);
+            await axios.post(`${SURL}/strategy/env`, strategyEnvDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
         } catch (error) {
-            console.error("There was an error submitting the envelope strategy!", error);
+            console.error("There was an error submitting the common strategy!", error);
         }
 
-        if (formDataEnv.moving_up && formDataEnv.moving_down && formDataEnv.movingAveragePeriod) {
+        if (
+            formDataWil.williamsPeriod &&
+            formDataEnv.moving_up &&
+            formDataEnv.moving_down &&
+            formDataEnv.movingAveragePeriod
+        ) {
+            localStorage.removeItem("formDataWil");
             localStorage.removeItem("formDataEnv");
             navigate(`/result/${id}`);
         } else {
-            if (
-                !formDataEnv.moving_up ||
-                !formDataEnv.moving_down ||
-                !formDataEnv.movingAveragePeriod
-            ) {
-                alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
-            }
+            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }
     };
 
@@ -146,6 +168,29 @@ export const StrategyEnv = () => {
                         placeholder="기간 값을 입력해주세요(기본값 20)"
                         name="movingAveragePeriod"
                         value={formDataEnv.movingAveragePeriod}
+                        onChange={handleChange}
+                    />
+                </div>
+            </div>
+            <div
+                className={styles.title}
+                title="시장의 과매도 및 과매수 상태를 판단하기 위해 사용되는 기술적 분석 지표"
+            >
+                Williams 지표 이용 전략 설정 페이지
+            </div>
+            <div className={styles.select}>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 단기 가격 변동을 반영하기 위해 짧은 기간(예: 5일, 10일 등) 동안의 평균 가격을 계산하는 데 사용되는 기간"
+                >
+                    빠른 이동 평균 기간
+                </div>
+                <div className={styles.input}>
+                    <InputBox
+                        type="text"
+                        placeholder="Williams 기간을 입력하세요."
+                        name="williamsPeriod"
+                        value={formDataWil.williamsPeriod}
                         onChange={handleChange}
                     />
                 </div>

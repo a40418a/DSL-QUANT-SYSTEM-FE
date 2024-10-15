@@ -21,7 +21,8 @@ export const StrategyMain = () => {
         target_item: "",
         tick_kind: "",
         inq_range: 0,
-        strategy: "",
+        strategy1: "",
+        strategy2: "",
     });
     const [stockName, setStockName] = useState([]);
     useEffect(() => {
@@ -65,12 +66,21 @@ export const StrategyMain = () => {
         { label: "1주", value: "W" },
         { label: "1개월", value: "M" },
     ];
-    const options_strategy = [
-        { label: "골든/데드", value: "strategy/golden" },
-        { label: "볼린저밴드", value: "strategy/bollinger" },
-        { label: "RSI, MFI, MACD 지표 이용", value: "strategy/rsi" },
-        { label: "엔벨로프", value: "strategy/env" },
-        { label: "윌리엄스", value: "strategy/williams" },
+    const options_strategy1 = [
+        { label: "골든/데드", value: "golden/" },
+        { label: "볼린저밴드", value: "bollinger/" },
+        { label: "RSI, MFI, MACD 지표 이용", value: "rsi/" },
+        { label: "엔벨로프", value: "env/" },
+        { label: "윌리엄스", value: "williams/" },
+    ];
+
+    const options_strategy2 = [
+        { label: "단일 선택", value: " " },
+        { label: "골든/데드", value: "golden/" },
+        { label: "볼린저밴드", value: "bollinger/" },
+        { label: "RSI, MFI, MACD 지표 이용", value: "rsi/" },
+        { label: "엔벨로프", value: "env/" },
+        { label: "윌리엄스", value: "williams/" },
     ];
 
     const handleChange = (e) => {
@@ -91,6 +101,17 @@ export const StrategyMain = () => {
             return newFormData;
         });
     };
+
+    // useEffect로 strategyOption1과 strategyOption2 중복 확인
+    useEffect(() => {
+        const selectedStrategy1 = formData.strategy1;
+        const selectedStrategy2 = formData.strategy2;
+
+        if (selectedStrategy1 && selectedStrategy2 && selectedStrategy1 === selectedStrategy2) {
+            alert("첫 번째 전략과 두 번째 전략이 같을 수 없습니다.");
+            setFormData((prevData) => ({ ...prevData, strategy2: "" }));
+        }
+    }, [formData.strategy1, formData.strategy2]);
 
     const handleSubmit = async () => {
         // 현재 시간을 추가합니다.
@@ -141,27 +162,22 @@ export const StrategyMain = () => {
         }
 
         // 선택된 전략의 value 값을 가져옵니다.
-        const selectedStrategy = formData.strategy;
+        const selectedStrategy1 = formData.strategy1;
+        const selectedStrategy2 = formData.strategy2;
 
         // 선택된 전략이 있으면 해당 주소로 이동합니다.
         if (
-            selectedStrategy &&
+            selectedStrategy1 &&
+            selectedStrategy2 &&
             formData.initial_investment &&
             formData.tax &&
             formData.target_item &&
             formData.tick_kind &&
             formData.inq_range
         ) {
-            navigate(`/${selectedStrategy}`);
+            navigate(`/strategy/${selectedStrategy1}${selectedStrategy2}`);
         } else {
-            if (
-                !selectedStrategy ||
-                !formData.initial_investment ||
-                !formData.tax ||
-                !formData.target_item ||
-                !formData.tick_kind ||
-                !formData.inq_range
-            ) {
+            {
                 alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
             }
         }
@@ -237,10 +253,21 @@ export const StrategyMain = () => {
             <div className={styles.select}>
                 <div className={styles.input}>
                     <SelectBox
-                        placeholder="전략을 선택하세요."
-                        options={options_strategy}
-                        name="strategy"
-                        value={formData.strategy}
+                        placeholder="첫번째 전략을 선택하세요."
+                        options={options_strategy1}
+                        name="strategy1"
+                        value={formData.strategy1}
+                        onChange={handleChange}
+                    />
+                </div>
+            </div>
+            <div className={styles.select}>
+                <div className={styles.input}>
+                    <SelectBox
+                        placeholder="두번째 전략을 선택하세요."
+                        options={options_strategy2}
+                        name="strategy2"
+                        value={formData.strategy2}
                         onChange={handleChange}
                     />
                 </div>

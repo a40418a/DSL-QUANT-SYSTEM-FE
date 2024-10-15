@@ -14,6 +14,16 @@ import { StrategyWilliams } from "../pages/main/strategy/StrategyWilliams";
 import { StockList } from "../pages/main/stockList/StockList";
 import { StockInfo } from "../pages/main/stockInfo/StockInfo";
 import { LoginHandler } from "../pages/info/login/LoginHandler";
+import { StrategyBE } from "../pages/main/strategy/combine/StrategyBE";
+import { StrategyBR } from "../pages/main/strategy/combine/StrategyBR";
+import { StrategyBG } from "../pages/main/strategy/combine/StrategyBG";
+import { StrategyEG } from "../pages/main/strategy/combine/StrategyEG";
+import { StrategyER } from "../pages/main/strategy/combine/StrategyER";
+import { StrategyEW } from "../pages/main/strategy/combine/StrategyEW";
+import { StrategyBW } from "../pages/main/strategy/combine/StrategyBW";
+import { StrategyGW } from "../pages/main/strategy/combine/StrategyGW";
+import { StrategyGR } from "../pages/main/strategy/combine/StrategyGR";
+import { StrategyRW } from "../pages/main/strategy/combine/StrategyRW";
 
 const MainRoutes = () => {
     return (
@@ -27,12 +37,24 @@ const MainRoutes = () => {
             <Route path="/stockinfo/:id/" element={<StockInfo />} />
             <Route path="/mypage/" element={<MyPage />} />
             <Route path="/result/:id/" element={<Result />} />
+            <Route path="/result/:first/:second/" element={<Result />} />
             <Route path="/strategy/" element={<StrategyMain />} />
             <Route path="/strategy/golden/" element={<StrategyGolden />} />
             <Route path="/strategy/bollinger/" element={<StrategyBollinger />} />
             <Route path="/strategy/rsi/" element={<StrategyRSI />} />
             <Route path="/strategy/env/" element={<StrategyEnv />} />
             <Route path="/strategy/williams/" element={<StrategyWilliams />} />
+
+            <Route path="/strategy/bollinger/env/" element={<StrategyBE />} />
+            <Route path="/strategy/bollinger/golden/" element={<StrategyBG />} />
+            <Route path="/strategy/bollinger/rsi/" element={<StrategyBR />} />
+            <Route path="/strategy/bollinger/williams/" element={<StrategyBW />} />
+            <Route path="/strategy/env/golden/" element={<StrategyEG />} />
+            <Route path="/strategy/env/rsi/" element={<StrategyER />} />
+            <Route path="/strategy/env/williams/" element={<StrategyEW />} />
+            <Route path="/strategy/golden/rsi/" element={<StrategyGR />} />
+            <Route path="/strategy/golden/williams/" element={<StrategyGW />} />
+            <Route path="/strategy/rsi/williams/" element={<StrategyRW />} />
         </Routes>
     );
 };

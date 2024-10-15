@@ -1,21 +1,26 @@
-//볼린저밴드 전략페이지
+//볼린저밴드+rsi 전략페이지
 
 import React, { useContext, useState } from "react";
-import styles from "./strategy.module.css";
-import { ColorBtn } from "../../../components/button/colorBtn/ColorBtn";
-import { InputBox } from "../../../components/box/inputBox/InputBox";
-import { StrategyBollingerDTO } from "../../../types/StrategyDTO";
-import { StrategyContext } from "../../../context/StrategyContext";
+import styles from "../strategy.module.css";
+import { ColorBtn } from "../../../../components/button/colorBtn/ColorBtn";
+import { InputBox } from "../../../../components/box/inputBox/InputBox";
+import { StrategyBollingerDTO, StrategyRsiDTO } from "../../../../types/StrategyDTO";
+import { StrategyContext } from "../../../../context/StrategyContext";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 
-export const StrategyBollinger = () => {
+export const StrategyBR = () => {
     const { setStrategyBolData } = useContext(StrategyContext);
+    const { setStrategyRsiData } = useContext(StrategyContext);
 
     const initialFormDataBol = JSON.parse(localStorage.getItem("formDataBol")) || {
         move_period: [0, 0],
     };
+    const initialFormDataRsi = JSON.parse(localStorage.getItem("formDataRsi")) || {
+        rsiPeriod: 0,
+    };
     const [formDataBol, setFormDataBol] = useState(initialFormDataBol);
+    const [formDataRsi, setFormDataRsi] = useState(initialFormDataRsi);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -38,31 +43,49 @@ export const StrategyBollinger = () => {
 
             return newFormDataBol;
         });
+        setFormDataRsi((prevData) => {
+            const newFormDataRsi = { ...prevData, [name]: Number(value) };
+
+            if (name === "rsiPeriod" && parseFloat(value) < 0) {
+                alert("입력값은 0보다 작을 수 없습니다.");
+                return prevData;
+            }
+
+            localStorage.setItem("formDataRsi", JSON.stringify(newFormDataRsi));
+
+            return newFormDataRsi;
+        });
     };
 
     const handleSubmit = async () => {
         const SURL = import.meta.env.VITE_APP_URI;
         const strategyBolDTO = new StrategyBollingerDTO(formDataBol);
-        // console.log(strategyBolDTO);
+        const strategyRsiDTO = new StrategyRsiDTO(formDataRsi);
         setStrategyBolData(strategyBolDTO);
+        setStrategyRsiData(strategyRsiDTO);
 
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            const response = await axios.post(`${SURL}/strategy/bollinger`, strategyBolDTO, {
+            await axios.post(`${SURL}/strategy/bollinger`, strategyBolDTO, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            // console.log('Response:', response.data);
+            await axios.post(`${SURL}/strategy/rsi`, strategyRsiDTO, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
         } catch (error) {
             console.error("There was an error submitting the common strategy!", error);
         }
 
-        if (formDataBol.moveAvg) {
+        if (formDataBol.moveAvg && formDataRsi.rsiPeriod) {
             localStorage.removeItem("formDataBol");
+            localStorage.removeItem("formDataRsi");
             navigate(`/result/${id}`);
         } else {
-            alert("이동 평균 기간을 입력해주세요.");
+            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }
     };
 
@@ -99,7 +122,32 @@ export const StrategyBollinger = () => {
                     />
                 </div>
             </div>
-            <div className={styles.btnWrapper} id="btn-to-result">
+
+            <div
+                className={styles.title}
+                title="각각의 기술적 지표를 조합하여 매매 신호를 찾는 방법"
+            >
+                RSI, MFI, MACD 지표 이용 전략 설정 페이지
+            </div>
+            <div className={styles.select}>
+                <div
+                    className={styles.subtitle}
+                    title="주식의 단기 가격 변동을 반영하기 위해 짧은 기간(예: 5일, 10일 등) 동안의 평균 가격을 계산하는 데 사용되는 기간"
+                >
+                    빠른 이동 평균 기간
+                </div>
+                <div className={styles.input}>
+                    <InputBox
+                        type="text"
+                        placeholder="RSI 기간을 입력하세요."
+                        name="rsiPeriod"
+                        value={formDataRsi.rsiPeriod}
+                        onChange={handleChange}
+                    />
+                </div>
+            </div>
+
+            <div className={styles.btnWrapper}>
                 <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick} />
                 <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit} />
             </div>

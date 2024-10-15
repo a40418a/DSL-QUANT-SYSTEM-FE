@@ -63,7 +63,7 @@ export const CandleChart = ({ title, chartData }) => {
                     customIcons: [
                         {
                             icon: '<div class="icon">3M</div>', // 사용자 정의 아이콘 (3개월)
-                            index: 3,
+                            index: 1,
                             title: "3 Month",
 
                             click: function (chart, options, e) {
@@ -77,7 +77,7 @@ export const CandleChart = ({ title, chartData }) => {
                         },
                         {
                             icon: '<div class="icon">1M</div>', // 사용자 정의 아이콘 (1개월)
-                            index: 4,
+                            index: 2,
                             title: "1 Month",
 
                             click: function (chart, options, e) {
@@ -91,7 +91,7 @@ export const CandleChart = ({ title, chartData }) => {
                         },
                         {
                             icon: '<div class="icon">1W</div>', // 사용자 정의 아이콘 (1주일)
-                            index: 5,
+                            index: 3,
                             title: "1 Week",
 
                             click: function (chart, options, e) {

@@ -18,7 +18,7 @@ export const StrategyMain = () => {
     const [formData, setFormData] = useState({
         initial_investment: 0,
         tax: 0.01,
-        target_item: "",
+        // target_item: "",
         tick_kind: "",
         inq_range: 0,
         strategy1: "",
@@ -171,11 +171,14 @@ export const StrategyMain = () => {
             selectedStrategy2 &&
             formData.initial_investment &&
             formData.tax &&
-            formData.target_item &&
+            // formData.target_item &&
             formData.tick_kind &&
             formData.inq_range
         ) {
-            navigate(`/strategy/${selectedStrategy1}${selectedStrategy2}`);
+            // 두 개의 전략을 알파벳 순서로 정렬
+            const strategies = [selectedStrategy1, selectedStrategy2].sort();
+            const strategyPath = `${strategies[0]}${strategies[1]}`; // 조합된 경로 생성
+            navigate(`/strategy/${strategyPath}`);
         } else {
             {
                 alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
@@ -213,6 +216,7 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
+            {/*
             <div className={styles.select}>
                 <div className={styles.subtitle}>종목 이름(TargetItem)</div>
                 <div className={styles.input}>
@@ -225,6 +229,7 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
+            */}
             <div className={styles.select}>
                 <div className={styles.subtitle}>캔들 종류(TickKind)</div>
                 <div className={styles.input}>

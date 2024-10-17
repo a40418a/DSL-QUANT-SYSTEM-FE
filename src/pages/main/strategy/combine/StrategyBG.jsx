@@ -174,10 +174,6 @@ export const StrategyBG = () => {
                 <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick} />
                 <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit} />
             </div>
-            <div className={styles.btnWrapper}>
-                <ColorBtn className={styles.btnPrev} text="< 이전" onClick={handlePrevClick} />
-                <ColorBtn className={styles.btnNext} text="백테스트" onClick={handleSubmit} />
-            </div>
         </div>
     );
 };

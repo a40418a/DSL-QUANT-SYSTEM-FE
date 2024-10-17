@@ -168,7 +168,7 @@ export const StrategyMain = () => {
         // 선택된 전략이 있으면 해당 주소로 이동합니다.
         if (
             selectedStrategy1 &&
-            selectedStrategy2 &&
+            // selectedStrategy2 &&
             formData.initial_investment &&
             formData.tax &&
             formData.target_item &&

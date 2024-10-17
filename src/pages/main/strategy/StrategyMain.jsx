@@ -18,7 +18,7 @@ export const StrategyMain = () => {
     const [formData, setFormData] = useState({
         initial_investment: 0,
         tax: 0.01,
-        // target_item: "",
+        target_item: "",
         tick_kind: "",
         inq_range: 0,
         strategy1: "",
@@ -171,7 +171,7 @@ export const StrategyMain = () => {
             selectedStrategy2 &&
             formData.initial_investment &&
             formData.tax &&
-            // formData.target_item &&
+            formData.target_item &&
             formData.tick_kind &&
             formData.inq_range
         ) {
@@ -216,7 +216,6 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            {/*
             <div className={styles.select}>
                 <div className={styles.subtitle}>종목 이름(TargetItem)</div>
                 <div className={styles.input}>
@@ -229,7 +228,7 @@ export const StrategyMain = () => {
                     />
                 </div>
             </div>
-            */}
+
             <div className={styles.select}>
                 <div className={styles.subtitle}>캔들 종류(TickKind)</div>
                 <div className={styles.input}>

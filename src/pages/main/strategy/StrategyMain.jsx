@@ -75,7 +75,7 @@ export const StrategyMain = () => {
     ];
 
     const options_strategy2 = [
-        { label: "단일 선택", value: " " },
+        { label: "단일 선택", value: "" },
         { label: "골든/데드", value: "golden/" },
         { label: "볼린저밴드", value: "bollinger/" },
         { label: "RSI, MFI, MACD 지표 이용", value: "rsi/" },

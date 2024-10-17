@@ -105,7 +105,7 @@ export const StrategyGR = () => {
                 className={styles.title}
                 title="이동 평균선의 교차를 기반으로 한 매매 전략으로, 단기 이동 평균선이 장기 이동 평균선을 위로 교차할 때 매수(골든 크로스), 아래로 교차할 때 매도(데드 크로스) 신호로 해석"
             >
-                골든/데드 전략 설정 페이지
+                골든/데드 전략 설정
             </div>
             <div className={styles.info}>
                 해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
@@ -149,7 +149,7 @@ export const StrategyGR = () => {
                 className={styles.title}
                 title="각각의 기술적 지표를 조합하여 매매 신호를 찾는 방법"
             >
-                RSI, MFI, MACD 지표 이용 전략 설정 페이지
+                RSI, MFI, MACD 지표 이용 전략 설정
             </div>
             <div className={styles.select}>
                 <div

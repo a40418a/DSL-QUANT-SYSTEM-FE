@@ -99,7 +99,7 @@ export const StrategyBW = () => {
                 className={styles.title}
                 title="주가의 변동성을 기준으로 상한선과 하한선을 설정하여, 주가가 밴드의 상한선에 가까울 때는 과매수, 하한선에 가까울 때는 과매도를 판단해 매매하는 전략"
             >
-                볼린저밴드 전략 설정 페이지
+                볼린저밴드 전략 설정
             </div>
             <div className={styles.info}>
                 해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
@@ -127,7 +127,7 @@ export const StrategyBW = () => {
                 className={styles.title}
                 title="시장의 과매도 및 과매수 상태를 판단하기 위해 사용되는 기술적 분석 지표"
             >
-                Williams 지표 이용 전략 설정 페이지
+                Williams 지표 이용 전략 설정
             </div>
             <div className={styles.select}>
                 <div

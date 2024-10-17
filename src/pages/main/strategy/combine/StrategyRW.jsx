@@ -99,7 +99,7 @@ export const StrategyRW = () => {
                 className={styles.title}
                 title="각각의 기술적 지표를 조합하여 매매 신호를 찾는 방법"
             >
-                RSI, MFI, MACD 지표 이용 전략 설정 페이지
+                RSI, MFI, MACD 지표 이용 전략 설정
             </div>
             <div className={styles.info}>
                 해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
@@ -125,7 +125,7 @@ export const StrategyRW = () => {
                 className={styles.title}
                 title="시장의 과매도 및 과매수 상태를 판단하기 위해 사용되는 기술적 분석 지표"
             >
-                Williams 지표 이용 전략 설정 페이지
+                Williams 지표 이용 전략 설정
             </div>
             <div className={styles.select}>
                 <div

@@ -105,7 +105,7 @@ export const StrategyBG = () => {
                 className={styles.title}
                 title="주가의 변동성을 기준으로 상한선과 하한선을 설정하여, 주가가 밴드의 상한선에 가까울 때는 과매수, 하한선에 가까울 때는 과매도를 판단해 매매하는 전략"
             >
-                볼린저밴드 전략 설정 페이지
+                볼린저밴드 전략 설정
             </div>
             <div className={styles.info}>
                 해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
@@ -133,7 +133,7 @@ export const StrategyBG = () => {
                 className={styles.title}
                 title="이동 평균선의 교차를 기반으로 한 매매 전략으로, 단기 이동 평균선이 장기 이동 평균선을 위로 교차할 때 매수(골든 크로스), 아래로 교차할 때 매도(데드 크로스) 신호로 해석"
             >
-                골든/데드 전략 설정 페이지
+                골든/데드 전략 설정
             </div>
             <div className={styles.select}>
                 <div

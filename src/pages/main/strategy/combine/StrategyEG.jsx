@@ -123,7 +123,7 @@ export const StrategyEG = () => {
                 className={styles.title}
                 title="주가의 이동평균선을 기준으로 일정 비율 위아래에 밴드를 설정해, 주가가 상단 밴드에 도달하면 매도하고, 하단 밴드에 도달하면 매수하는 추세 추종 전략"
             >
-                엔벨로프 전략 설정 페이지
+                엔벨로프 전략 설정
             </div>
             <div className={styles.info}>
                 해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
@@ -183,7 +183,7 @@ export const StrategyEG = () => {
                 className={styles.title}
                 title="이동 평균선의 교차를 기반으로 한 매매 전략으로, 단기 이동 평균선이 장기 이동 평균선을 위로 교차할 때 매수(골든 크로스), 아래로 교차할 때 매도(데드 크로스) 신호로 해석"
             >
-                골든/데드 전략 설정 페이지
+                골든/데드 전략 설정
             </div>
             <div className={styles.select}>
                 <div

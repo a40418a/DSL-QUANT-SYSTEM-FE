@@ -116,7 +116,7 @@ export const StrategyBE = () => {
                 className={styles.title}
                 title="주가의 변동성을 기준으로 상한선과 하한선을 설정하여, 주가가 밴드의 상한선에 가까울 때는 과매수, 하한선에 가까울 때는 과매도를 판단해 매매하는 전략"
             >
-                볼린저밴드 전략 설정 페이지
+                볼린저밴드 전략 설정
             </div>
             <div className={styles.info}>
                 해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
@@ -144,7 +144,7 @@ export const StrategyBE = () => {
                 className={styles.title}
                 title="주가의 이동평균선을 기준으로 일정 비율 위아래에 밴드를 설정해, 주가가 상단 밴드에 도달하면 매도하고, 하단 밴드에 도달하면 매수하는 추세 추종 전략"
             >
-                엔벨로프 전략 설정 페이지
+                엔벨로프 전략 설정
             </div>
             <div className={styles.select}>
                 <div

@@ -116,7 +116,7 @@ export const StrategyER = () => {
                 className={styles.title}
                 title="주가의 이동평균선을 기준으로 일정 비율 위아래에 밴드를 설정해, 주가가 상단 밴드에 도달하면 매도하고, 하단 밴드에 도달하면 매수하는 추세 추종 전략"
             >
-                엔벨로프 전략 설정 페이지
+                엔벨로프 전략 설정
             </div>
             <div className={styles.info}>
                 해당 옵션에 대해서 잘 모르시겠다면 제목에 커서를 갖다두시면 설명해드립니다:)
@@ -176,7 +176,7 @@ export const StrategyER = () => {
                 className={styles.title}
                 title="각각의 기술적 지표를 조합하여 매매 신호를 찾는 방법"
             >
-                RSI, MFI, MACD 지표 이용 전략 설정 페이지
+                RSI, MFI, MACD 지표 이용 전략 설정
             </div>
             <div className={styles.select}>
                 <div

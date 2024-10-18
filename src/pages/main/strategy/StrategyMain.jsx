@@ -75,7 +75,7 @@ export const StrategyMain = () => {
     ];
 
     const options_strategy2 = [
-        { label: "단일 선택", value: "" },
+        { label: "단일 선택", value: " " },
         { label: "골든/데드", value: "golden/" },
         { label: "볼린저밴드", value: "bollinger/" },
         { label: "RSI, MFI, MACD 지표 이용", value: "rsi/" },
@@ -168,7 +168,7 @@ export const StrategyMain = () => {
         // 선택된 전략이 있으면 해당 주소로 이동합니다.
         if (
             selectedStrategy1 &&
-            // selectedStrategy2 &&
+            selectedStrategy2 &&
             formData.initial_investment &&
             formData.tax &&
             formData.target_item &&

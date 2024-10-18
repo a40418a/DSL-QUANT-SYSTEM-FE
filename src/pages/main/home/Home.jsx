@@ -67,7 +67,7 @@ export const Home = () => {
                                     currency="₩"
                                     price={backtestData[0].finalAsset.toFixed(2)}
                                     arrow={
-                                        backtestData[0].profitRate >= 0 ? (
+                                        backtestData[0].profitRate >= backtestData[1].profitRate ? (
                                             <ArrowUp />
                                         ) : (
                                             <ArrowDown />

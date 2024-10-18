@@ -178,22 +178,19 @@ export const LineChart = ({ title, dataKey, chartData }) => {
 };
 
 export const LineChartBacktest = ({ dataKey, chartData }) => {
-    // chartData가 비어있거나 undefined일 때 처리
     if (!Array.isArray(chartData) || chartData.length === 0) {
         return <Loading />;
     }
 
-    // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
     const data = chartData.map((entry) => ({
         x: entry.id,
-        y: entry[dataKey], // 캔들차트 데이터 형식
-        meta: { ...entry }, // 메타데이터 추가
+        y: entry[dataKey],
+        meta: { ...entry },
     }));
 
-    // profitRate의 최소값과 최대값 계산
     const profitRateValues = chartData.map((item) => item.profitRate);
-    const minProfitRate = Math.min(...profitRateValues) - 10; // 최소값 -10
-    const maxProfitRate = Math.max(...profitRateValues) + 10; // 최대값 +10
+    const minProfitRate = Math.min(...profitRateValues) - 10;
+    const maxProfitRate = Math.max(...profitRateValues) + 10;
 
     const options = {
         chart: {
@@ -207,14 +204,6 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
             },
             toolbar: {
                 show: false,
-                // tools: {
-                //     selection: false,
-                //     zoom: false,
-                //     zoomin: false,
-                //     zoomout: false,
-                //     pan: false,
-                //     reset: false,
-                // },
             },
         },
         xaxis: {
@@ -247,7 +236,7 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
                               minute: "2-digit",
                               hour12: false,
                           })
-                          .replace(",", "") // 콤마 제거
+                          .replace(",", "")
                     : "-";
 
                 return `<div class="tooltip">
@@ -303,14 +292,4 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
             <Chart options={options} series={[{ name: dataKey, data }]} type="area" height="100%" />
         </div>
     );
-};
-
-// 최대 종가 계산 함수
-export const MaxClose = ({ chartData }) => {
-    return Math.max(...chartData.map((entry) => entry.close));
-};
-
-// 최소 종가 계산 함수
-export const MinClose = ({ chartData }) => {
-    return Math.min(...chartData.map((entry) => entry.close));
 };

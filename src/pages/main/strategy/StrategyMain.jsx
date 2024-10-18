@@ -175,14 +175,17 @@ export const StrategyMain = () => {
             formData.tick_kind &&
             formData.inq_range
         ) {
+            // selectedStrategy2가 " "이 아닌 경우에만 포함
+            const strategies = [selectedStrategy1];
+            if (selectedStrategy2 && selectedStrategy2 !== " ") {
+                strategies.push(selectedStrategy2);
+            }
+
             // 두 개의 전략을 알파벳 순서로 정렬
-            const strategies = [selectedStrategy1, selectedStrategy2].sort();
-            const strategyPath = `${strategies[0]}${strategies[1]}`; // 조합된 경로 생성
+            const strategyPath = strategies.sort().join(""); // 조합된 경로 생성
             navigate(`/strategy/${strategyPath}`);
         } else {
-            {
-                alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
-            }
+            alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }
     };
 

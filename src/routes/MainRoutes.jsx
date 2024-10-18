@@ -39,11 +39,11 @@ const MainRoutes = () => {
             <Route path="/result/:id/" element={<Result />} />
             <Route path="/result/:first/:second/" element={<Result />} />
             <Route path="/strategy/" element={<StrategyMain />} />
-            <Route path="/strategy/ golden/" element={<StrategyGolden />} />
-            <Route path="/strategy/%20bollinger/" element={<StrategyBollinger />} />
-            <Route path="/strategy/%20rsi/" element={<StrategyRSI />} />
-            <Route path="/strategy/%20env/" element={<StrategyEnv />} />
-            <Route path="/strategy/%20williams/" element={<StrategyWilliams />} />
+            <Route path="/strategy/golden/" element={<StrategyGolden />} />
+            <Route path="/strategy/bollinger/" element={<StrategyBollinger />} />
+            <Route path="/strategy/rsi/" element={<StrategyRSI />} />
+            <Route path="/strategy/env/" element={<StrategyEnv />} />
+            <Route path="/strategy/williams/" element={<StrategyWilliams />} />
 
             <Route path="/strategy/bollinger/env/" element={<StrategyBE />} />
             <Route path="/strategy/bollinger/golden/" element={<StrategyBG />} />

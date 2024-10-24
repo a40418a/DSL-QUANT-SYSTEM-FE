@@ -1,5 +1,3 @@
-// 전략 설정 관련 Context
-
 import React, { createContext, useState, useContext } from "react";
 import {
     StrategyCommonDTO,
@@ -8,6 +6,7 @@ import {
     StrategyRsiDTO,
     StrategyEnvDTO,
     StrategyWDTO,
+    MultiStrategyDTO,
 } from "../types/StrategyDTO";
 import { ResultDTO } from "../types/ResultDTO";
 
@@ -44,6 +43,28 @@ const initialStrategyWilData: StrategyWDTO = {
     williamsPeriod: 0,
 };
 
+// MultiStrategy 초기 상태값
+const initialMultiStrategyData: MultiStrategyDTO = {
+    userId: 0,
+    second_strategy: "",
+    profitVsRate: 0,
+    finalProfitRate: 0,
+    moveAvg: 0,
+    moving_up: 0,
+    moving_down: 0,
+    movingAveragePeriod: 0,
+    fastMoveAvg: 0,
+    slowMoveAvg: 0,
+    rsiPeriod: 0,
+    williamsPeriod: 0,
+    second_finalCash: 0,
+    second_finalAsset: 0,
+    second_finalBalance: 0,
+    second_profit: 0,
+    second_profitRate: 0,
+    second_numberOfTrades: 0,
+};
+
 const initialResultData: ResultDTO = {
     finalCash: 0,
     finalAsset: 0,
@@ -67,9 +88,11 @@ export const StrategyContext = createContext<{
     setStrategyEnvData: React.Dispatch<React.SetStateAction<StrategyEnvDTO>>;
     strategyWilData: StrategyWDTO;
     setStrategyWilData: React.Dispatch<React.SetStateAction<StrategyWDTO>>;
+    multiStrategyData: MultiStrategyDTO;
+    setMultiStrategyData: React.Dispatch<React.SetStateAction<MultiStrategyDTO>>;
     resultData: ResultDTO;
     setResultData: React.Dispatch<React.SetStateAction<ResultDTO>>;
-}>({
+}>( {
     strategyCommonData: initialStrategyCommonData,
     setStrategyCommonData: () => {},
     strategyGolData: initialStrategyGolData,
@@ -82,6 +105,8 @@ export const StrategyContext = createContext<{
     setStrategyEnvData: () => {},
     strategyWilData: initialStrategyWilData,
     setStrategyWilData: () => {},
+    multiStrategyData: initialMultiStrategyData,
+    setMultiStrategyData: () => {},
     resultData: initialResultData,
     setResultData: () => {},
 });
@@ -98,6 +123,7 @@ export const StrategyProvider: React.FC = ({ children }) => {
     const [strategyRsiData, setStrategyRsiData] = useState<StrategyRsiDTO>(initialStrategyRsiData);
     const [strategyEnvData, setStrategyEnvData] = useState<StrategyEnvDTO>(initialStrategyEnvData);
     const [strategyWilData, setStrategyWilData] = useState<StrategyWDTO>(initialStrategyWilData);
+    const [multiStrategyData, setMultiStrategyData] = useState<MultiStrategyDTO>(initialMultiStrategyData);
     const [resultData, setResultData] = useState<ResultDTO>(initialResultData);
 
     return (
@@ -115,6 +141,8 @@ export const StrategyProvider: React.FC = ({ children }) => {
                 setStrategyEnvData,
                 strategyWilData,
                 setStrategyWilData,
+                multiStrategyData,
+                setMultiStrategyData,
                 resultData,
                 setResultData,
             }}

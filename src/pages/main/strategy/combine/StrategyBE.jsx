@@ -14,7 +14,7 @@ export const StrategyBE = () => {
     const { setStrategyEnvData } = useContext(StrategyContext);
 
     const initialFormDataBol = JSON.parse(localStorage.getItem("formDataBol")) || {
-        move_period: [0, 0],
+        move_period: 0,
     };
     const initialFormDataEnv = JSON.parse(localStorage.getItem("formDataEnv")) || {
         moving_up: 1,
@@ -72,23 +72,25 @@ export const StrategyBE = () => {
     const handleSubmit = async () => {
         const SURL = import.meta.env.VITE_APP_URI;
         const strategyBolDTO = new StrategyBollingerDTO(formDataBol);
-        const strategyEnvDTO = new StrategyEnvDTO(formDataEnv);
-        setStrategyBolData(strategyBolDTO);
-        setStrategyEnvData(strategyEnvDTO);
+
+        // 빈 객체로 multiStrategyDTO 선언 후 속성 추가
+        const multiStrategyDTO= {
+            moving_up: formDataEnv.moving_up,
+            moving_down: formDataEnv.moving_down,
+            movingAveragePeriod: formDataEnv.movingAveragePeriod,
+        };
 
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            await axios.post(`${SURL}/strategy/bollinger`, strategyBolDTO, {
+            await axios.post(`${SURL}/strategy/bollinger/env`, {
+                bbStrategyDTO: strategyBolDTO, // 첫 번째 전략 (볼린저밴드)
+                multiStrategyDTO: multiStrategyDTO // 골든크로스 전략 관련 정보만 포함된 DTO
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            await axios.post(`${SURL}/strategy/env`, strategyEnvDTO, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-        } catch (error) {
+        }catch (error) {
             console.error("There was an error submitting the common strategy!", error);
         }
 
@@ -100,7 +102,7 @@ export const StrategyBE = () => {
         ) {
             localStorage.removeItem("formDataBol");
             localStorage.removeItem("formDataEnv");
-            navigate(`/result/${id}`);
+            navigate(`/multi_result/${id}`);
         } else {
             alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }

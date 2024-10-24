@@ -77,24 +77,22 @@ export const StrategyEG = () => {
 
     const handleSubmit = async () => {
         const SURL = import.meta.env.VITE_APP_URI;
-        const strategyGolDTO = new StrategyGoldenDTO(formDataGol);
         const strategyEnvDTO = new StrategyEnvDTO(formDataEnv);
-        setStrategyGolData(strategyGolDTO);
-        setStrategyEnvData(strategyEnvDTO);
-
+        const multiStrategyDTO= {
+            fastMoveAvg: formDataGol.fastMoveAvg,
+            slowMoveAvg: formDataGol.slowMoveAvg,
+        };
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            await axios.post(`${SURL}/strategy/golden`, strategyGolDTO, {
+            await axios.post(`${SURL}/strategy/env/golden`, {
+                envStrategyDTO: strategyEnvDTO, // 첫 번째 전략 (볼린저밴드)
+                multiStrategyDTO: multiStrategyDTO // 골든크로스 전략 관련 정보만 포함된 DTO
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            await axios.post(`${SURL}/strategy/env`, strategyEnvDTO, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-        } catch (error) {
+        }  catch (error) {
             console.error("There was an error submitting the common strategy!", error);
         }
 
@@ -107,7 +105,7 @@ export const StrategyEG = () => {
         ) {
             localStorage.removeItem("formDataGol");
             localStorage.removeItem("formDataEnv");
-            navigate(`/result/${id}`);
+            navigate(`/multi_result/${id}`);
         } else {
             alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }

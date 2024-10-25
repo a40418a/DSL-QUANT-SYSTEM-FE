@@ -14,7 +14,7 @@ export const StrategyBG = () => {
     const { setStrategyGolData } = useContext(StrategyContext);
 
     const initialFormDataBol = JSON.parse(localStorage.getItem("formDataBol")) || {
-        move_period: 0,
+        moveAvg: 0,
     };
     const initialFormDataGol = JSON.parse(localStorage.getItem("formDataGol")) || {
         fastMoveAvg: 0,

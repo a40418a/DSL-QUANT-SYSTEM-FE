@@ -12,15 +12,32 @@ export const MultiResult = () => {
 
     const {
         strategyCommonData,
-        strategyGolData,
-        strategyBolData,
-        strategyRsiData,
-        strategyEnvData,
-        strategyWilData,
         multiStrategyData,
         resultData,
         setResultData,
     } = useContext(StrategyContext);
+    const strategyGolData={
+        fastMoveAvg: resultData.fastMoveAvg,
+        slowMoveAvg: resultData.slowMoveAvg,
+    }
+    const strategyBolData={
+        moveAvg: resultData.moveAvg,
+    }
+    const strategyRsiData={
+        rsiPeriod: resultData.rsiPeriod,
+    }
+    const strategyEnvData={
+        move_up: resultData.move_up,
+        move_down: resultData.move_down,
+        movingAveragePeriod: resultData.movingAveragePeriod,
+    }
+    const strategyWilData={
+        williamsPeriod: resultData.williamsPeriod,
+    }
+    const finalData={
+        profitVsRate: resultData.profitVsRate,
+        finalProfitRate: resultData.finalProfitRate,
+    }
     const { id } = useParams();
     const SURL = import.meta.env.VITE_APP_URI;
 
@@ -103,30 +120,94 @@ export const MultiResult = () => {
                 <div className={styles.infoTitle}>공통 전략 데이터</div>
                 <table className={styles.table}>
                     <tbody>
-                    {Object.entries(strategyCommonData).map(([key, value]) => (
-                        <tr key={key}>
-                            <th>{key}</th>
-                            <td>{JSON.stringify(value)}</td>
-                        </tr>
-                    ))}
+                    {Object.entries(strategyCommonData)
+                        .filter(([key]) => key !== "strategy") // "strategy" 항목 제외
+                        .map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
 
-                {/* 복수 전략 세부 데이터 표시 */}
                 <div className={styles.infoTitle}>
-                    선택한 전략 <p>{id}</p> 데이터
+                    선택 전략 <p>{resultData.strategy}</p> 데이터
                 </div>
                 <table className={styles.table}>
                     <tbody>
-                    {id === "bollinger/golden" &&
+                    {resultData.strategy === "golden" &&
                         Object.entries(strategyGolData).map(([key, value]) => (
                             <tr key={key}>
                                 <th>{key}</th>
                                 <td>{JSON.stringify(value)}</td>
                             </tr>
                         ))}
-                    {id === "bollinger" &&
+                    {resultData.strategy === "bollinger" &&
                         Object.entries(strategyBolData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
+                    {resultData.strategy === "rsi" &&
+                        Object.entries(strategyRsiData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
+                    {resultData.strategy === "env" &&
+                        Object.entries(strategyEnvData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
+                    {resultData.strategy === "williams" &&
+                        Object.entries(strategyWilData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div className={styles.infoTitle}>
+                    선택 전략 <p>{resultData.second_strategy}</p> 데이터
+                </div>
+                <table className={styles.table}>
+                    <tbody>
+                    {resultData.second_strategy === "golden" &&
+                        Object.entries(strategyGolData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
+                    {resultData.second_strategy === "bollinger" &&
+                        Object.entries(strategyBolData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
+                    {resultData.second_strategy === "rsi" &&
+                        Object.entries(strategyRsiData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
+                    {resultData.second_strategy === "env" &&
+                        Object.entries(strategyEnvData).map(([key, value]) => (
+                            <tr key={key}>
+                                <th>{key}</th>
+                                <td>{JSON.stringify(value)}</td>
+                            </tr>
+                        ))}
+                    {resultData.second_strategy === "williams" &&
+                        Object.entries(strategyWilData).map(([key, value]) => (
                             <tr key={key}>
                                 <th>{key}</th>
                                 <td>{JSON.stringify(value)}</td>
@@ -142,37 +223,9 @@ export const MultiResult = () => {
 
             {/* 복수 전략 결과 표시 */}
             <div className={styles.wrapper}>
-                <div className={styles.infoTitle}>전략 1 결과 (???)</div>
-                <table className={styles.table}>
-                    <tbody>
-                    <tr>
-                        <th>Final Cash</th>
-                        <td>{resultData?.second_finalCash != null ? resultData.second_finalCash.toFixed(2) : <Loading />}</td>
-                    </tr>
-                    <tr>
-                        <th>Final Asset</th>
-                        <td>{resultData?.second_finalAsset != null ? resultData.second_finalAsset.toFixed(2) : <Loading />}</td>
-                    </tr>
-                    <tr>
-                        <th>Final Balance</th>
-                        <td>{resultData?.second_finalBalance != null ? resultData.second_finalBalance.toFixed(2) : <Loading />}</td>
-                    </tr>
-                    <tr>
-                        <th>Profit</th>
-                        <td>{resultData?.second_profit != null ? resultData.second_profit.toFixed(2) : <Loading />}</td>
-                    </tr>
-                    <tr>
-                        <th>Profit Rate</th>
-                        <td>{resultData?.second_profitRate != null ? resultData.second_profitRate.toFixed(2) : <Loading />}</td>
-                    </tr>
-                    <tr>
-                        <th>Number of Trades</th>
-                        <td>{resultData?.second_numberOfTrades != null ? resultData.second_numberOfTrades.toFixed(2) : <Loading />}</td>
-                    </tr>
-                    </tbody>
-                </table>
-
-                <div className={styles.infoTitle}>전략 2 결과 (???)</div>
+                <div className={styles.wrapper2}>
+                <div className={styles.tableContainer}>
+                <div className={styles.infoTitle}>전략 1 결과 ({resultData.strategy})</div>
                 <table className={styles.table}>
                     <tbody>
                     <tr>
@@ -197,10 +250,62 @@ export const MultiResult = () => {
                     </tr>
                     <tr>
                         <th>Number of Trades</th>
-                        <td>{resultData?.numberOfTrades != null ? resultData.numberOfTrades.toFixed(2) : <Loading />}</td>
+                        <td>{resultData?.numberOfTrades != null ? resultData.numberOfTrades.toFixed(2) :
+                            <Loading />}</td>
                     </tr>
                     </tbody>
                 </table>
+                </div>
+                <div className={styles.tableContainer}>
+                    <div className={styles.infoTitle}>전략 2 결과 ({resultData.second_strategy})</div>
+                    <table className={styles.table}>
+                        <tbody>
+                        <tr>
+                            <th>Final Cash</th>
+                            <td>{resultData?.second_finalCash != null ? resultData.second_finalCash.toFixed(2) :
+                                <Loading />}</td>
+                        </tr>
+                        <tr>
+                            <th>Final Asset</th>
+                            <td>{resultData?.second_finalAsset != null ? resultData.second_finalAsset.toFixed(2) :
+                                <Loading />}</td>
+                        </tr>
+                        <tr>
+                            <th>Final Balance</th>
+                            <td>{resultData?.second_finalBalance != null ? resultData.second_finalBalance.toFixed(2) :
+                                <Loading />}</td>
+                        </tr>
+                        <tr>
+                            <th>Profit</th>
+                            <td>{resultData?.second_profit != null ? resultData.second_profit.toFixed(2) : <Loading />}</td>
+                        </tr>
+                        <tr>
+                            <th>Profit Rate</th>
+                            <td>{resultData?.second_profitRate != null ? resultData.second_profitRate.toFixed(2) :
+                                <Loading />}</td>
+                        </tr>
+                        <tr>
+                            <th>Number of Trades</th>
+                            <td>{resultData?.second_numberOfTrades != null ? resultData.second_numberOfTrades.toFixed(2) :
+                                <Loading />}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                <div className={styles.wrapper}>
+                    <div className={styles.infoTitle}>최종 결과</div>
+                    <table className={styles.table}>
+                        <tbody>
+                        {Object.entries(finalData).map(([key, value]) => (
+                                <tr key={key}>
+                                    <th>{key}</th>
+                                    <td>{JSON.stringify(value)}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             </div>
             <div className={styles.box}>
                 <div>

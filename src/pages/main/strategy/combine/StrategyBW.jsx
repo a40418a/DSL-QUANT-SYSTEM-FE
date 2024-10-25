@@ -14,7 +14,7 @@ export const StrategyBW = () => {
     const { setStrategyWilData } = useContext(StrategyContext);
 
     const initialFormDataBol = JSON.parse(localStorage.getItem("formDataBol")) || {
-        move_period: 0,
+        moveAvg: 0,
     };
     const initialFormDataWil = JSON.parse(localStorage.getItem("formDataWil")) || {
         williamsPeriod: 0,

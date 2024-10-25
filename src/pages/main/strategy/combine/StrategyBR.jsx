@@ -14,7 +14,7 @@ export const StrategyBR = () => {
     const { setStrategyRsiData } = useContext(StrategyContext);
 
     const initialFormDataBol = JSON.parse(localStorage.getItem("formDataBol")) || {
-        move_period: 0,
+        moveAvg: 0,
     };
     const initialFormDataRsi = JSON.parse(localStorage.getItem("formDataRsi")) || {
         rsiPeriod: 0,

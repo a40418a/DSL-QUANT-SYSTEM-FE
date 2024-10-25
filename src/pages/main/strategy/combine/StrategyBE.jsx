@@ -14,7 +14,7 @@ export const StrategyBE = () => {
     const { setStrategyEnvData } = useContext(StrategyContext);
 
     const initialFormDataBol = JSON.parse(localStorage.getItem("formDataBol")) || {
-        move_period: 0,
+        moveAvg: 0,
     };
     const initialFormDataEnv = JSON.parse(localStorage.getItem("formDataEnv")) || {
         moving_up: 1,

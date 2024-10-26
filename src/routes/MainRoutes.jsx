@@ -14,6 +14,7 @@ import { StrategyWilliams } from "../pages/main/strategy/StrategyWilliams";
 import { StockList } from "../pages/main/stockList/StockList";
 import { StockInfo } from "../pages/main/stockInfo/StockInfo";
 import { LoginHandler } from "../pages/info/login/LoginHandler";
+
 import { StrategyBE } from "../pages/main/strategy/combine/StrategyBE";
 import { StrategyBR } from "../pages/main/strategy/combine/StrategyBR";
 import { StrategyBG } from "../pages/main/strategy/combine/StrategyBG";

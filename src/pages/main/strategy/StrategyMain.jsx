@@ -193,7 +193,9 @@ export const StrategyMain = () => {
         <div className={styles.strategy}>
             <div className={styles.title}>공통 변수 설정</div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>초기 투자 금액</div>
+                <div className={styles.subtitle} title="시작 자본">
+                    초기 투자 금액
+                </div>
                 <div className={styles.input}>
                     <div className={styles.initInvestment}>
                         <InputBox
@@ -208,7 +210,9 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>거래 수수료</div>
+                <div className={styles.subtitle} title="수수료">
+                    거래 수수료
+                </div>
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="거래 수수료를 선택해주세요."
@@ -233,7 +237,9 @@ export const StrategyMain = () => {
             </div>
 
             <div className={styles.select}>
-                <div className={styles.subtitle}>캔들 종류(TickKind)</div>
+                <div className={styles.subtitle} title="캔들(틱) 종류 ex)n분봉,일봉,월봉">
+                    캔들 종류(TickKind)
+                </div>
                 <div className={styles.input}>
                     <SelectBox
                         placeholder="캔들 종류를 선택해주세요."
@@ -245,7 +251,9 @@ export const StrategyMain = () => {
                 </div>
             </div>
             <div className={styles.select}>
-                <div className={styles.subtitle}>조회 범위(InqRange)</div>
+                <div className={styles.subtitle} title="캔들(틱)을 몇개를 조회 할 것인지">
+                    조회 범위(InqRange)
+                </div>
                 <div className={styles.input}>
                     <InputBox
                         type="text"

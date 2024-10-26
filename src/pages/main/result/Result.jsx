@@ -176,7 +176,7 @@ export const Result = () => {
             <table className={styles.table}>
                 <tbody>
                     <tr>
-                        <th>Final Cash</th>
+                        <th title="최종 보유한 현금">Final Cash</th>
                         <td>
                             {resultData?.finalCash != null ? (
                                 resultData.finalCash.toFixed(2)
@@ -186,7 +186,7 @@ export const Result = () => {
                         </td>
                     </tr>
                     <tr>
-                        <th>Final Asset</th>
+                        <th title="최종 보유중인 종목에 대한 개수">Final Asset</th>
                         <td>
                             {resultData?.finalAsset != null ? (
                                 resultData.finalAsset.toFixed(2)
@@ -196,7 +196,7 @@ export const Result = () => {
                         </td>
                     </tr>
                     <tr>
-                        <th>Final Balance</th>
+                        <th title="FinalCash+FinalAsset으로 최종 보유 자산 가치">Final Balance</th>
                         <td>
                             {resultData?.finalBalance != null ? (
                                 resultData.finalBalance.toFixed(2)
@@ -206,7 +206,7 @@ export const Result = () => {
                         </td>
                     </tr>
                     <tr>
-                        <th>Profit</th>
+                        <th title="시작 자본에 비해 최종 자본이 얼마나 변화했는지">Profit</th>
                         <td>
                             {resultData?.profit != null ? (
                                 resultData.profit.toFixed(2)
@@ -216,7 +216,7 @@ export const Result = () => {
                         </td>
                     </tr>
                     <tr>
-                        <th>Profit Rate</th>
+                        <th title="Profit을 백분율로 변환한것">Profit Rate</th>
                         <td>
                             {resultData?.profitRate != null ? (
                                 resultData.profitRate.toFixed(2)
@@ -226,7 +226,7 @@ export const Result = () => {
                         </td>
                     </tr>
                     <tr>
-                        <th>Number of Trades</th>
+                        <th title="매수/매도 시그널로 인한 거래 횟수">Number of Trades</th>
                         <td>
                             {resultData?.numberOfTrades != null ? (
                                 resultData.numberOfTrades.toFixed(2)

@@ -5,6 +5,7 @@ import { Explain } from "../pages/preview/explain/Explain";
 import { Login } from "../pages/info/login/Login";
 import { MyPage } from "../pages/info/myPage/MyPage";
 import { Result } from "../pages/main/result/Result";
+import { MultiResult } from "../pages/main/result/MultiResult";
 import { StrategyMain } from "../pages/main/strategy/StrategyMain";
 import { StrategyGolden } from "../pages/main/strategy/StrategyGolden";
 import { StrategyBollinger } from "../pages/main/strategy/StrategyBollinger";
@@ -38,7 +39,7 @@ const MainRoutes = () => {
             <Route path="/stockinfo/:id/" element={<StockInfo />} />
             <Route path="/mypage/" element={<MyPage />} />
             <Route path="/result/:id/" element={<Result />} />
-            <Route path="/result/:first/:second/" element={<Result />} />
+            <Route path="/multi_result/*" element={<MultiResult  />} />
             <Route path="/strategy/" element={<StrategyMain />} />
             <Route path="/strategy/golden/" element={<StrategyGolden />} />
             <Route path="/strategy/bollinger/" element={<StrategyBollinger />} />

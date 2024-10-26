@@ -71,19 +71,16 @@ export const StrategyEW = () => {
 
     const handleSubmit = async () => {
         const SURL = import.meta.env.VITE_APP_URI;
-        const strategyWilDTO = new StrategyWDTO(formDataWil);
         const strategyEnvDTO = new StrategyEnvDTO(formDataEnv);
-        setStrategyWilData(strategyWilDTO);
-        setStrategyEnvData(strategyEnvDTO);
-
+        const multiStrategyDTO= {
+            williamsPeriod: formDataWil.williamsPeriod,
+        };
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            await axios.post(`${SURL}/strategy/williams`, strategyWilDTO, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            await axios.post(`${SURL}/strategy/env`, strategyEnvDTO, {
+            await axios.post(`${SURL}/strategy/env/williams`, {
+                envStrategyDTO: strategyEnvDTO, // 첫 번째 전략 (볼린저밴드)
+                multiStrategyDTO: multiStrategyDTO // 골든크로스 전략 관련 정보만 포함된 DTO
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -100,7 +97,7 @@ export const StrategyEW = () => {
         ) {
             localStorage.removeItem("formDataWil");
             localStorage.removeItem("formDataEnv");
-            navigate(`/result/${id}`);
+            navigate(`/multi_result/${id}`);
         } else {
             alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }

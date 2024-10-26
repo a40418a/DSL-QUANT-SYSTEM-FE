@@ -118,7 +118,9 @@ export const Result = () => {
                 <div className={styles.infoTitle}>공통 전략 데이터</div>
                 <table className={styles.table}>
                     <tbody>
-                        {Object.entries(strategyCommonData).map(([key, value]) => (
+                    {Object.entries(strategyCommonData)
+                        .filter(([key]) => key !== "strategy") // "strategy" 항목 제외
+                        .map(([key, value]) => (
                             <tr key={key}>
                                 <th>{key}</th>
                                 <td>{JSON.stringify(value)}</td>

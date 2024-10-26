@@ -14,7 +14,7 @@ export const StrategyBR = () => {
     const { setStrategyRsiData } = useContext(StrategyContext);
 
     const initialFormDataBol = JSON.parse(localStorage.getItem("formDataBol")) || {
-        move_period: [0, 0],
+        moveAvg: 0,
     };
     const initialFormDataRsi = JSON.parse(localStorage.getItem("formDataRsi")) || {
         rsiPeriod: 0,
@@ -60,18 +60,16 @@ export const StrategyBR = () => {
     const handleSubmit = async () => {
         const SURL = import.meta.env.VITE_APP_URI;
         const strategyBolDTO = new StrategyBollingerDTO(formDataBol);
-        const strategyRsiDTO = new StrategyRsiDTO(formDataRsi);
-        setStrategyBolData(strategyBolDTO);
-        setStrategyRsiData(strategyRsiDTO);
-
+        // 빈 객체로 multiStrategyDTO 선언 후 속성 추가
+        const multiStrategyDTO= {
+            rsiPeriod: formDataRsi.rsiPeriod,
+        };
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            await axios.post(`${SURL}/strategy/bollinger`, strategyBolDTO, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            await axios.post(`${SURL}/strategy/rsi`, strategyRsiDTO, {
+            await axios.post(`${SURL}/strategy/bollinger/rsi`, {
+                bbStrategyDTO: strategyBolDTO, // 첫 번째 전략 (볼린저밴드)
+                multiStrategyDTO: multiStrategyDTO // 골든크로스 전략 관련 정보만 포함된 DTO
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -83,7 +81,7 @@ export const StrategyBR = () => {
         if (formDataBol.moveAvg && formDataRsi.rsiPeriod) {
             localStorage.removeItem("formDataBol");
             localStorage.removeItem("formDataRsi");
-            navigate(`/result/${id}`);
+            navigate(`/multi_result/${id}`);
         } else {
             alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }

@@ -14,7 +14,7 @@ export const StrategyBG = () => {
     const { setStrategyGolData } = useContext(StrategyContext);
 
     const initialFormDataBol = JSON.parse(localStorage.getItem("formDataBol")) || {
-        move_period: [0, 0],
+        moveAvg: 0,
     };
     const initialFormDataGol = JSON.parse(localStorage.getItem("formDataGol")) || {
         fastMoveAvg: 0,
@@ -66,18 +66,19 @@ export const StrategyBG = () => {
     const handleSubmit = async () => {
         const SURL = import.meta.env.VITE_APP_URI;
         const strategyBolDTO = new StrategyBollingerDTO(formDataBol);
-        const strategyGolDTO = new StrategyGoldenDTO(formDataGol);
-        setStrategyBolData(strategyBolDTO);
-        setStrategyGolData(strategyGolDTO);
+
+        // 빈 객체로 multiStrategyDTO 선언 후 속성 추가
+        const multiStrategyDTO= {
+            fastMoveAvg: formDataGol.fastMoveAvg , // 골든크로스 fast 값
+            slowMoveAvg: formDataGol.slowMoveAvg , // 골든크로스 slow 값
+        };
 
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            await axios.post(`${SURL}/strategy/bollinger`, strategyBolDTO, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            await axios.post(`${SURL}/strategy/golden`, strategyGolDTO, {
+            await axios.post(`${SURL}/strategy/bollinger/golden`, {
+                bbStrategyDTO: strategyBolDTO, // 첫 번째 전략 (볼린저밴드)
+                multiStrategyDTO: multiStrategyDTO // 골든크로스 전략 관련 정보만 포함된 DTO
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
@@ -86,14 +87,17 @@ export const StrategyBG = () => {
             console.error("There was an error submitting the common strategy!", error);
         }
 
+        // 제출 후, 조건 확인 및 로컬 스토리지 정리
         if (formDataBol.moveAvg && formDataGol.fastMoveAvg && formDataGol.slowMoveAvg) {
             localStorage.removeItem("formDataBol");
             localStorage.removeItem("formDataGol");
-            navigate(`/result/${id}`);
+            navigate(`/multi_result/${id}`);
         } else {
             alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }
     };
+
+
 
     const handlePrevClick = () => {
         navigate("/strategy");

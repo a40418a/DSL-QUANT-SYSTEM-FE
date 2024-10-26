@@ -14,7 +14,7 @@ export const StrategyBW = () => {
     const { setStrategyWilData } = useContext(StrategyContext);
 
     const initialFormDataBol = JSON.parse(localStorage.getItem("formDataBol")) || {
-        move_period: [0, 0],
+        moveAvg: 0,
     };
     const initialFormDataWil = JSON.parse(localStorage.getItem("formDataWil")) || {
         williamsPeriod: 0,
@@ -60,30 +60,28 @@ export const StrategyBW = () => {
     const handleSubmit = async () => {
         const SURL = import.meta.env.VITE_APP_URI;
         const strategyBolDTO = new StrategyBollingerDTO(formDataBol);
-        const strategyWilDTO = new StrategyWDTO(formDataWil);
-        setStrategyBolData(strategyBolDTO);
-        setStrategyWilData(strategyWilDTO);
 
+        const multiStrategyDTO= {
+            williamsPeriod: formDataWil.williamsPeriod,
+        };
         try {
             const token = localStorage.getItem("jwt"); // JWT 토큰 가져오기
-            await axios.post(`${SURL}/strategy/bollinger`, strategyBolDTO, {
+            await axios.post(`${SURL}/strategy/bollinger/williams`, {
+                bbStrategyDTO: strategyBolDTO, // 첫 번째 전략 (볼린저밴드)
+                multiStrategyDTO: multiStrategyDTO // 골든크로스 전략 관련 정보만 포함된 DTO
+            }, {
                 headers: {
                     Authorization: `Bearer ${token}`,
                 },
             });
-            await axios.post(`${SURL}/strategy/williams`, strategyWilDTO, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-        } catch (error) {
+        }  catch (error) {
             console.error("There was an error submitting the common strategy!", error);
         }
 
         if (formDataBol.moveAvg && formDataWil.williamsPeriod) {
             localStorage.removeItem("formDataBol");
             localStorage.removeItem("formDataWil");
-            navigate(`/result/${id}`);
+            navigate(`/multi_result/${id}`);
         } else {
             alert("선택되지 않은 옵션이 있습니다\n모든 옵션을 선택해주세요");
         }

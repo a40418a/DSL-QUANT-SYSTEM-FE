@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // react-router-dom에서 useNavigate 가져오기
+import { useNavigate } from "react-router-dom";
 import styles from "./myPage.module.css";
 import { getUserInfo } from "../../../utils/userApi";
 import { getBackHistory } from "../../../utils/backhistoryApi";
@@ -20,11 +20,7 @@ import { AddChart } from "../../../components/emoticon/Add";
 
 const CustomPagination = () => {
     const apiRef = useGridApiContext();
-
-    if (!apiRef) {
-        return null;
-    }
-
+    if (!apiRef) return null;
     const page = useGridSelector(apiRef, gridPageSelector);
     const pageCount = useGridSelector(apiRef, gridPageCountSelector);
 
@@ -43,14 +39,14 @@ const CustomPagination = () => {
 
 export const MyPage = () => {
     const SURL = import.meta.env.VITE_APP_URI;
-    const navigate = useNavigate(); // 리다이렉트를 위한 navigate 함수 호출
+    const navigate = useNavigate();
     const [userInfo, setUserInfo] = useState(null);
     const [backHistory, setBackHistory] = useState([]);
     const [isTableVisible, setIsTableVisible] = useState(false);
-    const [loading, setLoading] = useState(true); //사용자 정보 로딩 상태
+    const [loading, setLoading] = useState(true);
     const [formData, setFormData] = useState({
-        strategy: "", // 일반 조회 전략
-        backtestingStrategy: "", // 백테스팅 전략
+        strategy: "",
+        backtestingStrategy: "",
     });
     const [errorMessage, setErrorMessage] = useState("");
     const [paginationModel, setPaginationModel] = useState({
@@ -61,44 +57,37 @@ export const MyPage = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                // 사용자 정보를 받아오는 API
                 const userInfoData = await getUserInfo();
                 if (!userInfoData) {
-                    navigate("/login"); // 사용자 정보가 없으면 로그인 페이지로 리다이렉트
+                    navigate("/login");
                     return;
                 }
                 setUserInfo(userInfoData);
             } catch (error) {
                 console.error("MyPage fetchData error: ", error);
-                navigate("/login"); // 에러 발생 시 로그인 페이지로 리다이렉트
+                navigate("/login");
             } finally {
-                setLoading(false); // 사용자 정보 로딩이 끝나면 false로 설정
+                setLoading(false);
             }
         };
-        fetchData(); // fetchData 함수 실행
+        fetchData();
     }, [navigate]);
 
-    if (loading) {
-        return <Loading />;
-    }
+    if (loading) return <Loading />;
 
-    // 전략 변경 핸들러
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value, // name에 따라 strategy 또는 backtesting 업데이트
-        }));
+        setFormData((prevData) => ({ ...prevData, [name]: value }));
     };
 
     const handleBtnClick = async () => {
-        setErrorMessage(""); // 에러 메시지 초기화
+        setErrorMessage("");
         try {
             const backHistoryData = await getBackHistory(formData.strategy);
             setBackHistory(backHistoryData);
             setIsTableVisible(true);
         } catch (error) {
-            if (error.response && error.response.status == 404) {
+            if (error.response && error.response.status === 404) {
                 setErrorMessage("아직 백테스팅한 데이터가 없습니다.");
             } else {
                 setErrorMessage("서버 문제 발생");
@@ -108,11 +97,9 @@ export const MyPage = () => {
     };
 
     const handleBacktestingClick = async () => {
-        // 선택된 전략을 가져옵니다.
         const strategy = formData.backtestingStrategy;
-
-        // 백테스팅 API 호출
         let apiUrl;
+
         switch (strategy) {
             case "gd":
                 apiUrl = `${SURL}/backtesting_mine_gd`;
@@ -135,37 +122,24 @@ export const MyPage = () => {
         }
 
         try {
-            const token = localStorage.getItem("jwt"); // JWT 토큰이 localStorage에 저장되어 있다고 가정
-
+            const token = localStorage.getItem("jwt");
             if (!token) {
                 alert("로그인 후 이용해주세요.");
                 return;
             }
 
             const response = await axios.get(apiUrl, {
-                headers: {
-                    Authorization: `Bearer ${token}`, // 헤더에 JWT 토큰 추가
-                },
+                headers: { Authorization: `Bearer ${token}` },
             });
 
             if (response.status === 200) {
-                alert(
-                    "백테스팅 데이터가 성공적으로 추가되었습니다.\n결과는 백테스팅 기록에서 확인할 수 있습니다.",
-                );
+                alert("백테스팅 데이터가 성공적으로 추가되었습니다.");
             }
         } catch (error) {
             console.error("백테스팅 호출 중 에러 발생:", error);
             alert("백테스팅 실행에 실패했습니다.");
         }
     };
-
-    const options_strategy = [
-        { label: "골든/데드", value: "golden" },
-        { label: "볼린저밴드", value: "bollinger" },
-        { label: "RSI, MFI, MACD 지표 이용", value: "rsi" },
-        { label: "엔벨로프", value: "env" },
-        { label: "윌리엄스", value: "williams" },
-    ];
 
     const options_backtesting = [
         { label: "골든/데드", value: "gd" },
@@ -175,178 +149,148 @@ export const MyPage = () => {
         { label: "윌리엄스", value: "williams" },
     ];
 
-    const rows = backHistory.map((record, index) => {
-        const formattedDate = new Date(record.backtesting_date).toLocaleDateString("ko-KR", {
-            year: "2-digit",
-            month: "2-digit",
-            day: "2-digit",
-        });
+    const getColumns = () => {
+        return formData.strategy === "multi"
+            ? [
+                  { field: "date", headerName: "Date", flex: 1 },
+                  { field: "initialInvestment", headerName: "Initial Investment (만원)", flex: 1 },
+                  { field: "finalBalance", headerName: "Final Balance (만원)", flex: 1 },
+                  { field: "profitVsRate", headerName: "Profit Vs Rate (%)", flex: 1 },
+                  { field: "finalProfitRate", headerName: "Final Profit Rate (%)", flex: 1 },
+                  { field: "strategy", headerName: "First Strategy", flex: 1 },
+                  { field: "second_strategy", headerName: "Second Strategy", flex: 1 },
+              ]
+            : [
+                  { field: "date", headerName: "Date", flex: 1 },
+                  { field: "finalCash", headerName: "Final Cash (만원)", flex: 1 },
+                  { field: "finalAsset", headerName: "Final Asset (만원)", flex: 1 },
+                  { field: "finalBalance", headerName: "Final Balance (만원)", flex: 1 },
+                  { field: "profit", headerName: "Profit (만원)", flex: 1 },
+                  { field: "profitRate", headerName: "Profit Rate (%)", flex: 1 },
+                  { field: "numberOfTrades", headerName: "Number of Trades", flex: 1 },
+              ];
+    };
 
-        return {
-            id: index,
-            date: formattedDate,
-            finalCash: record.finalCash.toFixed(2),
-            finalAsset: record.finalAsset.toFixed(2),
-            finalBalance: record.finalBalance.toFixed(2),
-            profit: record.profit.toFixed(2),
-            profitRate: record.profitRate.toFixed(2),
-            numberOfTrades: record.numberOfTrades.toFixed(2),
-        };
+    const rows = backHistory.map((record, index) => {
+        const dateValue = new Date(record.backtesting_date || Date.now());
+        const formattedDate = isNaN(dateValue.getTime())
+            ? "Invalid Date"
+            : dateValue.toLocaleDateString("ko-KR", { year: "2-digit", month: "2-digit", day: "2-digit" });
+
+        if (formData.strategy === "multi") {
+            return {
+                id: index,
+                date: formattedDate,
+                initialInvestment: record.initial_investment ? record.initial_investment.toFixed(2) : "0.00",
+                finalBalance: record.second_finalBalance ? record.second_finalBalance.toFixed(2) : "0.00",
+                profitVsRate: record.profitVsRate ? record.profitVsRate.toFixed(2) : "0.00",
+                finalProfitRate: record.finalProfitRate ? record.finalProfitRate.toFixed(2) : "0.00",
+                strategy: record.strategy || "N/A",
+                second_strategy: record.second_strategy || "N/A",
+            };
+        } else {
+            return {
+                id: index,
+                date: formattedDate,
+                finalCash: record.finalCash ? record.finalCash.toFixed(2) : "0.00",
+                finalAsset: record.finalAsset ? record.finalAsset.toFixed(2) : "0.00",
+                finalBalance: record.finalBalance ? record.finalBalance.toFixed(2) : "0.00",
+                profit: record.profit ? record.profit.toFixed(2) : "0.00",
+                profitRate: record.profitRate ? record.profitRate.toFixed(2) : "0.00",
+                numberOfTrades: record.numberOfTrades !== undefined ? record.numberOfTrades : 0,
+            };
+        }
     });
 
-    const columns = [
-        {
-            field: "date",
-            headerName: "Date",
-            flex: 1,
-            headerAlign: "center",
-            type: "string",
-        },
-        {
-            field: "finalCash",
-            headerName: "Final Cash (만원)",
-            flex: 1,
-            headerAlign: "center",
-            type: "number",
-        },
-        {
-            field: "finalAsset",
-            headerName: "Final Asset (만원)",
-            flex: 1,
-            headerAlign: "center",
-            type: "number",
-        },
-        {
-            field: "finalBalance",
-            headerName: "Final Balance (만원)",
-            flex: 1,
-            headerAlign: "center",
-            type: "number",
-        },
-        {
-            field: "profit",
-            headerName: "Profit (만원)",
-            flex: 1,
-            headerAlign: "center",
-            type: "number",
-        },
-        {
-            field: "profitRate",
-            headerName: "Profit Rate(%)",
-            flex: 1,
-            headerAlign: "center",
-            type: "number",
-            renderCell: (params) => {
-                const value = Number(params.value);
-                const color = value < 0 ? "var(--down-color)" : "var(--up-color)";
-                return (
-                    <span style={{ color, cursor: "pointer" }}>
-                        {value ? (value * 100).toFixed(2) : "0.00"}
-                    </span>
-                );
-            },
-        },
-        {
-            field: "numberOfTrades",
-            headerName: "Number of Trades",
-            flex: 1,
-            headerAlign: "center",
-            type: "number",
-        },
-    ];
 
     return (
-        <div className={styles.mypage}>
-            {userInfo && (
-                <>
-                    <div className={styles.title}>
-                        <div className={styles.name}>{userInfo.name}</div>
-                        <div className={styles.sub}>님의 마이페이지</div>
-                    </div>
-                    <div className={styles.info}>
-                        <div className={styles.infoTitle}>회원 개인정보</div>
-                        <table className={styles.tableV}>
-                            <tbody>
-                                <tr>
-                                    <th>이름</th>
-                                    <td>{userInfo.name}</td>
-                                </tr>
-                                <tr>
-                                    <th>이메일</th>
-                                    <td>{userInfo.email}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </>
-            )}
-            <div className={styles.info}>
-                <div className={styles.infoTitle}>백테스팅 기록</div>
-                <div className={styles.select}>
-                    <div className={styles.input}>
+        <>
+            <div className={styles.mypage}>
+                {userInfo && (
+                    <>
+                        <div className={styles.title}>
+                            <div className={styles.name}>{userInfo.name}</div>
+                            <div className={styles.sub}>님의 마이페이지</div>
+                        </div>
+                        <div className={styles.info}>
+                            <div className={styles.infoTitle}>회원 개인정보</div>
+                            <table className={styles.tableV}>
+                                <tbody>
+                                    <tr>
+                                        <th>이름</th>
+                                        <td>{userInfo.name}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>이메일</th>
+                                        <td>{userInfo.email}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </>
+                )}
+
+                <div className={styles.info}>
+                    <div className={styles.infoTitle}>백테스팅 기록</div>
+                    <div className={styles.select}>
                         <SelectBox
                             placeholder="전략을 선택하세요."
-                            options={options_strategy}
+                            options={[
+                                { label: "골든/데드", value: "golden" },
+                                { label: "볼린저밴드", value: "bollinger" },
+                                { label: "RSI", value: "rsi" },
+                                { label: "엔벨로프", value: "env" },
+                                { label: "멀티전략", value: "multi" },
+                            ]}
                             name="strategy"
                             value={formData.strategy}
                             onChange={handleChange}
                         />
+                        <button className={styles.btn} onClick={handleBtnClick}>
+                            조회
+                        </button>
                     </div>
-                    <button className={styles.btn} onClick={handleBtnClick}>
-                        조회
-                    </button>
-                </div>
-                {errorMessage && (
-                    <div className={styles.errorWrapper}>
-                        <div className={styles.errorMessage}>{errorMessage}</div>
-                        <div className={styles.errorBtn}>
-                            <a href="/strategy">
-                                전략 설정 바로가기
-                                <AddChart />
-                            </a>
+
+                    {errorMessage && (
+                        <div className={styles.errorWrapper}>
+                            <div className={styles.errorMessage}>{errorMessage}</div>
+                            <div className={styles.errorBtn}>
+                                <a href="/strategy">
+                                    전략 설정 바로가기
+                                    <AddChart />
+                                </a>
+                            </div>
                         </div>
-                    </div>
-                )}
-                {!errorMessage && isTableVisible && backHistory.length > 0 && (
-                    <Box
+                    )}
+
+                    {!errorMessage && isTableVisible && (
+                        <Box
                         sx={{
-                            "& .MuiDataGrid-columnHeader": {
-                                backgroundColor: "var(--point-color-2)",
-                                "& .MuiDataGrid-columnHeaderTitle": {
-                                    color: "var(--color-white)",
-                                    fontFamily: "var(--font-3)",
-                                },
-                            },
-                        }}
-                    >
-                        <DataGrid
-                            sx={{
-                                width: "100%",
-                                height: "100%",
-                                "& .MuiDataGrid-row": {
-                                    borderBottom: "1px solid var(--color-4)",
-                                    borderTop: "none",
-                                    borderRight: "none",
-                                    borderLeft: "none",
-                                    borderRadius: 0,
-                                },
-                            }}
-                            rows={rows}
-                            columns={columns}
-                            paginationModel={paginationModel}
-                            onPaginationModelChange={setPaginationModel}
-                            slots={{ pagination: CustomPagination }}
-                            onRowClick={(params) => onClick(params.row.market)}
-                            disableColumnResize
-                            disableColumnReorder
-                        />
-                    </Box>
-                )}
-            </div>
-            <div className={styles.info}>
-                <div className={styles.infoTitle}>자동 백테스팅</div>
-                <div className={styles.select}>
-                    <div className={styles.input}>
+                                                    "& .MuiDataGrid-columnHeader": {
+                                                        backgroundColor: "var(--point-color-2)",
+                                                        "& .MuiDataGrid-columnHeaderTitle": {
+                                                            color: "var(--color-white)",
+                                                            fontFamily: "var(--font-3)",
+                                                        },
+                                                    },
+                                                }}
+                        >
+                            <DataGrid
+                                rows={rows}
+                                columns={getColumns()}
+                                paginationModel={paginationModel}
+                                onPaginationModelChange={setPaginationModel}
+                                slots={{ pagination: CustomPagination }}
+                                disableColumnResize
+                                disableColumnReorder
+                            />
+                        </Box>
+                    )}
+                </div>
+
+                <div className={styles.info}>
+                    <div className={styles.infoTitle}>자동 백테스팅</div>
+                    <div className={styles.select}>
                         <SelectBox
                             placeholder="전략을 선택하세요."
                             options={options_backtesting}
@@ -354,12 +298,15 @@ export const MyPage = () => {
                             value={formData.backtestingStrategy}
                             onChange={handleChange}
                         />
+                        <button className={styles.btn} onClick={handleBacktestingClick}>
+                            실행
+                        </button>
                     </div>
-                    <button className={styles.btn} onClick={handleBacktestingClick}>
-                        실행
-                    </button>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
+
+
+

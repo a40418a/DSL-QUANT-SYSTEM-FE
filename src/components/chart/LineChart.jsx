@@ -27,13 +27,8 @@ export const LineChart = ({ title, dataKey, chartData }) => {
         meta: { ...entry }, // 메타데이터 추가
     }));
 
-    //마지막 및 첫번째 데이터 포인트 가져오기
-    const firstValue = chartData[0][dataKey];
-    const lastValue = chartData[length - 1][dataKey];
-    const changePercent = ((lastValue - firstValue) / firstValue) * 100; // 변화량 % 계산
-
     // 그래프 색상 결정
-    let graphColor = changePercent > 0 ? "var(--up-color)" : "var(--down-color)";
+    const [graphColor, setGraphColor] = useState("var(--up-color)");
 
     const options = {
         chart: {
@@ -110,6 +105,23 @@ export const LineChart = ({ title, dataKey, chartData }) => {
 
                     if (maxX - minX < oneWeek) {
                         chartContext.zoomX(minX, minX + oneWeek);
+                    }
+
+                    // zoom된 범위에 따라 firstValue와 changePercent 업데이트
+                    const zoomedData = chartData.filter((entry) => {
+                        const entryDate = new Date(entry.date).getTime();
+                        return entryDate >= minX && entryDate <= maxX;
+                    });
+
+                    if (zoomedData.length > 0) {
+                        const newFirstValue = zoomedData[0][dataKey];
+                        const newLastValue = zoomedData[zoomedData.length - 1][dataKey];
+                        const newChangePercent =
+                            ((newLastValue - newFirstValue) / newFirstValue) * 100;
+
+                        setGraphColor(
+                            newChangePercent > 0 ? "var(--up-color)" : "var(--down-color)",
+                        );
                     }
                 },
             },

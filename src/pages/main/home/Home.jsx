@@ -23,7 +23,6 @@ export const Home = () => {
         { label: "RSI, MFI, MACD 지표 이용", value: "backtesting_ind" },
         { label: "엔벨로프", value: "backtesting_env" },
         { label: "윌리엄스", value: "backtesting_w" },
-        { label: "시스템 자본 비율 복합", value: "backtesting_capital" },
     ];
 
     const handleChange = async (e) => {

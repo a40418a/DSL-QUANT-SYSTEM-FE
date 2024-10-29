@@ -30,6 +30,18 @@ export const LineChart = ({ title, dataKey, chartData }) => {
     // 그래프 색상 결정
     const [graphColor, setGraphColor] = useState("var(--up-color)");
 
+    const updateGraphColor = (firstValue, lastValue) => {
+        const changePercent = ((lastValue - firstValue) / firstValue) * 100; // 변화량 % 계산
+        setGraphColor(changePercent > 0 ? "var(--up-color)" : "var(--down-color)");
+    };
+
+    const getZoomedData = (minX, maxX) => {
+        return chartData.filter((entry) => {
+            const entryDate = new Date(entry.date).getTime();
+            return entryDate >= minX && entryDate <= maxX;
+        });
+    };
+
     const options = {
         chart: {
             type: "area",
@@ -56,13 +68,20 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                             index: 1,
                             title: "3 Month",
                             click: function (chart) {
-                                chart.zoomX(
-                                    new Date(
-                                        new Date().setMonth(new Date().getMonth() - 3),
-                                    ).getTime(),
+                                const threeMonthsAgo = new Date().setMonth(
+                                    new Date().getMonth() - 3,
+                                );
+                                chart.zoomX(threeMonthsAgo, new Date().getTime());
+                                const zoomedData = getZoomedData(
+                                    threeMonthsAgo,
                                     new Date().getTime(),
                                 );
-                                updateChartColors(chart);
+                                if (zoomedData.length > 0) {
+                                    updateGraphColor(
+                                        zoomedData[0][dataKey],
+                                        zoomedData[zoomedData.length - 1][dataKey],
+                                    );
+                                }
                             },
                         },
                         {
@@ -70,13 +89,15 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                             index: 2,
                             title: "1 Month",
                             click: function (chart) {
-                                chart.zoomX(
-                                    new Date(
-                                        new Date().setMonth(new Date().getMonth() - 1),
-                                    ).getTime(),
-                                    new Date().getTime(),
-                                );
-                                updateChartColors(chart);
+                                const oneMonthAgo = new Date().setMonth(new Date().getMonth() - 1);
+                                chart.zoomX(oneMonthAgo, new Date().getTime());
+                                const zoomedData = getZoomedData(oneMonthAgo, new Date().getTime());
+                                if (zoomedData.length > 0) {
+                                    updateGraphColor(
+                                        zoomedData[0][dataKey],
+                                        zoomedData[zoomedData.length - 1][dataKey],
+                                    );
+                                }
                             },
                         },
                         {
@@ -84,13 +105,15 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                             index: 3,
                             title: "1 Week",
                             click: function (chart) {
-                                chart.zoomX(
-                                    new Date(
-                                        new Date().setDate(new Date().getDate() - 7),
-                                    ).getTime(),
-                                    new Date().getTime(),
-                                );
-                                updateChartColors(chart);
+                                const oneWeekAgo = new Date().setDate(new Date().getDate() - 7);
+                                chart.zoomX(oneWeekAgo, new Date().getTime());
+                                const zoomedData = getZoomedData(oneWeekAgo, new Date().getTime());
+                                if (zoomedData.length > 0) {
+                                    updateGraphColor(
+                                        zoomedData[0][dataKey],
+                                        zoomedData[zoomedData.length - 1][dataKey],
+                                    );
+                                }
                             },
                         },
                     ],
@@ -108,22 +131,12 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                     }
 
                     // zoom된 범위에 따라 firstValue와 changePercent 업데이트
-                    const zoomedData = chartData.filter((entry) => {
-                        const entryDate = new Date(entry.date).getTime();
-                        return entryDate >= minX && entryDate <= maxX;
-                    });
+                    const zoomedData = getZoomedData(minX, maxX);
 
                     if (zoomedData.length > 0) {
                         const newFirstValue = zoomedData[0][dataKey];
-                        console.log(newFirstValue);
                         const newLastValue = zoomedData[zoomedData.length - 1][dataKey];
-                        console.log(newLastValue);
-                        const newChangePercent =
-                            ((newLastValue - newFirstValue) / newFirstValue) * 100;
-
-                        setGraphColor(
-                            newChangePercent > 0 ? "var(--up-color)" : "var(--down-color)",
-                        );
+                        updateGraphColor(newFirstValue, newLastValue);
                     }
                 },
             },

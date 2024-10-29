@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Chart from "react-apexcharts";
 import styles from "./chart.module.css";
 import { Loading } from "../loading/Loading";

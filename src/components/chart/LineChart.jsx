@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 import styles from "./chart.module.css";
 import { Loading } from "../loading/Loading";
@@ -27,21 +27,6 @@ export const LineChart = ({ title, dataKey, chartData }) => {
         meta: { ...entry }, // 메타데이터 추가
     }));
 
-    // 그래프 색상 결정
-    const [graphColor, setGraphColor] = useState("var(--up-color)");
-
-    const updateGraphColor = (firstValue, lastValue) => {
-        const changePercent = ((lastValue - firstValue) / firstValue) * 100; // 변화량 % 계산
-        setGraphColor(changePercent > 0 ? "var(--up-color)" : "var(--down-color)");
-    };
-
-    const getZoomedData = (minX, maxX) => {
-        return chartData.filter((entry) => {
-            const entryDate = new Date(entry.date).getTime();
-            return entryDate >= minX && entryDate <= maxX;
-        });
-    };
-
     const options = {
         chart: {
             type: "area",
@@ -68,20 +53,12 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                             index: 1,
                             title: "3 Month",
                             click: function (chart) {
-                                const threeMonthsAgo = new Date().setMonth(
-                                    new Date().getMonth() - 3,
-                                );
-                                chart.zoomX(threeMonthsAgo, new Date().getTime());
-                                const zoomedData = getZoomedData(
-                                    threeMonthsAgo,
+                                chart.zoomX(
+                                    new Date(
+                                        new Date().setMonth(new Date().getMonth() - 3),
+                                    ).getTime(),
                                     new Date().getTime(),
                                 );
-                                if (zoomedData.length > 0) {
-                                    updateGraphColor(
-                                        zoomedData[0][dataKey],
-                                        zoomedData[zoomedData.length - 1][dataKey],
-                                    );
-                                }
                             },
                         },
                         {
@@ -89,15 +66,12 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                             index: 2,
                             title: "1 Month",
                             click: function (chart) {
-                                const oneMonthAgo = new Date().setMonth(new Date().getMonth() - 1);
-                                chart.zoomX(oneMonthAgo, new Date().getTime());
-                                const zoomedData = getZoomedData(oneMonthAgo, new Date().getTime());
-                                if (zoomedData.length > 0) {
-                                    updateGraphColor(
-                                        zoomedData[0][dataKey],
-                                        zoomedData[zoomedData.length - 1][dataKey],
-                                    );
-                                }
+                                chart.zoomX(
+                                    new Date(
+                                        new Date().setMonth(new Date().getMonth() - 1),
+                                    ).getTime(),
+                                    new Date().getTime(),
+                                );
                             },
                         },
                         {
@@ -105,15 +79,12 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                             index: 3,
                             title: "1 Week",
                             click: function (chart) {
-                                const oneWeekAgo = new Date().setDate(new Date().getDate() - 7);
-                                chart.zoomX(oneWeekAgo, new Date().getTime());
-                                const zoomedData = getZoomedData(oneWeekAgo, new Date().getTime());
-                                if (zoomedData.length > 0) {
-                                    updateGraphColor(
-                                        zoomedData[0][dataKey],
-                                        zoomedData[zoomedData.length - 1][dataKey],
-                                    );
-                                }
+                                chart.zoomX(
+                                    new Date(
+                                        new Date().setDate(new Date().getDate() - 7),
+                                    ).getTime(),
+                                    new Date().getTime(),
+                                );
                             },
                         },
                     ],
@@ -128,15 +99,6 @@ export const LineChart = ({ title, dataKey, chartData }) => {
 
                     if (maxX - minX < oneWeek) {
                         chartContext.zoomX(minX, minX + oneWeek);
-                    }
-
-                    // zoom된 범위에 따라 firstValue와 changePercent 업데이트
-                    const zoomedData = getZoomedData(minX, maxX);
-
-                    if (zoomedData.length > 0) {
-                        const newFirstValue = zoomedData[0][dataKey];
-                        const newLastValue = zoomedData[zoomedData.length - 1][dataKey];
-                        updateGraphColor(newFirstValue, newLastValue);
                     }
                 },
             },
@@ -203,7 +165,9 @@ export const LineChart = ({ title, dataKey, chartData }) => {
         markers: {
             size: 0,
         },
-        colors: [graphColor],
+        colors: [
+            chartData[1][dataKey] < chartData[0][dataKey] ? "var(--up-color)" : "var(--down-color)",
+        ],
     };
 
     return (
@@ -214,19 +178,22 @@ export const LineChart = ({ title, dataKey, chartData }) => {
 };
 
 export const LineChartBacktest = ({ dataKey, chartData }) => {
+    // chartData가 비어있거나 undefined일 때 처리
     if (!Array.isArray(chartData) || chartData.length === 0) {
         return <Loading />;
     }
 
+    // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
     const data = chartData.map((entry) => ({
         x: entry.id,
-        y: entry[dataKey],
-        meta: { ...entry },
+        y: entry[dataKey], // 캔들차트 데이터 형식
+        meta: { ...entry }, // 메타데이터 추가
     }));
 
+    // profitRate의 최소값과 최대값 계산
     const profitRateValues = chartData.map((item) => item.profitRate);
-    const minProfitRate = Math.min(...profitRateValues) - 10;
-    const maxProfitRate = Math.max(...profitRateValues) + 10;
+    const minProfitRate = Math.min(...profitRateValues) - 10; // 최소값 -10
+    const maxProfitRate = Math.max(...profitRateValues) + 10; // 최대값 +10
 
     const options = {
         chart: {
@@ -240,6 +207,14 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
             },
             toolbar: {
                 show: false,
+                // tools: {
+                //     selection: false,
+                //     zoom: false,
+                //     zoomin: false,
+                //     zoomout: false,
+                //     pan: false,
+                //     reset: false,
+                // },
             },
         },
         xaxis: {
@@ -272,7 +247,7 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
                               minute: "2-digit",
                               hour12: false,
                           })
-                          .replace(",", "")
+                          .replace(",", "") // 콤마 제거
                     : "-";
 
                 return `<div class="tooltip">
@@ -328,4 +303,14 @@ export const LineChartBacktest = ({ dataKey, chartData }) => {
             <Chart options={options} series={[{ name: dataKey, data }]} type="area" height="100%" />
         </div>
     );
+};
+
+// 최대 종가 계산 함수
+export const MaxClose = ({ chartData }) => {
+    return Math.max(...chartData.map((entry) => entry.close));
+};
+
+// 최소 종가 계산 함수
+export const MinClose = ({ chartData }) => {
+    return Math.min(...chartData.map((entry) => entry.close));
 };

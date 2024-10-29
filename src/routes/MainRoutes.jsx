@@ -24,6 +24,7 @@ import { StrategyBW } from "../pages/main/strategy/combine/StrategyBW";
 import { StrategyGW } from "../pages/main/strategy/combine/StrategyGW";
 import { StrategyGR } from "../pages/main/strategy/combine/StrategyGR";
 import { StrategyRW } from "../pages/main/strategy/combine/StrategyRW";
+import { NotFound } from "../pages/preview/notfound/NotFound";
 
 const MainRoutes = () => {
     return (
@@ -55,6 +56,9 @@ const MainRoutes = () => {
             <Route path="/strategy/golden/rsi/" element={<StrategyGR />} />
             <Route path="/strategy/golden/williams/" element={<StrategyGW />} />
             <Route path="/strategy/rsi/williams/" element={<StrategyRW />} />
+
+            {/* 404페이지 */}
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };

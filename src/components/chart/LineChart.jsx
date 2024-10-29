@@ -115,7 +115,9 @@ export const LineChart = ({ title, dataKey, chartData }) => {
 
                     if (zoomedData.length > 0) {
                         const newFirstValue = zoomedData[0][dataKey];
+                        console.log(newFirstValue);
                         const newLastValue = zoomedData[zoomedData.length - 1][dataKey];
+                        console.log(newLastValue);
                         const newChangePercent =
                             ((newLastValue - newFirstValue) / newFirstValue) * 100;
 

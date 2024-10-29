@@ -15,6 +15,7 @@ import { StrategyWilliams } from "../pages/main/strategy/StrategyWilliams";
 import { StockList } from "../pages/main/stockList/StockList";
 import { StockInfo } from "../pages/main/stockInfo/StockInfo";
 import { LoginHandler } from "../pages/info/login/LoginHandler";
+
 import { StrategyBE } from "../pages/main/strategy/combine/StrategyBE";
 import { StrategyBR } from "../pages/main/strategy/combine/StrategyBR";
 import { StrategyBG } from "../pages/main/strategy/combine/StrategyBG";
@@ -25,6 +26,7 @@ import { StrategyBW } from "../pages/main/strategy/combine/StrategyBW";
 import { StrategyGW } from "../pages/main/strategy/combine/StrategyGW";
 import { StrategyGR } from "../pages/main/strategy/combine/StrategyGR";
 import { StrategyRW } from "../pages/main/strategy/combine/StrategyRW";
+import { NotFound } from "../pages/preview/notfound/NotFound";
 
 const MainRoutes = () => {
     return (
@@ -56,6 +58,9 @@ const MainRoutes = () => {
             <Route path="/strategy/golden/rsi/" element={<StrategyGR />} />
             <Route path="/strategy/golden/williams/" element={<StrategyGW />} />
             <Route path="/strategy/rsi/williams/" element={<StrategyRW />} />
+
+            {/* 404페이지 */}
+            <Route path="*" element={<NotFound />} />
         </Routes>
     );
 };

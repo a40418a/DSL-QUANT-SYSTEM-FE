@@ -1,0 +1,62 @@
+.notFound {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.IconWrapper {
+    width: 18.75rem;
+    height: 18.75rem;
+    border-radius: 50%;
+    background-color: var(--color-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+}
+
+.IconText {
+    font-size: 5rem;
+    font-family: var(--font-1);
+    color: var(--color-3);
+}
+
+.IconText:hover {
+    color: var(--point-color-2);
+}
+
+.TextWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: var(--margin);
+}
+
+.Text1 {
+    color: var(--main-color);
+    font-size: 1.4rem;
+}
+
+.BtnWrapper {
+    background-color: var(--point-color-2);
+    display: flex;
+    justify-content: center;
+    algin-items: center;
+    width: 10rem;
+    border-radius: var(--border-radius);
+    margin-top: var(--margin);
+    margin-bottom: 8rem;
+    padding: 0.5rem;
+    cursor: var(--cursor);
+}
+
+.BtnWrapper div {
+    color: var(--color-white);
+    font-size: 1.2rem;
+    margin-left: 0.5rem;
+}
+
+.BtnWrapper:hover {
+    box-shadow: var(--box-shadow);
+}

@@ -5,7 +5,7 @@
 
 .tooltip {
     padding: var(--padding);
-    width: 7.5rem;
+    width: 8rem;
 }
 
 .tooltip strong {

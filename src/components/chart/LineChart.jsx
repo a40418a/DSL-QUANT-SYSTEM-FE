@@ -27,6 +27,14 @@ export const LineChart = ({ title, dataKey, chartData }) => {
         meta: { ...entry }, // 메타데이터 추가
     }));
 
+    //마지막 및 첫번째 데이터 포인트 가져오기
+    const firstValue = chartData[0][dataKey];
+    const lastValue = chartData[length - 1][dataKey];
+    const changePercent = ((lastValue - firstValue) / firstValue) * 100; // 변화량 % 계산
+
+    // 그래프 색상 결정
+    let graphColor = changePercent > 0 ? "var(--up-color)" : "var(--down-color)";
+
     const options = {
         chart: {
             type: "area",
@@ -59,6 +67,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                                     ).getTime(),
                                     new Date().getTime(),
                                 );
+                                updateChartColors(chart);
                             },
                         },
                         {
@@ -72,6 +81,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                                     ).getTime(),
                                     new Date().getTime(),
                                 );
+                                updateChartColors(chart);
                             },
                         },
                         {
@@ -85,6 +95,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
                                     ).getTime(),
                                     new Date().getTime(),
                                 );
+                                updateChartColors(chart);
                             },
                         },
                     ],
@@ -165,9 +176,7 @@ export const LineChart = ({ title, dataKey, chartData }) => {
         markers: {
             size: 0,
         },
-        colors: [
-            chartData[1][dataKey] < chartData[0][dataKey] ? "var(--up-color)" : "var(--down-color)",
-        ],
+        colors: [graphColor],
     };
 
     return (

@@ -118,7 +118,7 @@ export const Home = () => {
                             multiData && (
                                 <LineChartMulti
                                     dataKey="profitRate"
-                                    chartData={stockData.map((item) => ({
+                                    chartData={multiData.map((item) => ({
                                         backtesting_date: item.backtesting_date || "",
                                         profitRate: item.profitRate,
                                         profitVsRate: item.profitVsRate,

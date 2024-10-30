@@ -4,7 +4,7 @@ import styles from "./home.module.css";
 import { HorizonTableTop20 } from "../../../components/table/horizonTable/HorizonTable";
 import { ArrowDown, ArrowUp } from "../../../components/emoticon/Arrow";
 import { ChartBox } from "../../../components/box/chartBox/ChartBox";
-import { LineChart, LineChartBacktest ,LineChartMulti} from "../../../components/chart/LineChart";
+import { LineChart, LineChartBacktest, LineChartMulti } from "../../../components/chart/LineChart";
 import { SelectBox } from "../../../components/box/selectBox/SelectBox";
 import { getLastBack } from "../../../utils/lastBackApi";
 import { Loading } from "../../../components/loading/Loading";
@@ -16,7 +16,7 @@ export const Home = () => {
         label: "",
     });
     const [backtestData, setBacktestData] = useState(null);
-    const [multiData,setMultiData]=useState(null);
+    const [multiData, setMultiData] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const options_strategy = [
@@ -45,6 +45,7 @@ export const Home = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+            setLoading(true);
             try {
                 const multiData = await getMultidata();
                 setMultiData(multiData);
@@ -62,7 +63,7 @@ export const Home = () => {
             <FeaturedInfo />
             <div className={styles.wrapper}>
                 <div className={styles.backTest}>
-                <div className={styles.title}>사용자의 복합 전략 백테스팅 결과</div>
+                    <div className={styles.title}>사용자의 복합 전략 백테스팅 결과</div>
                     <div className={styles.backChart}>
                         {loading ? (
                             <Loading />
@@ -129,7 +130,6 @@ export const Home = () => {
                             )
                         )}
                     </div>
-                    
                 </div>
                 <div className={styles.table}>
                     <div className={styles.title}>TOP 20 종목</div>

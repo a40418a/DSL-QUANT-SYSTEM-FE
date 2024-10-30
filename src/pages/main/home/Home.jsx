@@ -60,6 +60,25 @@ export const Home = () => {
         <div className={styles.home}>
             <FeaturedInfo />
             <div className={styles.wrapper}>
+                <div className={styles.multi}>
+            <div className={styles.title}>사용자의 복합 전략 백테스팅 결과</div>
+                    <div className={styles.backChart}>
+                        {loading ? (
+                            <Loading />
+                        ) : (
+                            multiData && (
+                                <LineChartMulti
+                                    dataKey="profitRate"
+                                    chartData={multiData.map((item) => ({
+                                        backtesting_date: item.backtesting_date || "",
+                                        profitRate: item.profitRate,
+                                        profitVsRate: item.profitVsRate,
+                                        finalProfitRate: item.finalProfitRate,
+                                    }))}
+                                />
+                            )
+                        )}
+                    </div></div>
                 <div className={styles.backTest}>
                     <div className={styles.title}>시스템 백테스팅 결과</div>
                     <div className={styles.option}>
@@ -110,24 +129,7 @@ export const Home = () => {
                             )
                         )}
                     </div>
-                    <div className={styles.title}>사용자의 복합 전략 백테스팅 결과</div>
-                    <div className={styles.backChart}>
-                        {loading ? (
-                            <Loading />
-                        ) : (
-                            multiData && (
-                                <LineChartMulti
-                                    dataKey="profitRate"
-                                    chartData={multiData.map((item) => ({
-                                        backtesting_date: item.backtesting_date || "",
-                                        profitRate: item.profitRate,
-                                        profitVsRate: item.profitVsRate,
-                                        finalProfitRate: item.finalProfitRate,
-                                    }))}
-                                />
-                            )
-                        )}
-                    </div>
+                    
                 </div>
                 <div className={styles.table}>
                     <div className={styles.title}>TOP 20 종목</div>

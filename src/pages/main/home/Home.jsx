@@ -4,10 +4,11 @@ import styles from "./home.module.css";
 import { HorizonTableTop20 } from "../../../components/table/horizonTable/HorizonTable";
 import { ArrowDown, ArrowUp } from "../../../components/emoticon/Arrow";
 import { ChartBox } from "../../../components/box/chartBox/ChartBox";
-import { LineChart, LineChartBacktest } from "../../../components/chart/LineChart";
+import { LineChart, LineChartBacktest ,LineChartMulti} from "../../../components/chart/LineChart";
 import { SelectBox } from "../../../components/box/selectBox/SelectBox";
 import { getLastBack } from "../../../utils/lastBackApi";
 import { Loading } from "../../../components/loading/Loading";
+import { getMultidata } from "../../../utils/multidataApi";
 
 export const Home = () => {
     const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ export const Home = () => {
         label: "",
     });
     const [backtestData, setBacktestData] = useState(null);
+    const [multiData,setMultiData]=useState(null);
     const [loading, setLoading] = useState(false);
 
     const options_strategy = [
@@ -40,6 +42,19 @@ export const Home = () => {
             setLoading(false);
         }
     };
+
+    useEffect(()=>{
+        const fetchData=async()=>{
+            try{
+                const multiData=await getMultidata();
+                setMultiData(multiData);
+            }
+            catch(error){
+                console.error('multiData error:',error);
+            }
+        }
+        fetchData();
+    }) 
 
     return (
         <div className={styles.home}>
@@ -91,6 +106,24 @@ export const Home = () => {
                                             }))}
                                         />
                                     }
+                                />
+                            )
+                        )}
+                    </div>
+                    <div className={styles.title}>사용자의 복합 전략 백테스팅 결과</div>
+                    <div className={styles.backChart}>
+                        {loading ? (
+                            <Loading />
+                        ) : (
+                            multiData && (
+                                <LineChartMulti
+                                    dataKey="profitRate"
+                                    chartData={stockData.map((item) => ({
+                                        backtesting_date: item.backtesting_date || "",
+                                        profitRate: item.profitRate,
+                                        profitVsRate: item.profitVsRate,
+                                        finalProfitRate: item.finalProfitRate,
+                                    }))}
                                 />
                             )
                         )}

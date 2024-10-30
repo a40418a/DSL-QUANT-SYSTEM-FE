@@ -50,7 +50,8 @@ export const Home = () => {
                 const multiData = await getMultidata();
                 setMultiData(multiData);
             } catch (error) {
-                console.error("multiData error:", error);
+                console.error("multiData error:", error.message); // 에러 메시지 출력
+                alert("데이터를 불러오는데 문제가 발생했습니다: " + error.message);
             } finally {
                 setLoading(false);
             }

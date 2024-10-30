@@ -43,18 +43,19 @@ export const Home = () => {
         }
     };
 
-    useEffect(()=>{
-        const fetchData=async()=>{
-            try{
-                const multiData=await getMultidata();
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const multiData = await getMultidata();
                 setMultiData(multiData);
+            } catch (error) {
+                console.error("multiData error:", error);
+            } finally {
+                setLoading(false);
             }
-            catch(error){
-                console.error('multiData error:',error);
-            }
-        }
+        };
         fetchData();
-    }) 
+    }, []);
 
     return (
         <div className={styles.home}>

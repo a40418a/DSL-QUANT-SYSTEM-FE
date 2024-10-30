@@ -1,16 +1,19 @@
-// 최근 백테스팅 내역
-// GET
-
 import axios from "axios";
 
 const SURL = import.meta.env.VITE_APP_URI;
 
-export const getMultidata = async (name) => {
+export const getMultidata = async () => {
+    const token = localStorage.getItem("jwt");
+
     try {
-        const response = await axios.get(`${SURL}/home/backtesting_multi`);
+        const response = await axios.get(`${SURL}/home/backtesting_multi`, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        });
         return response.data;
     } catch (error) {
-        console.error("getLastBack error: ", error);
+        console.error("getMultidata error: ", error);
         throw error;
     }
 };

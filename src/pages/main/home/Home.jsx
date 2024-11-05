@@ -17,7 +17,8 @@ export const Home = () => {
     });
     const [backtestData, setBacktestData] = useState(null);
     const [multiData, setMultiData] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loadingBacktest, setLoadingBacktest] = useState(false);
+    const [loadingMulti, setLoadingMulti] = useState(false);
 
     const options_strategy = [
         { label: "골든/데드", value: "backtesting_gd" },
@@ -31,7 +32,7 @@ export const Home = () => {
         const { name, value } = e.target;
         const selectedOption = options_strategy.find((option) => option.value === value);
         setFormData({ ...formData, [name]: value, label: selectedOption.label });
-        setLoading(true);
+        setLoadingBacktest(true);
 
         try {
             const data = await getLastBack(value);
@@ -39,20 +40,20 @@ export const Home = () => {
         } catch (error) {
             console.error("Home handleChange error: ", error);
         } finally {
-            setLoading(false);
+            setLoadingBacktest(false);
         }
     };
 
     useEffect(() => {
         const fetchData = async () => {
-            setLoading(true);
+            setLoadingMulti(true);
             try {
                 const multiData = await getMultidata();
                 setMultiData(multiData);
             } catch (error) {
                 console.error("multiData error:", error);
             } finally {
-                setLoading(false);
+                setLoadingMulti(false);
             }
         };
         fetchData();
@@ -65,7 +66,7 @@ export const Home = () => {
                 <div className={styles.backTest}>
                     <div className={styles.title}>사용자의 복합 전략 백테스팅 결과</div>
                     <div className={styles.backChart}>
-                        {loading ? (
+                        {loadingMulti ? (
                             <Loading />
                         ) : (
                             multiData && (
@@ -92,7 +93,7 @@ export const Home = () => {
                         />
                     </div>
                     <div className={styles.backChart}>
-                        {loading ? (
+                        {loadingBacktest ? (
                             <Loading />
                         ) : (
                             backtestData && (

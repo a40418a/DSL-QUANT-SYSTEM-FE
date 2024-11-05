@@ -409,7 +409,7 @@ export const LineChartMulti = ({ dataKey, chartData }) => {
             size: 0,
         },
         colors: [
-            chartData[1][dataKey] < chartData[0][dataKey] ? "var(--up-color)" : "var(--down-color)",
+            chartData[0][dataKey] < chartData[1][dataKey] ? "var(--up-color)" : "var(--down-color)",
         ],
     };
 

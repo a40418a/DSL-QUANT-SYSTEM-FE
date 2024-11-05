@@ -6,7 +6,6 @@ export const getMultidata = async () => {
     try {
         // 로컬 스토리지에서 토큰 가져오기
         const token = localStorage.getItem("jwt");
-        console.log("Token:", token);
 
         // 토큰이 없으면 에러 처리
         if (!token) {

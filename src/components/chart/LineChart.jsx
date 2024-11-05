@@ -312,8 +312,10 @@ export const LineChartMulti = ({ dataKey, chartData }) => {
     }
 
     // 데이터 포맷팅 (ApexCharts에서 사용하는 형식으로 변환)
-    const data = chartData.map((entry) => ({
-        x: entry.id,
+    const data = chartData.reverse().map((entry) => ({
+        x: entry.backtesting_date
+            ? new Date(entry.backtesting_date).toLocaleDateString("en-US")
+            : "N/A", // 날짜를 mm/dd 형식으로 변환
         y: entry[dataKey], // 캔들차트 데이터 형식
         meta: { ...entry }, // 메타데이터 추가
     }));

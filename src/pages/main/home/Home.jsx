@@ -95,40 +95,41 @@ export const Home = () => {
                     <div className={styles.backChart}>
                         {loadingBacktest ? (
                             <Loading />
-                        ) : backtestData && backtestData[0] ? (
-                            <ChartBox
-                                title={formData.label}
-                                currency="₩"
-                                price={(backtestData[0].finalAsset ?? 0).toFixed(2)}
-                                arrow={
-                                    backtestData[0].finalProfitRate >=
-                                    (backtestData[1]?.finalProfitRate ?? 0) ? (
-                                        <ArrowUp />
-                                    ) : (
-                                        <ArrowDown />
-                                    )
-                                }
-                                rate={(backtestData[0].finalProfitRate ?? 0).toFixed(2)}
-                                chart={
-                                    <LineChartBacktest
-                                        dataKey="finalProfitRate"
-                                        chartData={backtestData.map((item) => ({
-                                            initial_investment: item.initial_investment,
-                                            tick_kind: item.tick_kind,
-                                            inq_range: item.inq_range,
-                                            id: item.id,
-                                            finalCash: item.finalCash,
-                                            finalAsset: item.finalAsset,
-                                            finalBalance: item.finalBalance,
-                                            profit: item.profit,
-                                            numberOfTrades: item.numberOfTrades,
-                                            backtesting_date: item.backtesting_date || "",
-                                            profitRate: item.profitRate,
-                                        }))}
-                                    />
-                                }
-                            />
-                        ) : null}
+                        ) : (
+                            backtestData && (
+                                <ChartBox
+                                    title={formData.label}
+                                    currency="₩"
+                                    price={backtestData[0].finalAsset.toFixed(2)}
+                                    arrow={
+                                        backtestData[0].profitRate >= backtestData[1].profitRate ? (
+                                            <ArrowUp />
+                                        ) : (
+                                            <ArrowDown />
+                                        )
+                                    }
+                                    rate={backtestData[0].profitRate.toFixed(2)}
+                                    chart={
+                                        <LineChartBacktest
+                                            dataKey="profitRate"
+                                            chartData={backtestData.map((item) => ({
+                                                initial_investment: item.initial_investment,
+                                                tick_kind: item.tick_kind,
+                                                inq_range: item.inq_range,
+                                                id: item.id,
+                                                finalCash: item.finalCash,
+                                                finalAsset: item.finalAsset,
+                                                finalBalance: item.finalBalance,
+                                                profit: item.profit,
+                                                numberOfTrades: item.numberOfTrades,
+                                                backtesting_date: item.backtesting_date || "",
+                                                profitRate: item.profitRate,
+                                            }))}
+                                        />
+                                    }
+                                />
+                            )
+                        )}
                     </div>
                 </div>
                 <div className={styles.table}>

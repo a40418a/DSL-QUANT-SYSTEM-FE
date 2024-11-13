@@ -109,7 +109,7 @@ export const Home = () => {
                                             <ArrowDown />
                                         )
                                     }
-                                    rate={backtestData[0].finalProfitRate.toFixed(2)}
+                                    rate={backtestData[0].profitRate.toFixed(2)}
                                     chart={
                                         <LineChartBacktest
                                             dataKey="finalProfitRate"

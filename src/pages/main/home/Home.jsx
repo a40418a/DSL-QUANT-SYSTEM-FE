@@ -71,7 +71,7 @@ export const Home = () => {
                         ) : (
                             multiData && (
                                 <LineChartMulti
-                                    dataKey="profitRate"
+                                    dataKey="finalProfitRate"
                                     chartData={multiData.map((item) => ({
                                         backtesting_date: item.backtesting_date || "",
                                         profitRate: item.profitRate,
@@ -102,16 +102,17 @@ export const Home = () => {
                                     currency="₩"
                                     price={backtestData[0].finalAsset.toFixed(2)}
                                     arrow={
-                                        backtestData[0].profitRate >= backtestData[1].profitRate ? (
+                                        backtestData[0].finalProfitRate >=
+                                        backtestData[1].finalProfitRate ? (
                                             <ArrowUp />
                                         ) : (
                                             <ArrowDown />
                                         )
                                     }
-                                    rate={backtestData[0].profitRate.toFixed(2)}
+                                    rate={backtestData[0].finalProfitRate.toFixed(2)}
                                     chart={
                                         <LineChartBacktest
-                                            dataKey="profitRate"
+                                            dataKey="finalProfitRate"
                                             chartData={backtestData.map((item) => ({
                                                 initial_investment: item.initial_investment,
                                                 tick_kind: item.tick_kind,

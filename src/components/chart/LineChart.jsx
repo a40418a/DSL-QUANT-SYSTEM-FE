@@ -321,7 +321,7 @@ export const LineChartMulti = ({ dataKey, chartData }) => {
     }));
 
     // profitRate의 최소값과 최대값 계산
-    const profitRateValues = chartData.map((item) => item.profitRate);
+    const profitRateValues = chartData.map((item) => item.finalProfitRate);
     const minProfitRate = Math.min(...profitRateValues) - 10; // 최소값 -10
     const maxProfitRate = Math.max(...profitRateValues) + 10; // 최대값 +10
 

@@ -64,7 +64,7 @@ export const Home = () => {
             <FeaturedInfo />
             <div className={styles.wrapper}>
                 <div className={styles.backTest}>
-                    <div className={styles.title}>사용자의 복합 전략 백테스팅 결과</div>
+                    <div className={styles.title}>시스템 복합 전략 백테스팅 결과</div>
                     <div className={styles.backChart}>
                         {loadingMulti ? (
                             <Loading />

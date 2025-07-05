@@ -25,31 +25,7 @@
 
 ## 📹 Screenshots
 
-> 아래 이미지들은 실제 캡처 이미지로 교체해 주세요.
-
-**무작위 전략 실행 화면**
-
-<p align="center">
-  <img src="https://your-random-strategy-screenshot-url" width="600"/>
-</p>
-
-**코스피/코스닥 데이터 크롤링 화면**
-
-<p align="center">
-  <img src="https://your-crawling-screenshot-url" width="600"/>
-</p>
-
-**공통 전략 설정 화면**
-
-<p align="center">
-  <img src="https://your-strategy-settings-screenshot-url" width="600"/>
-</p>
-
-**이전 전략 결과 조회 화면**
-
-<p align="center">
-  <img src="https://your-history-screenshot-url" width="600"/>
-</p>
+![DSL QUANT](https://github.com/user-attachments/assets/b5984e6f-d2ea-4401-b4f4-646ec45d91ee)
 
 ---
 
